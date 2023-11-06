@@ -152,7 +152,7 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         btnDarBaja.setText("Dar de Baja");
         jPanel1.add(btnDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 650, -1, -1));
 
-        btnActivar.setText("Activar Vehiculo");
+        btnActivar.setText("Activar Conductor");
         jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, -1, -1));
         jPanel1.add(txtApellidoPaternoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 200, -1));
 
