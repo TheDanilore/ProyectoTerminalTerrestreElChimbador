@@ -280,19 +280,19 @@ public class ConductorController implements ActionListener {
             //ob[9] = lista.get(i).getEmpresa();
 
             
-            if ("1".equals(lista.get(i).getEmpresa())) {
+            if (lista.get(i).getEmpresa()==1) {
                 ob[9] = "No Pertenece a ninguna empresa";
             }
-            if ("2".equals(lista.get(i).getEmpresa())) {
+            if (lista.get(i).getEmpresa()==2) {
                 ob[9] = "Cruz del Sur";
             }
-            if ("3".equals(lista.get(i).getEmpresa())) {
+            if (lista.get(i).getEmpresa()==3) {
                 ob[9] = "Transportes Cruz del Norte";
             }
-            if ("5".equals(lista.get(i).getEmpresa())) {
+            if (lista.get(i).getEmpresa()==5) {
                 ob[9] = "Empresa VIA";
             }
-            if ("7".equals(lista.get(i).getEmpresa())) {
+            if (lista.get(i).getEmpresa()==7) {
                 ob[9] = "OROPEZA e";
             }
             
