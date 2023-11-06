@@ -25,7 +25,7 @@ public class VehiculoDAO {
     PreparedStatement ps;
     ResultSet rs;
     
-    public boolean RegistrarVehiculo(VehiculoModelo vehiculo){
+    public boolean registrarVehiculo(VehiculoModelo vehiculo){
         String sql = "INSERT INTO vehiculo (placa_vehiculo,id_tipo_vehiculo) VALUES (?,?)";
         
         try{
@@ -47,7 +47,7 @@ public class VehiculoDAO {
         }
     }
     
-    public List<VehiculoModelo> ListarVehiculo(){
+    public List<VehiculoModelo> listarVehiculo(){
         List<VehiculoModelo> lista= new ArrayList();
         String sql="SELECT * FROM vehiculo";
         try{
@@ -68,7 +68,7 @@ public class VehiculoDAO {
         return lista;
     }
     
-    public boolean BajaActivarVehiculo(VehiculoModelo vehiculoModelo) {
+    public boolean bajaActivarVehiculo(VehiculoModelo vehiculoModelo) {
         String sql = "UPDATE vehiculo SET id_estado = ? WHERE id_vehiculo = ?;";
         try {
             ps = con.prepareStatement(sql);
@@ -88,7 +88,7 @@ public class VehiculoDAO {
         }
     }
     
-    public boolean ModificarVehiculo(VehiculoModelo vehiculoModelo){
+    public boolean modificarVehiculo(VehiculoModelo vehiculoModelo){
         String sql="UPDATE vehiculo SET placa_vehiculo=?, id_tipo_vehiculo=? WHERE id_vehiculo=?";
         try{
             ps=con.prepareStatement(sql);
@@ -109,7 +109,7 @@ public class VehiculoDAO {
         }
     }
     
-    public VehiculoModelo BuscarVehiculo(int placa){
+    public VehiculoModelo buscarVehiculo(int placa){
         VehiculoModelo vehiculo = new VehiculoModelo();
         String sql ="SELECT * FROM vehiculo WHERE placa=?";
         try{

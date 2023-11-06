@@ -6,12 +6,8 @@ package Controlador;
 
 import DAO.CargoDAO;
 import DAO.UsuarioDAO;
-import Modelo.Cargo;
-import Modelo.EstadoUsuario;
 import Modelo.UsuarioModelo;
 import Vista.LoginUser;
-import Vista.PrincipalAdmin;
-import Vista.PrincipalUsuario;
 import Vista.UsuariosAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

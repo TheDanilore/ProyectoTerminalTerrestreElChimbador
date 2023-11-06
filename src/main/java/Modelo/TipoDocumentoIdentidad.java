@@ -15,6 +15,16 @@ public class TipoDocumentoIdentidad {
     public TipoDocumentoIdentidad() {
     }
 
+    public TipoDocumentoIdentidad(int id_tipo_documento_identidad) {
+        this.id_tipo_documento_identidad = id_tipo_documento_identidad;
+    }
+
+    public TipoDocumentoIdentidad(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    
+
     public TipoDocumentoIdentidad(int id_tipo_documento_identidad, String descripcion) {
         this.id_tipo_documento_identidad = id_tipo_documento_identidad;
         this.descripcion = descripcion;
@@ -36,5 +46,12 @@ public class TipoDocumentoIdentidad {
         this.descripcion = descripcion;
     }
     
+    public String ToString(){
+        return descripcion;
+    }
+    
+    public boolean equals(Object obj){
+        return this.id_tipo_documento_identidad == ((TipoDocumentoIdentidad) obj).id_tipo_documento_identidad;
+    }
     
 }

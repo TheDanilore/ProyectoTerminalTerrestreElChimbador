@@ -34,7 +34,7 @@ public class EmpresaController implements ActionListener {
         this.vista.btnDarBajaEmpre.addActionListener(this);
         this.vista.btnActivarEmpre.addActionListener(this);
         this.vista.btnNuevoEmpre.addActionListener(this);
-        
+
         LimpiarTable();
         listarEmpresas(vista.tableEmpresa);
     }
@@ -42,8 +42,8 @@ public class EmpresaController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnListar) {
-            
-        LimpiarTable();
+
+            LimpiarTable();
             listarEmpresas(vista.tableEmpresa);
         }
         if (e.getSource() == vista.btnGuardarEmpre) {
@@ -62,32 +62,31 @@ public class EmpresaController implements ActionListener {
             nuevoEmpresa();
         }
     }
-    
-    
+
     //Metodo para registar empresa
-    public void guardarEmpresa(){
+    public void guardarEmpresa() {
         if (camposValidos()) {
 
-                modelo.setRuc(Long.parseLong(vista.txtRucEmpresa.getText()));
-                modelo.setRazon_social(vista.txtRazonEmpresa.getText());
-                modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
+            modelo.setRuc(Long.parseLong(vista.txtRucEmpresa.getText()));
+            modelo.setRazon_social(vista.txtRazonEmpresa.getText());
+            modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
 
-                //Conexion, consulta con la base de datos
-                if (dao.RegistrarEmpresas(modelo)) {
-                    JOptionPane.showMessageDialog(null, "Empresa Registrada");
-                    LimpiarTable();
-                    listarEmpresas(vista.tableEmpresa);
-                    LimpiarEmpresa();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Registrar Empresa");
-                }
+            //Conexion, consulta con la base de datos
+            if (dao.RegistrarEmpresas(modelo)) {
+                JOptionPane.showMessageDialog(null, "Empresa Registrada");
+                LimpiarTable();
+                listarEmpresas(vista.tableEmpresa);
+                LimpiarEmpresa();
             } else {
-                JOptionPane.showMessageDialog(null, "Llene todos los campos");
+                JOptionPane.showMessageDialog(null, "Error al Registrar Empresa");
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+        }
     }
-    
+
     //Metodo para actualizar empresa
-    public void actualizarEmpresa(){
+    public void actualizarEmpresa() {
         if ("".equals(vista.txtIdEmpresa.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
@@ -96,7 +95,7 @@ public class EmpresaController implements ActionListener {
                 modelo.setRuc(Long.parseLong(vista.txtRucEmpresa.getText()));
                 modelo.setRazon_social(vista.txtRazonEmpresa.getText());
                 modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
-                
+
                 //Conexion, consulta con la base de datos
                 if (dao.ModificarEmpresa(modelo)) {
                     JOptionPane.showMessageDialog(null, "Empresa Modificada");
@@ -111,16 +110,16 @@ public class EmpresaController implements ActionListener {
             }
         }
     }
-    
+
     //Metodo para dar de baja empresa (id_estado=0)
-    public void bajaEmpresa(){
+    public void bajaEmpresa() {
         if (!"".equals(vista.txtIdEmpresa.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
                 modelo.setEstado(0);
                 if (dao.BajaActivarEmpresa(modelo)) {
-                    
+
                     JOptionPane.showMessageDialog(null, "Se dio de baja a la empresa");
                     LimpiarTable();
                     listarEmpresas(vista.tableEmpresa);
@@ -128,25 +127,25 @@ public class EmpresaController implements ActionListener {
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al Dar de Baja a la Empresa");
                 }
-            }else{
+            } else {
                 LimpiarEmpresa();
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
-        
+
     }
-    
+
     //Metodo para activar empresa (id_estado=1)
-    public void activarEmpresa(){
+    public void activarEmpresa() {
         if (!"".equals(vista.txtIdEmpresa.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
                 modelo.setEstado(1);
                 if (dao.BajaActivarEmpresa(modelo)) {
-                    
+
                     JOptionPane.showMessageDialog(null, "Se Activo a la empresa");
                     LimpiarTable();
                     listarEmpresas(vista.tableEmpresa);
@@ -154,7 +153,7 @@ public class EmpresaController implements ActionListener {
                 } else {
                     JOptionPane.showMessageDialog(null, "Error al Activar la Empresa");
                 }
-            }else{
+            } else {
                 LimpiarEmpresa();
             }
 
@@ -162,15 +161,12 @@ public class EmpresaController implements ActionListener {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
     }
-    
+
     //Metodo para registar Nueva empresa (Limpia los campos)
-    public void nuevoEmpresa(){
+    public void nuevoEmpresa() {
         LimpiarEmpresa();
     }
-    
 
-    
-    
     //Metodo para Listar Empresas
     public void listarEmpresas(JTable tabla) {
         clase = (DefaultTableModel) tabla.getModel();
@@ -183,7 +179,7 @@ public class EmpresaController implements ActionListener {
             object[2] = lista.get(i).getRazon_social();
             object[3] = lista.get(i).getNombre_comercial();
             object[4] = lista.get(i).getEstado();
-            
+
             clase.addRow(object);
         }
         vista.tableEmpresa.setModel(clase);

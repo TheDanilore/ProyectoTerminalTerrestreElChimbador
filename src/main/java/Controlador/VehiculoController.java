@@ -28,6 +28,13 @@ public class VehiculoController implements ActionListener {
     public VehiculoController(VehiculosAdminVista v) {
         this.vista = v;
         this.vista.btnGuardar.addActionListener(this);
+        this.vista.btnActualizar.addActionListener(this);
+        this.vista.btnNuevo.addActionListener(this);
+        this.vista.btnActivar.addActionListener(this);
+        this.vista.btnDarBaja.addActionListener(this);
+
+        this.LimpiarTable();
+        this.ListarVehiculos(vista.tableVehiculo);
     }
 
     @Override
@@ -35,8 +42,17 @@ public class VehiculoController implements ActionListener {
         if (e.getSource() == vista.btnGuardar) {
             guardarVehiculo();
         }
+        if (e.getSource() == vista.btnActualizar) {
+            actualizarVehiculo();
+        }
+        if (e.getSource() == vista.btnNuevo) {
+            nuevoVehiculo();
+        }
+        if (e.getSource() == vista.btnActivar) {
+            activarVehiculo();
+        }
         if (e.getSource() == vista.btnDarBaja) {
-            guardarVehiculo();
+            bajaVehiculo();
         }
     }
 
@@ -62,7 +78,7 @@ public class VehiculoController implements ActionListener {
             }
 
             //Conexion, consulta con la base de datos
-            if (dao.RegistrarVehiculo(modelo)) {
+            if (dao.registrarVehiculo(modelo)) {
                 JOptionPane.showMessageDialog(null, "Vehiculo Registrado");
                 LimpiarTable();
                 ListarVehiculos(vista.tableVehiculo);
@@ -102,7 +118,7 @@ public class VehiculoController implements ActionListener {
                 }
 
                 //Conexion, consulta con la base de datos
-                if (dao.ModificarVehiculo(modelo)) {
+                if (dao.modificarVehiculo(modelo)) {
                     JOptionPane.showMessageDialog(null, "Vehiculo Modificado");
                     LimpiarTable();
                     ListarVehiculos(vista.tableVehiculo);
@@ -122,7 +138,7 @@ public class VehiculoController implements ActionListener {
             if (pregunta == 0) {
                 modelo.setId_vehiculo(Integer.parseInt(vista.txtIdVehiculo.getText()));
                 modelo.setEstado(0);
-                if (dao.BajaActivarVehiculo(modelo)) {
+                if (dao.bajaActivarVehiculo(modelo)) {
 
                     JOptionPane.showMessageDialog(null, "Se dio de baja el Vehiculo");
                     LimpiarTable();
@@ -146,7 +162,7 @@ public class VehiculoController implements ActionListener {
             if (pregunta == 0) {
                 modelo.setId_vehiculo(Integer.parseInt(vista.txtIdVehiculo.getText()));
                 modelo.setEstado(1);
-                if (dao.BajaActivarVehiculo(modelo)) {
+                if (dao.bajaActivarVehiculo(modelo)) {
 
                     JOptionPane.showMessageDialog(null, "Se Activo el Vehiculo");
                     LimpiarTable();
@@ -170,14 +186,38 @@ public class VehiculoController implements ActionListener {
 
     public void ListarVehiculos(JTable tabla) {
         clase = (DefaultTableModel) tabla.getModel();
-        List<VehiculoModelo> lista = dao.ListarVehiculo();
+        List<VehiculoModelo> lista = dao.listarVehiculo();
         Object[] ob = new Object[4];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_vehiculo();
             ob[1] = lista.get(i).getPlaca_vehiculo();
             ob[2] = lista.get(i).getTipo_vehiculo();
+
+            if (lista.get(i).getTipo_vehiculo() == 1) {
+                ob[2] = "Bus de Transporte";
+            }
+            if (lista.get(i).getTipo_vehiculo() == 2) {
+                ob[2] = "Camion de Carga";
+            }
+            if (lista.get(i).getTipo_vehiculo() == 3) {
+                ob[2] = "Vehiculo del Personal";
+            }
+            if (lista.get(i).getTipo_vehiculo() == 4) {
+                ob[2] = "Vehiculo Particular";
+            }
+            if (lista.get(i).getTipo_vehiculo() == 5) {
+                ob[2] = "Otro Vehiculo";
+            }
+
             ob[3] = lista.get(i).getEstado();
+            //estado
+            if (lista.get(i).getEstado() == 1) {
+                ob[3] = "Activo";
+            }
+            if (lista.get(i).getEstado() == 0) {
+                ob[3] = "Deshabilitado";
+            }
 
             clase.addRow(ob);
         }

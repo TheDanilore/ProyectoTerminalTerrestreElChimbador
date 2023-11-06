@@ -4,9 +4,11 @@
  */
 package Vista;
 
+import Controlador.ConductorController;
 import Controlador.EmpresaController;
 import Controlador.UsuarioControlador;
 import Controlador.UsuarioController;
+import Controlador.VehiculoController;
 
 import DAO.UsuarioDAO;
 import Modelo.UsuarioModelo;
@@ -21,32 +23,24 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     /**
      * Creates new form Vista
      */
-    
-    
-    
     UsuarioDAO loginDAO = new UsuarioDAO();
-   
-   
-    
-    UsuarioModelo usuarioModelo= new UsuarioModelo();
+
+    UsuarioModelo usuarioModelo = new UsuarioModelo();
     LoginUser loginUser = new LoginUser();
 
-    
     public PrincipalAdmin() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        
+
         lblNombre.setText(usuarioModelo.getNombres());
-        
-        
+
         if ("1".equals(String.valueOf(usuarioModelo.getCargo()))) {
             lblRol.setText("Administrador");
-        }else if("2".equals(String.valueOf(usuarioModelo.getCargo()))){
+        } else if ("2".equals(String.valueOf(usuarioModelo.getCargo()))) {
             lblRol.setText("Vigilante");
         }
-        
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -70,9 +64,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
+        menuConductor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuVehiculo = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -156,14 +148,13 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         jMenu1.setText("Conductores");
 
-        jMenuItem2.setText("Registrar Conductor");
-        jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Modificar Conductor");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Consultar Conductor");
-        jMenu1.add(jMenuItem4);
+        menuConductor.setText("Conductor");
+        menuConductor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConductorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuConductor);
 
         jMenuBar1.add(jMenu1);
 
@@ -219,13 +210,13 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
 
     private void menuConsultarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarRegistroActionPerformed
-        
+
     }//GEN-LAST:event_menuConsultarRegistroActionPerformed
 
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         UsuariosAdminVista vistaUsuario = new UsuariosAdminVista();
         UsuarioController controller = new UsuarioController(vistaUsuario);
-        
+
         escritorio.add(vistaUsuario);
         vistaUsuario.show();
     }//GEN-LAST:event_menuUsuarioActionPerformed
@@ -233,18 +224,24 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmpresasActionPerformed
         EmpresasAdminVista vistaEmpresas = new EmpresasAdminVista();
         EmpresaController controller = new EmpresaController(vistaEmpresas);
-        
-        
+
         escritorio.add(vistaEmpresas);
         vistaEmpresas.show();
     }//GEN-LAST:event_menuEmpresasActionPerformed
 
     private void menuVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVehiculoActionPerformed
-        VehiculosAdminVista vistaVehiculos = new VehiculosAdminVista(); 
-        
+        VehiculosAdminVista vistaVehiculos = new VehiculosAdminVista();
+        VehiculoController controller = new VehiculoController(vistaVehiculos);
         escritorio.add(vistaVehiculos);
         vistaVehiculos.show();
     }//GEN-LAST:event_menuVehiculoActionPerformed
+
+    private void menuConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConductorActionPerformed
+        ConductorVista vista = new ConductorVista();
+        ConductorController controller = new ConductorController(vista);
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuConductorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,11 +293,9 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRol;
+    private javax.swing.JMenuItem menuConductor;
     private javax.swing.JMenuItem menuConsultarRegistro;
     private javax.swing.JMenuItem menuEmpresas;
     private javax.swing.JMenuItem menuEntrada;
