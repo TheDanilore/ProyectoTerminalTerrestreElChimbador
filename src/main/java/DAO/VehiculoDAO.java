@@ -32,7 +32,7 @@ public class VehiculoDAO {
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
             ps.setString(1, vehiculo.getPlaca_vehiculo());
-            ps.setInt(2, vehiculo.getTipo_vehiculo().getId_tipo_vehiculo());
+            ps.setInt(2, vehiculo.getTipo_vehiculo());
             ps.execute();
             return true;
         }catch(SQLException e){
@@ -58,8 +58,8 @@ public class VehiculoDAO {
                 VehiculoModelo vehiculoModelo = new VehiculoModelo();
                 vehiculoModelo.setId_vehiculo(rs.getInt("id_vehiculo"));
                 vehiculoModelo.setPlaca_vehiculo(rs.getString("placa_vehiculo"));
-                
-            
+                vehiculoModelo.setTipo_vehiculo(rs.getInt("id_tipo_vehiculo"));
+                vehiculoModelo.setEstado(rs.getInt("id_estado"));
                 lista.add(vehiculoModelo);
             }
         }catch(SQLException e){
@@ -72,7 +72,7 @@ public class VehiculoDAO {
         String sql = "UPDATE vehiculo SET id_estado = ? WHERE id_vehiculo = ?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, vehiculoModelo.getEstado().getId_estado());
+            ps.setInt(1, vehiculoModelo.getEstado());
             ps.setInt(2, vehiculoModelo.getId_vehiculo());
             ps.execute();
             return true;
@@ -93,7 +93,7 @@ public class VehiculoDAO {
         try{
             ps=con.prepareStatement(sql);
             ps.setString(1, vehiculoModelo.getPlaca_vehiculo());
-            ps.setInt(2, vehiculoModelo.getTipo_vehiculo().getId_tipo_vehiculo());
+            ps.setInt(2, vehiculoModelo.getTipo_vehiculo());
             ps.setInt(3, vehiculoModelo.getId_vehiculo());
             ps.execute();
             return true;
@@ -109,7 +109,7 @@ public class VehiculoDAO {
         }
     }
     
-    /*public VehiculoModelo BuscarVehiculo(int placa){
+    public VehiculoModelo BuscarVehiculo(int placa){
         VehiculoModelo vehiculo = new VehiculoModelo();
         String sql ="SELECT * FROM vehiculo WHERE placa=?";
         try{
@@ -118,13 +118,14 @@ public class VehiculoDAO {
             ps.setInt(1, placa);
             rs=ps.executeQuery();
             if(rs.next()){
-                vehiculo.setId_tipo_vehiculo(rs.getInt("tipo_vehiculo"));
-                vehiculo.setId_estado(rs.getInt("id_estado"));
-                vehiculo.setId_estado(rs.getInt("id_vehiculo"));
+                vehiculo.setId_vehiculo(rs.getInt("id_vehiculo"));
+                vehiculo.setPlaca_vehiculo(rs.getString("placa_vehiculo"));
+                vehiculo.setTipo_vehiculo(rs.getInt("tipo_vehiculo"));
+                vehiculo.setEstado(rs.getInt("id_estado"));
             }
         }catch(SQLException e){
             System.out.println(e.toString());
         }
         return vehiculo;
-    }*/
+    }
 }

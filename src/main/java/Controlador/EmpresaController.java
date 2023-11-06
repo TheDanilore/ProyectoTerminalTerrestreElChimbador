@@ -118,7 +118,7 @@ public class EmpresaController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
-                //modelo.setEstado(0,"Deshabilitada");
+                modelo.setEstado(0);
                 if (dao.BajaActivarEmpresa(modelo)) {
                     
                     JOptionPane.showMessageDialog(null, "Se dio de baja a la empresa");
@@ -144,7 +144,7 @@ public class EmpresaController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
-                //modelo.setEstado(1, "Activa");
+                modelo.setEstado(1);
                 if (dao.BajaActivarEmpresa(modelo)) {
                     
                     JOptionPane.showMessageDialog(null, "Se Activo a la empresa");
@@ -182,7 +182,7 @@ public class EmpresaController implements ActionListener {
             object[1] = lista.get(i).getRuc();
             object[2] = lista.get(i).getRazon_social();
             object[3] = lista.get(i).getNombre_comercial();
-            object[4] = lista.get(i).getEstado().getDescripcion();
+            object[4] = lista.get(i).getEstado();
             
             clase.addRow(object);
         }

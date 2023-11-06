@@ -79,7 +79,7 @@ public class UsuarioController implements ActionListener {
             activarUsuario();
         }
         if (e.getSource() == vista.btnBajaUsu) {
-            //bajaUsuario();
+            bajaUsuario();
         }
         
     }
@@ -139,19 +139,7 @@ public class UsuarioController implements ActionListener {
             }else{
                 modelo.setCargo(2);
             }
-            
-            
-            
-
-// Obtener el cargo seleccionado desde el JComboBox
-            /*String cargoDescripcion = vista.cbxRolUser.getSelectedItem().toString();
-            
-            Cargo cargo = cargodao.obtenerCargoPorDescripcion(cargoDescripcion);
-            
-            // Asigna el objeto Cargo al modelo
-            modelo.setCargo(cargo);
-*/
-             
+                 
             
             //Conexion, consulta con la base de datos
             if (dao.Registrar(modelo)) {
@@ -182,10 +170,6 @@ public class UsuarioController implements ActionListener {
                 modelo.setCargo(2);
             }
             
-             
-
-             
-            
 
                 //Conexion, consulta con la base de datos
                 if (dao.ModificarUsuario(modelo)) {
@@ -213,7 +197,7 @@ public class UsuarioController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar al Usuario");
             if (pregunta == 0) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
-                modelo.setCargo(1);
+                modelo.setEstado(1);
                 
                 if (dao.BajaActivarUsuario(modelo)) {
                     
@@ -238,7 +222,7 @@ public class UsuarioController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja al Usuario");
             if (pregunta == 0) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
-                modelo.setCargo(0);
+                modelo.setEstado(0);
                 if (dao.BajaActivarUsuario(modelo)) {
                     
                     JOptionPane.showMessageDialog(null, "Se dio de baja al Usuario");

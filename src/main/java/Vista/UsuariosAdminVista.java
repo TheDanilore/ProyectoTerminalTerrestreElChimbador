@@ -164,7 +164,7 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 250, 30));
 
         cbxRolUser.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
-        cbxRolUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Activo", "Deshabilitado" }));
+        cbxRolUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Vigilante de Garita" }));
         cbxRolUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxRolUserActionPerformed(evt);

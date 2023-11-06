@@ -14,17 +14,17 @@ public class Conductor {
     private String segundo_nombre;
     private String apellido_paterno;
     private String apellido_materno;
-    private TipoDocumentoIdentidad tipo_documento_identidad;
+    private String tipo_documento_identidad;
     private long numero_documento;
     private int telefono;
     private String direccion;
-    private EmpresasModelo empresa;
-    private EstadoConductor estado;
+    private int empresa;
+    private int estado;
 
     public Conductor() {
     }
 
-    public Conductor(int id_conductor, String primer_nombre, String segundo_nombre, String apellido_paterno, String apellido_materno, TipoDocumentoIdentidad tipo_documento_identidad, long numero_documento, int telefono, String direccion, EmpresasModelo empresa, EstadoConductor estado) {
+    public Conductor(int id_conductor, String primer_nombre, String segundo_nombre, String apellido_paterno, String apellido_materno, String tipo_documento_identidad, long numero_documento, int telefono, String direccion, int empresa, int estado) {
         this.id_conductor = id_conductor;
         this.primer_nombre = primer_nombre;
         this.segundo_nombre = segundo_nombre;
@@ -78,11 +78,11 @@ public class Conductor {
         this.apellido_materno = apellido_materno;
     }
 
-    public TipoDocumentoIdentidad getTipo_documento_identidad() {
+    public String getTipo_documento_identidad() {
         return tipo_documento_identidad;
     }
 
-    public void setTipo_documento_identidad(TipoDocumentoIdentidad tipo_documento_identidad) {
+    public void setTipo_documento_identidad(String tipo_documento_identidad) {
         this.tipo_documento_identidad = tipo_documento_identidad;
     }
 
@@ -110,21 +110,22 @@ public class Conductor {
         this.direccion = direccion;
     }
 
-    public EmpresasModelo getEmpresa() {
+    public int getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(EmpresasModelo empresa) {
+    public void setEmpresa(int empresa) {
         this.empresa = empresa;
     }
 
-    public EstadoConductor getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoConductor estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
+
     
     
 }

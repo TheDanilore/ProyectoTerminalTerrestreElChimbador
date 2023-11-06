@@ -5,7 +5,7 @@
 package Vista;
 
 import Controlador.ConsultarRegistroControlador;
-import Modelo.Movimiento;
+import Modelo.RegistroEntrada;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -18,9 +18,9 @@ public class ConsultarRegistro extends javax.swing.JInternalFrame {
 
     private ConsultarRegistroControlador consultarRegistroControlador;
 
-    public ConsultarRegistro(List<Movimiento> movimientos) {
+    public ConsultarRegistro(List<RegistroEntrada> registroEntradas) {
         initComponents();
-        consultarRegistroControlador = new ConsultarRegistroControlador(movimientos);
+        consultarRegistroControlador = new ConsultarRegistroControlador(registroEntradas);
     }
 
     /**
@@ -161,7 +161,7 @@ public class ConsultarRegistro extends javax.swing.JInternalFrame {
         }
 
         // Consulta movimientos
-        List<Movimiento> movimientosFiltrados = consultarRegistroControlador.consultarMovimientos(placa, fecha);
+        List<RegistroEntrada> movimientosFiltrados = consultarRegistroControlador.consultarMovimientos(placa, fecha);
 
         // Llena la tabla con los movimientos filtrados
         DefaultTableModel model = (DefaultTableModel) tableMovimientosRegistros.getModel();
@@ -170,15 +170,10 @@ public class ConsultarRegistro extends javax.swing.JInternalFrame {
         if (movimientosFiltrados.isEmpty()) {
             JOptionPane.showMessageDialog(this, "No se encontraron movimientos que coincidan con los criterios de búsqueda.", "Sin resultados", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            for (Movimiento movimiento : movimientosFiltrados) {
+            for (RegistroEntrada movimiento : movimientosFiltrados) {
                 model.addRow(new Object[]{
                     movimiento.getConductor(),
-                    movimiento.getPlaca(),
-                    movimiento.getPago(),
-                    movimiento.getDestino(),
-                    movimiento.getTipoVehiculo(),
-                    movimiento.getFecha(),
-                    movimiento.getEstado()
+                    
                 });
             }
         }

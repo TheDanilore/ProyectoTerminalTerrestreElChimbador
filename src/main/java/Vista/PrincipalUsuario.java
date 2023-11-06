@@ -6,7 +6,6 @@ package Vista;
 
 
 import DAO.UsuarioDAO;
-import Modelo.Movimiento;
 import Modelo.UsuarioModelo;
 import java.util.List;
 
@@ -186,11 +185,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
 
     private void menuConsultarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarRegistroActionPerformed
-        List<Movimiento> movimientos = null;
-        // TODO add your handling code here:
-        ConsultarRegistro consultarRegistro = new ConsultarRegistro(movimientos);
-        escritorio.add(consultarRegistro);
-        consultarRegistro.show();
+
     }//GEN-LAST:event_menuConsultarRegistroActionPerformed
 
     /**

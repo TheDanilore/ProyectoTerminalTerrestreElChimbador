@@ -9,7 +9,6 @@ import Controlador.UsuarioControlador;
 import Controlador.UsuarioController;
 
 import DAO.UsuarioDAO;
-import Modelo.Movimiento;
 import Modelo.UsuarioModelo;
 import java.util.List;
 
@@ -220,10 +219,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
 
     private void menuConsultarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarRegistroActionPerformed
-        List<Movimiento> movimientos = null;
-        ConsultarRegistro consultarRegistro = new ConsultarRegistro(movimientos);
-        escritorio.add(consultarRegistro);
-        consultarRegistro.show();
+        
     }//GEN-LAST:event_menuConsultarRegistroActionPerformed
 
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed

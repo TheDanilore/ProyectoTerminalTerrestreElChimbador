@@ -13,12 +13,12 @@ public class EmpresasModelo {
     private long ruc;
     private String razon_social;
     private String nombre_comercial;
-    private EstadoEmpresa estado;
+    private int estado;
 
     public EmpresasModelo() {
     }
 
-    public EmpresasModelo(int id_empresa, long ruc, String razon_social, String nombre_comercial, EstadoEmpresa estado) {
+    public EmpresasModelo(int id_empresa, long ruc, String razon_social, String nombre_comercial, int estado) {
         this.id_empresa = id_empresa;
         this.ruc = ruc;
         this.razon_social = razon_social;
@@ -58,11 +58,11 @@ public class EmpresasModelo {
         this.nombre_comercial = nombre_comercial;
     }
 
-    public EstadoEmpresa getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoEmpresa estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 

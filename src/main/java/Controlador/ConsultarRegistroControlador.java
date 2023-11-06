@@ -4,7 +4,7 @@
  */
 package Controlador;
 
-import Modelo.Movimiento;
+import Modelo.RegistroEntrada;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,23 +13,23 @@ import java.util.List;
  * @author ASUS
  */
 public class ConsultarRegistroControlador {
-    private List<Movimiento> movimientos; // Lista de movimientos (debes llenarla con datos reales)
+    private List<RegistroEntrada> movimientos; // Lista de movimientos (debes llenarla con datos reales)
 
-    public ConsultarRegistroControlador(List<Movimiento> movimientos) {
+    public ConsultarRegistroControlador(List<RegistroEntrada> movimientos) {
         this.movimientos = movimientos;
     }
 
-    public List<Movimiento> consultarMovimientos(String placa, String fecha) {
-        List<Movimiento> movimientosFiltrados = new ArrayList<>();
+    public List<RegistroEntrada> consultarMovimientos(String placa, String fecha) {
+        List<RegistroEntrada> movimientosFiltrados = new ArrayList<>();
 
-        for (Movimiento movimiento : movimientos) {
-            boolean cumplePlaca = placa.isEmpty() || movimiento.getPlaca().equalsIgnoreCase(placa);
-            boolean cumpleFecha = fecha.isEmpty() || movimiento.getFecha().equalsIgnoreCase(fecha);
+        /*for (RegistroEntrada movimiento : movimientos) {
+            boolean cumplePlaca = placa.isEmpty() || movimiento.getVehiculo();
+            boolean cumpleFecha = fecha.isEmpty() || movimiento.getFecha_hora_entrada().equalsIgnoreCase(fecha);
 
             if (cumplePlaca && cumpleFecha) {
                 movimientosFiltrados.add(movimiento);
             }
-        }
+        }*/
 
         return movimientosFiltrados;
         

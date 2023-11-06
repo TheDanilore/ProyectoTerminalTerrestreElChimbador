@@ -12,13 +12,13 @@ public class PagoPorHora {
     private int id_pago_por_hora;
     private int horas_estadia;
     private double tarifa_por_hora;
-    private MetodoPago metodo_pago;
+    private int metodo_pago;
     private double monto;
 
     public PagoPorHora() {
     }
 
-    public PagoPorHora(int id_pago_por_hora, int horas_estadia, double tarifa_por_hora, MetodoPago metodo_pago, double monto) {
+    public PagoPorHora(int id_pago_por_hora, int horas_estadia, double tarifa_por_hora, int metodo_pago, double monto) {
         this.id_pago_por_hora = id_pago_por_hora;
         this.horas_estadia = horas_estadia;
         this.tarifa_por_hora = tarifa_por_hora;
@@ -50,11 +50,11 @@ public class PagoPorHora {
         this.tarifa_por_hora = tarifa_por_hora;
     }
 
-    public MetodoPago getMetodo_pago() {
+    public int getMetodo_pago() {
         return metodo_pago;
     }
 
-    public void setMetodo_pago(MetodoPago metodo_pago) {
+    public void setMetodo_pago(int metodo_pago) {
         this.metodo_pago = metodo_pago;
     }
 
@@ -65,6 +65,7 @@ public class PagoPorHora {
     public void setMonto(double monto) {
         this.monto = monto;
     }
+
     
     
     

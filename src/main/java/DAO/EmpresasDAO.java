@@ -62,9 +62,7 @@ public class EmpresasDAO {
                 empresasModelo.setRuc(rs.getLong("ruc"));
                 empresasModelo.setRazon_social(rs.getString("razon_social"));
                 empresasModelo.setNombre_comercial(rs.getString("nombre_comercial"));
-                empresasModelo.setEstado(new EstadoEmpresa(rs.getInt("id_estado"), rs.getString("descripcion")));
-                
-
+                empresasModelo.setEstado(rs.getInt("id_estado"));
                 listarEmpresasModelos.add(empresasModelo);
             }
         } catch (SQLException e) {
@@ -79,7 +77,7 @@ public class EmpresasDAO {
         String sql = "UPDATE empresa SET id_estado = ? WHERE id_empresa = ?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, empresasModelo.getEstado().getId_estado());
+            ps.setInt(1, empresasModelo.getEstado());
             ps.setInt(2, empresasModelo.getId_empresa());
             ps.execute();
             return true;
@@ -132,7 +130,7 @@ public class EmpresasDAO {
                 empresasModelo.setRuc(rs.getInt("ruc"));
                 empresasModelo.setRazon_social(rs.getString("razon_social"));
                 empresasModelo.setNombre_comercial(rs.getString("nombre_comercial"));
-                empresasModelo.setEstado(new EstadoEmpresa(rs.getInt("id_estado"), rs.getString("descripcion")));
+                empresasModelo.setEstado(rs.getInt("id_estado"));
             }
         } catch (SQLException e) {
             System.out.println(e.toString());
