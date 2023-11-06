@@ -68,7 +68,7 @@ public class ConductorDAO {
                 conductor.setSegundo_nombre(rs.getString("segundo_nombre"));
                 conductor.setApellido_paterno(rs.getString("apellido_paterno"));
                 conductor.setApellido_materno(rs.getString("apellido_materno"));
-                conductor.setTipo_documento_identidad(rs.getString("tipo_documento_identidad"));
+                conductor.setTipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
                 conductor.setNumero_documento(rs.getLong("numero_documento"));
                 conductor.setTelefono(rs.getInt("telefono"));
                 conductor.setDireccion(rs.getString("direccion"));
@@ -145,7 +145,7 @@ public class ConductorDAO {
                 conductor.setSegundo_nombre(rs.getString("segundo_nombre"));
                 conductor.setApellido_paterno(rs.getString("apellido_paterno"));
                 conductor.setApellido_materno(rs.getString("apellido_materno"));
-                conductor.setTipo_documento_identidad(rs.getString("tipo_documento_identidad"));
+                conductor.setTipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
                 conductor.setNumero_documento(rs.getLong("numero_documento"));
                 conductor.setTelefono(rs.getInt("telefono"));
                 conductor.setDireccion(rs.getString("direccion"));
