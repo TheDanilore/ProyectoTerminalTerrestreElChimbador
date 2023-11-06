@@ -65,26 +65,6 @@ public class TipoVehiculoPagoDAO {
         return lista;
     }
     
-    /*public boolean BajaActivarTipoVehiculo(TipoVehiculo vehiculoModelo) {
-        String sql = "UPDATE vehiculo SET id_estado = ? WHERE id_vehiculo = ?;";
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, vehiculoModelo.getId_estado());
-            ps.setInt(2, vehiculoModelo.getId_vehiculo());
-            ps.execute();
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e.toString());
-            return false;
-        } finally {
-            try {
-                con.close();
-            } catch (SQLException ex) {
-                System.out.println(ex.toString());
-            }
-        }
-    }*/
-    
     public boolean modificarTipoVehiculoPago(TipoVehiculoPago obj){
         String sql="UPDATE tipo_vehiculo_pago SET descripcion=? WHERE id_tipo_vehiculo_pago=?";
         try{
@@ -106,7 +86,7 @@ public class TipoVehiculoPagoDAO {
     
     public TipoVehiculoPago buscarTipoVehiculoPorID(int id){
         TipoVehiculoPago tipoVehiculoPago = new TipoVehiculoPago();
-        String sql ="SELECT * FROM tipo_vehiculo WHERE id_tipo_vehiculo_pago=?";
+        String sql ="SELECT * FROM tipo_vehiculo_pago WHERE id_tipo_vehiculo_pago=?";
         try{
             con=cn.getConnection();
             ps=con.prepareStatement(sql);

@@ -4,8 +4,10 @@
  */
 package Vista;
 
+import Controlador.CargoController;
 import Controlador.ConductorController;
 import Controlador.EmpresaController;
+import Controlador.MetodoPagoController;
 import Controlador.UsuarioControlador;
 import Controlador.UsuarioController;
 import Controlador.VehiculoController;
@@ -63,14 +65,16 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menuRegistrarIncidente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        menuMetodoPago = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuConductor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuVehiculo = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        menuUsuario = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuEmpresas = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        menuUsuario = new javax.swing.JMenuItem();
+        menuCargo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +148,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenuItem1.setText("Registrar Pago");
         jMenu2.add(jMenuItem1);
 
+        menuMetodoPago.setText("Metodo de Pago");
+        menuMetodoPago.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuMetodoPagoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(menuMetodoPago);
+
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText("Conductores");
@@ -170,18 +182,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu4.setText("Usuarios");
-
-        menuUsuario.setText("Usuarios");
-        menuUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuUsuarioActionPerformed(evt);
-            }
-        });
-        jMenu4.add(menuUsuario);
-
-        jMenuBar1.add(jMenu4);
-
         jMenu5.setText("Empresas");
 
         menuEmpresas.setText("Empresas");
@@ -193,6 +193,26 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenu5.add(menuEmpresas);
 
         jMenuBar1.add(jMenu5);
+
+        jMenu4.setText("Usuarios");
+
+        menuUsuario.setText("Usuarios");
+        menuUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuUsuario);
+
+        menuCargo.setText("Roles");
+        menuCargo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCargoActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuCargo);
+
+        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -242,6 +262,20 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         escritorio.add(vista);
         vista.show();
     }//GEN-LAST:event_menuConductorActionPerformed
+
+    private void menuCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCargoActionPerformed
+        CargoVista vista = new CargoVista();
+        CargoController controller = new CargoController(vista);
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuCargoActionPerformed
+
+    private void menuMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMetodoPagoActionPerformed
+        MetodoPagoVista vista = new MetodoPagoVista();
+        MetodoPagoController controller = new MetodoPagoController(vista);
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuMetodoPagoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,10 +329,12 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRol;
+    private javax.swing.JMenuItem menuCargo;
     private javax.swing.JMenuItem menuConductor;
     private javax.swing.JMenuItem menuConsultarRegistro;
     private javax.swing.JMenuItem menuEmpresas;
     private javax.swing.JMenuItem menuEntrada;
+    private javax.swing.JMenuItem menuMetodoPago;
     private javax.swing.JMenuItem menuRegistrarIncidente;
     private javax.swing.JMenuItem menuSalida;
     private javax.swing.JMenuItem menuUsuario;

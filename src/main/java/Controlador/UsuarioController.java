@@ -6,11 +6,13 @@ package Controlador;
 
 import DAO.CargoDAO;
 import DAO.UsuarioDAO;
+import Modelo.Cargo;
 import Modelo.UsuarioModelo;
 import Vista.LoginUser;
 import Vista.UsuariosAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -268,6 +270,7 @@ public class UsuarioController implements ActionListener {
             clase.addRow(ob);
         }
         vista.tableUsuario.setModel(clase);
+        llenarCargos();
     }
 
     public void LimpiarUsuario() {
@@ -291,6 +294,23 @@ public class UsuarioController implements ActionListener {
                 && !vista.txtNombreUsuario.getText().isEmpty()
                 && !vista.txtUsernameUsuario.getText().isEmpty()
                 && vista.cbxRolUser.getSelectedItem() != null;
+    }
+    
+    private void llenarCargos(){
+        CargoDAO dao = new CargoDAO();
+        
+        ArrayList<Cargo> lista = (ArrayList<Cargo>) dao.listarCargo();
+        
+        
+        //int idselect = 1;
+        vista.cbxRolUser.removeAllItems();
+        
+        
+        for (int i = 0; i < lista.size(); i++) {
+            vista.cbxRolUser.addItem(lista.get(i).getDescripcion());
+        }
+        
+        //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
 
 }

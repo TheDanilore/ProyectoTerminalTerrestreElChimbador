@@ -88,6 +88,26 @@ public class MetodoPagoDAO {
         }
     }
     
+    public boolean eliminarMetodoPago(int id){
+        String sql="DELETE FROM metodo_pago WHERE id_metodo_pago=?";
+        try{
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ps.execute();
+            return true;
+        }catch(SQLException e){
+            System.out.println(e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+    
+    
     public MetodoPago BuscarMetodoPago(int id){
         MetodoPago metodoPago = new MetodoPago();
         String sql ="SELECT * FROM metodo_pago WHERE id=?";

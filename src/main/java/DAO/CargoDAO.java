@@ -26,7 +26,7 @@ public class CargoDAO {
     
         
     public boolean registrarCargo(Cargo obj) {
-        String sql = "INSERT INTO cargo (descripcion) VALUES (?,?)";
+        String sql = "INSERT INTO cargo (descripcion) VALUES (?)";
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
@@ -97,6 +97,7 @@ public class CargoDAO {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, obj.getDescripcion());
+            ps.setInt(2, obj.getId_cargo());
             ps.execute();
             return true;
         } catch (SQLException e) {
