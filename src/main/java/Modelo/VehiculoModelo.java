@@ -11,19 +11,17 @@ package Modelo;
 public class VehiculoModelo {
     private int id_vehiculo;
     private String placa_vehiculo;
-    private int id_tipo_vehiculo;
-    private String ruta_destino;
-    private int id_estado;
+    private TipoVehiculo tipo_vehiculo;
+    private EstadoUsuario estado;
 
     public VehiculoModelo() {
     }
 
-    public VehiculoModelo(int id_vehiculo, String placa_vehiculo, int id_tipo_vehiculo, String ruta_destino, int id_estado) {
+    public VehiculoModelo(int id_vehiculo, String placa_vehiculo, TipoVehiculo tipo_vehiculo, EstadoUsuario estado) {
         this.id_vehiculo = id_vehiculo;
         this.placa_vehiculo = placa_vehiculo;
-        this.id_tipo_vehiculo = id_tipo_vehiculo;
-        this.ruta_destino = ruta_destino;
-        this.id_estado = id_estado;
+        this.tipo_vehiculo = tipo_vehiculo;
+        this.estado = estado;
     }
 
     public int getId_vehiculo() {
@@ -42,29 +40,22 @@ public class VehiculoModelo {
         this.placa_vehiculo = placa_vehiculo;
     }
 
-    public int getId_tipo_vehiculo() {
-        return id_tipo_vehiculo;
+    public TipoVehiculo getTipo_vehiculo() {
+        return tipo_vehiculo;
     }
 
-    public void setId_tipo_vehiculo(int id_tipo_vehiculo) {
-        this.id_tipo_vehiculo = id_tipo_vehiculo;
+    public void setTipo_vehiculo(TipoVehiculo tipo_vehiculo) {
+        this.tipo_vehiculo = tipo_vehiculo;
     }
 
-    public String getRuta_destino() {
-        return ruta_destino;
+    public EstadoUsuario getEstado() {
+        return estado;
     }
 
-    public void setRuta_destino(String ruta_destino) {
-        this.ruta_destino = ruta_destino;
+    public void setEstado(EstadoUsuario estado) {
+        this.estado = estado;
     }
-
-    public int getId_estado() {
-        return id_estado;
-    }
-
-    public void setId_estado(int id_estado) {
-        this.id_estado = id_estado;
-    }
-
     
+    
+
 }

@@ -10,22 +10,22 @@ package Modelo;
  */
 public class UsuarioModelo {
     private int id_usuarios;
-    private String nombres_usuario;
-    private String username;
-    private String password;
-    private int id_rol;
-    private int id_estado;
+    private String nombres;
+    private String usuario;
+    private String contra_usuarios;
+    private Cargo cargo;
+    private EstadoUsuario estado;
 
     public UsuarioModelo() {
     }
 
-    public UsuarioModelo(int id_usuarios, String nombres_usuario, String username, String password, int id_rol, int id_estado) {
+    public UsuarioModelo(int id_usuarios, String nombres, String usuario, String contra_usuarios, Cargo cargo, EstadoUsuario estado) {
         this.id_usuarios = id_usuarios;
-        this.nombres_usuario = nombres_usuario;
-        this.username = username;
-        this.password = password;
-        this.id_rol = id_rol;
-        this.id_estado = id_estado;
+        this.nombres = nombres;
+        this.usuario = usuario;
+        this.contra_usuarios = contra_usuarios;
+        this.cargo = cargo;
+        this.estado = estado;
     }
 
     public int getId_usuarios() {
@@ -36,46 +36,46 @@ public class UsuarioModelo {
         this.id_usuarios = id_usuarios;
     }
 
-    public String getNombres_usuario() {
-        return nombres_usuario;
+    public String getNombres() {
+        return nombres;
     }
 
-    public void setNombres_usuario(String nombres_usuario) {
-        this.nombres_usuario = nombres_usuario;
+    public void setNombres(String nombres) {
+        this.nombres = nombres;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public String getPassword() {
-        return password;
+    public String getContra_usuarios() {
+        return contra_usuarios;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setContra_usuarios(String contra_usuarios) {
+        this.contra_usuarios = contra_usuarios;
     }
 
-    public int getId_rol() {
-        return id_rol;
+    public Cargo getCargo() {
+        return cargo;
     }
 
-    public void setId_rol(int id_rol) {
-        this.id_rol = id_rol;
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
 
-    public int getId_estado() {
-        return id_estado;
+    public EstadoUsuario getEstado() {
+        return estado;
     }
 
-    public void setId_estado(int id_estado) {
-        this.id_estado = id_estado;
+    public void setEstado(EstadoUsuario estado) {
+        this.estado = estado;
     }
 
-
+    
     
 }

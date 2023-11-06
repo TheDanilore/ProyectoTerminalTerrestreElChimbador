@@ -11,19 +11,19 @@ package Modelo;
 public class EmpresasModelo {
     private int id_empresa;
     private long ruc;
-    private String razonSocial;
-    private String nombreComercial;
-    private int id_estado;
+    private String razon_social;
+    private String nombre_comercial;
+    private EstadoEmpresa estado;
 
     public EmpresasModelo() {
     }
 
-    public EmpresasModelo(int id_empresa, long ruc, String razonSocial, String nombreComercial, int id_estado) {
+    public EmpresasModelo(int id_empresa, long ruc, String razon_social, String nombre_comercial, EstadoEmpresa estado) {
         this.id_empresa = id_empresa;
         this.ruc = ruc;
-        this.razonSocial = razonSocial;
-        this.nombreComercial = nombreComercial;
-        this.id_estado = id_estado;
+        this.razon_social = razon_social;
+        this.nombre_comercial = nombre_comercial;
+        this.estado = estado;
     }
 
     public int getId_empresa() {
@@ -42,29 +42,28 @@ public class EmpresasModelo {
         this.ruc = ruc;
     }
 
-    public String getRazonSocial() {
-        return razonSocial;
+    public String getRazon_social() {
+        return razon_social;
     }
 
-    public void setRazonSocial(String razonSocial) {
-        this.razonSocial = razonSocial;
+    public void setRazon_social(String razon_social) {
+        this.razon_social = razon_social;
     }
 
-    public String getNombreComercial() {
-        return nombreComercial;
+    public String getNombre_comercial() {
+        return nombre_comercial;
     }
 
-    public void setNombreComercial(String nombreComercial) {
-        this.nombreComercial = nombreComercial;
+    public void setNombre_comercial(String nombre_comercial) {
+        this.nombre_comercial = nombre_comercial;
     }
 
-    public int getId_estado() {
-        return id_estado;
+    public EstadoEmpresa getEstado() {
+        return estado;
     }
 
-    public void setId_estado(int id_estado) {
-        this.id_estado = id_estado;
+    public void setEstado(EstadoEmpresa estado) {
+        this.estado = estado;
     }
 
-    
 }
