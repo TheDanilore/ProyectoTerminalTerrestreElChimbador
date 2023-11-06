@@ -19,7 +19,7 @@ public class EstadoEmpresa {
         this.id_estado = id_estado;
         this.descripcion = descripcion;
     }
-
+    
     public int getId_estado() {
         return id_estado;
     }

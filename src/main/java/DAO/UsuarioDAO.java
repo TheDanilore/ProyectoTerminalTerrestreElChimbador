@@ -4,6 +4,8 @@
  */
 package DAO;
 
+import Modelo.Cargo;
+import Modelo.EstadoUsuario;
 import Modelo.UsuarioModelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -38,11 +40,10 @@ public class UsuarioDAO {
             if (rs.next()) {
                 login = new UsuarioModelo();
                 login.setId_usuarios(rs.getInt("id_usuarios"));
-                login.setNombres_usuario(rs.getString("nombres"));
-                login.setUsername(rs.getString("usuario"));
-                login.setPassword(rs.getString("contra_usuarios"));
-                login.setId_rol(rs.getInt("id_cargo"));
-                login.setId_estado(rs.getInt("id_estado"));
+                login.setNombres(rs.getString("nombres"));
+                login.setUsuario(rs.getString("usuario"));
+                login.setContra_usuarios(rs.getString("contra_usuarios"));
+                login.setCargo(rs.getInt("id_cargo"));
             }
         } catch (SQLException e) {
             System.err.println("Error de la base de datos: " + e.getMessage());
@@ -65,10 +66,11 @@ public class UsuarioDAO {
         try {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setString(1, reg.getNombres_usuario());
-            ps.setString(2, reg.getUsername());
-            ps.setString(3, reg.getPassword());
-            ps.setInt(4, reg.getId_rol()); 
+            ps.setString(1, reg.getNombres());
+            ps.setString(2, reg.getUsuario());
+            ps.setString(3, reg.getContra_usuarios());
+            ps.setInt(4, reg.getCargo());
+            
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -99,11 +101,11 @@ public class UsuarioDAO {
             while (rs.next()) {
                 UsuarioModelo usuarioModelo = new UsuarioModelo();
                 usuarioModelo.setId_usuarios(rs.getInt("id_usuarios"));
-                usuarioModelo.setNombres_usuario(rs.getString("nombres"));
-                usuarioModelo.setUsername(rs.getString("usuario"));
-                usuarioModelo.setPassword(rs.getString("contra_usuarios"));
-                usuarioModelo.setId_rol(rs.getInt("id_cargo"));
-                usuarioModelo.setId_estado(rs.getInt("id_estado"));
+                usuarioModelo.setNombres(rs.getString("nombres"));
+                usuarioModelo.setUsuario(rs.getString("usuario"));
+                usuarioModelo.setContra_usuarios(rs.getString("contra_usuarios"));
+                usuarioModelo.setCargo(rs.getInt("id_cargo"));
+                usuarioModelo.setEstado(rs.getInt("id_estado"));
                 
                 listarUsuarios.add(usuarioModelo);
             }
@@ -117,7 +119,7 @@ public class UsuarioDAO {
         String sql = "UPDATE usuarios SET id_estado = ? WHERE id_usuarios = ?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, usuario.getId_estado());
+            ps.setInt(1, usuario.getEstado());
             ps.setInt(2, usuario.getId_usuarios());
             ps.execute();
             return true;
@@ -137,10 +139,10 @@ public class UsuarioDAO {
         String sql = "UPDATE usuarios SET nombres=?,usuario=?, contra_usuarios=?, id_cargo=? WHERE id_usuarios=?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, usuario.getNombres_usuario());
-            ps.setString(2, usuario.getUsername());
-            ps.setString(3, usuario.getPassword());
-            ps.setInt(4, usuario.getId_rol());
+            ps.setString(1, usuario.getNombres());
+            ps.setString(2, usuario.getUsuario());
+            ps.setString(3, usuario.getContra_usuarios());
+            ps.setInt(4, usuario.getCargo());
             ps.setInt(5, usuario.getId_usuarios());
             ps.execute();
             return true;
@@ -165,11 +167,11 @@ public class UsuarioDAO {
             ps.setInt(1, ID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                usuarioModelo.setNombres_usuario(rs.getString("nombres_usuario"));
-                usuarioModelo.setUsername(rs.getString("usuario"));
-                usuarioModelo.setPassword(rs.getString("contra_usuarios"));
-                usuarioModelo.setId_rol(rs.getInt("id_cargo"));
-                usuarioModelo.setId_estado(rs.getInt("id_estado"));
+                usuarioModelo.setNombres(rs.getString("nombres_usuario"));
+                usuarioModelo.setUsuario(rs.getString("usuario"));
+                usuarioModelo.setContra_usuarios(rs.getString("contra_usuarios"));
+                usuarioModelo.setCargo(rs.getInt("id_cargo"));
+                usuarioModelo.setEstado(rs.getInt("id_estado"));
             }
         } catch (SQLException e) {
             System.out.println(e.toString());

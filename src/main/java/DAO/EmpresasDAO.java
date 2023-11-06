@@ -5,6 +5,7 @@
 package DAO;
 
 import Modelo.EmpresasModelo;
+import Modelo.EstadoEmpresa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,8 +33,8 @@ public class EmpresasDAO {
             con = cn.getConnection();
             ps = con.prepareStatement(sql);
             ps.setLong(1, empresas.getRuc());
-            ps.setString(2, empresas.getRazonSocial());
-            ps.setString(3, empresas.getNombreComercial());
+            ps.setString(2, empresas.getRazon_social());
+            ps.setString(3, empresas.getNombre_comercial());
             ps.execute();
             return true;
         } catch (SQLException e) {
@@ -59,9 +60,10 @@ public class EmpresasDAO {
                 EmpresasModelo empresasModelo = new EmpresasModelo();
                 empresasModelo.setId_empresa(rs.getInt("id_empresa"));
                 empresasModelo.setRuc(rs.getLong("ruc"));
-                empresasModelo.setRazonSocial(rs.getString("razon_social"));
-                empresasModelo.setNombreComercial(rs.getString("nombre_comercial"));
-                empresasModelo.setId_estado(rs.getInt("id_estado"));
+                empresasModelo.setRazon_social(rs.getString("razon_social"));
+                empresasModelo.setNombre_comercial(rs.getString("nombre_comercial"));
+                empresasModelo.setEstado(new EstadoEmpresa(rs.getInt("id_estado"), rs.getString("descripcion")));
+                
 
                 listarEmpresasModelos.add(empresasModelo);
             }
@@ -77,7 +79,7 @@ public class EmpresasDAO {
         String sql = "UPDATE empresa SET id_estado = ? WHERE id_empresa = ?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, empresasModelo.getId_estado());
+            ps.setInt(1, empresasModelo.getEstado().getId_estado());
             ps.setInt(2, empresasModelo.getId_empresa());
             ps.execute();
             return true;
@@ -98,8 +100,8 @@ public class EmpresasDAO {
         try {
             ps = con.prepareStatement(sql);
             ps.setLong(1, empresasModelo.getRuc());
-            ps.setString(2, empresasModelo.getRazonSocial());
-            ps.setString(3, empresasModelo.getNombreComercial());
+            ps.setString(2, empresasModelo.getRazon_social());
+            ps.setString(3, empresasModelo.getNombre_comercial());
             ps.setInt(4, empresasModelo.getId_empresa());
             ps.execute();
             return true;
@@ -128,9 +130,9 @@ public class EmpresasDAO {
             if (rs.next()) {
                 empresasModelo.setId_empresa(rs.getInt("id_empresa"));
                 empresasModelo.setRuc(rs.getInt("ruc"));
-                empresasModelo.setRazonSocial(rs.getString("razon_social"));
-                empresasModelo.setNombreComercial(rs.getString("nombre_comercial"));
-                empresasModelo.setId_estado(rs.getInt("id_estado"));
+                empresasModelo.setRazon_social(rs.getString("razon_social"));
+                empresasModelo.setNombre_comercial(rs.getString("nombre_comercial"));
+                empresasModelo.setEstado(new EstadoEmpresa(rs.getInt("id_estado"), rs.getString("descripcion")));
             }
         } catch (SQLException e) {
             System.out.println(e.toString());

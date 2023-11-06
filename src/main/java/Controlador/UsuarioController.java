@@ -4,7 +4,10 @@
  */
 package Controlador;
 
+import DAO.CargoDAO;
 import DAO.UsuarioDAO;
+import Modelo.Cargo;
+import Modelo.EstadoUsuario;
 import Modelo.UsuarioModelo;
 import Vista.LoginUser;
 import Vista.PrincipalAdmin;
@@ -25,6 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class UsuarioController implements ActionListener {
 
     UsuarioDAO dao = new UsuarioDAO();
+    CargoDAO cargodao = new CargoDAO();
     UsuariosAdminVista vista = new UsuariosAdminVista();
     
     LoginUser loginVista = new LoginUser();
@@ -75,7 +79,7 @@ public class UsuarioController implements ActionListener {
             activarUsuario();
         }
         if (e.getSource() == vista.btnBajaUsu) {
-            bajaUsuario();
+            //bajaUsuario();
         }
         
     }
@@ -126,11 +130,29 @@ public class UsuarioController implements ActionListener {
     
     public void guardarUsuario() {
         if (camposValidos()) {
-            modelo.setNombres_usuario(String.valueOf(vista.txtNombreUsuario.getText()));
-            modelo.setUsername(vista.txtUsernameUsuario.getText());
-            modelo.setPassword(vista.txtContraUsuario.getText());
-            modelo.setId_rol(Integer.parseInt(vista.cbxRolUser.getSelectedItem().toString()));
+            modelo.setNombres(String.valueOf(vista.txtNombreUsuario.getText()));
+            modelo.setUsuario(vista.txtUsernameUsuario.getText());
+            modelo.setContra_usuarios(vista.txtContraUsuario.getText());
+            
+            if ("Administrador".equals(vista.cbxRolUser.getSelectedItem().toString())) {
+                modelo.setCargo(1);
+            }else{
+                modelo.setCargo(2);
+            }
+            
+            
+            
 
+// Obtener el cargo seleccionado desde el JComboBox
+            /*String cargoDescripcion = vista.cbxRolUser.getSelectedItem().toString();
+            
+            Cargo cargo = cargodao.obtenerCargoPorDescripcion(cargoDescripcion);
+            
+            // Asigna el objeto Cargo al modelo
+            modelo.setCargo(cargo);
+*/
+             
+            
             //Conexion, consulta con la base de datos
             if (dao.Registrar(modelo)) {
                 JOptionPane.showMessageDialog(null, "Usuario Registrado");
@@ -151,10 +173,19 @@ public class UsuarioController implements ActionListener {
         } else {
             if (camposValidos()) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
-                modelo.setNombres_usuario(String.valueOf(vista.txtNombreUsuario.getText()));
-                modelo.setUsername(vista.txtUsernameUsuario.getText());
-                modelo.setPassword(vista.txtContraUsuario.getText());
-                modelo.setId_rol(Integer.parseInt(vista.cbxRolUser.getSelectedItem().toString()));
+                modelo.setNombres(String.valueOf(vista.txtNombreUsuario.getText()));
+                modelo.setUsuario(vista.txtUsernameUsuario.getText());
+                modelo.setContra_usuarios(vista.txtContraUsuario.getText());
+                if ("Administrador".equals(vista.cbxRolUser.getSelectedItem().toString())) {
+                modelo.setCargo(1);
+            }else{
+                modelo.setCargo(2);
+            }
+            
+             
+
+             
+            
 
                 //Conexion, consulta con la base de datos
                 if (dao.ModificarUsuario(modelo)) {
@@ -182,7 +213,8 @@ public class UsuarioController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar al Usuario");
             if (pregunta == 0) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
-                modelo.setId_estado(1);
+                modelo.setCargo(1);
+                
                 if (dao.BajaActivarUsuario(modelo)) {
                     
                     JOptionPane.showMessageDialog(null, "Se Activo al Usuario");
@@ -206,7 +238,7 @@ public class UsuarioController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja al Usuario");
             if (pregunta == 0) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
-                modelo.setId_estado(0);
+                modelo.setCargo(0);
                 if (dao.BajaActivarUsuario(modelo)) {
                     
                     JOptionPane.showMessageDialog(null, "Se dio de baja al Usuario");
@@ -232,23 +264,25 @@ public class UsuarioController implements ActionListener {
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_usuarios();
-            ob[1] = lista.get(i).getNombres_usuario();
-            ob[2] = lista.get(i).getUsername();
-            ob[3] = lista.get(i).getPassword();
+            ob[1] = lista.get(i).getNombres();
+            ob[2] = lista.get(i).getUsuario();
+            ob[3] = lista.get(i).getContra_usuarios();
+            ob[4] = lista.get(i).getCargo();
 
             //rol
-            if (lista.get(i).getId_rol() == 1) {
+            if (lista.get(i).getCargo()== 1) {
                 ob[4] = "Administrador";
             }
-            if (lista.get(i).getId_estado() == 2) {
+            if (lista.get(i).getCargo() == 2) {
                 ob[4] = "Vigilante de Garita";
             }
 
+            ob[5] = lista.get(i).getEstado();
             //estado
-            if (lista.get(i).getId_estado() == 1) {
+            if (lista.get(i).getEstado() == 1) {
                 ob[5] = "Activo";
             }
-            if (lista.get(i).getId_estado() == 0) {
+            if (lista.get(i).getEstado() == 0) {
                 ob[5] = "Deshabilitado";
             }
             clase.addRow(ob);

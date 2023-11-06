@@ -232,12 +232,12 @@ public class RegistrarEntrada extends javax.swing.JInternalFrame {
     }
 
     public void actualizarVehiculo(VehiculoModelo vehiculo) {
-        lblTipoVehiculoEntrada.setText(String.valueOf(vehiculo.getId_tipo_vehiculo()));
-        lblRutaEntrada.setText(vehiculo.getRuta_destino());
+        //lblTipoVehiculoEntrada.setText(String.valueOf(vehiculo.getId_tipo_vehiculo()));
+        //lblRutaEntrada.setText(vehiculo.getRuta_destino());
     }
 
     public void actualizarConductor(Conductor conductor) {
-        lbl_NombreConductorEntrada.setText(conductor.getNombre());
+        //lbl_NombreConductorEntrada.setText(conductor.getNombre());
     }
 
     public void mostrarMensajeError(String mensaje) {

@@ -17,19 +17,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EmpresasAdminVista extends javax.swing.JInternalFrame {
 
-    DefaultTableModel clase = new DefaultTableModel();
     Evento event = new Evento();
-    EmpresasDAO empresasDAO = new EmpresasDAO();
-    EmpresasModelo empresasModelo = new EmpresasModelo();
-    //EmpresasControlador empresasControlador = new EmpresasControlador(this, empresasModelo, empresasDAO);
-
-    /**
-     * Creates new form Empresas
-     */
+    
     public EmpresasAdminVista() {
         initComponents();
-        //LimpiarTable();
-        //ListarEmpresas();
     }
 
     
@@ -211,11 +202,6 @@ public class EmpresasAdminVista extends javax.swing.JInternalFrame {
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtRucEmpresaKeyTyped
 
-    private void txtRazonEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonEmpresaKeyTyped
-        // TODO add your handling code here:
-        event.textKeyPress(evt);
-    }//GEN-LAST:event_txtRazonEmpresaKeyTyped
-
     private void tableEmpresaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableEmpresaMouseClicked
         int fila = tableEmpresa.rowAtPoint(evt.getPoint());
 
@@ -225,16 +211,22 @@ public class EmpresasAdminVista extends javax.swing.JInternalFrame {
         txtNombreComercialEmpresa.setText(tableEmpresa.getValueAt(fila, 3).toString());
     }//GEN-LAST:event_tableEmpresaMouseClicked
 
+    private void txtRazonEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRazonEmpresaKeyTyped
+        // TODO add your handling code here:
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtRazonEmpresaKeyTyped
+
+    private void txtRazonEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRazonEmpresaActionPerformed
+
+    }//GEN-LAST:event_txtRazonEmpresaActionPerformed
+
     private void txtNombreComercialEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreComercialEmpresaKeyTyped
         event.textKeyPress(evt);
     }//GEN-LAST:event_txtNombreComercialEmpresaKeyTyped
-
-    private void txtRazonEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRazonEmpresaActionPerformed
-        
-    }//GEN-LAST:event_txtRazonEmpresaActionPerformed
+                                             
 
     private void btnListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarActionPerformed
-        
+
     }//GEN-LAST:event_btnListarActionPerformed
 
 

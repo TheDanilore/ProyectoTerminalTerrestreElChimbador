@@ -11,13 +11,13 @@ package Modelo;
 public class VehiculoModelo {
     private int id_vehiculo;
     private String placa_vehiculo;
-    private TipoVehiculo tipo_vehiculo;
-    private EstadoUsuario estado;
+    private int tipo_vehiculo; //Se corregira luego POO
+    private int estado;
 
     public VehiculoModelo() {
     }
 
-    public VehiculoModelo(int id_vehiculo, String placa_vehiculo, TipoVehiculo tipo_vehiculo, EstadoUsuario estado) {
+    public VehiculoModelo(int id_vehiculo, String placa_vehiculo, int tipo_vehiculo, int estado) {
         this.id_vehiculo = id_vehiculo;
         this.placa_vehiculo = placa_vehiculo;
         this.tipo_vehiculo = tipo_vehiculo;
@@ -40,22 +40,21 @@ public class VehiculoModelo {
         this.placa_vehiculo = placa_vehiculo;
     }
 
-    public TipoVehiculo getTipo_vehiculo() {
+    public int getTipo_vehiculo() {
         return tipo_vehiculo;
     }
 
-    public void setTipo_vehiculo(TipoVehiculo tipo_vehiculo) {
+    public void setTipo_vehiculo(int tipo_vehiculo) {
         this.tipo_vehiculo = tipo_vehiculo;
     }
 
-    public EstadoUsuario getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoUsuario estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
-    
-    
 
+    
 }

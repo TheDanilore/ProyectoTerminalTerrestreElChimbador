@@ -4,7 +4,9 @@
  */
 package DAO;
 
+import Modelo.TipoVehiculo;
 import Modelo.VehiculoModelo;
+import DAO.TipoVehiculoDAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,13 +26,13 @@ public class VehiculoDAO {
     ResultSet rs;
     
     public boolean RegistrarVehiculo(VehiculoModelo vehiculo){
-        String sql = "INSERT INTO vehiculo (placa_vehiculo,id_tipo_vehiculo) VALUES (?,?,?)";
+        String sql = "INSERT INTO vehiculo (placa_vehiculo,id_tipo_vehiculo) VALUES (?,?)";
         
         try{
             con=cn.getConnection();
             ps=con.prepareStatement(sql);
             ps.setString(1, vehiculo.getPlaca_vehiculo());
-            ps.setInt(2, vehiculo.getId_tipo_vehiculo());
+            ps.setInt(2, vehiculo.getTipo_vehiculo().getId_tipo_vehiculo());
             ps.execute();
             return true;
         }catch(SQLException e){
@@ -45,8 +47,8 @@ public class VehiculoDAO {
         }
     }
     
-    public List ListarVehiculo(){
-        List<VehiculoModelo> listarvehiculo= new ArrayList();
+    public List<VehiculoModelo> ListarVehiculo(){
+        List<VehiculoModelo> lista= new ArrayList();
         String sql="SELECT * FROM vehiculo";
         try{
             con=cn.getConnection();
@@ -56,21 +58,21 @@ public class VehiculoDAO {
                 VehiculoModelo vehiculoModelo = new VehiculoModelo();
                 vehiculoModelo.setId_vehiculo(rs.getInt("id_vehiculo"));
                 vehiculoModelo.setPlaca_vehiculo(rs.getString("placa_vehiculo"));
-                vehiculoModelo.setId_tipo_vehiculo(rs.getInt("id_tipo_vehiculo"));
-                vehiculoModelo.setId_estado(rs.getInt("id_estado"));
-                listarvehiculo.add(vehiculoModelo);
+                
+            
+                lista.add(vehiculoModelo);
             }
         }catch(SQLException e){
             System.out.println(e.toString());
         }
-        return listarvehiculo;
+        return lista;
     }
     
     public boolean BajaActivarVehiculo(VehiculoModelo vehiculoModelo) {
         String sql = "UPDATE vehiculo SET id_estado = ? WHERE id_vehiculo = ?;";
         try {
             ps = con.prepareStatement(sql);
-            ps.setInt(1, vehiculoModelo.getId_estado());
+            ps.setInt(1, vehiculoModelo.getEstado().getId_estado());
             ps.setInt(2, vehiculoModelo.getId_vehiculo());
             ps.execute();
             return true;
@@ -91,7 +93,7 @@ public class VehiculoDAO {
         try{
             ps=con.prepareStatement(sql);
             ps.setString(1, vehiculoModelo.getPlaca_vehiculo());
-            ps.setInt(2, vehiculoModelo.getId_tipo_vehiculo());
+            ps.setInt(2, vehiculoModelo.getTipo_vehiculo().getId_tipo_vehiculo());
             ps.setInt(3, vehiculoModelo.getId_vehiculo());
             ps.execute();
             return true;
@@ -107,7 +109,7 @@ public class VehiculoDAO {
         }
     }
     
-    public VehiculoModelo BuscarVehiculo(int placa){
+    /*public VehiculoModelo BuscarVehiculo(int placa){
         VehiculoModelo vehiculo = new VehiculoModelo();
         String sql ="SELECT * FROM vehiculo WHERE placa=?";
         try{
@@ -124,5 +126,5 @@ public class VehiculoDAO {
             System.out.println(e.toString());
         }
         return vehiculo;
-    }
+    }*/
 }

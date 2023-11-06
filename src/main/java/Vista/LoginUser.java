@@ -8,6 +8,7 @@ import Controlador.UsuarioControlador;
 import DAO.UsuarioDAO;
 import Modelo.UsuarioModelo;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginUser extends javax.swing.JFrame {
 //probando
+
     private ImageIcon imagen;
     private Icon icono;
 
@@ -154,20 +156,20 @@ public class LoginUser extends javax.swing.JFrame {
 
             if (loginExitoso) {
                 dispose();
-                int rol = usuarioControlador.getUsuario().getId_rol();
+                int rol = usuarioControlador.getUsuario().getCargo();
 
                 if (rol == 1) {
                     PrincipalAdmin principalAdmin = new PrincipalAdmin();
                     principalAdmin.show();
                     String nombrerol = "Administrador";
-                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres_usuario()
+                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
                             + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
                 } else if (rol == 2) {
 
                     PrincipalUsuario principalUsuario = new PrincipalUsuario();
                     principalUsuario.show();
                     String nombrerol = "Usuario";
-                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres_usuario()
+                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
                             + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
                 }
 
@@ -183,41 +185,44 @@ public class LoginUser extends javax.swing.JFrame {
     }//GEN-LAST:event_lblLoginMouseClicked
 
     private void txtContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraKeyPressed
-        /*if (txtContra.getText().equals("") || txtUser.getText().equals("")) {
-           JOptionPane.showMessageDialog(this, "Ingrese el Usuario y/o la contraseña correspondiente", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            String username = txtUser.getText();
-            char[] passwordChars = txtContra.getPassword();
-            String password = new String(passwordChars);
-
-            boolean loginExitoso = usuarioControlador.login(username, password);
-
-            if (loginExitoso) {
-                dispose();
-                int rol = usuarioControlador.getUsuario().getId_rol();
-
-                if (rol == 1) {
-                    PrincipalAdmin principalAdmin = new PrincipalAdmin();
-                    principalAdmin.show();
-                    String nombrerol = "Administrador";
-                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres_usuario()
-                            + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-                } else if (rol == 2) {
-
-                    PrincipalUsuario principalUsuario = new PrincipalUsuario();
-                    principalUsuario.show();
-                    String nombrerol = "Usuario";
-                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres_usuario()
-                            + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-                }
-
-                // Mostrar un mensaje de éxito usando JOptionPane
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (txtContra.getText().equals("") || txtUser.getText().equals("")) {
+                JOptionPane.showMessageDialog(this, "Ingrese el Usuario y/o la contraseña correspondiente", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
-                // Si no es válido, mostrar un mensaje de error
-                JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+                String username = txtUser.getText();
+                char[] passwordChars = txtContra.getPassword();
+                String password = new String(passwordChars);
+
+                boolean loginExitoso = usuarioControlador.login(username, password);
+
+                if (loginExitoso) {
+                    dispose();
+                    int rol = usuarioControlador.getUsuario().getCargo();
+
+                    if (rol == 1) {
+                        PrincipalAdmin principalAdmin = new PrincipalAdmin();
+                        principalAdmin.show();
+                        String nombrerol = "Administrador";
+                        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
+                                + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (rol == 2) {
+
+                        PrincipalUsuario principalUsuario = new PrincipalUsuario();
+                        principalUsuario.show();
+                        String nombrerol = "Usuario";
+                        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
+                                + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    }
+
+                    // Mostrar un mensaje de éxito usando JOptionPane
+                } else {
+                    // Si no es válido, mostrar un mensaje de error
+                    JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                Arrays.fill(passwordChars, ' ');
             }
-            Arrays.fill(passwordChars, ' ');
-        } */
+        }
+
     }//GEN-LAST:event_txtContraKeyPressed
 
     /**

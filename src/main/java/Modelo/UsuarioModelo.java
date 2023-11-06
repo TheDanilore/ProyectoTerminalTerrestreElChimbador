@@ -13,13 +13,14 @@ public class UsuarioModelo {
     private String nombres;
     private String usuario;
     private String contra_usuarios;
-    private Cargo cargo;
-    private EstadoUsuario estado;
+    private int cargo;
+    //private String last_session;
+    private int estado;
 
     public UsuarioModelo() {
     }
 
-    public UsuarioModelo(int id_usuarios, String nombres, String usuario, String contra_usuarios, Cargo cargo, EstadoUsuario estado) {
+    public UsuarioModelo(int id_usuarios, String nombres, String usuario, String contra_usuarios, int cargo, int estado) {
         this.id_usuarios = id_usuarios;
         this.nombres = nombres;
         this.usuario = usuario;
@@ -60,22 +61,23 @@ public class UsuarioModelo {
         this.contra_usuarios = contra_usuarios;
     }
 
-    public Cargo getCargo() {
+    public int getCargo() {
         return cargo;
     }
 
-    public void setCargo(Cargo cargo) {
+    public void setCargo(int cargo) {
         this.cargo = cargo;
     }
 
-    public EstadoUsuario getEstado() {
+    public int getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoUsuario estado) {
+    public void setEstado(int estado) {
         this.estado = estado;
     }
 
+    
     
     
 }

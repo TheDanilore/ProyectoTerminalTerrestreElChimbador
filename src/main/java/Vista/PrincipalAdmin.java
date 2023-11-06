@@ -37,15 +37,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         
-        lblNombre.setText(usuarioModelo.getNombres_usuario());
+        lblNombre.setText(usuarioModelo.getNombres());
         
         
-        if ("1".equals(String.valueOf(usuarioModelo.getId_rol()))) {
+        if ("1".equals(String.valueOf(usuarioModelo.getCargo()))) {
             lblRol.setText("Administrador");
-        }else if("2".equals(String.valueOf(usuarioModelo.getId_rol()))){
-            lblRol.setText("Vigilante de Garita");
+        }else if("2".equals(String.valueOf(usuarioModelo.getCargo()))){
+            lblRol.setText("Vigilante");
         }
-        
         
     }
     

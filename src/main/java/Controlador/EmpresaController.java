@@ -69,8 +69,8 @@ public class EmpresaController implements ActionListener {
         if (camposValidos()) {
 
                 modelo.setRuc(Long.parseLong(vista.txtRucEmpresa.getText()));
-                modelo.setRazonSocial(vista.txtRazonEmpresa.getText());
-                modelo.setNombreComercial(vista.txtNombreComercialEmpresa.getText());
+                modelo.setRazon_social(vista.txtRazonEmpresa.getText());
+                modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
 
                 //Conexion, consulta con la base de datos
                 if (dao.RegistrarEmpresas(modelo)) {
@@ -94,8 +94,8 @@ public class EmpresaController implements ActionListener {
             if (camposValidos()) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
                 modelo.setRuc(Long.parseLong(vista.txtRucEmpresa.getText()));
-                modelo.setRazonSocial(vista.txtRazonEmpresa.getText());
-                modelo.setNombreComercial(vista.txtNombreComercialEmpresa.getText());
+                modelo.setRazon_social(vista.txtRazonEmpresa.getText());
+                modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
                 
                 //Conexion, consulta con la base de datos
                 if (dao.ModificarEmpresa(modelo)) {
@@ -118,7 +118,7 @@ public class EmpresaController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
-                modelo.setId_estado(0);
+                //modelo.setEstado(0,"Deshabilitada");
                 if (dao.BajaActivarEmpresa(modelo)) {
                     
                     JOptionPane.showMessageDialog(null, "Se dio de baja a la empresa");
@@ -144,7 +144,7 @@ public class EmpresaController implements ActionListener {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
-                modelo.setId_estado(1);
+                //modelo.setEstado(1, "Activa");
                 if (dao.BajaActivarEmpresa(modelo)) {
                     
                     JOptionPane.showMessageDialog(null, "Se Activo a la empresa");
@@ -180,15 +180,10 @@ public class EmpresaController implements ActionListener {
         for (int i = 0; i < lista.size(); i++) {
             object[0] = lista.get(i).getId_empresa();
             object[1] = lista.get(i).getRuc();
-            object[2] = lista.get(i).getRazonSocial();
-            object[3] = lista.get(i).getNombreComercial();
-
-            if (lista.get(i).getId_estado() == 1) {
-                object[4] = "Activo";
-            }
-            if (lista.get(i).getId_estado() == 0) {
-                object[4] = "Deshabilitado";
-            }
+            object[2] = lista.get(i).getRazon_social();
+            object[3] = lista.get(i).getNombre_comercial();
+            object[4] = lista.get(i).getEstado().getDescripcion();
+            
             clase.addRow(object);
         }
         vista.tableEmpresa.setModel(clase);
