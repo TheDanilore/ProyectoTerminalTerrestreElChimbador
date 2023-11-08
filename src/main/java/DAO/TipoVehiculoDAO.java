@@ -65,25 +65,25 @@ public class TipoVehiculoDAO {
         return lista;
     }
     
-    /*public boolean BajaActivarTipoVehiculo(TipoVehiculo vehiculoModelo) {
-        String sql = "UPDATE vehiculo SET id_estado = ? WHERE id_vehiculo = ?;";
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setInt(1, vehiculoModelo.getId_estado());
-            ps.setInt(2, vehiculoModelo.getId_vehiculo());
+    public boolean eliminarTipoVehiculo(int id){
+        String sql="DELETE FROM tipo_vehiculo WHERE id_tipo_vehiculo=?";
+        try{
+            ps=con.prepareStatement(sql);
+            ps.setInt(1, id);
             ps.execute();
             return true;
-        } catch (SQLException e) {
+        }catch(SQLException e){
             System.out.println(e.toString());
             return false;
-        } finally {
+        }finally{
             try {
                 con.close();
-            } catch (SQLException ex) {
-                System.out.println(ex.toString());
+            } catch (SQLException e) {
+                System.out.println(e.toString());
             }
         }
-    }*/
+    }
+    
     
     public boolean modificarTipoVehiculo(TipoVehiculo obj){
         String sql="UPDATE tipo_vehiculo SET descripcion=? WHERE id_tipo_vehiculo=?";

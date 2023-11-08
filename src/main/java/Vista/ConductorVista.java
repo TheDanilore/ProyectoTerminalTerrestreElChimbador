@@ -140,18 +140,33 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(cbxEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 340, -1));
 
+        btnGuardar.setBackground(new java.awt.Color(51, 255, 51));
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, -1, -1));
 
+        btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 610, -1, -1));
 
+        btnNuevo.setBackground(new java.awt.Color(51, 255, 51));
+        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("Nuevo");
         jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 610, -1, -1));
 
+        btnDarBaja.setBackground(new java.awt.Color(255, 51, 51));
+        btnDarBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDarBaja.setForeground(new java.awt.Color(255, 255, 255));
         btnDarBaja.setText("Dar de Baja");
         jPanel1.add(btnDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 650, -1, -1));
 
+        btnActivar.setBackground(new java.awt.Color(0, 153, 255));
+        btnActivar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActivar.setForeground(new java.awt.Color(255, 255, 255));
         btnActivar.setText("Activar Conductor");
         jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, -1, -1));
         jPanel1.add(txtApellidoPaternoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 200, -1));

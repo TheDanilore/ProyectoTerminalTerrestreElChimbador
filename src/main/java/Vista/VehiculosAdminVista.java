@@ -117,7 +117,6 @@ public class VehiculosAdminVista extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 100, 20));
 
         cbxTipoVehiculo.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
-        cbxTipoVehiculo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Bus de Transporte", "Camion de Carga", "Vehiculo del Personal", "Vehiculo Particular", "Otro Vehiculo" }));
         cbxTipoVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTipoVehiculoActionPerformed(evt);
@@ -125,19 +124,39 @@ public class VehiculosAdminVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(cbxTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 180, 140, -1));
 
+        btnGuardar.setBackground(new java.awt.Color(51, 255, 51));
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
+        btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 370, -1, -1));
 
+        btnNuevo.setBackground(new java.awt.Color(51, 255, 51));
+        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("Nuevo");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, -1, -1));
 
+        btnDarBaja.setBackground(new java.awt.Color(255, 51, 51));
+        btnDarBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDarBaja.setForeground(new java.awt.Color(255, 255, 255));
         btnDarBaja.setText("Dar de Baja");
-        jPanel1.add(btnDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, -1, -1));
+        btnDarBaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(btnDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 460, -1, -1));
 
+        btnActivar.setBackground(new java.awt.Color(0, 153, 255));
+        btnActivar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActivar.setForeground(new java.awt.Color(255, 255, 255));
         btnActivar.setText("Activar Vehiculo");
+        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 460, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -112,9 +112,15 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
         jLabel8.setText("REGISTRA UN NUEVO METODO DE PAGO");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 300, 30));
 
+        btnGuardar.setBackground(new java.awt.Color(51, 255, 51));
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
         jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
+        btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizar.setText("Actualizar");
         btnActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +129,9 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, -1, -1));
 
+        btnNuevo.setBackground(new java.awt.Color(51, 255, 51));
+        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevo.setText("Nuevo");
         jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
 
@@ -130,7 +139,7 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
         btnEliminarMetodoPago.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEliminarMetodoPago.setForeground(new java.awt.Color(255, 255, 255));
         btnEliminarMetodoPago.setText("Eliminar");
-        jPanel1.add(btnEliminarMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
+        jPanel1.add(btnEliminarMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

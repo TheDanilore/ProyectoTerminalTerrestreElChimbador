@@ -4,11 +4,14 @@
  */
 package Controlador;
 
+import DAO.TipoVehiculoDAO;
 import DAO.VehiculoDAO;
+import Modelo.TipoVehiculo;
 import Modelo.VehiculoModelo;
 import Vista.VehiculosAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -222,6 +225,7 @@ public class VehiculoController implements ActionListener {
             clase.addRow(ob);
         }
         vista.tableVehiculo.setModel(clase);
+        llenarTipoVehiculo();
     }
 
     public void LimpiarVehiculo() {
@@ -241,6 +245,23 @@ public class VehiculoController implements ActionListener {
     public boolean camposValidos() {
         return !vista.txtPlacaVehiculo.getText().isEmpty()
                 && vista.cbxTipoVehiculo.getSelectedItem() != null;
+    }
+    
+    private void llenarTipoVehiculo(){
+        TipoVehiculoDAO dao = new TipoVehiculoDAO();
+        
+        ArrayList<TipoVehiculo> lista = (ArrayList<TipoVehiculo>) dao.listarTipoVehiculo();
+        
+        
+        //int idselect = 1;
+        vista.cbxTipoVehiculo.removeAllItems();
+        
+        
+        for (int i = 0; i < lista.size(); i++) {
+            vista.cbxTipoVehiculo.addItem(lista.get(i).getDescripcion());
+        }
+        
+        //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
 
 }

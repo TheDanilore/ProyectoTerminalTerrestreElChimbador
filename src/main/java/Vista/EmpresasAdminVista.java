@@ -168,19 +168,39 @@ public class EmpresasAdminVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 660, -1, -1));
 
+        btnGuardarEmpre.setBackground(new java.awt.Color(51, 255, 51));
+        btnGuardarEmpre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardarEmpre.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardarEmpre.setText("Guardar");
+        btnGuardarEmpre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnGuardarEmpre, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 340, -1, 20));
 
+        btnActualizarEmpre.setBackground(new java.awt.Color(51, 255, 51));
+        btnActualizarEmpre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizarEmpre.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarEmpre.setText("Actualizar");
+        btnActualizarEmpre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActualizarEmpre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 340, -1, -1));
 
+        btnNuevoEmpre.setBackground(new java.awt.Color(51, 255, 51));
+        btnNuevoEmpre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevoEmpre.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoEmpre.setText("Nuevo");
+        btnNuevoEmpre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnNuevoEmpre, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, -1, -1));
 
+        btnDarBajaEmpre.setBackground(new java.awt.Color(255, 51, 51));
+        btnDarBajaEmpre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDarBajaEmpre.setForeground(new java.awt.Color(255, 255, 255));
         btnDarBajaEmpre.setText("Dar de baja");
+        btnDarBajaEmpre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnDarBajaEmpre, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 460, -1, -1));
 
+        btnActivarEmpre.setBackground(new java.awt.Color(0, 153, 255));
+        btnActivarEmpre.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActivarEmpre.setForeground(new java.awt.Color(255, 255, 255));
         btnActivarEmpre.setText("Activar Empresa");
+        btnActivarEmpre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActivarEmpre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

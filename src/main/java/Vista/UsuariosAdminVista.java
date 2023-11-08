@@ -171,19 +171,39 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(cbxRolUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 320, 140, -1));
 
+        btnGuardarUsu.setBackground(new java.awt.Color(51, 255, 51));
+        btnGuardarUsu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardarUsu.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardarUsu.setText("Guardar");
+        btnGuardarUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnGuardarUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, -1, -1));
 
+        btnActualizarUsu.setBackground(new java.awt.Color(51, 255, 51));
+        btnActualizarUsu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizarUsu.setForeground(new java.awt.Color(255, 255, 255));
         btnActualizarUsu.setText("Actualizar");
+        btnActualizarUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActualizarUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, -1, -1));
 
+        btnBajaUsu.setBackground(new java.awt.Color(255, 51, 51));
+        btnBajaUsu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBajaUsu.setForeground(new java.awt.Color(255, 255, 255));
         btnBajaUsu.setText("Dar de Baja");
-        jPanel1.add(btnBajaUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 520, -1, -1));
+        btnBajaUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(btnBajaUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 590, -1, -1));
 
+        btnNuevoUsu.setBackground(new java.awt.Color(51, 255, 51));
+        btnNuevoUsu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevoUsu.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoUsu.setText("Nuevo");
-        jPanel1.add(btnNuevoUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, -1, -1));
+        btnNuevoUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(btnNuevoUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, -1, -1));
 
+        btnActivarUsu.setBackground(new java.awt.Color(0, 153, 255));
+        btnActivarUsu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActivarUsu.setForeground(new java.awt.Color(255, 255, 255));
         btnActivarUsu.setText("Activar Usuario");
+        btnActivarUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActivarUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 590, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

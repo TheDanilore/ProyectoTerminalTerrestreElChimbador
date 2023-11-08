@@ -8,6 +8,7 @@ import Controlador.CargoController;
 import Controlador.ConductorController;
 import Controlador.EmpresaController;
 import Controlador.MetodoPagoController;
+import Controlador.TipoVehiculoController;
 import Controlador.UsuarioControlador;
 import Controlador.UsuarioController;
 import Controlador.VehiculoController;
@@ -70,6 +71,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menuConductor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuVehiculo = new javax.swing.JMenuItem();
+        menuTipoVehiculo = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuEmpresas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -113,8 +115,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         getContentPane().add(escritorio, java.awt.BorderLayout.CENTER);
 
         menu_EntradaSalida.setText("Registro de Entradas y Salidas");
+        menu_EntradaSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menuEntrada.setText("Registrar Entrada de Vehículos");
+        menuEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuEntradaActionPerformed(evt);
@@ -144,11 +148,13 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenuBar1.add(menu_EntradaSalida);
 
         jMenu2.setText("Pagos");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jMenuItem1.setText("Registrar Pago");
         jMenu2.add(jMenuItem1);
 
         menuMetodoPago.setText("Metodo de Pago");
+        menuMetodoPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuMetodoPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuMetodoPagoActionPerformed(evt);
@@ -159,8 +165,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText("Conductores");
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menuConductor.setText("Conductor");
+        menuConductor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuConductor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuConductorActionPerformed(evt);
@@ -171,8 +179,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Vehículos");
+        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menuVehiculo.setText("Vehiculo");
+        menuVehiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuVehiculo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuVehiculoActionPerformed(evt);
@@ -180,11 +190,22 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         });
         jMenu3.add(menuVehiculo);
 
+        menuTipoVehiculo.setText("Tipos de Vehículos");
+        menuTipoVehiculo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuTipoVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuTipoVehiculoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuTipoVehiculo);
+
         jMenuBar1.add(jMenu3);
 
         jMenu5.setText("Empresas");
+        jMenu5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menuEmpresas.setText("Empresas");
+        menuEmpresas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuEmpresas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuEmpresasActionPerformed(evt);
@@ -195,8 +216,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenuBar1.add(jMenu5);
 
         jMenu4.setText("Usuarios");
+        jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         menuUsuario.setText("Usuarios");
+        menuUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuUsuarioActionPerformed(evt);
@@ -205,6 +228,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenu4.add(menuUsuario);
 
         menuCargo.setText("Roles");
+        menuCargo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menuCargo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCargoActionPerformed(evt);
@@ -277,6 +301,13 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         vista.show();
     }//GEN-LAST:event_menuMetodoPagoActionPerformed
 
+    private void menuTipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTipoVehiculoActionPerformed
+        TipoVehiculoVista vista = new TipoVehiculoVista();
+        TipoVehiculoController controller = new TipoVehiculoController(vista);
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuTipoVehiculoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -337,6 +368,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuMetodoPago;
     private javax.swing.JMenuItem menuRegistrarIncidente;
     private javax.swing.JMenuItem menuSalida;
+    private javax.swing.JMenuItem menuTipoVehiculo;
     private javax.swing.JMenuItem menuUsuario;
     private javax.swing.JMenuItem menuVehiculo;
     private javax.swing.JMenu menu_EntradaSalida;

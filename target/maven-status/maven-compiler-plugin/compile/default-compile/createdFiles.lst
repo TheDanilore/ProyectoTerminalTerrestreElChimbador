@@ -94,6 +94,7 @@ Vista\ConsultarRegistro$3.class
 Vista\RegistrarEntrada$1.class
 Controlador\UsuarioController.class
 DAO\ConductorDAO.class
+Vista\PrincipalAdmin$10.class
 Controlador\VehiculoController.class
 Controlador\RegistrarEntradaControlador.class
 Vista\UsuariosAdminVista$3.class
