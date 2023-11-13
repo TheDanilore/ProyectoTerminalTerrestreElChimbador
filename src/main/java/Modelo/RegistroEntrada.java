@@ -11,16 +11,16 @@ package Modelo;
 public class RegistroEntrada {
     private int id_registro_entrada;
     private String fecha_hora_entrada;
-    private VehiculoModelo vehiculo;
+    private Vehiculo vehiculo;
     private Conductor conductor;
     private String destino;
-    private UsuarioModelo usuario;
+    private Usuario usuario;
     private Pago pago;
 
     public RegistroEntrada() {
     }
 
-    public RegistroEntrada(int id_registro_entrada, String fecha_hora_entrada, VehiculoModelo vehiculo, Conductor conductor, String destino, UsuarioModelo usuario, Pago pago) {
+    public RegistroEntrada(int id_registro_entrada, String fecha_hora_entrada, Vehiculo vehiculo, Conductor conductor, String destino, Usuario usuario, Pago pago) {
         this.id_registro_entrada = id_registro_entrada;
         this.fecha_hora_entrada = fecha_hora_entrada;
         this.vehiculo = vehiculo;
@@ -46,11 +46,11 @@ public class RegistroEntrada {
         this.fecha_hora_entrada = fecha_hora_entrada;
     }
 
-    public VehiculoModelo getVehiculo() {
+    public Vehiculo getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(VehiculoModelo vehiculo) {
+    public void setVehiculo(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
 
@@ -70,11 +70,11 @@ public class RegistroEntrada {
         this.destino = destino;
     }
 
-    public UsuarioModelo getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioModelo usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

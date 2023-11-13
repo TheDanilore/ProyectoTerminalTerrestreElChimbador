@@ -6,7 +6,7 @@ package Vista;
 
 import Controlador.RegistrarEntradaControlador;
 import Modelo.Conductor;
-import Modelo.VehiculoModelo;
+import Modelo.Vehiculo;
 import javax.swing.JOptionPane;
 
 /**
@@ -231,7 +231,7 @@ public class RegistrarEntrada extends javax.swing.JInternalFrame {
         this.registrarEntradaControlador = controlador;
     }
 
-    public void actualizarVehiculo(VehiculoModelo vehiculo) {
+    public void actualizarVehiculo(Vehiculo vehiculo) {
         //lblTipoVehiculoEntrada.setText(String.valueOf(vehiculo.getId_tipo_vehiculo()));
         //lblRutaEntrada.setText(vehiculo.getRuta_destino());
     }

@@ -5,9 +5,13 @@
 package Controlador;
 
 import DAO.CargoDAO;
-import DAO.UsuarioDAO;
+import DAO.DAOException;
+import DAO.DAOManager;
+import DAO.mysql.MySQLCargoDAO;
+import DAO.mysql.MySQLDaoManager;
+import DAO.mysql.MySQLUsuarioDAO;
 import Modelo.Cargo;
-import Modelo.UsuarioModelo;
+import Modelo.Usuario;
 import Vista.LoginUser;
 import Vista.UsuariosAdminVista;
 import java.awt.event.ActionEvent;
@@ -15,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -24,18 +30,17 @@ import javax.swing.table.DefaultTableModel;
  * @author Danilore
  */
 public class UsuarioController implements ActionListener {
-
-    UsuarioDAO dao = new UsuarioDAO();
-    CargoDAO cargodao = new CargoDAO();
+    private DAOManager manager;
+    MySQLUsuarioDAO dao = new MySQLUsuarioDAO();
     UsuariosAdminVista vista = new UsuariosAdminVista();
     
     LoginUser loginVista = new LoginUser();
-    UsuarioModelo modelo = new UsuarioModelo();
+    Usuario modelo = new Usuario();
     DefaultTableModel clase = new DefaultTableModel();
 
     
 
-    public UsuarioController(UsuariosAdminVista v) {
+    public UsuarioController(UsuariosAdminVista v) throws DAOException {
         this.vista = v;
         
         this.vista.btnGuardarUsu.addActionListener(this);
@@ -65,19 +70,35 @@ public class UsuarioController implements ActionListener {
         }*/
 
         if (e.getSource() == vista.btnGuardarUsu) {
-            guardarUsuario();
+            try {
+                guardarUsuario();
+            } catch (DAOException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnActualizarUsu) {
-            actualizarUsuario();
+            try {
+                actualizarUsuario();
+            } catch (DAOException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnNuevoUsu) {
             nuevoUsuario();
         }
         if (e.getSource() == vista.btnActivarUsu) {
-            activarUsuario();
+            try {
+                activarUsuario();
+            } catch (DAOException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnBajaUsu) {
-            bajaUsuario();
+            try {
+                bajaUsuario();
+            } catch (DAOException ex) {
+                Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         
     }
@@ -126,7 +147,7 @@ public class UsuarioController implements ActionListener {
         return modelo;
     }*/
     
-    public void guardarUsuario() {
+    public void guardarUsuario() throws DAOException {
         if (camposValidos()) {
             modelo.setNombres(String.valueOf(vista.txtNombreUsuario.getText()));
             modelo.setUsuario(vista.txtUsernameUsuario.getText());
@@ -140,20 +161,19 @@ public class UsuarioController implements ActionListener {
                  
             
             //Conexion, consulta con la base de datos
-            if (dao.Registrar(modelo)) {
+            dao.add(modelo);
+            
                 JOptionPane.showMessageDialog(null, "Usuario Registrado");
                 LimpiarTable();
                 ListarUsuarios(vista.tableUsuario);
                 LimpiarUsuario();
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al Registrar Usuario");
-            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos");
         }
     }
     
-    public void actualizarUsuario (){
+    public void actualizarUsuario () throws DAOException{
         if ("".equals(vista.txtIdUsuario.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
@@ -170,14 +190,13 @@ public class UsuarioController implements ActionListener {
             
 
                 //Conexion, consulta con la base de datos
-                if (dao.ModificarUsuario(modelo)) {
+                dao.update(modelo);
+                
                     JOptionPane.showMessageDialog(null, "Usuario Modificado");
                     LimpiarTable();
                     ListarUsuarios(vista.tableUsuario);
                     LimpiarUsuario();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Modificar Usuario");
-                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
@@ -190,22 +209,21 @@ public class UsuarioController implements ActionListener {
         
     }
     
-    public void activarUsuario(){
+    public void activarUsuario() throws DAOException{
         if (!"".equals(vista.txtIdUsuario.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar al Usuario");
             if (pregunta == 0) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
                 modelo.setEstado(1);
                 
-                if (dao.BajaActivarUsuario(modelo)) {
+                dao.disable(modelo);
+                
                     
                     JOptionPane.showMessageDialog(null, "Se Activo al Usuario");
                     LimpiarTable();
                     ListarUsuarios(vista.tableUsuario);
                     LimpiarUsuario();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Activar Usuario");
-                }
+                
             }else{
                 LimpiarUsuario();
             }
@@ -215,21 +233,20 @@ public class UsuarioController implements ActionListener {
         }
     }
     
-    public void bajaUsuario(){
+    public void bajaUsuario() throws DAOException{
         if (!"".equals(vista.txtIdUsuario.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja al Usuario");
             if (pregunta == 0) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
                 modelo.setEstado(0);
-                if (dao.BajaActivarUsuario(modelo)) {
+                dao.disable(modelo);
+                
                     
                     JOptionPane.showMessageDialog(null, "Se dio de baja al Usuario");
                     LimpiarTable();
                     ListarUsuarios(vista.tableUsuario);
                     LimpiarUsuario();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Dar de Baja al Usuario");
-                }
+                
             }else{
                 LimpiarUsuario();
             }
@@ -239,9 +256,9 @@ public class UsuarioController implements ActionListener {
         }
     }
     //Metodo para listar usuarios
-    public void ListarUsuarios(JTable tabla) {
+    public void ListarUsuarios(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
-        List<UsuarioModelo> lista = dao.ListarUsuario();
+        List<Usuario> lista = dao.listAll();
         Object[] ob = new Object[6];
 
         for (int i = 0; i < lista.size(); i++) {
@@ -296,10 +313,10 @@ public class UsuarioController implements ActionListener {
                 && vista.cbxRolUser.getSelectedItem() != null;
     }
     
-    private void llenarCargos(){
-        CargoDAO dao = new CargoDAO();
+    private void llenarCargos() throws DAOException{
         
-        ArrayList<Cargo> lista = (ArrayList<Cargo>) dao.listarCargo();
+        CargoDAO dao = manager.getCargoDAO();
+        ArrayList<Cargo> lista = (ArrayList<Cargo>) dao.listAll();
         
         
         //int idselect = 1;

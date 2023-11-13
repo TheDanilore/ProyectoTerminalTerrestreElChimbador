@@ -4,12 +4,15 @@
  */
 package Controlador;
 
-import DAO.EmpresasDAO;
-import Modelo.EmpresasModelo;
+import DAO.DAOException;
+import DAO.mysql.MySQLEmpresasDAO;
+import Modelo.Empresas;
 import Vista.EmpresasAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.AncestorListener;
@@ -21,12 +24,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EmpresaController implements ActionListener {
 
-    EmpresasDAO dao = new EmpresasDAO();
-    EmpresasModelo modelo = new EmpresasModelo();
+    MySQLEmpresasDAO dao = new MySQLEmpresasDAO();
+    Empresas modelo = new Empresas();
     EmpresasAdminVista vista = new EmpresasAdminVista();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public EmpresaController(EmpresasAdminVista v) {
+    public EmpresaController(EmpresasAdminVista v) throws DAOException {
         this.vista = v;
         this.vista.btnListar.addActionListener(this);
         this.vista.btnGuardarEmpre.addActionListener(this);
@@ -44,19 +47,39 @@ public class EmpresaController implements ActionListener {
         if (e.getSource() == vista.btnListar) {
 
             LimpiarTable();
-            listarEmpresas(vista.tableEmpresa);
+            try {
+                listarEmpresas(vista.tableEmpresa);
+            } catch (DAOException ex) {
+                Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnGuardarEmpre) {
-            guardarEmpresa();
+            try {
+                guardarEmpresa();
+            } catch (DAOException ex) {
+                Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnActualizarEmpre) {
-            actualizarEmpresa();
+            try {
+                actualizarEmpresa();
+            } catch (DAOException ex) {
+                Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnDarBajaEmpre) {
-            bajaEmpresa();
+            try {
+                bajaEmpresa();
+            } catch (DAOException ex) {
+                Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnActivarEmpre) {
-            activarEmpresa();
+            try {
+                activarEmpresa();
+            } catch (DAOException ex) {
+                Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnNuevoEmpre) {
             nuevoEmpresa();
@@ -64,7 +87,7 @@ public class EmpresaController implements ActionListener {
     }
 
     //Metodo para registar empresa
-    public void guardarEmpresa() {
+    public void guardarEmpresa() throws DAOException {
         if (camposValidos()) {
 
             modelo.setRuc(Long.parseLong(vista.txtRucEmpresa.getText()));
@@ -72,21 +95,20 @@ public class EmpresaController implements ActionListener {
             modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
 
             //Conexion, consulta con la base de datos
-            if (dao.RegistrarEmpresas(modelo)) {
-                JOptionPane.showMessageDialog(null, "Empresa Registrada");
-                LimpiarTable();
-                listarEmpresas(vista.tableEmpresa);
-                LimpiarEmpresa();
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al Registrar Empresa");
-            }
+            dao.add(modelo);
+
+            JOptionPane.showMessageDialog(null, "Empresa Registrada");
+            LimpiarTable();
+            listarEmpresas(vista.tableEmpresa);
+            LimpiarEmpresa();
+
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
     }
 
     //Metodo para actualizar empresa
-    public void actualizarEmpresa() {
+    public void actualizarEmpresa() throws DAOException {
         if ("".equals(vista.txtIdEmpresa.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
@@ -96,15 +118,14 @@ public class EmpresaController implements ActionListener {
                 modelo.setRazon_social(vista.txtRazonEmpresa.getText());
                 modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
 
+                dao.update(modelo);
                 //Conexion, consulta con la base de datos
-                if (dao.ModificarEmpresa(modelo)) {
-                    JOptionPane.showMessageDialog(null, "Empresa Modificada");
-                    LimpiarTable();
-                    listarEmpresas(vista.tableEmpresa);
-                    LimpiarEmpresa();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Modificar Empresa");
-                }
+
+                JOptionPane.showMessageDialog(null, "Empresa Modificada");
+                LimpiarTable();
+                listarEmpresas(vista.tableEmpresa);
+                LimpiarEmpresa();
+
             } else {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
@@ -112,21 +133,20 @@ public class EmpresaController implements ActionListener {
     }
 
     //Metodo para dar de baja empresa (id_estado=0)
-    public void bajaEmpresa() {
+    public void bajaEmpresa() throws DAOException {
         if (!"".equals(vista.txtIdEmpresa.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
                 modelo.setEstado(0);
-                if (dao.BajaActivarEmpresa(modelo)) {
 
-                    JOptionPane.showMessageDialog(null, "Se dio de baja a la empresa");
-                    LimpiarTable();
-                    listarEmpresas(vista.tableEmpresa);
-                    LimpiarEmpresa();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Dar de Baja a la Empresa");
-                }
+                dao.disable(modelo);
+
+                JOptionPane.showMessageDialog(null, "Se dio de baja a la empresa");
+                LimpiarTable();
+                listarEmpresas(vista.tableEmpresa);
+                LimpiarEmpresa();
+
             } else {
                 LimpiarEmpresa();
             }
@@ -138,21 +158,20 @@ public class EmpresaController implements ActionListener {
     }
 
     //Metodo para activar empresa (id_estado=1)
-    public void activarEmpresa() {
+    public void activarEmpresa() throws DAOException {
         if (!"".equals(vista.txtIdEmpresa.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar a la Empresa");
             if (pregunta == 0) {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
                 modelo.setEstado(1);
-                if (dao.BajaActivarEmpresa(modelo)) {
 
-                    JOptionPane.showMessageDialog(null, "Se Activo a la empresa");
-                    LimpiarTable();
-                    listarEmpresas(vista.tableEmpresa);
-                    LimpiarEmpresa();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Activar la Empresa");
-                }
+                dao.disable(modelo);
+
+                JOptionPane.showMessageDialog(null, "Se Activo a la empresa");
+                LimpiarTable();
+                listarEmpresas(vista.tableEmpresa);
+                LimpiarEmpresa();
+
             } else {
                 LimpiarEmpresa();
             }
@@ -168,9 +187,9 @@ public class EmpresaController implements ActionListener {
     }
 
     //Metodo para Listar Empresas
-    public void listarEmpresas(JTable tabla) {
+    public void listarEmpresas(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
-        List<EmpresasModelo> lista = dao.ListarEmpresa();
+        List<Empresas> lista = dao.listAll();
         Object[] object = new Object[5];
 
         for (int i = 0; i < lista.size(); i++) {

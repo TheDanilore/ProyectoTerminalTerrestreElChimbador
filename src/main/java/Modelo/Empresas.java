@@ -8,17 +8,17 @@ package Modelo;
  *
  * @author ASUS
  */
-public class EmpresasModelo {
+public class Empresas {
     private int id_empresa;
     private long ruc;
     private String razon_social;
     private String nombre_comercial;
     private int estado;
 
-    public EmpresasModelo() {
+    public Empresas() {
     }
 
-    public EmpresasModelo(int id_empresa, long ruc, String razon_social, String nombre_comercial, int estado) {
+    public Empresas(int id_empresa, long ruc, String razon_social, String nombre_comercial, int estado) {
         this.id_empresa = id_empresa;
         this.ruc = ruc;
         this.razon_social = razon_social;

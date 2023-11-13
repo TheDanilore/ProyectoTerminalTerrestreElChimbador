@@ -4,18 +4,22 @@
  */
 package Vista;
 
+import DAO.DAOManager;
+import Modelo.Cargo;
+
 /**
  *
  * @author Danilore
  */
 public class CargoVista extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form CargoVista
-     */
     public CargoVista() {
         initComponents();
     }
+
+ 
+
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

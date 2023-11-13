@@ -8,16 +8,16 @@ package Modelo;
  *
  * @author ASUS
  */
-public class VehiculoModelo {
+public class Vehiculo {
     private int id_vehiculo;
     private String placa_vehiculo;
     private int tipo_vehiculo; //Se corregira luego POO
     private int estado;
 
-    public VehiculoModelo() {
+    public Vehiculo() {
     }
 
-    public VehiculoModelo(int id_vehiculo, String placa_vehiculo, int tipo_vehiculo, int estado) {
+    public Vehiculo(int id_vehiculo, String placa_vehiculo, int tipo_vehiculo, int estado) {
         this.id_vehiculo = id_vehiculo;
         this.placa_vehiculo = placa_vehiculo;
         this.tipo_vehiculo = tipo_vehiculo;

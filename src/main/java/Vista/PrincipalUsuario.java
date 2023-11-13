@@ -5,8 +5,8 @@
 package Vista;
 
 
-import DAO.UsuarioDAO;
-import Modelo.UsuarioModelo;
+import DAO.mysql.MySQLUsuarioDAO;
+import Modelo.Usuario;
 import java.util.List;
 
 /**
@@ -14,8 +14,8 @@ import java.util.List;
  * @author ASUS
  */
 public class PrincipalUsuario extends javax.swing.JFrame {
-    UsuarioDAO loginDAO = new UsuarioDAO();
-    UsuarioModelo usuarioModelo= new UsuarioModelo();
+    MySQLUsuarioDAO loginDAO = new MySQLUsuarioDAO();
+    Usuario usuarioModelo= new Usuario();
     LoginUser loginUser = new LoginUser();
 
     

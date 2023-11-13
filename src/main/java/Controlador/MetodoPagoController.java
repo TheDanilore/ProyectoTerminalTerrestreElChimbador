@@ -4,12 +4,17 @@
  */
 package Controlador;
 
+import DAO.DAOException;
+import DAO.DAOManager;
 import DAO.MetodoPagoDAO;
+import DAO.mysql.MySQLMetodoPagoDAO;
 import Modelo.MetodoPago;
 import Vista.MetodoPagoVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -20,13 +25,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MetodoPagoController implements ActionListener {
 
+    private DAOManager manager;
     MetodoPagoVista vista = new MetodoPagoVista();
     MetodoPago modelo = new MetodoPago();
-    MetodoPagoDAO dao = new MetodoPagoDAO();
+
     DefaultTableModel clase = new DefaultTableModel();
 
-    public MetodoPagoController(MetodoPagoVista v) {
+    public MetodoPagoController(MetodoPagoVista v, DAOManager manager) throws DAOException {
         this.vista = v;
+        this.manager = manager;
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
@@ -38,39 +45,51 @@ public class MetodoPagoController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnGuardar) {
-            guardarMetodoPago();
+            try {
+                guardarMetodoPago();
+            } catch (DAOException ex) {
+                Logger.getLogger(MetodoPagoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnActualizar) {
-            actualizarMetodoPago();
+            try {
+                actualizarMetodoPago();
+            } catch (DAOException ex) {
+                Logger.getLogger(MetodoPagoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnNuevo) {
             nuevoMetodoPago();
         }
         if (e.getSource() == vista.btnEliminarMetodoPago) {
-            eliminarMetodoPago();
+            try {
+                eliminarMetodoPago();
+            } catch (DAOException ex) {
+                Logger.getLogger(MetodoPagoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public void guardarMetodoPago() {
+    public void guardarMetodoPago() throws DAOException {
         if (camposValidos()) {
 
             modelo.setDescripcion(vista.txtDescripcion.getText());
 
             //Conexion, consulta con la base de datos
-            if (dao.registrarMetodoPago(modelo)) {
-                JOptionPane.showMessageDialog(null, "Metodo de Pago Registrado");
-                LimpiarTable();
-                ListarMetodoPago(vista.tableMetodoPago);
-                LimpiarMetodoPago();
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al Registrar Metodo de Pago");
-            }
+            MetodoPagoDAO dao = manager.getMetodoPagoDAO();
+            dao.add(modelo);
+
+            JOptionPane.showMessageDialog(null, "Metodo de Pago Registrado");
+            LimpiarTable();
+            ListarMetodoPago(vista.tableMetodoPago);
+            LimpiarMetodoPago();
+
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
     }
 
-    public void actualizarMetodoPago() {
+    public void actualizarMetodoPago() throws DAOException {
         if ("".equals(vista.txtIdMetodoPago.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
@@ -78,39 +97,36 @@ public class MetodoPagoController implements ActionListener {
                 modelo.setId_metodo_pago(Integer.parseInt(vista.txtIdMetodoPago.getText()));
                 modelo.setDescripcion(vista.txtDescripcion.getText());
 
+                MetodoPagoDAO dao = manager.getMetodoPagoDAO();
                 //Conexion, consulta con la base de datos
-                if (dao.modificarMetodoPago(modelo)) {
-                    JOptionPane.showMessageDialog(null, "Metodo de pago Modificado");
-                    LimpiarTable();
-                    ListarMetodoPago(vista.tableMetodoPago);
-                    LimpiarMetodoPago();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Modificar Metodo de Pago");
-                }
+                dao.update(modelo);
+
+                JOptionPane.showMessageDialog(null, "Metodo de pago Modificado");
+                LimpiarTable();
+                ListarMetodoPago(vista.tableMetodoPago);
+                LimpiarMetodoPago();
+
             } else {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
         }
     }
 
-    public void eliminarMetodoPago() {
+    public void eliminarMetodoPago() throws DAOException {
         if (!"".equals(vista.txtIdMetodoPago.getText())) {
 
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Eliminar");
 
             if (pregunta == 0) {
                 int ID = Integer.parseInt(vista.txtIdMetodoPago.getText());
-                
-                if (dao.eliminarMetodoPago(ID)) {
+                MetodoPagoDAO dao = manager.getMetodoPagoDAO();
+                dao.delete(ID);
 
-                    JOptionPane.showMessageDialog(null, "Se borro el metodo de pago");
-                    LimpiarTable();
-                    ListarMetodoPago(vista.tableMetodoPago);
-                    LimpiarMetodoPago();
-                } else {
+                JOptionPane.showMessageDialog(null, "Se borro el metodo de pago");
+                LimpiarTable();
+                ListarMetodoPago(vista.tableMetodoPago);
+                LimpiarMetodoPago();
 
-                    JOptionPane.showMessageDialog(null, "Error al borrar metodo de pago");
-                }
             } else {
                 LimpiarMetodoPago();
             }
@@ -123,9 +139,10 @@ public class MetodoPagoController implements ActionListener {
         LimpiarMetodoPago();
     }
 
-    public void ListarMetodoPago(JTable tabla) {
+    public void ListarMetodoPago(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
-        List<MetodoPago> lista = dao.listarMetodoPago();
+        MetodoPagoDAO dao = manager.getMetodoPagoDAO();
+        List<MetodoPago> lista = dao.listAll();
         Object[] ob = new Object[2];
 
         for (int i = 0; i < lista.size(); i++) {

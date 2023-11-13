@@ -4,6 +4,8 @@
  */
 package Modelo;
 
+import java.util.Date;
+
 /**
  *
  * @author Danilore
@@ -12,14 +14,14 @@ public class Pago {
     private int id_pago;
     private TipoVehiculoPago tipo_vehiculo_pago;
     private MetodoPago metodo_pago;
-    private String fecha_pago;
+    private Date fecha_pago;
     private double tarifa;
     private double monto;
 
     public Pago() {
     }
 
-    public Pago(int id_pago, TipoVehiculoPago tipo_vehiculo_pago, MetodoPago metodo_pago, String fecha_pago, double tarifa, double monto) {
+    public Pago(int id_pago, TipoVehiculoPago tipo_vehiculo_pago, MetodoPago metodo_pago, Date fecha_pago, double tarifa, double monto) {
         this.id_pago = id_pago;
         this.tipo_vehiculo_pago = tipo_vehiculo_pago;
         this.metodo_pago = metodo_pago;
@@ -52,11 +54,11 @@ public class Pago {
         this.metodo_pago = metodo_pago;
     }
 
-    public String getFecha_pago() {
+    public Date getFecha_pago() {
         return fecha_pago;
     }
 
-    public void setFecha_pago(String fecha_pago) {
+    public void setFecha_pago(Date fecha_pago) {
         this.fecha_pago = fecha_pago;
     }
 

@@ -5,8 +5,7 @@
 package Vista;
 
 import Clases.Evento;
-import DAO.EmpresasDAO;
-import Modelo.EmpresasModelo;
+import Modelo.Empresas;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

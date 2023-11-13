@@ -8,7 +8,7 @@ package Modelo;
  *
  * @author ASUS
  */
-public class UsuarioModelo {
+public class Usuario {
     private int id_usuarios;
     private String nombres;
     private String usuario;
@@ -17,10 +17,10 @@ public class UsuarioModelo {
     //private String last_session;
     private int estado;
 
-    public UsuarioModelo() {
+    public Usuario() {
     }
 
-    public UsuarioModelo(int id_usuarios, String nombres, String usuario, String contra_usuarios, int cargo, int estado) {
+    public Usuario(int id_usuarios, String nombres, String usuario, String contra_usuarios, int cargo, int estado) {
         this.id_usuarios = id_usuarios;
         this.nombres = nombres;
         this.usuario = usuario;

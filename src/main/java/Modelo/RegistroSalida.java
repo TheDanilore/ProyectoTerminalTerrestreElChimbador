@@ -12,13 +12,13 @@ public class RegistroSalida {
     private int id_registro_salida;
     private String fecha_hora_salida;
     private RegistroEntrada registro_entrada;
-    private UsuarioModelo usuario;
+    private Usuario usuario;
     private PagoPorHora pago_por_hora;
 
     public RegistroSalida() {
     }
 
-    public RegistroSalida(int id_registro_salida, String fecha_hora_salida, RegistroEntrada registro_entrada, UsuarioModelo usuario, PagoPorHora pago_por_hora) {
+    public RegistroSalida(int id_registro_salida, String fecha_hora_salida, RegistroEntrada registro_entrada, Usuario usuario, PagoPorHora pago_por_hora) {
         this.id_registro_salida = id_registro_salida;
         this.fecha_hora_salida = fecha_hora_salida;
         this.registro_entrada = registro_entrada;
@@ -50,11 +50,11 @@ public class RegistroSalida {
         this.registro_entrada = registro_entrada;
     }
 
-    public UsuarioModelo getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(UsuarioModelo usuario) {
+    public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 

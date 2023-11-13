@@ -5,11 +5,14 @@
 package Vista;
 
 import Controlador.UsuarioControlador;
-import DAO.UsuarioDAO;
-import Modelo.UsuarioModelo;
+import DAO.mysql.MySQLUsuarioDAO;
+import Modelo.Usuario;
 import java.awt.Image;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -26,15 +29,15 @@ public class LoginUser extends javax.swing.JFrame {
     private Icon icono;
 
     private UsuarioControlador usuarioControlador;
-    private UsuarioDAO dao;
-    private UsuarioModelo usuario;
+    private MySQLUsuarioDAO dao;
+    private Usuario usuario;
 
     public LoginUser() {
         initComponents();
         this.setLocationRelativeTo(null);
 
         //this.pintarImagen(lblLogoLogin, "src/Imagenes/Escudo_de_Chimbote.png");
-        dao = new UsuarioDAO();
+        dao = new MySQLUsuarioDAO();
         usuarioControlador = new UsuarioControlador(this, dao);
     }
 
@@ -158,7 +161,12 @@ public class LoginUser extends javax.swing.JFrame {
                 int rol = usuarioControlador.getUsuario().getCargo();
 
                 if (rol == 1) {
-                    PrincipalAdmin principalAdmin = new PrincipalAdmin();
+                    PrincipalAdmin principalAdmin = null;
+                    try {
+                        principalAdmin = new PrincipalAdmin();
+                    } catch (SQLException ex) {
+                        Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     principalAdmin.show();
                     String nombrerol = "Administrador";
                     JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
@@ -199,7 +207,12 @@ public class LoginUser extends javax.swing.JFrame {
                     int rol = usuarioControlador.getUsuario().getCargo();
 
                     if (rol == 1) {
-                        PrincipalAdmin principalAdmin = new PrincipalAdmin();
+                        PrincipalAdmin principalAdmin = null;
+                        try {
+                            principalAdmin = new PrincipalAdmin();
+                        } catch (SQLException ex) {
+                            Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                         principalAdmin.show();
                         String nombrerol = "Administrador";
                         JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()

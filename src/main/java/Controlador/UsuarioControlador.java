@@ -4,8 +4,8 @@
  */
 package Controlador;
 
-import DAO.UsuarioDAO;
-import Modelo.UsuarioModelo;
+import DAO.mysql.MySQLUsuarioDAO;
+import Modelo.Usuario;
 import Vista.LoginUser;
 
 /**
@@ -14,18 +14,18 @@ import Vista.LoginUser;
  */
 public class UsuarioControlador {
 
-    private UsuarioDAO dao;
-    private UsuarioModelo usuarioModelo;
+    private MySQLUsuarioDAO dao;
+    private Usuario usuarioModelo;
 
-    public UsuarioControlador(LoginUser view, UsuarioDAO dao) {
+    public UsuarioControlador(LoginUser view, MySQLUsuarioDAO dao) {
         this.dao = dao;
     }
 
     public boolean login(String username, String password) {
-        UsuarioModelo usuarioModelo = (UsuarioModelo) dao.log(username, password);
+        Usuario usuario = (Usuario) dao.log(username, password);
 
-        if (usuarioModelo != null) {
-            this.usuarioModelo = usuarioModelo;
+        if (usuario != null) {
+            this.usuarioModelo = usuario;
            
             return true; // Devuelve true si la autenticación es exitosa
         } else {
@@ -33,7 +33,7 @@ public class UsuarioControlador {
             return false; // Devuelve false si la autenticación falla
         }
     }
-    public UsuarioModelo getUsuario() {
+    public Usuario getUsuario() {
         return usuarioModelo;
     }
 }

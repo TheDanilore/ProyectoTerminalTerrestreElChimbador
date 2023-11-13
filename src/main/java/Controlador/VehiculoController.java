@@ -4,15 +4,18 @@
  */
 package Controlador;
 
-import DAO.TipoVehiculoDAO;
-import DAO.VehiculoDAO;
+import DAO.DAOException;
+import DAO.mysql.MySQLTipoVehiculoDAO;
+import DAO.mysql.MySQLVehiculoDAO;
 import Modelo.TipoVehiculo;
-import Modelo.VehiculoModelo;
+import Modelo.Vehiculo;
 import Vista.VehiculosAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -23,12 +26,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VehiculoController implements ActionListener {
 
-    VehiculoModelo modelo = new VehiculoModelo();
+    Vehiculo modelo = new Vehiculo();
     VehiculosAdminVista vista = new VehiculosAdminVista();
-    VehiculoDAO dao = new VehiculoDAO();
+    MySQLVehiculoDAO dao = new MySQLVehiculoDAO();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public VehiculoController(VehiculosAdminVista v) {
+    public VehiculoController(VehiculosAdminVista v) throws DAOException {
         this.vista = v;
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
@@ -43,23 +46,39 @@ public class VehiculoController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnGuardar) {
-            guardarVehiculo();
+            try {
+                guardarVehiculo();
+            } catch (DAOException ex) {
+                Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnActualizar) {
-            actualizarVehiculo();
+            try {
+                actualizarVehiculo();
+            } catch (DAOException ex) {
+                Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnNuevo) {
             nuevoVehiculo();
         }
         if (e.getSource() == vista.btnActivar) {
-            activarVehiculo();
+            try {
+                activarVehiculo();
+            } catch (DAOException ex) {
+                Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
         if (e.getSource() == vista.btnDarBaja) {
-            bajaVehiculo();
+            try {
+                bajaVehiculo();
+            } catch (DAOException ex) {
+                Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 
-    public void guardarVehiculo() {
+    public void guardarVehiculo() throws DAOException {
         if (camposValidos()) {
 
             modelo.setPlaca_vehiculo(vista.txtPlacaVehiculo.getText());
@@ -81,20 +100,19 @@ public class VehiculoController implements ActionListener {
             }
 
             //Conexion, consulta con la base de datos
-            if (dao.registrarVehiculo(modelo)) {
+            dao.add(modelo);
+            
                 JOptionPane.showMessageDialog(null, "Vehiculo Registrado");
                 LimpiarTable();
                 ListarVehiculos(vista.tableVehiculo);
                 LimpiarVehiculo();
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al Registrar Vehiculo");
-            }
+            
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
     }
 
-    public void actualizarVehiculo() {
+    public void actualizarVehiculo() throws DAOException {
         if ("".equals(vista.txtIdVehiculo.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
@@ -121,35 +139,34 @@ public class VehiculoController implements ActionListener {
                 }
 
                 //Conexion, consulta con la base de datos
-                if (dao.modificarVehiculo(modelo)) {
+                dao.update(modelo);
+                
                     JOptionPane.showMessageDialog(null, "Vehiculo Modificado");
                     LimpiarTable();
                     ListarVehiculos(vista.tableVehiculo);
                     LimpiarVehiculo();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Modificar Vehiculo");
-                }
+                
             } else {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
         }
     }
 
-    public void bajaVehiculo() {
+    public void bajaVehiculo() throws DAOException {
         if (!"".equals(vista.txtIdVehiculo.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de dar de baja el Vehiculo");
             if (pregunta == 0) {
                 modelo.setId_vehiculo(Integer.parseInt(vista.txtIdVehiculo.getText()));
                 modelo.setEstado(0);
-                if (dao.bajaActivarVehiculo(modelo)) {
+                
+                dao.disable(modelo);
+                
 
                     JOptionPane.showMessageDialog(null, "Se dio de baja el Vehiculo");
                     LimpiarTable();
                     ListarVehiculos(vista.tableVehiculo);
                     LimpiarVehiculo();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al Dar de Baja el Vehiculo");
-                }
+                
             } else {
                 LimpiarVehiculo();
             }
@@ -159,21 +176,21 @@ public class VehiculoController implements ActionListener {
         }
     }
 
-    public void activarVehiculo() {
+    public void activarVehiculo() throws DAOException {
         if (!"".equals(vista.txtIdVehiculo.getText())) {
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar el Vehiculo");
             if (pregunta == 0) {
                 modelo.setId_vehiculo(Integer.parseInt(vista.txtIdVehiculo.getText()));
                 modelo.setEstado(1);
-                if (dao.bajaActivarVehiculo(modelo)) {
+                
+                dao.disable(modelo);
+                
 
                     JOptionPane.showMessageDialog(null, "Se Activo el Vehiculo");
                     LimpiarTable();
                     ListarVehiculos(vista.tableVehiculo);
                     LimpiarVehiculo();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Error al  Activar el Vehiculo");
-                }
+                
             } else {
                 LimpiarVehiculo();
             }
@@ -187,9 +204,9 @@ public class VehiculoController implements ActionListener {
         LimpiarVehiculo();
     }
 
-    public void ListarVehiculos(JTable tabla) {
+    public void ListarVehiculos(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
-        List<VehiculoModelo> lista = dao.listarVehiculo();
+        List<Vehiculo> lista = dao.listAll();
         Object[] ob = new Object[4];
 
         for (int i = 0; i < lista.size(); i++) {
@@ -247,10 +264,10 @@ public class VehiculoController implements ActionListener {
                 && vista.cbxTipoVehiculo.getSelectedItem() != null;
     }
     
-    private void llenarTipoVehiculo(){
-        TipoVehiculoDAO dao = new TipoVehiculoDAO();
+    private void llenarTipoVehiculo() throws DAOException{
+        MySQLTipoVehiculoDAO dao = new MySQLTipoVehiculoDAO();
         
-        ArrayList<TipoVehiculo> lista = (ArrayList<TipoVehiculo>) dao.listarTipoVehiculo();
+        ArrayList<TipoVehiculo> lista = (ArrayList<TipoVehiculo>) dao.listAll();
         
         
         //int idselect = 1;
