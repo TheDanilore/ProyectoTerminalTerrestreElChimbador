@@ -37,9 +37,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     MySQLUsuarioDAO loginDAO = new MySQLUsuarioDAO();
 
     Usuario usuarioModelo = new Usuario();
-    LoginUser loginUser = new LoginUser();
+    LoginUser loginUser;
 
-    public PrincipalAdmin() throws SQLException {
+    public PrincipalAdmin() throws SQLException, DAOException {
+        this.loginUser = new LoginUser();
         initComponents();
         this.manager = new MySQLDaoManager();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -269,7 +270,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         UsuariosAdminVista vistaUsuario = new UsuariosAdminVista();
         try {
-            UsuarioController controller = new UsuarioController(vistaUsuario);
+            UsuarioController controller = new UsuarioController(vistaUsuario,manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -281,7 +282,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmpresasActionPerformed
         EmpresasAdminVista vistaEmpresas = new EmpresasAdminVista();
         try {
-            EmpresaController controller = new EmpresaController(vistaEmpresas);
+            EmpresaController controller = new EmpresaController(vistaEmpresas,manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -293,7 +294,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVehiculoActionPerformed
         VehiculosAdminVista vistaVehiculos = new VehiculosAdminVista();
         try {
-            VehiculoController controller = new VehiculoController(vistaVehiculos);
+            VehiculoController controller = new VehiculoController(vistaVehiculos,manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -304,7 +305,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConductorActionPerformed
         ConductorVista vista = new ConductorVista();
         try {
-            ConductorController controller = new ConductorController(vista);
+            ConductorController controller = new ConductorController(vista,manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -338,7 +339,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuTipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTipoVehiculoActionPerformed
         TipoVehiculoVista vista = new TipoVehiculoVista();
         try {
-            TipoVehiculoController controller = new TipoVehiculoController(vista);
+            TipoVehiculoController controller = new TipoVehiculoController(vista,manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -385,6 +386,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             try {
                 new PrincipalAdmin().setVisible(true);
             } catch (SQLException ex) {
+                Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (DAOException ex) {
                 Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
             }
         });

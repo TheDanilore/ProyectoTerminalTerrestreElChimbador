@@ -11,5 +11,5 @@ import Modelo.Usuario;
  * @author Danilore
  */
 public interface UsuarioDAO extends CrudDAO<Usuario,Integer>{
-    public Usuario log(String username, String password);
+    public Usuario log(String username, String password) throws DAOException;
 }

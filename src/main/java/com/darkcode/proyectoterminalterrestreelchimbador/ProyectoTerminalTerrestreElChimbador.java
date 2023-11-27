@@ -4,13 +4,18 @@
 
 package com.darkcode.proyectoterminalterrestreelchimbador;
 
+import DAO.DAOException;
+import Vista.LoginUser;
+
 /**
  *
  * @author Danilore
  */
 public class ProyectoTerminalTerrestreElChimbador {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    public static void main(String[] args) throws DAOException {
+        LoginUser login = new LoginUser();
+        
+        login.setVisible(true);
     }
 }

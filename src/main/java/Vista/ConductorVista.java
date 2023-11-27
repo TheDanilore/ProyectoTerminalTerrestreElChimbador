@@ -93,7 +93,6 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         txtIdConductor.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         txtIdConductor.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtIdConductor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtIdConductor.setEnabled(false);
         jPanel1.add(txtIdConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 20, 20));
 
         tableConductor.setFont(new java.awt.Font("72", 0, 12)); // NOI18N

@@ -4,7 +4,11 @@
  */
 package Controlador;
 
+import DAO.ConductorDAO;
 import DAO.DAOException;
+import DAO.DAOManager;
+import DAO.EmpresasDAO;
+import DAO.TipoDocumentoIdentidadDAO;
 import DAO.mysql.MySQLConductorDAO;
 import DAO.mysql.MySQLEmpresasDAO;
 import DAO.mysql.MySQLTipoDocumentoIdentidadDAO;
@@ -28,13 +32,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConductorController implements ActionListener {
 
+    private DAOManager manager;
     ConductorVista vista = new ConductorVista();
     Conductor modelo = new Conductor();
-    MySQLConductorDAO dao = new MySQLConductorDAO();
+    
     DefaultTableModel clase = new DefaultTableModel();
 
-    public ConductorController(ConductorVista v) throws DAOException {
+    public ConductorController(ConductorVista v,DAOManager manager) throws DAOException {
         this.vista = v;
+        this.manager=manager;
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
@@ -127,9 +133,12 @@ public class ConductorController implements ActionListener {
             if ("OROPEZA e".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
                 modelo.setEmpresa(7);
             }
-            dao.add(modelo);
+            
             //Conexion, consulta con la base de datos
-
+            ConductorDAO dao = manager.getConductorDAO();
+            dao.add(modelo);
+            
+            
             JOptionPane.showMessageDialog(null, "Conductor Registrado");
             LimpiarTable();
             ListarConductor(vista.tableConductor);
@@ -190,6 +199,7 @@ public class ConductorController implements ActionListener {
                     modelo.setEmpresa(7);
                 }
 
+                ConductorDAO dao = manager.getConductorDAO();
                 dao.update(modelo);
                 //Conexion, consulta con la base de datos
 
@@ -211,6 +221,7 @@ public class ConductorController implements ActionListener {
                 modelo.setId_conductor(Integer.parseInt(vista.txtIdConductor.getText()));
                 modelo.setEstado(0);
 
+                ConductorDAO dao = manager.getConductorDAO();
                 dao.disable(modelo);
 
                 JOptionPane.showMessageDialog(null, "Se dio de baja el Conductor");
@@ -233,6 +244,8 @@ public class ConductorController implements ActionListener {
             if (pregunta == 0) {
                 modelo.setId_conductor(Integer.parseInt(vista.txtIdConductor.getText()));
                 modelo.setEstado(1);
+                
+                ConductorDAO dao = manager.getConductorDAO();
                 dao.disable(modelo);
 
                 JOptionPane.showMessageDialog(null, "Se Activo el Conductor");
@@ -255,6 +268,7 @@ public class ConductorController implements ActionListener {
 
     public void ListarConductor(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
+        ConductorDAO dao = manager.getConductorDAO();
         List<Conductor> lista = dao.listAll();
         Object[] ob = new Object[11];
 
@@ -361,9 +375,11 @@ public class ConductorController implements ActionListener {
     }
 
     private void llenarTipoDocumentoIdentidad() throws DAOException {
-        MySQLTipoDocumentoIdentidadDAO dao = new MySQLTipoDocumentoIdentidadDAO();
+        
+        TipoDocumentoIdentidadDAO dao = manager.getTipoDocumentoIdentidadDAO();
+        
 
-        ArrayList<TipoDocumentoIdentidad> lista = (ArrayList<TipoDocumentoIdentidad>) dao.listAll();
+        List<TipoDocumentoIdentidad> lista = (ArrayList<TipoDocumentoIdentidad>) dao.listAll();
 
         //int idselect = 1;
         vista.cbxTipoDocumentoIdentidad.removeAllItems();
@@ -376,9 +392,9 @@ public class ConductorController implements ActionListener {
     }
 
     private void llenarEmpresas() throws DAOException {
-        MySQLEmpresasDAO dao = new MySQLEmpresasDAO();
+        EmpresasDAO dao = manager.getEmpresasDAO();
 
-        ArrayList<Empresas> lista = (ArrayList<Empresas>) dao.listAll();
+        List<Empresas> lista = (ArrayList<Empresas>) dao.listAll();
 
         //int idselect = 1;
         vista.cbxEmpresas.removeAllItems();

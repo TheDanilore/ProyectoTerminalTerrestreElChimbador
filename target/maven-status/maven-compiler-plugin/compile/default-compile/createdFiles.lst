@@ -106,7 +106,6 @@ Vista\LoginUser.class
 Vista\UsuariosAdminVista$4.class
 Vista\ConsultarRegistro.class
 Vista\ConductorVista$3.class
-Vista\LoginUser$3.class
 DAO\mysql\MySQLVehiculoDAO.class
 Vista\ConsultarRegistro$3.class
 Vista\RegistrarEntrada$1.class

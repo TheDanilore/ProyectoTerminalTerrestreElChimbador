@@ -16,7 +16,6 @@ import java.util.List;
 public class PrincipalUsuario extends javax.swing.JFrame {
     MySQLUsuarioDAO loginDAO = new MySQLUsuarioDAO();
     Usuario usuarioModelo= new Usuario();
-    LoginUser loginUser = new LoginUser();
 
     
     public PrincipalUsuario() {
@@ -100,7 +99,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
                         .addComponent(jLabel1)))
                 .addGap(35, 35, 35)
                 .addComponent(lblRol, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(209, Short.MAX_VALUE))
+                .addContainerGap(210, Short.MAX_VALUE))
         );
 
         getContentPane().add(escritorio, java.awt.BorderLayout.CENTER);

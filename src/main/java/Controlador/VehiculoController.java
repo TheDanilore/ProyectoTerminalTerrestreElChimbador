@@ -5,6 +5,8 @@
 package Controlador;
 
 import DAO.DAOException;
+import DAO.DAOManager;
+import DAO.VehiculoDAO;
 import DAO.mysql.MySQLTipoVehiculoDAO;
 import DAO.mysql.MySQLVehiculoDAO;
 import Modelo.TipoVehiculo;
@@ -26,13 +28,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class VehiculoController implements ActionListener {
 
+    private DAOManager manager;
+    
     Vehiculo modelo = new Vehiculo();
     VehiculosAdminVista vista = new VehiculosAdminVista();
-    MySQLVehiculoDAO dao = new MySQLVehiculoDAO();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public VehiculoController(VehiculosAdminVista v) throws DAOException {
+    public VehiculoController(VehiculosAdminVista v,DAOManager manager) throws DAOException {
         this.vista = v;
+        this.manager=manager;
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
@@ -100,6 +104,7 @@ public class VehiculoController implements ActionListener {
             }
 
             //Conexion, consulta con la base de datos
+            VehiculoDAO dao = manager.getVehiculoDAO();
             dao.add(modelo);
             
                 JOptionPane.showMessageDialog(null, "Vehiculo Registrado");
@@ -139,6 +144,7 @@ public class VehiculoController implements ActionListener {
                 }
 
                 //Conexion, consulta con la base de datos
+                VehiculoDAO dao = manager.getVehiculoDAO();
                 dao.update(modelo);
                 
                     JOptionPane.showMessageDialog(null, "Vehiculo Modificado");
@@ -158,7 +164,7 @@ public class VehiculoController implements ActionListener {
             if (pregunta == 0) {
                 modelo.setId_vehiculo(Integer.parseInt(vista.txtIdVehiculo.getText()));
                 modelo.setEstado(0);
-                
+                VehiculoDAO dao = manager.getVehiculoDAO();
                 dao.disable(modelo);
                 
 
@@ -182,7 +188,7 @@ public class VehiculoController implements ActionListener {
             if (pregunta == 0) {
                 modelo.setId_vehiculo(Integer.parseInt(vista.txtIdVehiculo.getText()));
                 modelo.setEstado(1);
-                
+                VehiculoDAO dao = manager.getVehiculoDAO();
                 dao.disable(modelo);
                 
 
@@ -206,6 +212,7 @@ public class VehiculoController implements ActionListener {
 
     public void ListarVehiculos(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
+        VehiculoDAO dao = manager.getVehiculoDAO();
         List<Vehiculo> lista = dao.listAll();
         Object[] ob = new Object[4];
 

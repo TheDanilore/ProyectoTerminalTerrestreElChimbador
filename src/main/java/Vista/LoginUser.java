@@ -5,6 +5,8 @@
 package Vista;
 
 import Controlador.UsuarioControlador;
+import DAO.DAOException;
+import DAO.DAOManager;
 import DAO.mysql.MySQLUsuarioDAO;
 import Modelo.Usuario;
 import java.awt.Image;
@@ -23,22 +25,15 @@ import javax.swing.JOptionPane;
  * @author ASUS
  */
 public class LoginUser extends javax.swing.JFrame {
+
+
 //probando
-
-    private ImageIcon imagen;
-    private Icon icono;
-
-    private UsuarioControlador usuarioControlador;
-    private MySQLUsuarioDAO dao;
-    private Usuario usuario;
-
-    public LoginUser() {
+        public LoginUser() throws DAOException {
         initComponents();
         this.setLocationRelativeTo(null);
 
         //this.pintarImagen(lblLogoLogin, "src/Imagenes/Escudo_de_Chimbote.png");
-        dao = new MySQLUsuarioDAO();
-        usuarioControlador = new UsuarioControlador(this, dao);
+        
     }
 
     /**
@@ -57,6 +52,7 @@ public class LoginUser extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         lblLogin = new javax.swing.JLabel();
         txtContra = new javax.swing.JPasswordField();
+        btnLog = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,6 +86,8 @@ public class LoginUser extends javax.swing.JFrame {
             }
         });
 
+        btnLog.setText("Login");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,7 +104,9 @@ public class LoginUser extends javax.swing.JFrame {
                                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(64, 64, 64)
-                                .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnLog)
+                                    .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(197, 197, 197))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -125,7 +125,9 @@ public class LoginUser extends javax.swing.JFrame {
                 .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(103, 103, 103)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnLog)
+                .addGap(74, 74, 74)
                 .addComponent(jLabel1)
                 .addContainerGap(12, Short.MAX_VALUE))
         );
@@ -147,52 +149,12 @@ public class LoginUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
-        if (txtContra.getText().equals("") || txtUser.getText().equals("")) {
-            JOptionPane.showMessageDialog(this, "Ingrese el Usuario y/o la contraseña correspondiente", "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            String username = txtUser.getText();
-            char[] passwordChars = txtContra.getPassword();
-            String password = new String(passwordChars);
-
-            boolean loginExitoso = usuarioControlador.login(username, password);
-
-            if (loginExitoso) {
-                dispose();
-                int rol = usuarioControlador.getUsuario().getCargo();
-
-                if (rol == 1) {
-                    PrincipalAdmin principalAdmin = null;
-                    try {
-                        principalAdmin = new PrincipalAdmin();
-                    } catch (SQLException ex) {
-                        Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    principalAdmin.show();
-                    String nombrerol = "Administrador";
-                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
-                            + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-                } else if (rol == 2) {
-
-                    PrincipalUsuario principalUsuario = new PrincipalUsuario();
-                    principalUsuario.show();
-                    String nombrerol = "Usuario";
-                    JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
-                            + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-                }
-
-                // Mostrar un mensaje de éxito usando JOptionPane
-            } else {
-                // Si no es válido, mostrar un mensaje de error
-                JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            Arrays.fill(passwordChars, ' ');
-        }
 
 
     }//GEN-LAST:event_lblLoginMouseClicked
 
     private void txtContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+ /*       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if (txtContra.getText().equals("") || txtUser.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Ingrese el Usuario y/o la contraseña correspondiente", "Error", JOptionPane.ERROR_MESSAGE);
             } else {
@@ -200,7 +162,12 @@ public class LoginUser extends javax.swing.JFrame {
                 char[] passwordChars = txtContra.getPassword();
                 String password = new String(passwordChars);
 
-                boolean loginExitoso = usuarioControlador.login(username, password);
+                boolean loginExitoso = false;
+                try {
+                    loginExitoso = usuarioControlador.login(username, password);
+                } catch (DAOException ex) {
+                    Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
+                }
 
                 if (loginExitoso) {
                     dispose();
@@ -234,7 +201,7 @@ public class LoginUser extends javax.swing.JFrame {
                 Arrays.fill(passwordChars, ' ');
             }
         }
-
+*/
     }//GEN-LAST:event_txtContraKeyPressed
 
     /**
@@ -266,9 +233,11 @@ public class LoginUser extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new LoginUser().setVisible(true);
+            } catch (DAOException ex) {
+                Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -283,12 +252,13 @@ public class LoginUser extends javax.swing.JFrame {
     }*/
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnLog;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblLogin;
-    private javax.swing.JPasswordField txtContra;
-    private javax.swing.JTextField txtUser;
+    public javax.swing.JPasswordField txtContra;
+    public javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

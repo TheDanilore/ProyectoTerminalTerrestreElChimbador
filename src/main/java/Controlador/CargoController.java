@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CargoController implements ActionListener {
 
-    private DAOManager manager;
+    private final DAOManager manager;
     CargoVista vista = new CargoVista();
     Cargo modelo = new Cargo();
     DefaultTableModel clase = new DefaultTableModel();

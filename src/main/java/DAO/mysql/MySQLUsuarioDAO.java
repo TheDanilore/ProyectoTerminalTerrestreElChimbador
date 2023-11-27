@@ -34,7 +34,7 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
     }
     
     @Override
-    public Usuario log(String username, String password){
+    public Usuario log(String username, String password) throws DAOException{
         Usuario login = null; 
 
         String sql = "SELECT * FROM usuarios WHERE usuario=? AND contra_usuarios=? AND id_estado=1";
@@ -52,17 +52,28 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
                 login.setUsuario(rs.getString("usuario"));
                 login.setContra_usuarios(rs.getString("contra_usuarios"));
                 login.setCargo(rs.getInt("id_cargo"));
+                login.setEstado(rs.getInt("id_estado"));
             }
         } catch (SQLException e) {
-            System.err.println("Error de la base de datos: " + e.getMessage());
+            throw new DAOException("Error en Sql", e);
+
         } finally {
-            
-            try {
-                if (rs != null) rs.close();
-                if (ps != null) ps.close();
-                if (conn != null) conn.close();
-            } catch (SQLException e) {
-                System.err.println("Error al cerrar los recursos: " + e.getMessage());
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
             }
         }
         return login;

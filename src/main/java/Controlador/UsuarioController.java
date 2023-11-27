@@ -7,6 +7,7 @@ package Controlador;
 import DAO.CargoDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
+import DAO.UsuarioDAO;
 import DAO.mysql.MySQLCargoDAO;
 import DAO.mysql.MySQLDaoManager;
 import DAO.mysql.MySQLUsuarioDAO;
@@ -31,7 +32,6 @@ import javax.swing.table.DefaultTableModel;
  */
 public class UsuarioController implements ActionListener {
     private DAOManager manager;
-    MySQLUsuarioDAO dao = new MySQLUsuarioDAO();
     UsuariosAdminVista vista = new UsuariosAdminVista();
     
     LoginUser loginVista = new LoginUser();
@@ -40,9 +40,9 @@ public class UsuarioController implements ActionListener {
 
     
 
-    public UsuarioController(UsuariosAdminVista v) throws DAOException {
+    public UsuarioController(UsuariosAdminVista v, DAOManager manager) throws DAOException {
         this.vista = v;
-        
+        this.manager=manager;
         this.vista.btnGuardarUsu.addActionListener(this);
         this.vista.btnActualizarUsu.addActionListener(this);
         this.vista.btnNuevoUsu.addActionListener(this);
@@ -161,6 +161,7 @@ public class UsuarioController implements ActionListener {
                  
             
             //Conexion, consulta con la base de datos
+            UsuarioDAO dao = manager.getUsuarioDAO();
             dao.add(modelo);
             
                 JOptionPane.showMessageDialog(null, "Usuario Registrado");
@@ -190,6 +191,7 @@ public class UsuarioController implements ActionListener {
             
 
                 //Conexion, consulta con la base de datos
+                UsuarioDAO dao = manager.getUsuarioDAO();
                 dao.update(modelo);
                 
                     JOptionPane.showMessageDialog(null, "Usuario Modificado");
@@ -216,6 +218,7 @@ public class UsuarioController implements ActionListener {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
                 modelo.setEstado(1);
                 
+                UsuarioDAO dao = manager.getUsuarioDAO();
                 dao.disable(modelo);
                 
                     
@@ -239,6 +242,7 @@ public class UsuarioController implements ActionListener {
             if (pregunta == 0) {
                 modelo.setId_usuarios(Integer.parseInt(vista.txtIdUsuario.getText()));
                 modelo.setEstado(0);
+                UsuarioDAO dao = manager.getUsuarioDAO();
                 dao.disable(modelo);
                 
                     
@@ -258,6 +262,7 @@ public class UsuarioController implements ActionListener {
     //Metodo para listar usuarios
     public void ListarUsuarios(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
+        UsuarioDAO dao = manager.getUsuarioDAO();
         List<Usuario> lista = dao.listAll();
         Object[] ob = new Object[6];
 

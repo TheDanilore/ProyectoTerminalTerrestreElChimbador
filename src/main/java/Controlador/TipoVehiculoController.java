@@ -5,6 +5,8 @@
 package Controlador;
 
 import DAO.DAOException;
+import DAO.DAOManager;
+import DAO.TipoVehiculoDAO;
 import DAO.mysql.MySQLTipoVehiculoDAO;
 import Modelo.TipoVehiculo;
 import Vista.TipoVehiculoVista;
@@ -23,13 +25,15 @@ import javax.swing.table.DefaultTableModel;
  */
 public class TipoVehiculoController implements ActionListener {
 
+    private DAOManager manager;
+    
     TipoVehiculoVista vista = new TipoVehiculoVista();
     TipoVehiculo modelo = new TipoVehiculo();
-    MySQLTipoVehiculoDAO dao = new MySQLTipoVehiculoDAO();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public TipoVehiculoController(TipoVehiculoVista v) throws DAOException {
+    public TipoVehiculoController(TipoVehiculoVista v,DAOManager manager) throws DAOException {
         this.vista = v;
+        this.manager=manager;
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
@@ -72,6 +76,7 @@ public class TipoVehiculoController implements ActionListener {
             modelo.setDescripcion(vista.txtDescripcion.getText());
 
             //Conexion, consulta con la base de datos
+            TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
             dao.add(modelo);
 
             JOptionPane.showMessageDialog(null, "Tipo de Vehículo Registrado");
@@ -93,6 +98,7 @@ public class TipoVehiculoController implements ActionListener {
                 modelo.setDescripcion(vista.txtDescripcion.getText());
 
                 //Conexion, consulta con la base de datos
+                TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
                 dao.update(modelo);
 
                 JOptionPane.showMessageDialog(null, "Tipo de Vehículo Modificado");
@@ -114,6 +120,7 @@ public class TipoVehiculoController implements ActionListener {
             if (pregunta == 0) {
                 int ID = Integer.parseInt(vista.txtIdTipoVehiculo.getText());
 
+                TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
                 dao.delete(ID);
                 
 
@@ -136,6 +143,7 @@ public class TipoVehiculoController implements ActionListener {
 
     public void ListarTipoVehiculo(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
+        TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
         List<TipoVehiculo> lista = dao.listAll();
         Object[] ob = new Object[2];
 

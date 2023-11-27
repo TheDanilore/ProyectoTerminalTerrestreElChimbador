@@ -5,6 +5,8 @@
 package Controlador;
 
 import DAO.DAOException;
+import DAO.DAOManager;
+import DAO.EmpresasDAO;
 import DAO.mysql.MySQLEmpresasDAO;
 import Modelo.Empresas;
 import Vista.EmpresasAdminVista;
@@ -24,13 +26,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class EmpresaController implements ActionListener {
 
-    MySQLEmpresasDAO dao = new MySQLEmpresasDAO();
+    private DAOManager manager;
     Empresas modelo = new Empresas();
     EmpresasAdminVista vista = new EmpresasAdminVista();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public EmpresaController(EmpresasAdminVista v) throws DAOException {
+    public EmpresaController(EmpresasAdminVista v, DAOManager manager) throws DAOException {
         this.vista = v;
+        this.manager=manager;
         this.vista.btnListar.addActionListener(this);
         this.vista.btnGuardarEmpre.addActionListener(this);
         this.vista.btnActualizarEmpre.addActionListener(this);
@@ -95,6 +98,7 @@ public class EmpresaController implements ActionListener {
             modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
 
             //Conexion, consulta con la base de datos
+            EmpresasDAO dao = manager.getEmpresasDAO();
             dao.add(modelo);
 
             JOptionPane.showMessageDialog(null, "Empresa Registrada");
@@ -118,6 +122,7 @@ public class EmpresaController implements ActionListener {
                 modelo.setRazon_social(vista.txtRazonEmpresa.getText());
                 modelo.setNombre_comercial(vista.txtNombreComercialEmpresa.getText());
 
+                EmpresasDAO dao = manager.getEmpresasDAO();
                 dao.update(modelo);
                 //Conexion, consulta con la base de datos
 
@@ -140,6 +145,7 @@ public class EmpresaController implements ActionListener {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
                 modelo.setEstado(0);
 
+                EmpresasDAO dao = manager.getEmpresasDAO();
                 dao.disable(modelo);
 
                 JOptionPane.showMessageDialog(null, "Se dio de baja a la empresa");
@@ -165,6 +171,7 @@ public class EmpresaController implements ActionListener {
                 modelo.setId_empresa(Integer.parseInt(vista.txtIdEmpresa.getText()));
                 modelo.setEstado(1);
 
+                EmpresasDAO dao = manager.getEmpresasDAO();
                 dao.disable(modelo);
 
                 JOptionPane.showMessageDialog(null, "Se Activo a la empresa");
@@ -189,6 +196,7 @@ public class EmpresaController implements ActionListener {
     //Metodo para Listar Empresas
     public void listarEmpresas(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
+        EmpresasDAO dao = manager.getEmpresasDAO();
         List<Empresas> lista = dao.listAll();
         Object[] object = new Object[5];
 
