@@ -11,5 +11,5 @@ import Modelo.Conductor;
  * @author Danilore
  */
 public interface ConductorDAO extends CrudDAO<Conductor,Integer>{
-    
+    public Conductor getByDniConductor(Long dni) throws DAOException;
 }

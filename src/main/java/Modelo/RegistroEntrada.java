@@ -11,16 +11,16 @@ package Modelo;
 public class RegistroEntrada {
     private int id_registro_entrada;
     private String fecha_hora_entrada;
-    private Vehiculo vehiculo;
-    private Conductor conductor;
+    private String vehiculo;
+    private String conductor;
     private String destino;
-    private Usuario usuario;
-    private Pago pago;
+    private String usuario;
+    private String pago;
 
     public RegistroEntrada() {
     }
 
-    public RegistroEntrada(int id_registro_entrada, String fecha_hora_entrada, Vehiculo vehiculo, Conductor conductor, String destino, Usuario usuario, Pago pago) {
+    public RegistroEntrada(int id_registro_entrada, String fecha_hora_entrada, String vehiculo, String conductor, String destino, String usuario, String pago) {
         this.id_registro_entrada = id_registro_entrada;
         this.fecha_hora_entrada = fecha_hora_entrada;
         this.vehiculo = vehiculo;
@@ -46,19 +46,19 @@ public class RegistroEntrada {
         this.fecha_hora_entrada = fecha_hora_entrada;
     }
 
-    public Vehiculo getVehiculo() {
+    public String getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(Vehiculo vehiculo) {
+    public void setVehiculo(String vehiculo) {
         this.vehiculo = vehiculo;
     }
 
-    public Conductor getConductor() {
+    public String getConductor() {
         return conductor;
     }
 
-    public void setConductor(Conductor conductor) {
+    public void setConductor(String conductor) {
         this.conductor = conductor;
     }
 
@@ -70,22 +70,23 @@ public class RegistroEntrada {
         this.destino = destino;
     }
 
-    public Usuario getUsuario() {
+    public String getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(Usuario usuario) {
+    public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
 
-    public Pago getPago() {
+    public String getPago() {
         return pago;
     }
 
-    public void setPago(Pago pago) {
+    public void setPago(String pago) {
         this.pago = pago;
     }
-    
+
+   
     
     
 }

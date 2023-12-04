@@ -38,7 +38,7 @@ public class MySQLConductorDAO implements ConductorDAO {
     @Override
     public void add(Conductor obj) throws DAOException {
         String sql = "INSERT INTO conductor (primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, "
-                + "id_tipo_documento_identidad, numero_documento, telefono, direccion, id_empresa) VALUES (?,?,?,?,?,?,?,?,?)";
+                + "id_tipo_documento_identidad, numero_documento, telefono, direccion, ruc_empresa) VALUES (?,?,?,?,?,?,?,?,?)";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -50,7 +50,7 @@ public class MySQLConductorDAO implements ConductorDAO {
             ps.setLong(6, obj.getNumero_documento());
             ps.setInt(7, obj.getTelefono());
             ps.setString(8, obj.getDireccion());
-            ps.setInt(9, obj.getEmpresa());
+            ps.setLong(9, obj.getEmpresa());
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }
@@ -89,7 +89,7 @@ public class MySQLConductorDAO implements ConductorDAO {
                 conductor.setNumero_documento(rs.getLong("numero_documento"));
                 conductor.setTelefono(rs.getInt("telefono"));
                 conductor.setDireccion(rs.getString("direccion"));
-                conductor.setEmpresa(rs.getInt("id_empresa"));
+                conductor.setEmpresa(rs.getLong("ruc_empresa"));
                 conductor.setEstado(rs.getInt("id_estado"));
                 lista.add(conductor);
             }
@@ -149,7 +149,7 @@ public class MySQLConductorDAO implements ConductorDAO {
     @Override
     public void update(Conductor obj) throws DAOException {
         String sql = "UPDATE conductor SET primer_nombre = ?, segundo_nombre = ?, apellido_paterno = ?, apellido_materno =?, "
-                + "id_tipo_documento_identidad =?, numero_documento=?, telefono=?, direccion=?, id_empresa=? WHERE id_conductor=?";
+                + "id_tipo_documento_identidad =?, numero_documento=?, telefono=?, direccion=?, ruc_empresa=? WHERE id_conductor=?";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, obj.getPrimer_nombre());
@@ -160,7 +160,7 @@ public class MySQLConductorDAO implements ConductorDAO {
             ps.setLong(6, obj.getNumero_documento());
             ps.setInt(7, obj.getTelefono());
             ps.setString(8, obj.getDireccion());
-            ps.setInt(9, obj.getEmpresa());
+            ps.setLong(9, obj.getEmpresa());
             ps.setInt(10, obj.getId_conductor());
             ps.execute();
             if (ps.executeUpdate() == 0) {
@@ -185,12 +185,12 @@ public class MySQLConductorDAO implements ConductorDAO {
     }
 
     @Override
-    public Conductor getById(Integer num) throws DAOException {
+    public Conductor getById(Integer id) throws DAOException {
         Conductor conductor = new Conductor();
-        String sql = "SELECT * FROM conductor WHERE numero_documento=?";
+        String sql = "SELECT * FROM conductor WHERE id_conductor=?";
         try {
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, num);
+            ps.setInt(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
                 conductor.setId_conductor(rs.getInt("id_conductor"));
@@ -202,6 +202,53 @@ public class MySQLConductorDAO implements ConductorDAO {
                 conductor.setNumero_documento(rs.getLong("numero_documento"));
                 conductor.setTelefono(rs.getInt("telefono"));
                 conductor.setDireccion(rs.getString("direccion"));
+                conductor.setEmpresa(rs.getLong("ruc_empresa"));
+                conductor.setEstado(rs.getInt("id_estado"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+
+        }
+        return conductor;
+    }
+
+    @Override
+    public Conductor getByDniConductor(Long dni) throws DAOException {
+        Conductor conductor = new Conductor();
+        String sql = "SELECT * FROM conductor WHERE numero_documento=?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setLong(1, dni);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                conductor.setId_conductor(rs.getInt("id_conductor"));
+                conductor.setPrimer_nombre(rs.getString("primer_nombre"));
+                conductor.setSegundo_nombre(rs.getString("segundo_nombre"));
+                conductor.setApellido_paterno(rs.getString("apellido_paterno"));
+                conductor.setApellido_materno(rs.getString("apellido_materno"));
+                conductor.setTipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
+                conductor.setNumero_documento(rs.getLong("numero_documento"));
+                conductor.setTelefono(rs.getInt("telefono"));
+                conductor.setDireccion(rs.getString("direccion"));
+                conductor.setEmpresa(rs.getLong("ruc_empresa"));
                 conductor.setEstado(rs.getInt("id_estado"));
             }
         } catch (SQLException e) {

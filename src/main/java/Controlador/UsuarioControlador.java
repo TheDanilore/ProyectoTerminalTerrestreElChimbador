@@ -24,23 +24,19 @@ import javax.swing.JOptionPane;
  *
  * @author ASUS
  */
-public class UsuarioControlador implements ActionListener{
+public class UsuarioControlador implements ActionListener {
 
     private final DAOManager manager;
-    
+
     LoginUser vista = new LoginUser();
     private Usuario modelo;
 
-    
-    
-    public UsuarioControlador(LoginUser v, DAOManager manager) throws DAOException{
+    public UsuarioControlador(LoginUser v, DAOManager manager) throws DAOException {
         this.manager = manager;
         this.vista = v;
         this.vista.btnLog.addActionListener(this);
-        
+
     }
-
-
 
     public Usuario getUsuario() {
         return modelo;
@@ -58,31 +54,19 @@ public class UsuarioControlador implements ActionListener{
             }
         }
     }
-    public boolean login(String username, String password) throws DAOException {
-        UsuarioDAO dao = manager.getUsuarioDAO();
-        Usuario usuario = (Usuario) dao.log(username, password);
 
-        if (usuario != null) {
-            this.modelo = usuario;
 
-            return true; // Devuelve true si la autenticación es exitosa
-        } else {
-            // Autenticación fallida
-            return false; // Devuelve false si la autenticación falla
-        }
-    }
-    
-        public void log() throws DAOException, SQLException {
+    public void log() throws DAOException, SQLException {
         if (camposValidos()) {
 
             String username = vista.txtUser.getText();
             char[] passwordChars = vista.txtContra.getPassword();
             String password = new String(passwordChars);
-            
-            boolean loginExitoso = false;
-            loginExitoso = this.login(username, password);
+            UsuarioDAO dao = manager.getUsuarioDAO();
+            Usuario usuario = (Usuario) dao.log(username, password);
 
-            if (loginExitoso) {
+            if (usuario != null) {
+                this.modelo = usuario;
                 vista.dispose();
                 int rol = this.getUsuario().getCargo();
 
@@ -105,12 +89,12 @@ public class UsuarioControlador implements ActionListener{
                     JOptionPane.showMessageDialog(vista, "Inicio de sesión exitoso como " + this.getUsuario().getNombres()
                             + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
                 }
-
-                // Mostrar un mensaje de éxito usando JOptionPane
             } else {
-                // Si no es válido, mostrar un mensaje de error
-                JOptionPane.showMessageDialog(vista, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
+                // Autenticación fallida
+                JOptionPane.showMessageDialog(null, "Inicio sesion fallida");
             }
+
+
             Arrays.fill(passwordChars, ' ');
 
             JOptionPane.showMessageDialog(null, "Inicio de Sesion");
@@ -119,10 +103,10 @@ public class UsuarioControlador implements ActionListener{
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
     }
-        
-            public boolean camposValidos() {
+
+    public boolean camposValidos() {
         return !vista.txtUser.getText().isEmpty()
                 && !vista.txtContra.getText().isEmpty();
     }
-    
+
 }

@@ -6,6 +6,7 @@ package Controlador;
 
 import DAO.DAOException;
 import DAO.DAOManager;
+import DAO.TipoVehiculoDAO;
 import DAO.VehiculoDAO;
 import DAO.mysql.MySQLTipoVehiculoDAO;
 import DAO.mysql.MySQLVehiculoDAO;
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class VehiculoController implements ActionListener {
+public final class VehiculoController implements ActionListener {
 
     private DAOManager manager;
     
@@ -272,7 +273,7 @@ public class VehiculoController implements ActionListener {
     }
     
     private void llenarTipoVehiculo() throws DAOException{
-        MySQLTipoVehiculoDAO dao = new MySQLTipoVehiculoDAO();
+        TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
         
         ArrayList<TipoVehiculo> lista = (ArrayList<TipoVehiculo>) dao.listAll();
         

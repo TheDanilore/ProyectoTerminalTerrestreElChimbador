@@ -39,6 +39,8 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnEliminarMetodoPago = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        btnExcel1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -100,7 +102,7 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tableMetodoPago);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 340, 280));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 520, 280));
 
         jLabel7.setFont(new java.awt.Font("72", 3, 10)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 153, 0));
@@ -141,13 +143,21 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
         btnEliminarMetodoPago.setText("Eliminar");
         jPanel1.add(btnEliminarMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel10.setText("Reportes");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 80, 30));
+
+        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setText("Excel");
+        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 50, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 899, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,8 +189,10 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnEliminarMetodoPago;
+    public javax.swing.JButton btnExcel1;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnNuevo;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

@@ -42,6 +42,8 @@ public class CargoVista extends javax.swing.JInternalFrame {
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        btnExcel1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -104,7 +106,7 @@ public class CargoVista extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(tableRolesUsuario);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 340, 280));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 540, 280));
 
         jLabel7.setFont(new java.awt.Font("72", 3, 10)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 153, 0));
@@ -137,13 +139,21 @@ public class CargoVista extends javax.swing.JInternalFrame {
         btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel10.setText("Reportes");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 10, 80, 30));
+
+        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setText("Excel");
+        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,8 +180,10 @@ public class CargoVista extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnExcel1;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnNuevo;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

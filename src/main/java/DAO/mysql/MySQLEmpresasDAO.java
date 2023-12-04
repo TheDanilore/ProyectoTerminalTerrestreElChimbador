@@ -32,9 +32,7 @@ public class MySQLEmpresasDAO implements EmpresasDAO {
     PreparedStatement ps;
     ResultSet rs;
 
-    public MySQLEmpresasDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+
 
     @Override
     public void add(Empresas empresas) throws DAOException {
@@ -203,6 +201,46 @@ public class MySQLEmpresasDAO implements EmpresasDAO {
         }
 
         return empresasModelo;
+    }
+
+    @Override
+    public Empresas getByRucEmpresa(Long ruc) throws DAOException {
+        Empresas empresas = new Empresas();
+        String sql = "SELECT * FROM empresa WHERE ruc=?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setLong(1, ruc);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                empresas.setId_empresa(rs.getInt("id_empresa"));
+                empresas.setRuc(rs.getLong("ruc"));
+                empresas.setRazon_social(rs.getString("razon_social"));
+                empresas.setNombre_comercial(rs.getString("nombre_comercial"));
+                empresas.setEstado(rs.getInt("id_estado"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+
+        }
+        return empresas;
     }
 
 }

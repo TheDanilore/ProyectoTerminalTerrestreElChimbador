@@ -25,5 +25,7 @@ public interface DAOManager {
     TipoVehiculoPagoDAO getTipoVehiculoPagoDAO();
     UsuarioDAO getUsuarioDAO();
     VehiculoDAO getVehiculoDAO();
+    RegistroEntradaDAO getRegistroEntradaDAO();
+    DepartamentoDAO getDepartamentoDAO();
 
 }

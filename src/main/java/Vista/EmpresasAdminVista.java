@@ -53,6 +53,8 @@ public class EmpresasAdminVista extends javax.swing.JInternalFrame {
         btnNuevoEmpre = new javax.swing.JButton();
         btnDarBajaEmpre = new javax.swing.JButton();
         btnActivarEmpre = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        btnExcel1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -202,6 +204,16 @@ public class EmpresasAdminVista extends javax.swing.JInternalFrame {
         btnActivarEmpre.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActivarEmpre, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel10.setText("Reportes");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 10, 80, 30));
+
+        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setText("Excel");
+        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -253,9 +265,11 @@ public class EmpresasAdminVista extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnActivarEmpre;
     public javax.swing.JButton btnActualizarEmpre;
     public javax.swing.JButton btnDarBajaEmpre;
+    public javax.swing.JButton btnExcel1;
     public javax.swing.JButton btnGuardarEmpre;
     public javax.swing.JButton btnListar;
     public javax.swing.JButton btnNuevoEmpre;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

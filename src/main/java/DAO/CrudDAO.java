@@ -19,4 +19,5 @@ public interface CrudDAO<T,K> {
     public void disable(T t) throws DAOException;
     public List<T> listAll() throws DAOException;
     public T getById(K id) throws DAOException;
+    
 }

@@ -11,5 +11,5 @@ import Modelo.Vehiculo;
  * @author Danilore
  */
 public interface VehiculoDAO extends CrudDAO<Vehiculo,Integer>{
-    
+    public Vehiculo getByPlacaVehiculo(String placa) throws DAOException;
 }

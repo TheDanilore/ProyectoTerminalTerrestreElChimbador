@@ -11,5 +11,5 @@ import Modelo.Empresas;
  * @author Danilore
  */
 public interface EmpresasDAO extends CrudDAO<Empresas,Integer>{
-    
+    public Empresas getByRucEmpresa(Long ruc) throws DAOException;
 }

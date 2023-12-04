@@ -40,6 +40,8 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
         btnActualizar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        btnExcel1 = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -141,6 +143,16 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 320, -1, -1));
 
+        jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel10.setText("Reportes");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 80, 30));
+
+        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setText("Excel");
+        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,8 +186,10 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnEliminar;
+    public javax.swing.JButton btnExcel1;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnNuevo;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

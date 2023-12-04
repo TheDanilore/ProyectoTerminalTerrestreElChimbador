@@ -7,6 +7,7 @@ package DAO.mysql;
 import DAO.CargoDAO;
 import DAO.ConductorDAO;
 import DAO.DAOManager;
+import DAO.DepartamentoDAO;
 import DAO.EmpresasDAO;
 import DAO.EstadoConductorDAO;
 import DAO.EstadoEmpresaDAO;
@@ -16,6 +17,7 @@ import DAO.MetodoPagoDAO;
 import DAO.PagoCocheraDAO;
 import DAO.PagoEscalaDAO;
 import DAO.PagoNormalDAO;
+import DAO.RegistroEntradaDAO;
 import DAO.TipoDocumentoIdentidadDAO;
 import DAO.TipoVehiculoDAO;
 import DAO.TipoVehiculoPagoDAO;
@@ -48,6 +50,8 @@ public class MySQLDaoManager implements DAOManager {
     private TipoVehiculoPagoDAO tipoVehiculoPago = null;
     private UsuarioDAO usuario = null;
     private VehiculoDAO vehiculo = null;
+    private RegistroEntradaDAO registroEntrada = null;
+    private DepartamentoDAO departamento = null;
 
     public MySQLDaoManager() throws SQLException {
 
@@ -187,6 +191,22 @@ public class MySQLDaoManager implements DAOManager {
             vehiculo = new MySQLVehiculoDAO(conn);
         }
         return vehiculo;
+    }
+
+    @Override
+    public RegistroEntradaDAO getRegistroEntradaDAO() {
+        if (registroEntrada == null) {
+            registroEntrada = new MySQLRegistroEntradaDAO(conn);
+        }
+        return registroEntrada;
+    }
+
+    @Override
+    public DepartamentoDAO getDepartamentoDAO() {
+        if (departamento == null) {
+            departamento = new MySQLDepartamentoDAO(conn);
+        }
+        return departamento;
     }
 
 }

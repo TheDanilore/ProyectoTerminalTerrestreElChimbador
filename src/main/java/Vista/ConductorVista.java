@@ -37,7 +37,6 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         tableConductor = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        cbxEmpresas = new javax.swing.JComboBox<>();
         btnGuardar = new javax.swing.JButton();
         btnActualizar = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -59,6 +58,11 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         txtDireccionConductor = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
         cbxTipoDocumentoIdentidad = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        btnExcel1 = new javax.swing.JButton();
+        txtEmpresa = new javax.swing.JTextField();
+        txtRucEmpresa = new javax.swing.JTextField();
+        btnObtener = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -131,19 +135,11 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         jLabel8.setText("REGISTRA UN NUEVO CONDUCTOR");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 270, 30));
 
-        cbxEmpresas.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
-        cbxEmpresas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxEmpresasActionPerformed(evt);
-            }
-        });
-        jPanel1.add(cbxEmpresas, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 550, 340, -1));
-
         btnGuardar.setBackground(new java.awt.Color(51, 255, 51));
         btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 610, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 610, -1, -1));
 
         btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -184,8 +180,8 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         jPanel1.add(txtSegundoNombreConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 200, -1));
 
         jLabel16.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
-        jLabel16.setText("Empresa:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 60, 20));
+        jLabel16.setText("Ruc de Empresa:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 520, 100, 20));
 
         jLabel17.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel17.setText("Apellido Materno:");
@@ -195,12 +191,12 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         jLabel18.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel18.setText("Numero de Documento:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 20));
-        jPanel1.add(txtNumeroDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 350, 180, -1));
+        jPanel1.add(txtNumeroDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 180, -1));
 
         jLabel19.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel19.setText("Telefono:");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 60, 20));
-        jPanel1.add(txtTelefonoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 130, -1));
+        jPanel1.add(txtTelefonoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 140, -1));
 
         txtDireccionConductor.setColumns(20);
         txtDireccionConductor.setRows(5);
@@ -219,6 +215,24 @@ public class ConductorVista extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(cbxTipoDocumentoIdentidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 320, -1));
+
+        jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel10.setText("Reportes");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 80, 30));
+
+        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setText("Excel");
+        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 50, -1, -1));
+        jPanel1.add(txtEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 330, -1));
+        jPanel1.add(txtRucEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 130, -1));
+
+        btnObtener.setBackground(new java.awt.Color(51, 255, 51));
+        btnObtener.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnObtener.setForeground(new java.awt.Color(255, 255, 255));
+        btnObtener.setText("Obtener");
+        jPanel1.add(btnObtener, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 520, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,12 +268,8 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         txtNumeroDocumento.setText(tableConductor.getValueAt(fila, 6).toString());
         txtTelefonoConductor.setText(tableConductor.getValueAt(fila, 7).toString());
         txtDireccionConductor.setText(tableConductor.getValueAt(fila, 8).toString());
-        cbxEmpresas.setSelectedItem(tableConductor.getValueAt(fila, 9).toString());
+        txtRucEmpresa.setText(tableConductor.getValueAt(fila, 9).toString());
     }//GEN-LAST:event_tableConductorMouseClicked
-
-    private void cbxEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEmpresasActionPerformed
-        // TODO add your handling code here:ss
-    }//GEN-LAST:event_cbxEmpresasActionPerformed
 
     private void cbxTipoDocumentoIdentidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoDocumentoIdentidadActionPerformed
         // TODO add your handling code here:
@@ -270,10 +280,12 @@ public class ConductorVista extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnActivar;
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnDarBaja;
+    public javax.swing.JButton btnExcel1;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnNuevo;
-    public javax.swing.JComboBox<String> cbxEmpresas;
+    public javax.swing.JButton btnObtener;
     public javax.swing.JComboBox<String> cbxTipoDocumentoIdentidad;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -293,9 +305,11 @@ public class ConductorVista extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtApellidoMaternoConductor;
     public javax.swing.JTextField txtApellidoPaternoConductor;
     public javax.swing.JTextArea txtDireccionConductor;
+    public javax.swing.JTextField txtEmpresa;
     public javax.swing.JTextField txtIdConductor;
     public javax.swing.JTextField txtNumeroDocumento;
     public javax.swing.JTextField txtPrimerNombreConductor;
+    public javax.swing.JTextField txtRucEmpresa;
     public javax.swing.JTextField txtSegundoNombreConductor;
     public javax.swing.JTextField txtTelefonoConductor;
     // End of variables declaration//GEN-END:variables

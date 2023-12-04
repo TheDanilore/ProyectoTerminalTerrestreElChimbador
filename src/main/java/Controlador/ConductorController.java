@@ -35,6 +35,7 @@ public class ConductorController implements ActionListener {
     private DAOManager manager;
     ConductorVista vista = new ConductorVista();
     Conductor modelo = new Conductor();
+    Empresas empresas = new Empresas();
     
     DefaultTableModel clase = new DefaultTableModel();
 
@@ -46,7 +47,7 @@ public class ConductorController implements ActionListener {
         this.vista.btnNuevo.addActionListener(this);
         this.vista.btnActivar.addActionListener(this);
         this.vista.btnDarBaja.addActionListener(this);
-
+        this.vista.btnObtener.addActionListener(this);
         this.LimpiarTable();
         this.ListarConductor(vista.tableConductor);
         tabular();
@@ -85,6 +86,13 @@ public class ConductorController implements ActionListener {
                 Logger.getLogger(ConductorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (e.getSource() == vista.btnObtener) {
+            try {
+                obtenerEmpresaPorRuc();
+            } catch (DAOException ex) {
+                Logger.getLogger(ConductorController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void guardarConductor() throws DAOException {
@@ -117,22 +125,7 @@ public class ConductorController implements ActionListener {
             modelo.setNumero_documento(Long.parseLong(vista.txtNumeroDocumento.getText()));
             modelo.setTelefono(Integer.parseInt(vista.txtTelefonoConductor.getText()));
             modelo.setDireccion(vista.txtDireccionConductor.getText());
-
-            if ("No Pertenece a ninguna empresa".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                modelo.setEmpresa(1);
-            }
-            if ("Cruz del Sur".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                modelo.setEmpresa(2);
-            }
-            if ("Transportes Cruz del Norte".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                modelo.setEmpresa(3);
-            }
-            if ("Empresa VIA".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                modelo.setEmpresa(5);
-            }
-            if ("OROPEZA e".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                modelo.setEmpresa(7);
-            }
+            modelo.setEmpresa(Long.parseLong(vista.txtRucEmpresa.getText()));
             
             //Conexion, consulta con la base de datos
             ConductorDAO dao = manager.getConductorDAO();
@@ -182,22 +175,8 @@ public class ConductorController implements ActionListener {
                 modelo.setNumero_documento(Long.parseLong(vista.txtNumeroDocumento.getText()));
                 modelo.setTelefono(Integer.parseInt(vista.txtTelefonoConductor.getText()));
                 modelo.setDireccion(vista.txtDireccionConductor.getText());
-
-                if ("No Pertenece a ninguna empresa".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                    modelo.setEmpresa(1);
-                }
-                if ("Cruz del Sur".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                    modelo.setEmpresa(2);
-                }
-                if ("Transportes Cruz del Norte".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                    modelo.setEmpresa(3);
-                }
-                if ("Empresa VIA".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                    modelo.setEmpresa(5);
-                }
-                if ("OROPEZA e".equalsIgnoreCase(vista.cbxEmpresas.getSelectedItem().toString())) {
-                    modelo.setEmpresa(7);
-                }
+                modelo.setEmpresa(Long.parseLong(vista.txtRucEmpresa.getText()));
+                
 
                 ConductorDAO dao = manager.getConductorDAO();
                 dao.update(modelo);
@@ -303,22 +282,8 @@ public class ConductorController implements ActionListener {
             ob[7] = lista.get(i).getTelefono();
             ob[8] = lista.get(i).getDireccion();
 
-            //ob[9] = lista.get(i).getEmpresa();
-            if (lista.get(i).getEmpresa() == 1) {
-                ob[9] = "No Pertenece a ninguna empresa";
-            }
-            if (lista.get(i).getEmpresa() == 2) {
-                ob[9] = "Cruz del Sur";
-            }
-            if (lista.get(i).getEmpresa() == 3) {
-                ob[9] = "Transportes Cruz del Norte";
-            }
-            if (lista.get(i).getEmpresa() == 5) {
-                ob[9] = "Empresa VIA";
-            }
-            if (lista.get(i).getEmpresa() == 7) {
-                ob[9] = "OROPEZA e";
-            }
+            ob[9] = lista.get(i).getEmpresa();
+
 
             //ob[10] = lista.get(i).getEstado();
             //estado
@@ -333,7 +298,31 @@ public class ConductorController implements ActionListener {
         }
         vista.tableConductor.setModel(clase);
         llenarTipoDocumentoIdentidad();
-        llenarEmpresas();
+    }
+    
+        public void obtenerEmpresaPorRuc() throws DAOException {
+        if (!"".equals(vista.txtRucEmpresa.getText())) {
+
+            long ruc = Long.parseLong(vista.txtRucEmpresa.getText());
+
+            EmpresasDAO dao = manager.getEmpresasDAO();
+
+            // Obtener el conductor por su número de documento
+            Empresas empresaEncontrada = dao.getByRucEmpresa(ruc);
+
+            // Verificar si se encontró un conductor
+            if (empresaEncontrada != null) {
+                // Asignar los valores al objeto conductor
+                empresas = empresaEncontrada;
+                vista.txtEmpresa.setText("" + empresas.getRazon_social());
+            } else {
+                vista.txtRucEmpresa.setText("");
+                JOptionPane.showMessageDialog(null, "La Empresa no existe");
+            }
+            
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el ruc de la Empresa");
+        }
     }
 
     public void LimpiarConductor() {
@@ -345,7 +334,8 @@ public class ConductorController implements ActionListener {
         vista.txtDireccionConductor.setText("");
         vista.txtNumeroDocumento.setText("");
         vista.txtTelefonoConductor.setText("");
-        vista.cbxEmpresas.setSelectedItem(null);
+        vista.txtRucEmpresa.setText("");
+        vista.txtEmpresa.setText("");
         vista.cbxTipoDocumentoIdentidad.setSelectedItem(null);
     }
 
@@ -364,8 +354,8 @@ public class ConductorController implements ActionListener {
                 && !vista.txtDireccionConductor.getText().isEmpty()
                 && !vista.txtNumeroDocumento.getText().isEmpty()
                 && !vista.txtTelefonoConductor.getText().isEmpty()
-                && vista.cbxEmpresas.getSelectedItem() != null
-                && vista.cbxTipoDocumentoIdentidad.getSelectedItem() != null;
+                && !vista.txtEmpresa.getText().isEmpty()
+                && vista.cbxTipoDocumentoIdentidad.getSelectedItem() != null                ;
     }
 
     private void tabular() {
@@ -391,18 +381,5 @@ public class ConductorController implements ActionListener {
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
 
-    private void llenarEmpresas() throws DAOException {
-        EmpresasDAO dao = manager.getEmpresasDAO();
 
-        List<Empresas> lista = (ArrayList<Empresas>) dao.listAll();
-
-        //int idselect = 1;
-        vista.cbxEmpresas.removeAllItems();
-
-        for (int i = 0; i < lista.size(); i++) {
-            vista.cbxEmpresas.addItem(lista.get(i).getNombre_comercial());
-        }
-
-        //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
-    }
 }

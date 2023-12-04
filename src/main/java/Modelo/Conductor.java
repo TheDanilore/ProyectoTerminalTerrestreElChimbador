@@ -18,13 +18,13 @@ public class Conductor {
     private long numero_documento;
     private int telefono;
     private String direccion;
-    private int empresa;
+    private long empresa;
     private int estado;
 
     public Conductor() {
     }
 
-    public Conductor(int id_conductor, String primer_nombre, String segundo_nombre, String apellido_paterno, String apellido_materno, String tipo_documento_identidad, long numero_documento, int telefono, String direccion, int empresa, int estado) {
+    public Conductor(int id_conductor, String primer_nombre, String segundo_nombre, String apellido_paterno, String apellido_materno, String tipo_documento_identidad, long numero_documento, int telefono, String direccion, long empresa, int estado) {
         this.id_conductor = id_conductor;
         this.primer_nombre = primer_nombre;
         this.segundo_nombre = segundo_nombre;
@@ -110,11 +110,11 @@ public class Conductor {
         this.direccion = direccion;
     }
 
-    public int getEmpresa() {
+    public long getEmpresa() {
         return empresa;
     }
 
-    public void setEmpresa(int empresa) {
+    public void setEmpresa(long empresa) {
         this.empresa = empresa;
     }
 

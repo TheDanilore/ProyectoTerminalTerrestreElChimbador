@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Excel;
 import DAO.CargoDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -36,6 +37,7 @@ public class CargoController implements ActionListener {
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
+        this.vista.btnExcel1.addActionListener(this);
 
         this.LimpiarTable();
         this.ListarCargo(vista.tableRolesUsuario);
@@ -59,6 +61,9 @@ public class CargoController implements ActionListener {
         }
         if (e.getSource() == vista.btnNuevo) {
             nuevoCargo();
+        }
+        if (e.getSource() == vista.btnExcel1) {
+            reporteExcel();
         }
     }
 
@@ -109,6 +114,9 @@ public class CargoController implements ActionListener {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
         }
+    }
+    public void reporteExcel(){
+        Excel.reporteCargo();
     }
 
     public void nuevoCargo() {

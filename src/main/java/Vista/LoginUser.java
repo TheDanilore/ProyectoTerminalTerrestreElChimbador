@@ -50,7 +50,6 @@ public class LoginUser extends javax.swing.JFrame {
         txtUser = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        lblLogin = new javax.swing.JLabel();
         txtContra = new javax.swing.JPasswordField();
         btnLog = new javax.swing.JButton();
 
@@ -67,18 +66,6 @@ public class LoginUser extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Terminal Terrestre \"El Chimbador\"");
-
-        lblLogin.setBackground(new java.awt.Color(0, 204, 51));
-        lblLogin.setFont(new java.awt.Font("Trebuchet MS", 1, 12)); // NOI18N
-        lblLogin.setForeground(new java.awt.Color(255, 255, 255));
-        lblLogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblLogin.setText("Login");
-        lblLogin.setOpaque(true);
-        lblLogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblLoginMouseClicked(evt);
-            }
-        });
 
         txtContra.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -103,10 +90,8 @@ public class LoginUser extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(64, 64, 64)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnLog)
-                                    .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(68, 68, 68)
+                                .addComponent(btnLog)))
                         .addGap(197, 197, 197))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -123,9 +108,7 @@ public class LoginUser extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(lblLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(77, 77, 77)
                 .addComponent(btnLog)
                 .addGap(74, 74, 74)
                 .addComponent(jLabel1)
@@ -148,60 +131,8 @@ public class LoginUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void lblLoginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLoginMouseClicked
-
-
-    }//GEN-LAST:event_lblLoginMouseClicked
-
     private void txtContraKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraKeyPressed
- /*       if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            if (txtContra.getText().equals("") || txtUser.getText().equals("")) {
-                JOptionPane.showMessageDialog(this, "Ingrese el Usuario y/o la contraseña correspondiente", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                String username = txtUser.getText();
-                char[] passwordChars = txtContra.getPassword();
-                String password = new String(passwordChars);
-
-                boolean loginExitoso = false;
-                try {
-                    loginExitoso = usuarioControlador.login(username, password);
-                } catch (DAOException ex) {
-                    Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-                if (loginExitoso) {
-                    dispose();
-                    int rol = usuarioControlador.getUsuario().getCargo();
-
-                    if (rol == 1) {
-                        PrincipalAdmin principalAdmin = null;
-                        try {
-                            principalAdmin = new PrincipalAdmin();
-                        } catch (SQLException ex) {
-                            Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                        principalAdmin.show();
-                        String nombrerol = "Administrador";
-                        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
-                                + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-                    } else if (rol == 2) {
-
-                        PrincipalUsuario principalUsuario = new PrincipalUsuario();
-                        principalUsuario.show();
-                        String nombrerol = "Usuario";
-                        JOptionPane.showMessageDialog(this, "Inicio de sesión exitoso como " + usuarioControlador.getUsuario().getNombres()
-                                + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-                    }
-
-                    // Mostrar un mensaje de éxito usando JOptionPane
-                } else {
-                    // Si no es válido, mostrar un mensaje de error
-                    JOptionPane.showMessageDialog(this, "Credenciales incorrectas", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-                Arrays.fill(passwordChars, ' ');
-            }
-        }
-*/
+ 
     }//GEN-LAST:event_txtContraKeyPressed
 
     /**
@@ -257,7 +188,6 @@ public class LoginUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblLogin;
     public javax.swing.JPasswordField txtContra;
     public javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

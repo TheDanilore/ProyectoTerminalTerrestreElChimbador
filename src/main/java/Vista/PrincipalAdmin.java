@@ -8,6 +8,7 @@ import Controlador.CargoController;
 import Controlador.ConductorController;
 import Controlador.EmpresaController;
 import Controlador.MetodoPagoController;
+import Controlador.RegistroEntradaController;
 import Controlador.TipoVehiculoController;
 import Controlador.UsuarioControlador;
 import Controlador.UsuarioController;
@@ -254,9 +255,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaActionPerformed
-        RegistrarEntrada registrarEntrada = new RegistrarEntrada();
-        escritorio.add(registrarEntrada);
-        registrarEntrada.show();
+        RegistroEntradaVista vista = new RegistroEntradaVista();
+        try {
+            RegistroEntradaController controller = new RegistroEntradaController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
     }//GEN-LAST:event_menuEntradaActionPerformed
 
     private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed

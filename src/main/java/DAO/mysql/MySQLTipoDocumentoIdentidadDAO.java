@@ -72,7 +72,7 @@ public class MySQLTipoDocumentoIdentidadDAO implements TipoDocumentoIdentidadDAO
             rs= ps.executeQuery();
             while(rs.next()){
                 TipoDocumentoIdentidad tipoDocumentoIdentidad = new TipoDocumentoIdentidad();
-                tipoDocumentoIdentidad.setId_tipo_documento_identidad(rs.getInt("id_tipo_documento_identidad"));
+                tipoDocumentoIdentidad.setId_tipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
                 tipoDocumentoIdentidad.setDescripcion(rs.getString("descripcion"));
                 lista.add(tipoDocumentoIdentidad);
             }
@@ -109,7 +109,7 @@ public class MySQLTipoDocumentoIdentidadDAO implements TipoDocumentoIdentidadDAO
         try{
             ps=conn.prepareStatement(sql);
             ps.setString(1, obj.getDescripcion());
-            ps.setInt(2, obj.getId_tipo_documento_identidad());
+            ps.setString(2, obj.getId_tipo_documento_identidad());
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }
@@ -139,7 +139,7 @@ public class MySQLTipoDocumentoIdentidadDAO implements TipoDocumentoIdentidadDAO
             ps.setInt(1, id);
             rs=ps.executeQuery();
             if(rs.next()){
-                tipoDocumentoIdentidad.setId_tipo_documento_identidad(rs.getInt("id_tipo_documento_identidad"));
+                tipoDocumentoIdentidad.setId_tipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
                 tipoDocumentoIdentidad.setDescripcion(rs.getString("descripcion"));
             }
         }catch (SQLException e) {

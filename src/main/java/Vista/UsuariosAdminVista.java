@@ -51,6 +51,8 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
         btnBajaUsu = new javax.swing.JButton();
         btnNuevoUsu = new javax.swing.JButton();
         btnActivarUsu = new javax.swing.JButton();
+        btnExcel = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -153,8 +155,8 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
 
         jLabel8.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel8.setText("REGISTRA UN NUEVO USUARIO");
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 250, 30));
+        jLabel8.setText("Reportes");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 10, 80, 30));
 
         cbxRolUser.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         cbxRolUser.addActionListener(new java.awt.event.ActionListener() {
@@ -190,7 +192,7 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
         btnNuevoUsu.setForeground(new java.awt.Color(255, 255, 255));
         btnNuevoUsu.setText("Nuevo");
         btnNuevoUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnNuevoUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 500, -1, -1));
+        jPanel1.add(btnNuevoUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, -1, -1));
 
         btnActivarUsu.setBackground(new java.awt.Color(0, 153, 255));
         btnActivarUsu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -198,6 +200,16 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
         btnActivarUsu.setText("Activar Usuario");
         btnActivarUsu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jPanel1.add(btnActivarUsu, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 590, -1, -1));
+
+        btnExcel.setBackground(new java.awt.Color(51, 255, 51));
+        btnExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel.setText("Excel");
+        jPanel1.add(btnExcel, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 50, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(51, 153, 0));
+        jLabel11.setText("REGISTRA UN NUEVO USUARIO");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 250, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -250,9 +262,11 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnActivarUsu;
     public javax.swing.JButton btnActualizarUsu;
     public javax.swing.JButton btnBajaUsu;
+    public javax.swing.JButton btnExcel;
     public javax.swing.JButton btnGuardarUsu;
     public javax.swing.JButton btnNuevoUsu;
     public javax.swing.JComboBox<String> cbxRolUser;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;

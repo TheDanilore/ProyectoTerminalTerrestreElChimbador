@@ -34,7 +34,6 @@ public class UsuarioController implements ActionListener {
     private DAOManager manager;
     UsuariosAdminVista vista = new UsuariosAdminVista();
     
-    LoginUser loginVista = new LoginUser();
     Usuario modelo = new Usuario();
     DefaultTableModel clase = new DefaultTableModel();
 
@@ -64,10 +63,7 @@ public class UsuarioController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        //Si da clic el boton login
-        /*if (e.getSource() == loginVista.btnLoginUser) {
-            login();
-        }*/
+
 
         if (e.getSource() == vista.btnGuardarUsu) {
             try {
