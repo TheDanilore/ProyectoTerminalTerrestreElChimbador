@@ -4,13 +4,13 @@
  */
 package DAO;
 
-import Modelo.Departamento;
-import Modelo.Empresas;
+import Modelo.Distrito;
+import java.util.List;
 
 /**
  *
  * @author Danilore
  */
-public interface DepartamentoDAO extends CrudDAO<Departamento,String>{
-    public Departamento getByNombreId(String id) throws DAOException;
+public interface DistritoDAO extends CrudDAO<Distrito, String>{
+    public List<Distrito> getByProvinciaDistrito(String id) throws DAOException;
 }

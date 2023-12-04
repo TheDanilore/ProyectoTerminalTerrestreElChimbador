@@ -5,9 +5,8 @@
 package DAO.mysql;
 
 import DAO.DAOException;
-import DAO.DepartamentoDAO;
-import Modelo.Departamento;
-import Modelo.Empresas;
+import DAO.ProvinciaDAO;
+import Modelo.Provincia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,11 +18,11 @@ import java.util.List;
  *
  * @author Danilore
  */
-public class MySQLDepartamentoDAO implements DepartamentoDAO{
+public class MySQLProvinciaDAO implements ProvinciaDAO {
 
     private Connection conn;
 
-    public MySQLDepartamentoDAO(Connection conn) {
+    public MySQLProvinciaDAO(Connection conn) {
         this.conn = conn;
     }
 
@@ -31,59 +30,33 @@ public class MySQLDepartamentoDAO implements DepartamentoDAO{
     ResultSet rs;
 
     @Override
-    public void add(Departamento obj) throws DAOException {
-        String sql = "INSERT INTO departamentos (id, nombre, poblacion_estimada,tarifa) VALUES (?,?,?,?)";
-
-        try {
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, obj.getId());
-            ps.setString(2, obj.getNombre());
-            ps.setLong(3, obj.getPoblacion_estimada());
-            ps.setDouble(4, obj.getTarifa());
-            if (ps.executeUpdate() == 0) {
-                throw new DAOException("Puede que no se haya guardado");
-            }
-        } catch (SQLException e) {
-            throw new DAOException("Error en Sql", e);
-
-        } finally {
-
-            if (ps != null) {
-                try {
-                    ps.close();
-
-                } catch (SQLException e) {
-                    throw new DAOException("Error en SQL", e);
-                }
-            }
-
-        }
-    }
-
-    @Override
-    public void update(Departamento t) throws DAOException {
+    public void add(Provincia t) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void disable(Departamento t) throws DAOException {
+    public void update(Provincia t) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public List<Departamento> listAll() throws DAOException {
-        List<Departamento> listarDepartamento = new ArrayList();
-        String sql = "SELECT * FROM departamentos";
+    public void disable(Provincia t) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Provincia> listAll() throws DAOException {
+        List<Provincia> listarProvincia = new ArrayList();
+        String sql = "SELECT * FROM provincias";
         try {
             ps = conn.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Departamento departamento = new Departamento();
-                departamento.setId(rs.getString("id"));
-                departamento.setNombre(rs.getString("nombre"));
-                departamento.setPoblacion_estimada(rs.getLong("poblacion_estimada"));
-                departamento.setTarifa(rs.getDouble("tarifa"));
-                listarDepartamento.add(departamento);
+                Provincia provincia = new Provincia();
+                provincia.setId(rs.getString("id"));
+                provincia.setNombre(rs.getString("nombre"));
+                provincia.setDepartamento_id(rs.getString("departamento_id"));
+                listarProvincia.add(provincia);
             }
         } catch (SQLException e) {
             throw new DAOException("Error en Sql", e);
@@ -107,28 +80,31 @@ public class MySQLDepartamentoDAO implements DepartamentoDAO{
                 }
             }
         }
-        return listarDepartamento;
+        return listarProvincia;
     }
 
     @Override
-    public Departamento getById(String id) throws DAOException {
-        Departamento departamento = new Departamento();
-        String sql = "SELECT * FROM departamentos WHERE id=?";
+    public Provincia getById(String id) throws DAOException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Provincia> getByDepartamentoProvincia(String id) throws DAOException {
+        List<Provincia> provincias = new ArrayList<>();
+        String sql = "SELECT * FROM provincias WHERE departamento_id=?";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
-
             rs = ps.executeQuery();
-
-            if (rs.next()) {
-                departamento.setId(rs.getString("id"));
-                departamento.setNombre(rs.getString("nombre"));
-                departamento.setPoblacion_estimada(rs.getLong("poblacion_estimada"));
-                departamento.setTarifa(rs.getDouble("tarifa"));
+            while (rs.next()) {
+                Provincia provincia = new Provincia();
+                provincia.setId(rs.getString("id"));
+                provincia.setNombre(rs.getString("nombre"));
+                provincia.setDepartamento_id(rs.getString("departamento_id"));
+                provincias.add(provincia);
             }
         } catch (SQLException e) {
             throw new DAOException("Error en Sql", e);
-
         } finally {
 
             if (rs != null) {
@@ -147,24 +123,23 @@ public class MySQLDepartamentoDAO implements DepartamentoDAO{
                     throw new DAOException("Error en SQL", e);
                 }
             }
-        }
 
-        return departamento;
+        }
+        return provincias;
     }
 
     @Override
-    public Departamento getByNombreId(String nombre) throws DAOException {
-        Departamento departamento = new Departamento();
-        String sql = "SELECT * FROM departamentos WHERE nombre=?";
+    public Provincia getByNombreId(String nombre) throws DAOException {
+        Provincia provincia = new Provincia();
+        String sql = "SELECT * FROM provincias WHERE nombre=?";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, nombre);
             rs = ps.executeQuery();
             if (rs.next()) {
-                departamento.setId(rs.getString("id"));
-                departamento.setNombre(rs.getString("nombre"));
-                departamento.setPoblacion_estimada(rs.getLong("poblacion_estimada"));
-                departamento.setTarifa(rs.getLong("tarifa"));
+                provincia.setId(rs.getString("id"));
+                provincia.setNombre(rs.getString("nombre"));
+                provincia.setDepartamento_id(rs.getString("departamento_id"));
             }
         } catch (SQLException e) {
             throw new DAOException("Error en Sql", e);
@@ -188,11 +163,7 @@ public class MySQLDepartamentoDAO implements DepartamentoDAO{
             }
 
         }
-        return departamento;
+        return provincia;
     }
 
-
-    
-    
-    
 }

@@ -162,6 +162,7 @@ public class MySQLTipoVehiculoDAO implements TipoVehiculoDAO{
             rs=ps.executeQuery();
             if(rs.next()){
                 tipoVehiculo.setId_tipo_vehiculo(rs.getInt("id_tipo_vehiculo"));
+                tipoVehiculo.setDescripcion(rs.getString("descripcion"));
             }
         }catch (SQLException e) {
             throw new DAOException("Error en Sql", e);

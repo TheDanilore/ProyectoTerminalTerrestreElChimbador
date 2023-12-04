@@ -8,11 +8,15 @@ import DAO.ConductorDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.DepartamentoDAO;
+import DAO.DistritoDAO;
+import DAO.ProvinciaDAO;
 import DAO.RegistroEntradaDAO;
 import DAO.TipoVehiculoDAO;
 import DAO.VehiculoDAO;
 import Modelo.Conductor;
 import Modelo.Departamento;
+import Modelo.Distrito;
+import Modelo.Provincia;
 import Modelo.RegistroEntrada;
 import Modelo.TipoVehiculo;
 import Modelo.Vehiculo;
@@ -34,12 +38,19 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RegistroEntradaController implements ActionListener {
 
+    private String departamentoActual;
+    private String provinciaActual;
+    private String tipoVehiculoActual;
+
     private DAOManager manager;
     RegistroEntradaVista vista = new RegistroEntradaVista();
     RegistroEntrada modelo = new RegistroEntrada();
     Conductor conductor = new Conductor();
     Vehiculo vehiculo = new Vehiculo();
     TipoVehiculo tipoVehiculo = new TipoVehiculo();
+    Departamento departamento = new Departamento();
+    Provincia provincia = new Provincia();
+
     DefaultTableModel clase = new DefaultTableModel();
 
     public RegistroEntradaController(RegistroEntradaVista v, DAOManager manager) throws DAOException {
@@ -51,7 +62,10 @@ public class RegistroEntradaController implements ActionListener {
         this.vista.txtDni.addActionListener(this);
         this.vista.btnExcel1.addActionListener(this);
         this.vista.txtPlaca.addActionListener(this);
-
+        this.vista.txtIdTipoVehiculo.addActionListener(this);
+        this.vista.cbxDepartamento.addActionListener(this);
+        this.vista.cbxProvincia.addActionListener(this);
+        this.vista.btnCalcularTarifa.addActionListener(this);
         this.LimpiarTable();
         this.listar(vista.tableVehiculo);
     }
@@ -92,6 +106,27 @@ public class RegistroEntradaController implements ActionListener {
         if (e.getSource() == vista.txtIdTipoVehiculo) {
             try {
                 obtenerTipoVehiculo();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getSource() == vista.cbxDepartamento) {
+            try {
+                obtenerIdDepartamento();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getSource() == vista.cbxProvincia) {
+            try {
+                obtenerIdProvincia();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getSource() == vista.btnCalcularTarifa) {
+            try {
+                calcularTarifaPago();
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -205,7 +240,9 @@ public class RegistroEntradaController implements ActionListener {
             if (vehiculoEncontrado != null) {
                 // Asignar los valores al objeto conductor
                 vehiculo = vehiculoEncontrado;
-                vista.txtTipoVehiculo.setText("" + vehiculo.getTipo_vehiculo());
+                vista.txtIdTipoVehiculo.setText("" + vehiculo.getTipo_vehiculo());
+
+                //enviar tipo de vehiculo a metodo clacular tarifa
             } else {
                 vista.txtDni.setText("");
                 JOptionPane.showMessageDialog(null, "El Vehiculo no existe");
@@ -231,6 +268,10 @@ public class RegistroEntradaController implements ActionListener {
                 // Asignar los valores al objeto conductor
                 tipoVehiculo = tipoEncontrado;
                 vista.txtTipoVehiculo.setText("" + tipoVehiculo.getDescripcion());
+                tipoVehiculoActual = vista.txtTipoVehiculo.getText();
+                System.out.println("Tipo Vehiculo actual seleccionado: " + tipoVehiculoActual); // Verifica si el departamento seleccionado es el esperado
+
+                //
             } else {
                 vista.txtDni.setText("");
                 JOptionPane.showMessageDialog(null, "El Vehiculo no existe");
@@ -248,33 +289,56 @@ public class RegistroEntradaController implements ActionListener {
                 && !"".equals(vista.cbxDistrito.getSelectedItem().toString())) {
 
             
-            if (vista.txtTipoVehiculo.getText()=="Bus de") {
-                
-            }
-            int id_tipoVehiculo = Integer.parseInt(vista.txtTipoVehiculo.getText());
+                String id_departamento = vista.txtIdDepartamento.getText();
 
-            TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
+                DepartamentoDAO dao = manager.getDepartamentoDAO();
 
-            // Obtener el conductor por su número de documento
-            TipoVehiculo tipoEncontrado = dao.getById(id_tipoVehiculo);
+                // Obtener el conductor por su número de documento
+                Departamento departamentoEncontrado = dao.getById(id_departamento);
 
-            // Verificar si se encontró un conductor
-            if (tipoEncontrado != null) {
-                // Asignar los valores al objeto conductor
-                tipoVehiculo = tipoEncontrado;
-                vista.txtTipoVehiculo.setText("" + tipoVehiculo.getDescripcion());
-            } else {
-                vista.txtDni.setText("");
-                JOptionPane.showMessageDialog(null, "El Vehiculo no existe");
-            }
+                if (departamentoEncontrado != null) {
+                    departamento = departamentoEncontrado;
+                    Double tarifaDepartamento = departamentoEncontrado.getTarifa();
+                    if (vista.txtTipoVehiculo.getText() == "Bus de Transporte") {
+                        Double tarifaVehiculo = 10.00;
+                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                        vista.txtTarifaPago.setText("" + tarifaTotal);
+                    }
+                    if (vista.txtTipoVehiculo.getText() == "Camion de Carga") {
+                        Double tarifaVehiculo = 10.00;
+                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                        vista.txtTarifaPago.setText("" + tarifaTotal);
+                    }
+                    if (vista.txtTipoVehiculo.getText() == "Vehiculo del Personal") {
+                        Double tarifaVehiculo = 10.00;
+                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                        vista.txtTarifaPago.setText("" + tarifaTotal);
+                    }
+                    if (vista.txtTipoVehiculo.getText() == "Vehiculo Particular") {
+                        Double tarifaVehiculo = 10.00;
+                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                        vista.txtTarifaPago.setText("" + tarifaTotal);
+                    }
+                    if (vista.txtTipoVehiculo.getText() == "Otro Vehiculo") {
+                        Double tarifaVehiculo = 10.00;
+                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                        vista.txtTarifaPago.setText("" + tarifaTotal);
+                    }
+                    
+                    
+                    
+                } else {
+                    vista.txtIdDepartamento.setText("");
+                    JOptionPane.showMessageDialog(null, "El Departamento no existe");
+                }
+
+            
 
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese la placa del vehiculo");
+            JOptionPane.showMessageDialog(null, "Ingrese los datos requeridos");
         }
     }
 
-    
-    
     public void nuevoMetodoPago() {
         LimpiarMetodoPago();
     }
@@ -326,11 +390,10 @@ public class RegistroEntradaController implements ActionListener {
                 && !vista.txtFechaActual.getText().isEmpty()
                 && vista.txtTipoVehiculo.getText().isEmpty();
     }
-    
+
     private void llenarDepartamento() throws DAOException {
-        
+
         DepartamentoDAO dao = manager.getDepartamentoDAO();
-        
 
         List<Departamento> lista = (ArrayList<Departamento>) dao.listAll();
 
@@ -341,7 +404,105 @@ public class RegistroEntradaController implements ActionListener {
             vista.cbxDepartamento.addItem(lista.get(i).getNombre());
         }
 
+    }
+
+    private void obtenerIdDepartamento() throws DAOException {
+        if (!"".equals(vista.cbxDepartamento.getSelectedItem())) {
+
+            String nombreDepartamento = vista.cbxDepartamento.getSelectedItem().toString();
+
+            DepartamentoDAO dao = manager.getDepartamentoDAO();
+
+            // Obtener el conductor por su número de documento
+            Departamento departamentoEncontrado = dao.getByNombreId(nombreDepartamento);
+
+            // Verificar si se encontró un conductor
+            if (departamentoEncontrado != null) {
+                // Asignar los valores al objeto conductor
+                departamento = departamentoEncontrado;
+                vista.txtIdDepartamento.setText("" + departamento.getId());
+                departamentoActual = vista.txtIdDepartamento.getText();
+                System.out.println("Departamento actual seleccionado: " + departamentoActual); // Verifica si el departamento seleccionado es el esperado
+                llenarProvincia(departamentoActual);
+            } else {
+                vista.txtDni.setText("");
+                JOptionPane.showMessageDialog(null, "El Departamento no existe");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione el departamento");
+        }
+    }
+
+    private void llenarProvincia(String departamentoSeleccionado) throws DAOException {
+        System.out.println("Departamento seleccionado en llenarProvincia: " + departamentoSeleccionado); // Verifica si el departamento llega correctamente
+
+        ProvinciaDAO dao = manager.getProvinciaDAO();
+
+        List<Provincia> listaProvincias = (List<Provincia>) dao.getByDepartamentoProvincia(departamentoSeleccionado);
+
+        // Verificar si se encontró un conductor
+        vista.cbxProvincia.removeAllItems(); // Limpiar el JComboBox de provincias
+
+        if (!listaProvincias.isEmpty()) {
+            for (Provincia provinci : listaProvincias) {
+                vista.cbxProvincia.addItem(provinci.getNombre());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron provincias para el departamento seleccionado.");
+        }
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
+
+    private void obtenerIdProvincia() throws DAOException {
+        if (!"".equals(vista.cbxProvincia.getSelectedItem())) {
+
+            String nombreProvincia = vista.cbxProvincia.getSelectedItem().toString();
+
+            ProvinciaDAO dao = manager.getProvinciaDAO();
+
+            // Obtener el conductor por su número de documento
+            Provincia provinciaEncontrada = dao.getByNombreId(nombreProvincia);
+
+            // Verificar si se encontró un conductor
+            if (provinciaEncontrada != null) {
+                // Asignar los valores al objeto conductor
+                provincia = provinciaEncontrada;
+                vista.txtIdProvincia.setText("" + provincia.getId());
+                provinciaActual = vista.txtIdProvincia.getText();
+                System.out.println("Provincia actual seleccionada: " + provinciaActual); // Verifica si el departamento seleccionado es el esperado
+                llenarDistritos(provinciaActual);
+            } else {
+                vista.txtDni.setText("");
+                JOptionPane.showMessageDialog(null, "La Provincia no existe");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione la provincia");
+        }
+    }
+
+    private void llenarDistritos(String provinciaSeleccionada) throws DAOException {
+
+        System.out.println("Provincia seleccionada en llenarDistritos: " + provinciaSeleccionada); // Verifica si el departamento llega correctamente
+
+        DistritoDAO dao = manager.getDistritoDAO();
+
+        List<Distrito> listaDistritos = (List<Distrito>) dao.getByProvinciaDistrito(provinciaSeleccionada);
+
+        // Verificar si se encontró un conductor
+        vista.cbxDistrito.removeAllItems(); // Limpiar el JComboBox de provincias
+
+        if (!listaDistritos.isEmpty()) {
+            for (Distrito distri : listaDistritos) {
+                vista.cbxDistrito.addItem(distri.getNombre());
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontraron distritos para la provincia seleccionada");
+        }
+
+        //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
+    }
+    
 
 }

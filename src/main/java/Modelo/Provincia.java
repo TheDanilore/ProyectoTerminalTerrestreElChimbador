@@ -8,20 +8,18 @@ package Modelo;
  *
  * @author Danilore
  */
-public class Departamento {
+public class Provincia {
     private String id;
     private String nombre;
-    private long poblacion_estimada;
-    private double tarifa;
+    private String departamento_id;
 
-    public Departamento() {
+    public Provincia() {
     }
 
-    public Departamento(String id, String nombre, long poblacion_estimada, double tarifa) {
+    public Provincia(String id, String nombre, String departamento_id) {
         this.id = id;
         this.nombre = nombre;
-        this.poblacion_estimada = poblacion_estimada;
-        this.tarifa = tarifa;
+        this.departamento_id = departamento_id;
     }
 
     public String getId() {
@@ -40,23 +38,13 @@ public class Departamento {
         this.nombre = nombre;
     }
 
-    public long getPoblacion_estimada() {
-        return poblacion_estimada;
+    public String getDepartamento_id() {
+        return departamento_id;
     }
 
-    public void setPoblacion_estimada(long poblacion_estimada) {
-        this.poblacion_estimada = poblacion_estimada;
+    public void setDepartamento_id(String departamento_id) {
+        this.departamento_id = departamento_id;
     }
-
-    public double getTarifa() {
-        return tarifa;
-    }
-
-    public void setTarifa(double tarifa) {
-        this.tarifa = tarifa;
-    }
-
     
-
     
 }

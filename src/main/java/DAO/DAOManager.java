@@ -27,5 +27,7 @@ public interface DAOManager {
     VehiculoDAO getVehiculoDAO();
     RegistroEntradaDAO getRegistroEntradaDAO();
     DepartamentoDAO getDepartamentoDAO();
+    ProvinciaDAO getProvinciaDAO();
+    DistritoDAO getDistritoDAO();
 
 }
