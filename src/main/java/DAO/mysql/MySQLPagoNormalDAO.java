@@ -33,6 +33,20 @@ public class MySQLPagoNormalDAO implements PagoNormalDAO{
     PreparedStatement ps;
     ResultSet rs;
     
+    public int IDVenta(){
+        int ID=0;
+        String sql="SELECT MAX(id_pago) FROM pago";
+        try{
+            ps=conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                ID=rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println(e.toString());
+        }
+        return ID;
+    }
     
     @Override
     public void add(PagoNormal obj) throws DAOException{

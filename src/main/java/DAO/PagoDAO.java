@@ -13,5 +13,5 @@ import Modelo.Pago;
  * @author Danilore
  */
 public interface PagoDAO extends CrudDeleteDAO<Pago,Integer>{
-    
+    public int IDPago();
 }

@@ -28,6 +28,7 @@ Vista\RegistroEntradaVista$14.class
 Modelo\Distrito.class
 Vista\ConductorVista$1.class
 Vista\PrincipalAdmin$3.class
+Vista\RegistroIncidencia$1.class
 Vista\EmpresasAdminVista$6.class
 Vista\PagoIngresoVista$7.class
 Vista\VehiculosAdminVista$4.class
@@ -95,6 +96,7 @@ Vista\ConsultarEntrada$3.class
 Vista\RegistroSalidaVista$10.class
 DAO\DAOManager.class
 DAO\TipoVehiculoPagoDAO.class
+Vista\RegistroIncidencia.class
 Controlador\ConsultarRegistroControlador.class
 Vista\RegistroSalidaVista$8.class
 Clases\Excel.class
@@ -164,6 +166,7 @@ Vista\RegistroSalidaVista$5.class
 Vista\UsuariosAdminVista$1.class
 Vista\MetodoPagoVista.class
 Vista\EmpresasAdminVista$7.class
+Vista\RegistroIncidencia$2.class
 Modelo\EstadoEmpresa.class
 Vista\PagoIngreso$5.class
 Vista\TipoVehiculoVista$3.class
@@ -192,6 +195,7 @@ Vista\UsuariosAdminVista$3.class
 Vista\PrincipalAdmin$7.class
 DAO\mysql\MySQLDistritoDAO.class
 Vista\PagoIngreso$8.class
+Vista\RegistroIncidencia$3.class
 Vista\UsuariosAdminVista$2.class
 DAO\mysql\MySQLCargoDAO.class
 Vista\ConductorVista$2.class

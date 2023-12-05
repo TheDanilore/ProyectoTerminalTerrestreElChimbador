@@ -92,7 +92,7 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
         txtIdIngresoVehiculo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtIdIngresoVehiculo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         txtIdIngresoVehiculo.setEnabled(false);
-        jPanel1.add(txtIdIngresoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 90, 40, 20));
+        jPanel1.add(txtIdIngresoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 20, 20));
 
         tableVehiculo.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         tableVehiculo.setModel(new javax.swing.table.DefaultTableModel(
@@ -343,10 +343,11 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
         int fila = tableVehiculo.rowAtPoint(evt.getPoint());
 
         txtIdIngresoVehiculo.setText(tableVehiculo.getValueAt(fila, 0).toString());
-        txtConductor.setText(tableVehiculo.getValueAt(fila, 1).toString());
-        txtPlaca.setText(tableVehiculo.getValueAt(fila, 2).toString());
-        txtTipoVehiculo.setText(tableVehiculo.getValueAt(fila, 3).toString());
-        txtTarifaPago.setText(tableVehiculo.getValueAt(fila, 7).toString());
+        txtDni.setText(tableVehiculo.getValueAt(fila, 1).toString());
+        txtConductor.setText(tableVehiculo.getValueAt(fila, 2).toString());
+        txtPlaca.setText(tableVehiculo.getValueAt(fila, 3).toString());
+        txtTipoVehiculo.setText(tableVehiculo.getValueAt(fila, 4).toString());
+        txtTarifaPago.setText(tableVehiculo.getValueAt(fila, 8).toString());
         
     }//GEN-LAST:event_tableVehiculoMouseClicked
 

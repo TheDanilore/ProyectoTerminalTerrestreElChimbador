@@ -33,7 +33,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     /**
      * Creates new form Vista
      */
-    
     private DAOManager manager;
     MySQLUsuarioDAO loginDAO = new MySQLUsuarioDAO();
 
@@ -266,8 +265,10 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuEntradaActionPerformed
 
     private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
+        RegistroIncidencia RegistroIncidencia = new RegistroIncidencia();
+
+        
+        RegistroIncidencia.show();    }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
 
     private void menuConsultarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarRegistroActionPerformed
 
@@ -276,19 +277,20 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         UsuariosAdminVista vistaUsuario = new UsuariosAdminVista();
         try {
-            UsuarioController controller = new UsuarioController(vistaUsuario,manager);
+            UsuarioController controller = new UsuarioController(vistaUsuario, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         escritorio.add(vistaUsuario);
         vistaUsuario.show();
+        
     }//GEN-LAST:event_menuUsuarioActionPerformed
 
     private void menuEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmpresasActionPerformed
         EmpresasAdminVista vistaEmpresas = new EmpresasAdminVista();
         try {
-            EmpresaController controller = new EmpresaController(vistaEmpresas,manager);
+            EmpresaController controller = new EmpresaController(vistaEmpresas, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -300,7 +302,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVehiculoActionPerformed
         VehiculosAdminVista vistaVehiculos = new VehiculosAdminVista();
         try {
-            VehiculoController controller = new VehiculoController(vistaVehiculos,manager);
+            VehiculoController controller = new VehiculoController(vistaVehiculos, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -311,7 +313,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConductorActionPerformed
         ConductorVista vista = new ConductorVista();
         try {
-            ConductorController controller = new ConductorController(vista,manager);
+            ConductorController controller = new ConductorController(vista, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -321,12 +323,12 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
     private void menuCargoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCargoActionPerformed
         CargoVista vista = new CargoVista();
-        
-    try {
-        CargoController controller = new CargoController(vista,manager);
-    } catch (DAOException ex) {
-        Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
-    }
+
+        try {
+            CargoController controller = new CargoController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
         escritorio.add(vista);
         vista.show();
     }//GEN-LAST:event_menuCargoActionPerformed
@@ -334,7 +336,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuMetodoPagoActionPerformed
         MetodoPagoVista vista = new MetodoPagoVista();
         try {
-            MetodoPagoController controller = new MetodoPagoController(vista,manager);
+            MetodoPagoController controller = new MetodoPagoController(vista, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -345,7 +347,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private void menuTipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuTipoVehiculoActionPerformed
         TipoVehiculoVista vista = new TipoVehiculoVista();
         try {
-            TipoVehiculoController controller = new TipoVehiculoController(vista,manager);
+            TipoVehiculoController controller = new TipoVehiculoController(vista, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -355,7 +357,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
-     */ 
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

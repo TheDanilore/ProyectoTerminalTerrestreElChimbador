@@ -115,7 +115,14 @@ public class RegistroEntradaController implements ActionListener {
             }
         }
         if (e.getSource() == vista.btnNuevo) {
-            nuevo();
+            
+                nuevo();
+            try {
+                listar(vista.tableVehiculo);
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
 
         if (e.getSource() == vista.btnEliminar) {
@@ -368,8 +375,9 @@ public class RegistroEntradaController implements ActionListener {
         }
     }
 
-    public void nuevo() {
+    public void nuevo(){
         Limpiar();
+        
     }
 
     public void listar(JTable tabla) throws DAOException {
@@ -380,7 +388,7 @@ public class RegistroEntradaController implements ActionListener {
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_registro_entrada();
-            ob[1] = lista.get(i).getId_registro_entrada();
+            ob[1] = lista.get(i).getDni();
             ob[2] = lista.get(i).getConductor();
             ob[3] = lista.get(i).getVehiculo();
             ob[4] = lista.get(i).getTipo_vehiculo();
@@ -407,10 +415,17 @@ public class RegistroEntradaController implements ActionListener {
     public void Limpiar() {
         vista.txtIdIngresoVehiculo.setText("");
         vista.txtDni.setText("");
+        vista.txtConductor.setText("");
         vista.txtPlaca.setText("");
-        vista.txtTarifaPago.setText("");
-        vista.cbxDepartamento.setSelectedItem(null);
+        vista.txtIdTipoVehiculo.setText("");
         vista.txtTipoVehiculo.setText("");
+        vista.cbxDepartamento.setSelectedItem(null);
+        vista.txtIdDepartamento.setText("");
+        vista.cbxProvincia.setSelectedItem(null);
+        vista.txtIdProvincia.setText("");
+        vista.cbxDistrito.setSelectedItem(null);
+        vista.txtTarifaPago.setText("");
+        
     }
 
     public void LimpiarTable() {

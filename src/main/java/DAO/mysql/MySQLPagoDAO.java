@@ -28,6 +28,22 @@ public class MySQLPagoDAO implements PagoDAO{
     ResultSet rs;
 
     @Override
+    public int IDPago(){
+        int ID=0;
+        String sql="SELECT MAX(id_pago) FROM pago";
+        try{
+            ps=conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                ID=rs.getInt(1);
+            }
+        }catch(SQLException e){
+            System.out.println(e.toString());
+        }
+        return ID;
+    }
+    
+    @Override
     public void add(Pago obj) throws DAOException {
         String sql = "INSERT INTO pago (dni_conductor,conductor,placa,tipo_vehiculo,destino,monto,id_metodo_pago) VALUES (?,?,?,?,?,?,?)";
         
