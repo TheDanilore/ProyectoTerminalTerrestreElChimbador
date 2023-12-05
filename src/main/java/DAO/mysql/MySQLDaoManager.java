@@ -16,6 +16,7 @@ import DAO.EstadoUsuarioDAO;
 import DAO.EstadoVehiculoDAO;
 import DAO.MetodoPagoDAO;
 import DAO.PagoCocheraDAO;
+import DAO.PagoDAO;
 import DAO.PagoEscalaDAO;
 import DAO.PagoNormalDAO;
 import DAO.ProvinciaDAO;
@@ -57,6 +58,8 @@ public class MySQLDaoManager implements DAOManager {
     private ProvinciaDAO provincia = null;
     private DistritoDAO distrito = null;
 
+    
+    private PagoDAO pago = null;
     public MySQLDaoManager() throws SQLException {
 
         try {
@@ -227,6 +230,14 @@ public class MySQLDaoManager implements DAOManager {
             distrito = new MySQLDistritoDAO(conn);
         }
         return distrito;
+    }
+
+    @Override
+    public PagoDAO getPagoDAO() {
+        if (pago == null) {
+            pago = new MySQLPagoDAO(conn);
+        }
+        return pago;
     }
 
 }

@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Excel;
 import DAO.CargoDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -96,7 +97,14 @@ public class UsuarioController implements ActionListener {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (e.getSource() == vista.btnExcel) {
+            reporteExcel();
+        }
         
+    }
+    
+    public void reporteExcel(){
+        Excel.reporteUsuario();
     }
 
     /*public void login() {

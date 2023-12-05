@@ -12,22 +12,28 @@ import java.util.Date;
  */
 public class Pago {
     private int id_pago;
-    private TipoVehiculoPago tipo_vehiculo_pago;
-    private MetodoPago metodo_pago;
-    private Date fecha_pago;
-    private double tarifa;
+    private long dni_conductor;
+    private String conductor;
+    private String placa;
+    private String tipo_vehiculo;
+    private String destino;
+    private String fecha_pago;
     private double monto;
+    private int id_metodo_pago;
 
     public Pago() {
     }
 
-    public Pago(int id_pago, TipoVehiculoPago tipo_vehiculo_pago, MetodoPago metodo_pago, Date fecha_pago, double tarifa, double monto) {
+    public Pago(int id_pago, long dni_conductor, String conductor, String placa, String tipo_vehiculo, String destino, String fecha_pago, double monto, int id_metodo_pago) {
         this.id_pago = id_pago;
-        this.tipo_vehiculo_pago = tipo_vehiculo_pago;
-        this.metodo_pago = metodo_pago;
+        this.dni_conductor = dni_conductor;
+        this.conductor = conductor;
+        this.placa = placa;
+        this.tipo_vehiculo = tipo_vehiculo;
+        this.destino = destino;
         this.fecha_pago = fecha_pago;
-        this.tarifa = tarifa;
         this.monto = monto;
+        this.id_metodo_pago = id_metodo_pago;
     }
 
     public int getId_pago() {
@@ -38,36 +44,52 @@ public class Pago {
         this.id_pago = id_pago;
     }
 
-    public TipoVehiculoPago getTipo_vehiculo_pago() {
-        return tipo_vehiculo_pago;
+    public long getDni_conductor() {
+        return dni_conductor;
     }
 
-    public void setTipo_vehiculo_pago(TipoVehiculoPago tipo_vehiculo_pago) {
-        this.tipo_vehiculo_pago = tipo_vehiculo_pago;
+    public void setDni_conductor(long dni_conductor) {
+        this.dni_conductor = dni_conductor;
     }
 
-    public MetodoPago getMetodo_pago() {
-        return metodo_pago;
+    public String getConductor() {
+        return conductor;
     }
 
-    public void setMetodo_pago(MetodoPago metodo_pago) {
-        this.metodo_pago = metodo_pago;
+    public void setConductor(String conductor) {
+        this.conductor = conductor;
     }
 
-    public Date getFecha_pago() {
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
+    public String getTipo_vehiculo() {
+        return tipo_vehiculo;
+    }
+
+    public void setTipo_vehiculo(String tipo_vehiculo) {
+        this.tipo_vehiculo = tipo_vehiculo;
+    }
+
+    public String getDestino() {
+        return destino;
+    }
+
+    public void setDestino(String destino) {
+        this.destino = destino;
+    }
+
+    public String getFecha_pago() {
         return fecha_pago;
     }
 
-    public void setFecha_pago(Date fecha_pago) {
+    public void setFecha_pago(String fecha_pago) {
         this.fecha_pago = fecha_pago;
-    }
-
-    public double getTarifa() {
-        return tarifa;
-    }
-
-    public void setTarifa(double tarifa) {
-        this.tarifa = tarifa;
     }
 
     public double getMonto() {
@@ -77,7 +99,15 @@ public class Pago {
     public void setMonto(double monto) {
         this.monto = monto;
     }
-    
+
+    public int getId_metodo_pago() {
+        return id_metodo_pago;
+    }
+
+    public void setId_metodo_pago(int id_metodo_pago) {
+        this.id_metodo_pago = id_metodo_pago;
+    }
+
     
     
     

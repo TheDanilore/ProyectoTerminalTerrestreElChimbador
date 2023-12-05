@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Excel;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.EmpresasDAO;
@@ -87,6 +88,13 @@ public class EmpresaController implements ActionListener {
         if (e.getSource() == vista.btnNuevoEmpre) {
             nuevoEmpresa();
         }
+        if (e.getSource() == vista.btnExcel1) {
+            reporteExcel();
+        }
+    }
+    
+    public void reporteExcel(){
+        Excel.reporteEmpresa();
     }
 
     //Metodo para registar empresa

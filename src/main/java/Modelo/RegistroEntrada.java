@@ -10,24 +10,31 @@ package Modelo;
  */
 public class RegistroEntrada {
     private int id_registro_entrada;
+    private long dni;
+    private String conductor;
     private String fecha_hora_entrada;
     private String vehiculo;
-    private String conductor;
+    private String tipo_vehiculo;
+    
     private String destino;
     private String usuario;
-    private String pago;
+    private double pago;
+    private int estado;
 
     public RegistroEntrada() {
     }
 
-    public RegistroEntrada(int id_registro_entrada, String fecha_hora_entrada, String vehiculo, String conductor, String destino, String usuario, String pago) {
+    public RegistroEntrada(int id_registro_entrada, long dni, String conductor, String fecha_hora_entrada, String vehiculo, String tipo_vehiculo, String destino, String usuario, double pago, int estado) {
         this.id_registro_entrada = id_registro_entrada;
+        this.dni = dni;
+        this.conductor = conductor;
         this.fecha_hora_entrada = fecha_hora_entrada;
         this.vehiculo = vehiculo;
-        this.conductor = conductor;
+        this.tipo_vehiculo = tipo_vehiculo;
         this.destino = destino;
         this.usuario = usuario;
         this.pago = pago;
+        this.estado = estado;
     }
 
     public int getId_registro_entrada() {
@@ -36,6 +43,22 @@ public class RegistroEntrada {
 
     public void setId_registro_entrada(int id_registro_entrada) {
         this.id_registro_entrada = id_registro_entrada;
+    }
+
+    public long getDni() {
+        return dni;
+    }
+
+    public void setDni(long dni) {
+        this.dni = dni;
+    }
+
+    public String getConductor() {
+        return conductor;
+    }
+
+    public void setConductor(String conductor) {
+        this.conductor = conductor;
     }
 
     public String getFecha_hora_entrada() {
@@ -54,12 +77,12 @@ public class RegistroEntrada {
         this.vehiculo = vehiculo;
     }
 
-    public String getConductor() {
-        return conductor;
+    public String getTipo_vehiculo() {
+        return tipo_vehiculo;
     }
 
-    public void setConductor(String conductor) {
-        this.conductor = conductor;
+    public void setTipo_vehiculo(String tipo_vehiculo) {
+        this.tipo_vehiculo = tipo_vehiculo;
     }
 
     public String getDestino() {
@@ -78,15 +101,23 @@ public class RegistroEntrada {
         this.usuario = usuario;
     }
 
-    public String getPago() {
+    public double getPago() {
         return pago;
     }
 
-    public void setPago(String pago) {
+    public void setPago(double pago) {
         this.pago = pago;
     }
 
-   
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+
     
     
 }

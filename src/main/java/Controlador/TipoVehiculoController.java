@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Excel;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.TipoVehiculoDAO;
@@ -68,6 +69,13 @@ public class TipoVehiculoController implements ActionListener {
                 Logger.getLogger(TipoVehiculoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (e.getSource() == vista.btnExcel1) {
+            reporteExcel();
+        }
+    }
+    
+    public void reporteExcel(){
+        Excel.reporteTipoVehiculo();
     }
 
     public void guardarTipoVehiculo() throws DAOException {

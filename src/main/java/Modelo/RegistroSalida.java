@@ -10,20 +10,20 @@ package Modelo;
  */
 public class RegistroSalida {
     private int id_registro_salida;
+    private int registro_entrada;
+    private double pago_por_hora;
+    private String usuario;
     private String fecha_hora_salida;
-    private RegistroEntrada registro_entrada;
-    private Usuario usuario;
-    private PagoPorHora pago_por_hora;
 
     public RegistroSalida() {
     }
 
-    public RegistroSalida(int id_registro_salida, String fecha_hora_salida, RegistroEntrada registro_entrada, Usuario usuario, PagoPorHora pago_por_hora) {
+    public RegistroSalida(int id_registro_salida, int registro_entrada, double pago_por_hora, String usuario, String fecha_hora_salida) {
         this.id_registro_salida = id_registro_salida;
-        this.fecha_hora_salida = fecha_hora_salida;
         this.registro_entrada = registro_entrada;
-        this.usuario = usuario;
         this.pago_por_hora = pago_por_hora;
+        this.usuario = usuario;
+        this.fecha_hora_salida = fecha_hora_salida;
     }
 
     public int getId_registro_salida() {
@@ -34,6 +34,30 @@ public class RegistroSalida {
         this.id_registro_salida = id_registro_salida;
     }
 
+    public int getRegistro_entrada() {
+        return registro_entrada;
+    }
+
+    public void setRegistro_entrada(int registro_entrada) {
+        this.registro_entrada = registro_entrada;
+    }
+
+    public double getPago_por_hora() {
+        return pago_por_hora;
+    }
+
+    public void setPago_por_hora(double pago_por_hora) {
+        this.pago_por_hora = pago_por_hora;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
     public String getFecha_hora_salida() {
         return fecha_hora_salida;
     }
@@ -41,31 +65,8 @@ public class RegistroSalida {
     public void setFecha_hora_salida(String fecha_hora_salida) {
         this.fecha_hora_salida = fecha_hora_salida;
     }
-
-    public RegistroEntrada getRegistro_entrada() {
-        return registro_entrada;
-    }
-
-    public void setRegistro_entrada(RegistroEntrada registro_entrada) {
-        this.registro_entrada = registro_entrada;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public PagoPorHora getPago_por_hora() {
-        return pago_por_hora;
-    }
-
-    public void setPago_por_hora(PagoPorHora pago_por_hora) {
-        this.pago_por_hora = pago_por_hora;
-    }
     
     
+
     
 }

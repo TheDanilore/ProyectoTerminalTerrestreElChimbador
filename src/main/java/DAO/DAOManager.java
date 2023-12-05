@@ -29,5 +29,7 @@ public interface DAOManager {
     DepartamentoDAO getDepartamentoDAO();
     ProvinciaDAO getProvinciaDAO();
     DistritoDAO getDistritoDAO();
+    
+    PagoDAO getPagoDAO();
 
 }

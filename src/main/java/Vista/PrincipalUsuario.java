@@ -174,9 +174,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaActionPerformed
-        RegistrarEntrada registrarEntrada = new RegistrarEntrada();
-        escritorio.add(registrarEntrada);
-        registrarEntrada.show();
+        
     }//GEN-LAST:event_menuEntradaActionPerformed
 
     private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed

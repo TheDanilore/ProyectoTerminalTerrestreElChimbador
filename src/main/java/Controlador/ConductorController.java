@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Excel;
 import DAO.ConductorDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -93,8 +94,14 @@ public class ConductorController implements ActionListener {
                 Logger.getLogger(ConductorController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (e.getSource() == vista.btnExcel1) {
+            reporteExcel();
+        }
     }
 
+    public void reporteExcel(){
+        Excel.reporteConductor();
+    }
     public void guardarConductor() throws DAOException {
         if (camposValidos()) {
 

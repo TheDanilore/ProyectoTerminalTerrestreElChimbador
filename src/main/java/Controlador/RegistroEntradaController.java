@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Excel;
 import DAO.ConductorDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -21,6 +22,7 @@ import Modelo.RegistroEntrada;
 import Modelo.TipoVehiculo;
 import Modelo.Vehiculo;
 import Vista.ConductorVista;
+import Vista.PagoIngreso;
 import Vista.RegistroEntradaVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -50,7 +53,7 @@ public class RegistroEntradaController implements ActionListener {
     TipoVehiculo tipoVehiculo = new TipoVehiculo();
     Departamento departamento = new Departamento();
     Provincia provincia = new Provincia();
-
+    
     DefaultTableModel clase = new DefaultTableModel();
 
     public RegistroEntradaController(RegistroEntradaVista v, DAOManager manager) throws DAOException {
@@ -59,6 +62,8 @@ public class RegistroEntradaController implements ActionListener {
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
+        this.vista.btnEliminar.addActionListener(this);
+
         this.vista.txtDni.addActionListener(this);
         this.vista.btnExcel1.addActionListener(this);
         this.vista.txtPlaca.addActionListener(this);
@@ -73,18 +78,55 @@ public class RegistroEntradaController implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnGuardar) {
+            PagoIngreso pagoVista = new PagoIngreso();
+            PagoIngresoController pago = null;
             try {
-                guardar();
+                pago = new PagoIngresoController(pagoVista, manager);
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            // Obtén el texto
+            String dnie = vista.txtDni.getText();
+            String conductore = vista.txtConductor.getText();
+            String placae = vista.txtPlaca.getText();
+            String tipovehiculoe = vista.txtTipoVehiculo.getText();
+            String destinoe = vista.cbxDepartamento.getSelectedItem().toString() + " - " + vista.cbxProvincia.getSelectedItem().toString() + " - "
+                    + vista.cbxDistrito.getSelectedItem().toString();
+            
+            String pagoe =vista.txtTarifaPago.getText();
+            
+            
+            try {
+                pago.setTextosEnTextFieldB(dnie, conductore, placae,tipovehiculoe,destinoe,pagoe);
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+            pagoVista.setVisible(true);
+
+            
+        }
+        if (e.getSource() == vista.btnActualizar) {
+            try {
+                actualizar();
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnActualizar) {
-            // actualizar();
-        }
         if (e.getSource() == vista.btnNuevo) {
-            //nuevo();
+            nuevo();
         }
+
+        if (e.getSource() == vista.btnEliminar) {
+            try {
+                eliminar();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        
         if (e.getSource() == vista.txtDni) {
             try {
                 obtenerConductorPorDni();
@@ -131,76 +173,68 @@ public class RegistroEntradaController implements ActionListener {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }
-
-    public void guardar() throws DAOException {
-        if (camposValidos()) {
-
-            modelo.setConductor(vista.txtConductor.getText());
-            modelo.setVehiculo(vista.txtPlaca.getText());
-            modelo.setDestino(vista.cbxDepartamento.getSelectedItem().toString());
-            modelo.setFecha_hora_entrada(vista.txtFechaActual.getText());
-            modelo.setPago(vista.txtTarifaPago.getText());
-
-            //Conexion, consulta con la base de datos
-            RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
-            dao.add(modelo);
-
-            JOptionPane.showMessageDialog(null, "Metodo de Pago Registrado");
-            LimpiarTable();
-            listar(vista.tableVehiculo);
-            LimpiarMetodoPago();
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Llene todos los campos");
+        if (e.getSource() == vista.btnExcel1) {
+            reporteExcel();
         }
+
     }
 
-    /*public void actualizarMetodoPago() throws DAOException {
-        if ("".equals(vista.txtIdMetodoPago.getText())) {
+        public void reporteExcel(){
+        Excel.reporteRegistroEntrada();
+    }
+    
+
+    public void actualizar() throws DAOException {
+        if ("".equals(vista.txtIdIngresoVehiculo.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
             if (camposValidos()) {
-                modelo.setId_metodo_pago(Integer.parseInt(vista.txtIdMetodoPago.getText()));
-                modelo.setDescripcion(vista.txtDescripcion.getText());
+                modelo.setDni(Long.parseLong(vista.txtDni.getText()));
+                modelo.setConductor(vista.txtConductor.getText());
+                modelo.setVehiculo(vista.txtPlaca.getText());
+                modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
+                modelo.setDestino(vista.cbxDepartamento.getSelectedItem().toString() + " - " + vista.cbxProvincia.getSelectedItem().toString() + " - "
+                        + vista.cbxDistrito.getSelectedItem().toString());
+                modelo.setPago(Double.parseDouble(vista.txtTarifaPago.getText()));
 
-                MetodoPagoDAO dao = manager.getMetodoPagoDAO();
                 //Conexion, consulta con la base de datos
+                RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
                 dao.update(modelo);
 
-                JOptionPane.showMessageDialog(null, "Metodo de pago Modificado");
+                JOptionPane.showMessageDialog(null, "Ingreso Actualizado con Exito");
                 LimpiarTable();
-                ListarMetodoPago(vista.tableMetodoPago);
-                LimpiarMetodoPago();
+                listar(vista.tableVehiculo);
+                Limpiar();
 
             } else {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
         }
-    }*/
+    }
 
- /*public void eliminarMetodoPago() throws DAOException {
-        if (!"".equals(vista.txtIdMetodoPago.getText())) {
+    public void eliminar() throws DAOException {
+        if (!"".equals(vista.txtIdIngresoVehiculo.getText())) {
 
             int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Eliminar");
 
             if (pregunta == 0) {
-                int ID = Integer.parseInt(vista.txtIdMetodoPago.getText());
-                MetodoPagoDAO dao = manager.getMetodoPagoDAO();
+                int ID = Integer.parseInt(vista.txtIdIngresoVehiculo.getText());
+                RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
                 dao.delete(ID);
 
-                JOptionPane.showMessageDialog(null, "Se borro el metodo de pago");
+                JOptionPane.showMessageDialog(null, "Se borro el registro de entrada");
                 LimpiarTable();
-                ListarMetodoPago(vista.tableMetodoPago);
-                LimpiarMetodoPago();
+                listar(vista.tableVehiculo);
+                Limpiar();
 
             } else {
-                LimpiarMetodoPago();
+                Limpiar();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         }
-    }*/
+    }
+
     public void obtenerConductorPorDni() throws DAOException {
         if (!"".equals(vista.txtDni.getText())) {
 
@@ -288,75 +322,81 @@ public class RegistroEntradaController implements ActionListener {
                 && !"".equals(vista.cbxProvincia.getSelectedItem().toString())
                 && !"".equals(vista.cbxDistrito.getSelectedItem().toString())) {
 
-            
-                String id_departamento = vista.txtIdDepartamento.getText();
+            String id_departamento = vista.txtIdDepartamento.getText();
 
-                DepartamentoDAO dao = manager.getDepartamentoDAO();
+            DepartamentoDAO dao = manager.getDepartamentoDAO();
 
-                // Obtener el conductor por su número de documento
-                Departamento departamentoEncontrado = dao.getById(id_departamento);
+            // Obtener el conductor por su número de documento
+            Departamento departamentoEncontrado = dao.getById(id_departamento);
 
-                if (departamentoEncontrado != null) {
-                    departamento = departamentoEncontrado;
-                    Double tarifaDepartamento = departamentoEncontrado.getTarifa();
-                    if (vista.txtTipoVehiculo.getText() == "Bus de Transporte") {
-                        Double tarifaVehiculo = 10.00;
-                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
-                        vista.txtTarifaPago.setText("" + tarifaTotal);
-                    }
-                    if (vista.txtTipoVehiculo.getText() == "Camion de Carga") {
-                        Double tarifaVehiculo = 10.00;
-                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
-                        vista.txtTarifaPago.setText("" + tarifaTotal);
-                    }
-                    if (vista.txtTipoVehiculo.getText() == "Vehiculo del Personal") {
-                        Double tarifaVehiculo = 10.00;
-                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
-                        vista.txtTarifaPago.setText("" + tarifaTotal);
-                    }
-                    if (vista.txtTipoVehiculo.getText() == "Vehiculo Particular") {
-                        Double tarifaVehiculo = 10.00;
-                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
-                        vista.txtTarifaPago.setText("" + tarifaTotal);
-                    }
-                    if (vista.txtTipoVehiculo.getText() == "Otro Vehiculo") {
-                        Double tarifaVehiculo = 10.00;
-                        Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
-                        vista.txtTarifaPago.setText("" + tarifaTotal);
-                    }
-                    
-                    
-                    
-                } else {
-                    vista.txtIdDepartamento.setText("");
-                    JOptionPane.showMessageDialog(null, "El Departamento no existe");
+            if (departamentoEncontrado != null) {
+                departamento = departamentoEncontrado;
+                Double tarifaDepartamento = departamentoEncontrado.getTarifa();
+                if ("Bus de Transporte".equals(vista.txtTipoVehiculo.getText())) {
+                    Double tarifaVehiculo = 10.00;
+                    Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                    vista.txtTarifaPago.setText("" + tarifaTotal);
+                }
+                if ("Camion de Carga".equals(vista.txtTipoVehiculo.getText())) {
+                    Double tarifaVehiculo = 10.00;
+                    Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                    vista.txtTarifaPago.setText("" + tarifaTotal);
+                }
+                if ("Vehiculo del Personal".equals(vista.txtTipoVehiculo.getText())) {
+                    Double tarifaVehiculo = 10.00;
+                    Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                    vista.txtTarifaPago.setText("" + tarifaTotal);
+                }
+                if ("Vehiculo Particular".equals(vista.txtTipoVehiculo.getText())) {
+                    Double tarifaVehiculo = 10.00;
+                    Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                    vista.txtTarifaPago.setText("" + tarifaTotal);
+                }
+                if ("Otro Vehiculo".equals(vista.txtTipoVehiculo.getText())) {
+                    Double tarifaVehiculo = 10.00;
+                    Double tarifaTotal = tarifaVehiculo * tarifaDepartamento;
+                    vista.txtTarifaPago.setText("" + tarifaTotal);
                 }
 
-            
+            } else {
+                vista.txtIdDepartamento.setText("");
+                JOptionPane.showMessageDialog(null, "El Departamento no existe");
+            }
 
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese los datos requeridos");
         }
     }
 
-    public void nuevoMetodoPago() {
-        LimpiarMetodoPago();
+    public void nuevo() {
+        Limpiar();
     }
 
     public void listar(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
         RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
         List<RegistroEntrada> lista = dao.listAll();
-        Object[] ob = new Object[7];
+        Object[] ob = new Object[10];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_registro_entrada();
-            ob[1] = lista.get(i).getConductor();
-            ob[2] = lista.get(i).getVehiculo();
-            ob[3] = lista.get(i).getDestino();
-            ob[4] = lista.get(i).getFecha_hora_entrada();
-            ob[5] = lista.get(i).getUsuario();
-            ob[6] = lista.get(i).getPago();
+            ob[1] = lista.get(i).getId_registro_entrada();
+            ob[2] = lista.get(i).getConductor();
+            ob[3] = lista.get(i).getVehiculo();
+            ob[4] = lista.get(i).getTipo_vehiculo();
+            ob[5] = lista.get(i).getDestino();
+            ob[6] = lista.get(i).getFecha_hora_entrada();
+            ob[7] = lista.get(i).getUsuario();
+            ob[8] = lista.get(i).getPago();
+
+            ob[9] = lista.get(i).getEstado();
+            //estado
+            if (lista.get(i).getEstado() == 1) {
+                ob[9] = "En el Terminal";
+            }
+            if (lista.get(i).getEstado() == 2) {
+                ob[9] = "Salio del Terminal";
+            }
 
             clase.addRow(ob);
         }
@@ -364,13 +404,12 @@ public class RegistroEntradaController implements ActionListener {
         llenarDepartamento();
     }
 
-    public void LimpiarMetodoPago() {
+    public void Limpiar() {
         vista.txtIdIngresoVehiculo.setText("");
         vista.txtDni.setText("");
         vista.txtPlaca.setText("");
         vista.txtTarifaPago.setText("");
         vista.cbxDepartamento.setSelectedItem(null);
-        vista.txtFechaActual.setText("");
         vista.txtTipoVehiculo.setText("");
     }
 
@@ -387,8 +426,7 @@ public class RegistroEntradaController implements ActionListener {
                 && !vista.txtPlaca.getText().isEmpty()
                 && !vista.txtTarifaPago.getText().isEmpty()
                 && vista.cbxDepartamento.getSelectedItem() != null
-                && !vista.txtFechaActual.getText().isEmpty()
-                && vista.txtTipoVehiculo.getText().isEmpty();
+                && !vista.txtTipoVehiculo.getText().isEmpty();
     }
 
     private void llenarDepartamento() throws DAOException {
@@ -503,6 +541,5 @@ public class RegistroEntradaController implements ActionListener {
 
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
-    
 
 }
