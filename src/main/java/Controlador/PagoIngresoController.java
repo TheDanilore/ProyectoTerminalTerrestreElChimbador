@@ -197,7 +197,7 @@ public class PagoIngresoController implements ActionListener {
             Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.GREEN);
             fecha.add(Chunk.NEWLINE);
             Date date = new Date();
-            fecha.add("Boleta: " + id + "\n" + "Fecha: " + new SimpleDateFormat("dd-mm-yyyy").format(date) + "\n\n");
+            fecha.add("Boleta: " + id + "\n" + "Fecha: " + new SimpleDateFormat("dd-MM-yyyy").format(date) + "\n\n");
 
             PdfPTable encabezado = new PdfPTable(4);
             encabezado.setWidthPercentage(100);
@@ -222,7 +222,7 @@ public class PagoIngresoController implements ActionListener {
             Paragraph clientes = new Paragraph();
             clientes.add(Chunk.NEWLINE);
             clientes.add("""
-                         Datos de los clientes
+                         Datos del Cliente
                          
                          """);
             doc.add(clientes);
@@ -235,8 +235,8 @@ public class PagoIngresoController implements ActionListener {
             tablacliente.setHorizontalAlignment(Element.ALIGN_LEFT);
             PdfPCell clientes1 = new PdfPCell(new Phrase("DNI/Ruc", negrita));
             PdfPCell clientes2 = new PdfPCell(new Phrase("Nombre", negrita));
-            PdfPCell clientes3 = new PdfPCell(new Phrase("Telefono", negrita));
-            PdfPCell clientes4 = new PdfPCell(new Phrase("Direccion", negrita));
+            PdfPCell clientes3 = new PdfPCell(new Phrase("Placa", negrita));
+            PdfPCell clientes4 = new PdfPCell(new Phrase("Destino", negrita));
             clientes1.setBorder(0);
             clientes2.setBorder(0);
             clientes3.setBorder(0);
@@ -245,51 +245,47 @@ public class PagoIngresoController implements ActionListener {
             tablacliente.addCell(clientes2);
             tablacliente.addCell(clientes3);
             tablacliente.addCell(clientes4);
-            tablacliente.addCell(vista.txtConductor.getText());
             tablacliente.addCell(vista.txtDni.getText());
+            tablacliente.addCell(vista.txtConductor.getText());
             tablacliente.addCell(vista.txtPlaca.getText());
-            tablacliente.addCell(vista.txtMontoPago.getText());
+            tablacliente.addCell(vista.txtDestino.getText());
 
             doc.add(tablacliente);
 
             //productos
-            PdfPTable tablaproductos = new PdfPTable(4);
+            PdfPTable tablaproductos = new PdfPTable(3);
             tablaproductos.setWidthPercentage(100);
             tablaproductos.getDefaultCell().setBorder(0);
-            float[] columnaproductos = new float[]{10f, 50f, 15f, 20f};
+            float[] columnaproductos = new float[]{10f, 50f, 15f};
             tablaproductos.setWidths(columnaproductos);
             tablaproductos.setHorizontalAlignment(Element.ALIGN_LEFT);
-            PdfPCell productos1 = new PdfPCell(new Phrase("Cantidad", negrita));
-            PdfPCell productos2 = new PdfPCell(new Phrase("Descripcion", negrita));
-            PdfPCell productos3 = new PdfPCell(new Phrase("Precio U.", negrita));
-            PdfPCell productos4 = new PdfPCell(new Phrase("Precio T.", negrita));
+            PdfPCell productos1 = new PdfPCell(new Phrase("CANTIDAD", negrita));
+            PdfPCell productos2 = new PdfPCell(new Phrase("DESCRIPCION", negrita));
+            PdfPCell productos3 = new PdfPCell(new Phrase("MONTO", negrita));
             productos1.setBorder(0);
             productos2.setBorder(0);
             productos3.setBorder(0);
-            productos4.setBorder(0);
             productos1.setBackgroundColor(BaseColor.DARK_GRAY);
             productos2.setBackgroundColor(BaseColor.DARK_GRAY);
             productos3.setBackgroundColor(BaseColor.DARK_GRAY);
-            productos4.setBackgroundColor(BaseColor.DARK_GRAY);
             tablaproductos.addCell(productos1);
             tablaproductos.addCell(productos2);
             tablaproductos.addCell(productos3);
-            tablaproductos.addCell(productos4);
 
-            for (int i = 0; i < 6; i++) {
-                String conductor = vista.txtConductor.getText();
-                String cantidad = vista.txtDni.getText();
+            for (int i = 0; i < 1; i++) {
+                String descripcion =  vista.txtDestino.getText();
+                String cantidad = "1";
                 String total = vista.txtMontoPago.getText();
-                String precio = vista.txtDestino.getText();
                 tablaproductos.addCell(cantidad);
-                tablaproductos.addCell(conductor);
-                tablaproductos.addCell(precio);
+                tablaproductos.addCell(descripcion);
                 tablaproductos.addCell(total);
             }
             doc.add(tablaproductos);
 
             Paragraph info = new Paragraph();
             info.add(Chunk.NEWLINE);
+            
+            totalpagar=Double.parseDouble(vista.txtMontoPago.getText());
             info.add("Total a Pagar: " + totalpagar);
             info.setAlignment(Element.ALIGN_RIGHT);
             doc.add(info);
