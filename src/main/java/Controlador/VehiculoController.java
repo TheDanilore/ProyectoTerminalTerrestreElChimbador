@@ -44,7 +44,7 @@ public final class VehiculoController implements ActionListener {
         this.vista.btnNuevo.addActionListener(this);
         this.vista.btnActivar.addActionListener(this);
         this.vista.btnDarBaja.addActionListener(this);
-
+        this.vista.btnExcel1.addActionListener(this);
         this.LimpiarTable();
         this.ListarVehiculos(vista.tableVehiculo);
     }

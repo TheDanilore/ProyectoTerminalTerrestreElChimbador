@@ -22,6 +22,7 @@ import Modelo.RegistroEntrada;
 import Modelo.TipoVehiculo;
 import Modelo.Vehiculo;
 import Vista.ConductorVista;
+import Vista.ConsultarPago;
 import Vista.PagoIngreso;
 import Vista.RegistroEntradaVista;
 import java.awt.event.ActionEvent;
@@ -79,9 +80,10 @@ public class RegistroEntradaController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == vista.btnGuardar) {
             PagoIngreso pagoVista = new PagoIngreso();
+            ConsultarPago consultarPago = new ConsultarPago();
             PagoIngresoController pago = null;
             try {
-                pago = new PagoIngresoController(pagoVista, manager);
+                pago = new PagoIngresoController(pagoVista,consultarPago, manager);
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }

@@ -49,6 +49,7 @@ public class ConductorController implements ActionListener {
         this.vista.btnActivar.addActionListener(this);
         this.vista.btnDarBaja.addActionListener(this);
         this.vista.btnObtener.addActionListener(this);
+        this.vista.btnExcel1.addActionListener(this);
         this.LimpiarTable();
         this.ListarConductor(vista.tableConductor);
         tabular();

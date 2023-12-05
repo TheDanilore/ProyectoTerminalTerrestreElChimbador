@@ -5,23 +5,33 @@
 package Vista;
 
 
+import Controlador.ConductorController;
+import Controlador.PagoIngresoController;
+import Controlador.RegistroEntradaController;
+import Controlador.VehiculoController;
+import DAO.DAOException;
+import DAO.DAOManager;
+import DAO.mysql.MySQLDaoManager;
 import DAO.mysql.MySQLUsuarioDAO;
 import Modelo.Usuario;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author ASUS
  */
 public class PrincipalUsuario extends javax.swing.JFrame {
-    MySQLUsuarioDAO loginDAO = new MySQLUsuarioDAO();
     Usuario usuarioModelo= new Usuario();
-
     
-    public PrincipalUsuario() {
+    private DAOManager manager;
+    
+    public PrincipalUsuario() throws SQLException {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
-        
+        this.manager = new MySQLDaoManager();
         lblNombre.setText(usuarioModelo.getNombres());
         
         
@@ -50,18 +60,13 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         menu_EntradaSalida = new javax.swing.JMenu();
         menuEntrada = new javax.swing.JMenuItem();
         menuSalida = new javax.swing.JMenuItem();
-        menuConsultarRegistro = new javax.swing.JMenuItem();
         menuRegistrarIncidente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -117,14 +122,6 @@ public class PrincipalUsuario extends javax.swing.JFrame {
         menuSalida.setText("Registrar Salida de Vehículos");
         menu_EntradaSalida.add(menuSalida);
 
-        menuConsultarRegistro.setText("Consultar Entrada o Salida");
-        menuConsultarRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultarRegistroActionPerformed(evt);
-            }
-        });
-        menu_EntradaSalida.add(menuConsultarRegistro);
-
         menuRegistrarIncidente.setText("Registrar Incidente");
         menuRegistrarIncidente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,34 +134,37 @@ public class PrincipalUsuario extends javax.swing.JFrame {
 
         jMenu2.setText("Pagos");
 
-        jMenuItem1.setText("Registrar Pago");
+        jMenuItem1.setText("Consultar Pagos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         jMenuBar1.add(jMenu2);
 
         jMenu1.setText("Conductores");
 
-        jMenuItem2.setText("Registrar Conductor");
+        jMenuItem2.setText("Conductor");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
-
-        jMenuItem3.setText("Modificar Conductor");
-        jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Consultar Conductor");
-        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Vehículos");
 
-        jMenuItem5.setText("Registrar Vehículo");
+        jMenuItem5.setText("Vehiculo");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem5);
-
-        jMenuItem8.setText("Modificar Vehículo");
-        jMenu3.add(jMenuItem8);
-
-        jMenuItem9.setText("Consultar Vehículo");
-        jMenu3.add(jMenuItem9);
 
         jMenuBar1.add(jMenu3);
 
@@ -174,16 +174,56 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaActionPerformed
-        
+        RegistroEntradaVista vista = new RegistroEntradaVista();
+        try {
+            RegistroEntradaController controller = new RegistroEntradaController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
     }//GEN-LAST:event_menuEntradaActionPerformed
 
     private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed
-        // TODO add your handling code here:
+        RegistroIncidencia RegistroIncidencia = new RegistroIncidencia();
+
+        
+        RegistroIncidencia.show();
     }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
 
-    private void menuConsultarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarRegistroActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ConductorVista vista = new ConductorVista();
+        try {
+            ConductorController controller = new ConductorController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    }//GEN-LAST:event_menuConsultarRegistroActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        VehiculosAdminVista vistaVehiculos = new VehiculosAdminVista();
+        try {
+            VehiculoController controller = new VehiculoController(vistaVehiculos, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vistaVehiculos);
+        vistaVehiculos.show();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ConsultarPago vista = new ConsultarPago();
+        PagoIngreso pagoIngreso = new PagoIngreso();
+        try {
+            PagoIngresoController controller = new PagoIngresoController(pagoIngreso,vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,7 +257,11 @@ public class PrincipalUsuario extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new PrincipalUsuario().setVisible(true);
+            try {
+                new PrincipalUsuario().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(PrincipalUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
     }
 
@@ -230,14 +274,9 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRol;
-    private javax.swing.JMenuItem menuConsultarRegistro;
     private javax.swing.JMenuItem menuEntrada;
     private javax.swing.JMenuItem menuRegistrarIncidente;
     private javax.swing.JMenuItem menuSalida;

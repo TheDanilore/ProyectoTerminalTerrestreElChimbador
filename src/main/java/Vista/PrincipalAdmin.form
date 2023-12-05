@@ -28,14 +28,6 @@
                 <Property name="text" type="java.lang.String" value="Registrar Salida de Veh&#xed;culos"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarRegistro">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar Entrada o Salida"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarRegistroActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuRegistrarIncidente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Registrar Incidente"/>
@@ -56,8 +48,11 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem1">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar Pago"/>
+                <Property name="text" type="java.lang.String" value="Consultar Pagos"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem1ActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuMetodoPago">
               <Properties>

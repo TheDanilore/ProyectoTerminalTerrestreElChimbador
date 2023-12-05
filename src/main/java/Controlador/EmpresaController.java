@@ -41,7 +41,8 @@ public class EmpresaController implements ActionListener {
         this.vista.btnDarBajaEmpre.addActionListener(this);
         this.vista.btnActivarEmpre.addActionListener(this);
         this.vista.btnNuevoEmpre.addActionListener(this);
-
+        this.vista.btnExcel1.addActionListener(this);
+        
         LimpiarTable();
         listarEmpresas(vista.tableEmpresa);
     }

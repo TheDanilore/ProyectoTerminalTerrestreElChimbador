@@ -38,7 +38,7 @@ public class TipoVehiculoController implements ActionListener {
         this.vista.btnGuardar.addActionListener(this);
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
-        //this.vista.btnEliminarMetodoPago.addActionListener(this);
+        this.vista.btnExcel1.addActionListener(this);
         this.LimpiarTable();
         this.ListarTipoVehiculo(vista.tableTipoVehiculo);
     }

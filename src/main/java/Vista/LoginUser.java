@@ -7,6 +7,7 @@ package Vista;
 import Controlador.UsuarioControlador;
 import DAO.DAOException;
 import DAO.DAOManager;
+import DAO.mysql.MySQLDaoManager;
 import DAO.mysql.MySQLUsuarioDAO;
 import Modelo.Usuario;
 import java.awt.Image;
@@ -26,11 +27,13 @@ import javax.swing.JOptionPane;
  */
 public class LoginUser extends javax.swing.JFrame {
 
+    private final DAOManager manager;
 
 //probando
-        public LoginUser() throws DAOException {
+        public LoginUser() throws DAOException, SQLException {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.manager = new MySQLDaoManager();
 
         //this.pintarImagen(lblLogoLogin, "src/Imagenes/Escudo_de_Chimbote.png");
         
@@ -164,12 +167,18 @@ public class LoginUser extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+        public void run() {
+            LoginUser vista = null;
             try {
-                new LoginUser().setVisible(true);
-            } catch (DAOException ex) {
+                vista = new LoginUser();
+                UsuarioControlador controller = new UsuarioControlador(vista, vista.manager); // Aquí utilizas la variable manager de vista
+                vista.setVisible(true); // Muestra la ventana de inicio de sesión
+            } catch (DAOException | SQLException ex) {
                 Logger.getLogger(LoginUser.class.getName()).log(Level.SEVERE, null, ex);
             }
+        }           
         });
     }
 

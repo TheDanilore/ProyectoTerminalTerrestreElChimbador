@@ -39,6 +39,7 @@ public class MetodoPagoController implements ActionListener {
         this.vista.btnActualizar.addActionListener(this);
         this.vista.btnNuevo.addActionListener(this);
         this.vista.btnEliminarMetodoPago.addActionListener(this);
+        this.vista.btnExcel1.addActionListener(this);
         this.LimpiarTable();
         this.ListarMetodoPago(vista.tableMetodoPago);
     }

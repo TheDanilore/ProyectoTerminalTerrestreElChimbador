@@ -8,6 +8,7 @@ import Controlador.CargoController;
 import Controlador.ConductorController;
 import Controlador.EmpresaController;
 import Controlador.MetodoPagoController;
+import Controlador.PagoIngresoController;
 import Controlador.RegistroEntradaController;
 import Controlador.TipoVehiculoController;
 import Controlador.UsuarioControlador;
@@ -34,13 +35,11 @@ public class PrincipalAdmin extends javax.swing.JFrame {
      * Creates new form Vista
      */
     private DAOManager manager;
-    MySQLUsuarioDAO loginDAO = new MySQLUsuarioDAO();
 
     Usuario usuarioModelo = new Usuario();
-    LoginUser loginUser;
 
     public PrincipalAdmin() throws SQLException, DAOException {
-        this.loginUser = new LoginUser();
+        new LoginUser();
         initComponents();
         this.manager = new MySQLDaoManager();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -72,7 +71,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menu_EntradaSalida = new javax.swing.JMenu();
         menuEntrada = new javax.swing.JMenuItem();
         menuSalida = new javax.swing.JMenuItem();
-        menuConsultarRegistro = new javax.swing.JMenuItem();
         menuRegistrarIncidente = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -139,14 +137,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menuSalida.setText("Registrar Salida de Vehículos");
         menu_EntradaSalida.add(menuSalida);
 
-        menuConsultarRegistro.setText("Consultar Entrada o Salida");
-        menuConsultarRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuConsultarRegistroActionPerformed(evt);
-            }
-        });
-        menu_EntradaSalida.add(menuConsultarRegistro);
-
         menuRegistrarIncidente.setText("Registrar Incidente");
         menuRegistrarIncidente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -160,7 +150,12 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenu2.setText("Pagos");
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jMenuItem1.setText("Registrar Pago");
+        jMenuItem1.setText("Consultar Pagos");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu2.add(jMenuItem1);
 
         menuMetodoPago.setText("Metodo de Pago");
@@ -270,10 +265,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         
         RegistroIncidencia.show();    }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
 
-    private void menuConsultarRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarRegistroActionPerformed
-
-    }//GEN-LAST:event_menuConsultarRegistroActionPerformed
-
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         UsuariosAdminVista vistaUsuario = new UsuariosAdminVista();
         try {
@@ -355,6 +346,18 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         vista.show();
     }//GEN-LAST:event_menuTipoVehiculoActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ConsultarPago vista = new ConsultarPago();
+        PagoIngreso pagoIngreso = new PagoIngreso();
+        try {
+            PagoIngresoController controller = new PagoIngresoController(pagoIngreso,vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -415,7 +418,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel lblRol;
     private javax.swing.JMenuItem menuCargo;
     private javax.swing.JMenuItem menuConductor;
-    private javax.swing.JMenuItem menuConsultarRegistro;
     private javax.swing.JMenuItem menuEmpresas;
     private javax.swing.JMenuItem menuEntrada;
     private javax.swing.JMenuItem menuMetodoPago;

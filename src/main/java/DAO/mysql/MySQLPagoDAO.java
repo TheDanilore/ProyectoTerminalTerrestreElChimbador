@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -91,7 +92,47 @@ public class MySQLPagoDAO implements PagoDAO{
 
     @Override
     public List<Pago> listAll() throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        List<Pago> lista= new ArrayList();
+        String sql="SELECT * FROM pago";
+        try{
+            ps=conn.prepareStatement(sql);
+            rs= ps.executeQuery();
+            while(rs.next()){
+                Pago pago = new Pago();
+                pago.setId_pago(rs.getInt("id_pago"));
+                pago.setDni_conductor(rs.getLong("dni_conductor"));
+                pago.setConductor(rs.getString("conductor"));
+                pago.setPlaca(rs.getString("placa"));
+                pago.setTipo_vehiculo(rs.getString("tipo_vehiculo"));
+                pago.setDestino(rs.getString("destino"));
+                pago.setFecha_pago(rs.getString("fecha_pago"));
+                pago.setMonto(rs.getDouble("monto"));
+                pago.setId_metodo_pago(rs.getInt("id_metodo_pago"));
+                lista.add(pago);
+            }
+        }catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+        }
+        return lista;
     }
 
     @Override

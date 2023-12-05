@@ -48,7 +48,7 @@ public class UsuarioController implements ActionListener {
         this.vista.btnNuevoUsu.addActionListener(this);
         this.vista.btnBajaUsu.addActionListener(this);
         this.vista.btnActivarUsu.addActionListener(this);
-        
+        this.vista.btnExcel.addActionListener(this);
         //this.loginVista = lv;
         
         

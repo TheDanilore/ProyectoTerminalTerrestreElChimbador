@@ -31,9 +31,9 @@ C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\sr
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEmpresasDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoEscalaDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoCochera.java
+C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarPago.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Pago.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DistritoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarRegistro.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoNormalDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\VehiculoController.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\MetodoPagoController.java
@@ -44,7 +44,6 @@ C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\sr
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Clases\Evento.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\ConductorDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\TipoVehiculoPagoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarRegistroControlador.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\CargoController.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\EmpresasAdminVista.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLTipoVehiculoDAO.java
@@ -69,7 +68,6 @@ C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\sr
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\LoginUser.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\VehiculosAdminVista.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLVehiculoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\PagoIngresoVista.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\RegistroSalida.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLRegistroEntradaDAO.java
 C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoUsuario.java

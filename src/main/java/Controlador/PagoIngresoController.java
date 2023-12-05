@@ -12,6 +12,7 @@ import DAO.RegistroEntradaDAO;
 import Modelo.MetodoPago;
 import Modelo.Pago;
 import Modelo.RegistroEntrada;
+import Vista.ConsultarPago;
 import Vista.PagoIngreso;
 import Vista.RegistroEntradaVista;
 import java.awt.event.ActionEvent;
@@ -48,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -58,17 +60,23 @@ public class PagoIngresoController implements ActionListener {
 
     private DAOManager manager;
     PagoIngreso vista = new PagoIngreso();
+    ConsultarPago consultarPago = new ConsultarPago();
     Pago modelo = new Pago();
     RegistroEntrada modeloEntrada = new RegistroEntrada();
+    DefaultTableModel clase = new DefaultTableModel();
 
     double totalpagar = 0.00;
 
-    public PagoIngresoController(PagoIngreso v, DAOManager manager) throws DAOException {
+    public PagoIngresoController(PagoIngreso v, ConsultarPago pv, DAOManager manager) throws DAOException {
         this.vista = v;
+        this.consultarPago = pv;
         this.manager = manager;
         this.vista.btnPago.addActionListener(this);
         this.vista.btnCancelar.addActionListener(this);
+        
         llenarMetodoPago();
+        llenarMetodoPagoConsultar();
+        listar(consultarPago.tableVehiculo);
     }
 
     @Override
@@ -130,7 +138,7 @@ public class PagoIngresoController implements ActionListener {
             modelo.setConductor(vista.txtConductor.getText());
             modelo.setPlaca(vista.txtPlaca.getText());
             modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
-            modelo.setDestino(vista.txtTipoVehiculo.getText());
+            modelo.setDestino(vista.txtDestino.getText());
             modelo.setMonto(Double.parseDouble(vista.txtMontoPago.getText()));
 
             String metodo = vista.cbxMetodoPago.getSelectedItem().toString();
@@ -149,10 +157,73 @@ public class PagoIngresoController implements ActionListener {
         }
     }
 
+    public void actualizar() throws DAOException {
+        if ("".equals(consultarPago.txtIdPago.getText())) {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        } else {
+            if (camposValidosConsultar()) {
+                modelo.setDni_conductor(Long.parseLong(vista.txtDni.getText()));
+                modelo.setConductor(vista.txtConductor.getText());
+                modelo.setPlaca(vista.txtPlaca.getText());
+                modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
+                modelo.setDestino(vista.txtDestino.getText());
+                modelo.setMonto(Double.parseDouble(vista.txtMontoPago.getText()));
+
+                String metodo = vista.cbxMetodoPago.getSelectedItem().toString();
+                if ("Pago Efectivo".equalsIgnoreCase(metodo)) {
+                    modelo.setId_metodo_pago(1);
+                }
+
+                //Conexion, consulta con la base de datos
+                PagoDAO dao = manager.getPagoDAO();
+                dao.update(modelo);
+
+                JOptionPane.showMessageDialog(null, "Pago Actualizado con Exito");
+                LimpiarTable();
+                listar(consultarPago.tableVehiculo);
+                Limpiar();
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+            }
+        }
+    }
+
+    public void listar(JTable tabla) throws DAOException {
+        clase = (DefaultTableModel) tabla.getModel();
+        PagoDAO dao = manager.getPagoDAO();
+        List<Pago> lista = dao.listAll();
+        Object[] ob = new Object[9];
+
+        for (int i = 0; i < lista.size(); i++) {
+            ob[0] = lista.get(i).getId_pago();
+            ob[1] = lista.get(i).getDni_conductor();
+            ob[2] = lista.get(i).getConductor();
+            ob[3] = lista.get(i).getPlaca();
+            ob[4] = lista.get(i).getTipo_vehiculo();
+            ob[5] = lista.get(i).getDestino();
+            ob[6] = lista.get(i).getFecha_pago();
+            ob[7] = lista.get(i).getMonto();
+            ob[8] = lista.get(i).getId_metodo_pago();
+
+            if (lista.get(i).getId_metodo_pago() == 1) {
+                ob[8] = "Pago Efectivo";
+            }
+
+            clase.addRow(ob);
+        }
+        consultarPago.tableVehiculo.setModel(clase);
+    }
+
     public void cancelar() throws DAOException {
 
         vista.setVisible(false);
 
+    }
+    
+    public void nuevo(){
+        Limpiar();
+        
     }
 
     public boolean camposValidos() {
@@ -162,6 +233,37 @@ public class PagoIngresoController implements ActionListener {
                 && !vista.txtMontoPago.getText().isEmpty()
                 && !vista.txtConductor.getText().isEmpty();
     }
+    
+    public boolean camposValidosConsultar() {
+        return !consultarPago.txtIdPago.getText().isEmpty()
+                && !consultarPago.txtDni.getText().isEmpty()
+                && !consultarPago.txtConductor.getText().isEmpty()
+                && !consultarPago.txtPlaca.getText().isEmpty()
+                && !consultarPago.txtTipoVehiculo.getText().isEmpty()
+                && !consultarPago.txtDestino.getText().isEmpty()
+                && !consultarPago.txtMontoPago.getText().isEmpty()
+                && consultarPago.cbxMetodoPago.getSelectedItem()!=null;
+    }
+    
+    public void Limpiar() {
+        consultarPago.txtIdPago.setText("");
+        consultarPago.txtDni.setText("");
+        consultarPago.txtConductor.setText("");
+        consultarPago.txtPlaca.setText("");
+        consultarPago.txtTipoVehiculo.setText("");
+        consultarPago.txtDestino.setText("");
+        consultarPago.txtMontoPago.setText("");
+        consultarPago.cbxMetodoPago.setSelectedItem(null);
+        
+    }
+
+    public void LimpiarTable() {
+        for (int i = 0; i < clase.getRowCount(); i++) {
+            clase.removeRow(i);
+            i = i - 1;
+        }
+    }
+
 
     private void llenarMetodoPago() throws DAOException {
 
@@ -174,6 +276,20 @@ public class PagoIngresoController implements ActionListener {
 
         for (int i = 0; i < lista.size(); i++) {
             vista.cbxMetodoPago.addItem(lista.get(i).getDescripcion());
+        }
+
+    }
+    private void llenarMetodoPagoConsultar() throws DAOException {
+
+        MetodoPagoDAO dao = manager.getMetodoPagoDAO();
+
+        List<MetodoPago> lista = (ArrayList<MetodoPago>) dao.listAll();
+
+        //int idselect = 1;
+        consultarPago.cbxMetodoPago.removeAllItems();
+
+        for (int i = 0; i < lista.size(); i++) {
+            consultarPago.cbxMetodoPago.addItem(lista.get(i).getDescripcion());
         }
 
     }
@@ -273,7 +389,7 @@ public class PagoIngresoController implements ActionListener {
             tablaproductos.addCell(productos3);
 
             for (int i = 0; i < 1; i++) {
-                String descripcion =  vista.txtDestino.getText();
+                String descripcion = vista.txtDestino.getText();
                 String cantidad = "1";
                 String total = vista.txtMontoPago.getText();
                 tablaproductos.addCell(cantidad);
@@ -284,8 +400,8 @@ public class PagoIngresoController implements ActionListener {
 
             Paragraph info = new Paragraph();
             info.add(Chunk.NEWLINE);
-            
-            totalpagar=Double.parseDouble(vista.txtMontoPago.getText());
+
+            totalpagar = Double.parseDouble(vista.txtMontoPago.getText());
             info.add("Total a Pagar: " + totalpagar);
             info.setAlignment(Element.ALIGN_RIGHT);
             doc.add(info);

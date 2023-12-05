@@ -28,10 +28,11 @@ public class UsuarioControlador implements ActionListener {
 
     private final DAOManager manager;
 
-    LoginUser vista = new LoginUser();
+    LoginUser vista;
     private Usuario modelo;
 
-    public UsuarioControlador(LoginUser v, DAOManager manager) throws DAOException {
+    public UsuarioControlador(LoginUser v, DAOManager manager) throws DAOException, SQLException {
+        this.vista = new LoginUser();
         this.manager = manager;
         this.vista = v;
         this.vista.btnLog.addActionListener(this);
@@ -97,7 +98,6 @@ public class UsuarioControlador implements ActionListener {
 
             Arrays.fill(passwordChars, ' ');
 
-            JOptionPane.showMessageDialog(null, "Inicio de Sesion");
 
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
