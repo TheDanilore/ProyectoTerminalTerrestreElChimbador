@@ -26,11 +26,14 @@ public class ConsultarConductorVista extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tableConductor = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        btnBuscar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        btnExcel1 = new javax.swing.JButton();
         txtNumeroDocumento = new javax.swing.JTextField();
-        btnListar = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        btnBuscar = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        btnListar = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnExcel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
@@ -38,7 +41,7 @@ public class ConsultarConductorVista extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Consultar Conductores Registrados");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(236, 233, 233));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("72", 1, 36)); // NOI18N
@@ -79,21 +82,10 @@ public class ConsultarConductorVista extends javax.swing.JInternalFrame {
         jLabel7.setText("LISTADO DE CONDUCTORES REGISTRADOS");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 260, -1));
 
-        btnBuscar.setBackground(new java.awt.Color(51, 255, 51));
-        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
-        btnBuscar.setText("Buscar");
-        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 110, -1, -1));
-
         jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 153, 0));
         jLabel10.setText("Reportes");
         jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 80, 30));
-
-        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
-        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcel1.setText("Excel");
-        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 50, -1, -1));
 
         txtNumeroDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -102,11 +94,68 @@ public class ConsultarConductorVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(txtNumeroDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 110, 160, -1));
 
-        btnListar.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel3.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnBuscar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnBuscar.setText("Buscar");
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 100, 80, 30));
+
+        jPanel2.setBackground(new java.awt.Color(51, 255, 51));
+
         btnListar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnListar.setForeground(new java.awt.Color(255, 255, 255));
+        btnListar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnListar.setText("Listar");
-        jPanel1.add(btnListar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, -1, -1));
+        btnListar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnListar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnListar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 80, 30));
+
+        jPanel5.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnExcel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnExcel1.setText("Excel");
+        btnExcel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnExcel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnExcel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 40, 70, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -136,13 +185,16 @@ public class ConsultarConductorVista extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnBuscar;
-    public javax.swing.JButton btnExcel1;
-    public javax.swing.JButton btnListar;
+    public javax.swing.JLabel btnBuscar;
+    public javax.swing.JLabel btnExcel1;
+    public javax.swing.JLabel btnListar;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable tableConductor;
     public javax.swing.JTextField txtNumeroDocumento;

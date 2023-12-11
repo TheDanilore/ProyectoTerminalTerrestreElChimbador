@@ -12,6 +12,7 @@ Controlador\CargoController.class
 Vista\UsuariosAdminVista$5.class
 DAO\mysql\MySQLPagoEscalaDAO.class
 Vista\RegistroSalidaVista.class
+Vista\PrincipalAdmin$16.class
 DAO\mysql\MySQLTipoVehiculoPagoDAO.class
 Vista\login$1.class
 DAO\mysql\MySQLEstadoConductorDAO.class
@@ -31,7 +32,6 @@ Vista\EmpresasAdminVista$6.class
 Vista\PagoIngresoVista$7.class
 Vista\ConductorVista$7.class
 DAO\EstadoUsuarioDAO.class
-Vista\MetodoPagoVista$4.class
 DAO\mysql\MySQLEstadoEmpresaDAO.class
 DAO\RegistroEntradaDAO.class
 DAO\PagoDAO.class
@@ -65,6 +65,7 @@ DAO\mysql\MySQLEstadoVehiculoDAO.class
 Vista\TipoVehiculoVista$4.class
 Vista\login.class
 Clases\TextPrompt.class
+Controlador\ConsultarUsuarioController.class
 Controlador\ConsultarIngresoController.class
 Vista\CargoVista$1.class
 Controlador\ConsultarVehiculoController.class
@@ -74,6 +75,8 @@ Vista\ConsultarPagoVista$5.class
 Vista\RegistroEntradaVista$7.class
 Modelo\PagoNormal.class
 DAO\PagoEscalaDAO.class
+Vista\ConsultarEmpresaVista$1.class
+Vista\ConsultarUsuarioVista.class
 DAO\DAOException.class
 Controlador\UsuarioControlador.class
 Vista\MetodoPagoVista$3.class
@@ -94,7 +97,6 @@ Vista\login$5.class
 Vista\ConsultarPagoVista.class
 Vista\RegistroEntradaVista$4.class
 Vista\ConsultarPagoVista$8.class
-Vista\PagoIngresoVista$10.class
 Vista\RegistroEntradaVista$5.class
 Vista\RegistroSalidaVista$7.class
 DAO\mysql\MySQLVehiculoDAO.class
@@ -119,6 +121,7 @@ Vista\PrincipalAdmin$1.class
 Vista\RegistroSalidaVista$11.class
 DAO\CrudDeleteDAO.class
 Vista\RegistroEntradaVista$12.class
+Vista\PrincipalAdmin$17.class
 Vista\RegistroEntradaVista.class
 DAO\EstadoEmpresaDAO.class
 Modelo\TipoVehiculoPago.class
@@ -152,7 +155,7 @@ DAO\UsuarioDAO.class
 Vista\PrincipalAdmin$14.class
 Vista\VehiculosVista$2.class
 Vista\CargoVista$3.class
-Vista\PagoIngresoVista$9.class
+Vista\ConsultarEmpresaVista$2.class
 Clases\TextPrompt$Show.class
 Vista\RegistroEntradaVista$2.class
 Vista\ConsultarConductorVista$3.class
@@ -162,6 +165,7 @@ DAO\TipoDocumentoIdentidadDAO.class
 Vista\PrincipalUsuario$3.class
 Vista\CargoVista$2.class
 Vista\VehiculosVista$3.class
+Vista\ConsultarUsuarioVista$2.class
 Vista\PrincipalAdmin$13.class
 Vista\RegistroSalidaVista$14.class
 Vista\PagoIngresoVista$3.class
@@ -186,6 +190,8 @@ Vista\PrincipalUsuario$5.class
 Vista\EmpresasAdminVista$7.class
 Vista\ConsultarConductorVista$1.class
 Vista\RegistroIncidenciaVista.class
+Vista\ConsultarEmpresaVista.class
+Vista\PrincipalUsuario$8.class
 Vista\login$2.class
 Modelo\EstadoEmpresa.class
 Vista\TipoVehiculoVista$3.class
@@ -199,6 +205,7 @@ Vista\ConductorVista.class
 DAO\MetodoPagoDAO.class
 Vista\MetodoPagoVista$1.class
 Vista\RegistroEntradaVista$1.class
+Vista\ConsultarUsuarioVista$1.class
 Vista\UsuariosAdminVista$4.class
 Vista\ConductorVista$3.class
 Vista\ConsultarEntradaVista$3.class
@@ -221,6 +228,7 @@ Vista\TipoVehiculoVista$1.class
 Vista\EmpresasAdminVista$5.class
 Clases\Evento.class
 DAO\ProvinciaDAO.class
+Controlador\ConsultarEmpresaController.class
 Vista\PrincipalAdmin$8.class
 Vista\ConsultarEntradaVista$2.class
 Vista\RegistroSalidaVista$2.class

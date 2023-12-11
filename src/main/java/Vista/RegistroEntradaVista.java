@@ -37,9 +37,6 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
         tableVehiculo = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnGuardar = new javax.swing.JButton();
-        btnActualizar = new javax.swing.JButton();
-        btnNuevo = new javax.swing.JButton();
         txtConductor = new javax.swing.JTextField();
         txtPlaca = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
@@ -60,15 +57,23 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
         txtIdDepartamento = new javax.swing.JTextField();
         txtIdProvincia = new javax.swing.JTextField();
         btnCalcularTarifa = new javax.swing.JButton();
-        btnEliminar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        btnActualizar = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        btnNuevo = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnEliminar = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(236, 233, 233));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Registro de Ingreso de Vehiculos");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(236, 233, 233));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("72", 1, 36)); // NOI18N
@@ -123,27 +128,6 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(51, 153, 0));
         jLabel8.setText("REGISTRA UN NUEVO INGRESO DE VEHÍCULOS");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 250, 30));
-
-        btnGuardar.setBackground(new java.awt.Color(51, 255, 51));
-        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setText("Guardar");
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 560, -1, -1));
-
-        btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
-        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 560, -1, -1));
-
-        btnNuevo.setBackground(new java.awt.Color(51, 255, 51));
-        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevo.setText("Nuevo");
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 560, -1, -1));
 
         txtConductor.setEditable(false);
         txtConductor.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
@@ -300,12 +284,97 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(btnCalcularTarifa, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 400, -1, -1));
 
-        btnEliminar.setBackground(new java.awt.Color(51, 255, 51));
+        jPanel2.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnGuardar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        btnGuardar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnGuardar.setText("Guardar");
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 100, 30));
+
+        jPanel3.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, -1, -1));
+
+        jPanel4.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnNuevo.setText("Nuevo");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 490, -1, -1));
+
+        jPanel5.setBackground(new java.awt.Color(255, 51, 51));
+
         btnEliminar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         btnEliminar.setText("Eliminar");
         btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 620, -1, -1));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 550, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -382,11 +451,11 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnActualizar;
+    public javax.swing.JLabel btnActualizar;
     public javax.swing.JButton btnCalcularTarifa;
-    public javax.swing.JButton btnEliminar;
-    public javax.swing.JButton btnGuardar;
-    public javax.swing.JButton btnNuevo;
+    public javax.swing.JLabel btnEliminar;
+    public javax.swing.JLabel btnGuardar;
+    public javax.swing.JLabel btnNuevo;
     public javax.swing.JComboBox<String> cbxDepartamento;
     public javax.swing.JComboBox<String> cbxDistrito;
     public javax.swing.JComboBox<String> cbxProvincia;
@@ -403,6 +472,10 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable tableVehiculo;
     public javax.swing.JTextField txtConductor;

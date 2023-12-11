@@ -7,7 +7,9 @@ package Vista;
 import Controlador.CargoController;
 import Controlador.ConductorController;
 import Controlador.ConsultarConductorController;
+import Controlador.ConsultarEmpresaController;
 import Controlador.ConsultarIngresoController;
+import Controlador.ConsultarUsuarioController;
 import Controlador.ConsultarVehiculoController;
 import Controlador.EmpresaController;
 import Controlador.MetodoPagoController;
@@ -87,9 +89,11 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menuConsultarVehiculos = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuEmpresas = new javax.swing.JMenuItem();
+        menuConsultarEmpresa = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         menuUsuario = new javax.swing.JMenuItem();
         menuCargo = new javax.swing.JMenuItem();
+        menuConsultarUsuario = new javax.swing.JMenuItem();
         menu2 = new javax.swing.JMenu();
         menuCerrar = new javax.swing.JMenuItem();
 
@@ -249,6 +253,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         });
         jMenu5.add(menuEmpresas);
 
+        menuConsultarEmpresa.setText("Consultar Empresas");
+        menuConsultarEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarEmpresaActionPerformed(evt);
+            }
+        });
+        jMenu5.add(menuConsultarEmpresa);
+
         jMenuBar1.add(jMenu5);
 
         jMenu4.setText("Usuarios");
@@ -271,6 +283,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             }
         });
         jMenu4.add(menuCargo);
+
+        menuConsultarUsuario.setText("Consultar Usuarios");
+        menuConsultarUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu4.add(menuConsultarUsuario);
 
         jMenuBar1.add(jMenu4);
 
@@ -449,6 +469,28 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         vista.show();
     }//GEN-LAST:event_menuConsultarVehiculosActionPerformed
 
+    private void menuConsultarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarUsuarioActionPerformed
+        ConsultarUsuarioVista vista = new ConsultarUsuarioVista();
+        try {
+            ConsultarUsuarioController controller = new ConsultarUsuarioController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuConsultarUsuarioActionPerformed
+
+    private void menuConsultarEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarEmpresaActionPerformed
+        ConsultarEmpresaVista vista = new ConsultarEmpresaVista();
+        try {
+            ConsultarEmpresaController controller = new ConsultarEmpresaController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuConsultarEmpresaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -512,7 +554,9 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuConductor;
     private javax.swing.JMenuItem menuConsultarConductor;
+    private javax.swing.JMenuItem menuConsultarEmpresa;
     private javax.swing.JMenuItem menuConsultarIngreso;
+    private javax.swing.JMenuItem menuConsultarUsuario;
     private javax.swing.JMenuItem menuConsultarVehiculos;
     private javax.swing.JMenuItem menuEmpresas;
     private javax.swing.JMenuItem menuEntrada;

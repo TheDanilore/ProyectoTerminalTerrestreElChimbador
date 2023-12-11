@@ -87,7 +87,7 @@ public class TipoVehiculoController implements MouseListener {
     }
 
     public void reporteExcel() {
-        Excel.reporteTipoVehiculo();
+        Excel.reporteTipoVehiculoPago();
     }
 
     public void guardarTipoVehiculo() throws DAOException {

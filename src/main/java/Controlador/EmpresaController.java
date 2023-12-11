@@ -44,11 +44,11 @@ public class EmpresaController implements MouseListener {
         this.vista = v;
         this.manager = manager;
         this.vista.btnListar.addMouseListener(this);
-        this.vista.btnGuardarEmpre.addMouseListener(this);
-        this.vista.btnActualizarEmpre.addMouseListener(this);
-        this.vista.btnDarBajaEmpre.addMouseListener(this);
-        this.vista.btnActivarEmpre.addMouseListener(this);
-        this.vista.btnNuevoEmpre.addMouseListener(this);
+        this.vista.btnGuardar.addMouseListener(this);
+        this.vista.btnActualizar.addMouseListener(this);
+        this.vista.btnDarBaja.addMouseListener(this);
+        this.vista.btnActivar.addMouseListener(this);
+        this.vista.btnNuevo.addMouseListener(this);
         this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableEmpresa.addMouseListener(this);
         LimpiarTable();
@@ -67,35 +67,35 @@ public class EmpresaController implements MouseListener {
                 Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnGuardarEmpre) {
+        if (e.getSource() == vista.btnGuardar) {
             try {
                 guardarEmpresa();
             } catch (DAOException ex) {
                 Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnActualizarEmpre) {
+        if (e.getSource() == vista.btnActualizar) {
             try {
                 actualizarEmpresa();
             } catch (DAOException ex) {
                 Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnDarBajaEmpre) {
+        if (e.getSource() == vista.btnDarBaja) {
             try {
                 bajaEmpresa();
             } catch (DAOException ex) {
                 Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnActivarEmpre) {
+        if (e.getSource() == vista.btnActivar) {
             try {
                 activarEmpresa();
             } catch (DAOException ex) {
                 Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnNuevoEmpre) {
+        if (e.getSource() == vista.btnNuevo) {
             nuevoEmpresa();
         }
         if (e.getSource() == vista.btnExcel1) {
@@ -231,7 +231,12 @@ public class EmpresaController implements MouseListener {
             object[1] = lista.get(i).getRuc();
             object[2] = lista.get(i).getRazon_social();
             object[3] = lista.get(i).getNombre_comercial();
-            object[4] = lista.get(i).getEstado();
+            if (lista.get(i).getEstado()==1) {
+                object[4]="Activa";
+            }
+            if (lista.get(i).getEstado() ==0) {
+                object[4]="Deshabilitada";
+            }
 
             clase.addRow(object);
         }

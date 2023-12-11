@@ -78,6 +78,8 @@ public class PagoIngresoController implements MouseListener {
         this.vista.btnCancelar.addMouseListener(this);
         this.consultarPago.btnExcel1.addMouseListener(this);
         this.consultarPago.tableVehiculo.addMouseListener(this);
+        this.consultarPago.btnActualizar.addMouseListener(this);
+        this.consultarPago.btnNuevo.addMouseListener(this);
         llenarMetodoPago();
         llenarMetodoPagoConsultar();
         listar(consultarPago.tableVehiculo);
@@ -117,6 +119,16 @@ public class PagoIngresoController implements MouseListener {
             consultarPago.txtTipoVehiculo.setText(consultarPago.tableVehiculo.getValueAt(fila, 4).toString());
             consultarPago.txtDestino.setText(consultarPago.tableVehiculo.getValueAt(fila, 5).toString());
             consultarPago.txtMontoPago.setText(consultarPago.tableVehiculo.getValueAt(fila, 7).toString());
+        }
+        if (e.getSource() == consultarPago.btnActualizar) {
+            try {
+                actualizar();
+            } catch (DAOException ex) {
+                Logger.getLogger(PagoIngresoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getSource() == consultarPago.btnNuevo) {
+            nuevo();
         }
     }
 

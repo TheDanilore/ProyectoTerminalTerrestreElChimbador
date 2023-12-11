@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -65,7 +66,7 @@ public class ConsultarConductorController implements MouseListener {
             reporteExcel();
         }
     }
-    
+
     public void reporteExcel() {
         Excel.reporteConductor();
     }
@@ -129,60 +130,67 @@ public class ConsultarConductorController implements MouseListener {
         }
         vista.tableConductor.setModel(clase);
     }
-    
+
     public void ListarByDni(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
         ConductorDAO dao = manager.getConductorDAO();
-        Conductor lista = dao.getByDniConductor(Long.parseLong(vista.txtNumeroDocumento.getText()));
-        Object[] ob = new Object[11];
+        Conductor lista = dao.getByDniConductor(Long.valueOf(vista.txtNumeroDocumento.getText()));
 
-        for (int i = 0; i < 1; i++) {
-            ob[0] = lista.getId_conductor();
-            ob[1] = lista.getPrimer_nombre();
-            ob[2] = lista.getSegundo_nombre();
-            ob[3] = lista.getApellido_paterno();
-            ob[4] = lista.getApellido_materno();
+        if (lista != null) {
+            Object[] ob = new Object[11];
 
-            //ob[5] = lista.get(i).getTipo_documento_identidad();
-            if ("0".equals(lista.getTipo_documento_identidad())) {
-                ob[5] = "OTROS TIPOS DE DOCUMENTOS";
-            }
-            if ("1".equals(lista.getTipo_documento_identidad())) {
-                ob[5] = "DOCUMENTO NACIONAL DE IDENTIDAD (DNI)";
-            }
-            if ("4".equals(lista.getTipo_documento_identidad())) {
-                ob[5] = "CARNET DE EXTRANJERÍA";
-            }
-            if ("6".equals(lista.getTipo_documento_identidad())) {
-                ob[5] = "REGISTRO ÚNICO DE CONTRIBUYENTES";
-            }
-            if ("7".equals(lista.getTipo_documento_identidad())) {
-                ob[5] = "PASAPORTE";
-            }
-            if ("A".equals(lista.getTipo_documento_identidad())) {
-                ob[5] = "CÉDULA DIPLOMÁTICA DE IDENTIDAD";
-            }
+            for (int i = 0; i < 1; i++) {
+                ob[0] = lista.getId_conductor();
+                ob[1] = lista.getPrimer_nombre();
+                ob[2] = lista.getSegundo_nombre();
+                ob[3] = lista.getApellido_paterno();
+                ob[4] = lista.getApellido_materno();
 
-            ob[6] = lista.getNumero_documento();
-            ob[7] = lista.getTelefono();
-            ob[8] = lista.getDireccion();
+                //ob[5] = lista.get(i).getTipo_documento_identidad();
+                if ("0".equals(lista.getTipo_documento_identidad())) {
+                    ob[5] = "OTROS TIPOS DE DOCUMENTOS";
+                }
+                if ("1".equals(lista.getTipo_documento_identidad())) {
+                    ob[5] = "DOCUMENTO NACIONAL DE IDENTIDAD (DNI)";
+                }
+                if ("4".equals(lista.getTipo_documento_identidad())) {
+                    ob[5] = "CARNET DE EXTRANJERÍA";
+                }
+                if ("6".equals(lista.getTipo_documento_identidad())) {
+                    ob[5] = "REGISTRO ÚNICO DE CONTRIBUYENTES";
+                }
+                if ("7".equals(lista.getTipo_documento_identidad())) {
+                    ob[5] = "PASAPORTE";
+                }
+                if ("A".equals(lista.getTipo_documento_identidad())) {
+                    ob[5] = "CÉDULA DIPLOMÁTICA DE IDENTIDAD";
+                }
 
-            ob[9] = lista.getEmpresa();
+                ob[6] = lista.getNumero_documento();
+                ob[7] = lista.getTelefono();
+                ob[8] = lista.getDireccion();
 
-            //ob[10] = lista.get(i).getEstado();
-            //estado
-            if (lista.getEstado() == 1) {
-                ob[10] = "Activo";
+                ob[9] = lista.getEmpresa();
+
+                //ob[10] = lista.get(i).getEstado();
+                //estado
+                if (lista.getEstado() == 1) {
+                    ob[10] = "Activo";
+                }
+                if (lista.getEstado() == 0) {
+                    ob[10] = "Deshabilitado";
+                }
+
+                clase.addRow(ob);
             }
-            if (lista.getEstado() == 0) {
-                ob[10] = "Deshabilitado";
-            }
-
-            clase.addRow(ob);
+            vista.tableConductor.setModel(clase);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese un numero de documento valido");
+            vista.txtNumeroDocumento.setText("");
         }
-        vista.tableConductor.setModel(clase);
+
     }
-    
+
     public void marcaAgua() {
         TextPrompt placa = new TextPrompt("N° de Documento", vista.txtNumeroDocumento);
     }

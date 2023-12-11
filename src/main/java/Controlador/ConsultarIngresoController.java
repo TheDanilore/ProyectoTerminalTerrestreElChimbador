@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -67,13 +68,14 @@ public final class ConsultarIngresoController implements MouseListener {
     public void reporteExcel() {
         Excel.reporteRegistroEntrada();
     }
+
     public void LimpiarTable() {
         for (int i = 0; i < clase.getRowCount(); i++) {
             clase.removeRow(i);
             i = i - 1;
         }
     }
-    
+
     public void listar(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
         RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
@@ -110,31 +112,38 @@ public final class ConsultarIngresoController implements MouseListener {
         RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
         String placa = vista.txtPlaca.getText().toUpperCase();
         List<RegistroEntrada> lista = dao.getByPlaca(placa);
-        Object[] ob = new Object[10];
 
-        for (int i = 0; i < lista.size(); i++) {
-            ob[0] = lista.get(i).getId_registro_entrada();
-            ob[1] = lista.get(i).getDni();
-            ob[2] = lista.get(i).getConductor();
-            ob[3] = lista.get(i).getVehiculo();
-            ob[4] = lista.get(i).getTipo_vehiculo();
-            ob[5] = lista.get(i).getDestino();
-            ob[6] = lista.get(i).getFecha_hora_entrada();
-            ob[7] = lista.get(i).getUsuario();
-            ob[8] = lista.get(i).getPago();
+        if (lista != null) {
+            Object[] ob = new Object[10];
 
-            ob[9] = lista.get(i).getEstado();
-            //estado
-            if (lista.get(i).getEstado() == 1) {
-                ob[9] = "En el Terminal";
+            for (int i = 0; i < lista.size(); i++) {
+                ob[0] = lista.get(i).getId_registro_entrada();
+                ob[1] = lista.get(i).getDni();
+                ob[2] = lista.get(i).getConductor();
+                ob[3] = lista.get(i).getVehiculo();
+                ob[4] = lista.get(i).getTipo_vehiculo();
+                ob[5] = lista.get(i).getDestino();
+                ob[6] = lista.get(i).getFecha_hora_entrada();
+                ob[7] = lista.get(i).getUsuario();
+                ob[8] = lista.get(i).getPago();
+
+                ob[9] = lista.get(i).getEstado();
+                //estado
+                if (lista.get(i).getEstado() == 1) {
+                    ob[9] = "En el Terminal";
+                }
+                if (lista.get(i).getEstado() == 2) {
+                    ob[9] = "Salio del Terminal";
+                }
+
+                clase.addRow(ob);
             }
-            if (lista.get(i).getEstado() == 2) {
-                ob[9] = "Salio del Terminal";
-            }
-
-            clase.addRow(ob);
+            vista.tableVehiculo.setModel(clase);
+        }else{
+            JOptionPane.showMessageDialog(null, "Ingrese una placa valida");
+            vista.txtPlaca.setText("");
         }
-        vista.tableVehiculo.setModel(clase);
+
     }
 
     public void marcaAgua() {

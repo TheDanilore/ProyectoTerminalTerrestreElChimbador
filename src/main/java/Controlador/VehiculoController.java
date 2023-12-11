@@ -43,6 +43,7 @@ public final class VehiculoController implements MouseListener {
         this.vista.btnActivar.addMouseListener(this);
         this.vista.btnDarBaja.addMouseListener(this);
         this.vista.tableVehiculo.addMouseListener(this);
+        this.vista.btnGuardar.addMouseListener(this);
         this.LimpiarTable();
         this.ListarVehiculos(vista.tableVehiculo);
         marcaAgua();
@@ -50,6 +51,13 @@ public final class VehiculoController implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        if (e.getSource() == vista.btnGuardar) {
+            try {
+                guardarVehiculo();
+            } catch (DAOException ex) {
+                Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         if (e.getSource() == vista.btnGuardar) {
             try {
                 guardarVehiculo();

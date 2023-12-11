@@ -41,7 +41,7 @@ public class MetodoPagoController implements MouseListener {
         this.vista.btnGuardar.addMouseListener(this);
         this.vista.btnActualizar.addMouseListener(this);
         this.vista.btnNuevo.addMouseListener(this);
-        this.vista.btnEliminarMetodoPago.addMouseListener(this);
+        this.vista.btnEliminar.addMouseListener(this);
         this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableMetodoPago.addMouseListener(this);
         this.LimpiarTable();
@@ -68,7 +68,7 @@ public class MetodoPagoController implements MouseListener {
         if (e.getSource() == vista.btnNuevo) {
             nuevoMetodoPago();
         }
-        if (e.getSource() == vista.btnEliminarMetodoPago) {
+        if (e.getSource() == vista.btnEliminar) {
             try {
                 eliminarMetodoPago();
             } catch (DAOException ex) {

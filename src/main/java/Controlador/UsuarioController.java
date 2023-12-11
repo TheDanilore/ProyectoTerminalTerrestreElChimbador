@@ -44,12 +44,12 @@ public class UsuarioController implements MouseListener {
     public UsuarioController(UsuariosAdminVista v, DAOManager manager) throws DAOException {
         this.vista = v;
         this.manager = manager;
-        this.vista.btnGuardarUsu.addMouseListener(this);
-        this.vista.btnActualizarUsu.addMouseListener(this);
-        this.vista.btnNuevoUsu.addMouseListener(this);
-        this.vista.btnBajaUsu.addMouseListener(this);
-        this.vista.btnActivarUsu.addMouseListener(this);
-        this.vista.btnExcel.addMouseListener(this);
+        this.vista.btnGuardar.addMouseListener(this);
+        this.vista.btnActualizar.addMouseListener(this);
+        this.vista.btnNuevo.addMouseListener(this);
+        this.vista.btnDarBaja.addMouseListener(this);
+        this.vista.btnActivar.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableUsuario.addMouseListener(this);
         LimpiarTable();
         ListarUsuarios(vista.tableUsuario);
@@ -59,38 +59,38 @@ public class UsuarioController implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
 
-        if (e.getSource() == vista.btnGuardarUsu) {
+        if (e.getSource() == vista.btnGuardar) {
             try {
                 guardarUsuario();
             } catch (DAOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnActualizarUsu) {
+        if (e.getSource() == vista.btnActualizar) {
             try {
                 actualizarUsuario();
             } catch (DAOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnNuevoUsu) {
+        if (e.getSource() == vista.btnNuevo) {
             nuevoUsuario();
         }
-        if (e.getSource() == vista.btnActivarUsu) {
+        if (e.getSource() == vista.btnActivar) {
             try {
                 activarUsuario();
             } catch (DAOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnBajaUsu) {
+        if (e.getSource() == vista.btnDarBaja) {
             try {
                 bajaUsuario();
             } catch (DAOException ex) {
                 Logger.getLogger(UsuarioController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnExcel) {
+        if (e.getSource() == vista.btnExcel1) {
             reporteExcel();
         }
         if (e.getSource() == vista.tableUsuario) {

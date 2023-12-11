@@ -40,13 +40,15 @@ public class PagoIngresoVista extends javax.swing.JFrame {
         txtTipoVehiculo = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
-        btnPago = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         txtDni = new javax.swing.JTextField();
         txtDestino = new javax.swing.JTextField();
-        btnCancelar = new javax.swing.JButton();
         jLabel18 = new javax.swing.JLabel();
         cbxMetodoPago = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        btnPago = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnCancelar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,18 +131,6 @@ public class PagoIngresoVista extends javax.swing.JFrame {
         jLabel22.setText("Lugar de Destino:");
         jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 120, 20));
 
-        btnPago.setBackground(new java.awt.Color(51, 255, 51));
-        btnPago.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnPago.setForeground(new java.awt.Color(255, 255, 255));
-        btnPago.setText("Pago");
-        btnPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPagoActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 390, -1, -1));
-
         jLabel12.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel12.setText("DNI:");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 60, 20));
@@ -170,18 +160,6 @@ public class PagoIngresoVista extends javax.swing.JFrame {
         });
         jPanel1.add(txtDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 340, 20));
 
-        btnCancelar.setBackground(new java.awt.Color(255, 51, 51));
-        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
-        btnCancelar.setText("Cancelar");
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 390, -1, -1));
-
         jLabel18.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel18.setText("Monto Total:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 80, 20));
@@ -193,6 +171,52 @@ public class PagoIngresoVista extends javax.swing.JFrame {
             }
         });
         jPanel1.add(cbxMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 180, -1));
+
+        jPanel2.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnPago.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnPago.setForeground(new java.awt.Color(255, 255, 255));
+        btnPago.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnPago.setText("Pagar");
+        btnPago.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnPago, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 100, 30));
+
+        jPanel5.setBackground(new java.awt.Color(255, 51, 51));
+
+        btnCancelar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnCancelar.setForeground(new java.awt.Color(255, 255, 255));
+        btnCancelar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnCancelar.setText("Cancelar");
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -228,10 +252,6 @@ public class PagoIngresoVista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoVehiculoKeyTyped
 
-    private void btnPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnPagoActionPerformed
-
     private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
 
     }//GEN-LAST:event_txtDniKeyPressed
@@ -243,10 +263,6 @@ public class PagoIngresoVista extends javax.swing.JFrame {
     private void txtDestinoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDestinoKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDestinoKeyTyped
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void cbxMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMetodoPagoActionPerformed
         // TODO add your handling code here:
@@ -289,8 +305,8 @@ public class PagoIngresoVista extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnCancelar;
-    public javax.swing.JButton btnPago;
+    public javax.swing.JLabel btnCancelar;
+    public javax.swing.JLabel btnPago;
     public javax.swing.JComboBox<String> cbxMetodoPago;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -302,6 +318,8 @@ public class PagoIngresoVista extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel5;
     public javax.swing.JTextField txtConductor;
     public javax.swing.JTextField txtDestino;
     public javax.swing.JTextField txtDni;

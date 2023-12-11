@@ -43,7 +43,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class RegistroEntradaController implements MouseListener,ActionListener {
+public class RegistroEntradaController implements MouseListener, ActionListener {
 
     private String departamentoActual;
     private String provinciaActual;
@@ -119,36 +119,41 @@ public class RegistroEntradaController implements MouseListener,ActionListener {
             }
         }
     }
-    
+
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnGuardar) {
-            PagoIngresoVista pagoVista = new PagoIngresoVista();
-            ConsultarPagoVista consultarPago = new ConsultarPagoVista();
-            PagoIngresoController pago = null;
-            try {
-                pago = new PagoIngresoController(pagoVista, consultarPago, manager);
-            } catch (DAOException ex) {
-                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            if (camposValidos()) {
+                PagoIngresoVista pagoVista = new PagoIngresoVista();
+                ConsultarPagoVista consultarPago = new ConsultarPagoVista();
+                PagoIngresoController pago = null;
+                try {
+                    pago = new PagoIngresoController(pagoVista, consultarPago, manager);
+                } catch (DAOException ex) {
+                    Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                // Obtén el texto
+                String dnie = vista.txtDni.getText();
+                String conductore = vista.txtConductor.getText();
+                String placae = vista.txtPlaca.getText();
+                String tipovehiculoe = vista.txtTipoVehiculo.getText();
+                String destinoe = vista.cbxDepartamento.getSelectedItem().toString() + " - " + vista.cbxProvincia.getSelectedItem().toString() + " - "
+                        + vista.cbxDistrito.getSelectedItem().toString();
+
+                String pagoe = vista.txtTarifaPago.getText();
+
+                try {
+                    pago.setTextosEnTextFieldB(dnie, conductore, placae, tipovehiculoe, destinoe, pagoe);
+                } catch (DAOException ex) {
+                    Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                pagoVista.setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(null, "Llene todos los campos");
+                
             }
-
-            // Obtén el texto
-            String dnie = vista.txtDni.getText();
-            String conductore = vista.txtConductor.getText();
-            String placae = vista.txtPlaca.getText();
-            String tipovehiculoe = vista.txtTipoVehiculo.getText();
-            String destinoe = vista.cbxDepartamento.getSelectedItem().toString() + " - " + vista.cbxProvincia.getSelectedItem().toString() + " - "
-                    + vista.cbxDistrito.getSelectedItem().toString();
-
-            String pagoe = vista.txtTarifaPago.getText();
-
-            try {
-                pago.setTextosEnTextFieldB(dnie, conductore, placae, tipovehiculoe, destinoe, pagoe);
-            } catch (DAOException ex) {
-                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            pagoVista.setVisible(true);
 
         }
         if (e.getSource() == vista.btnActualizar) {
@@ -177,8 +182,6 @@ public class RegistroEntradaController implements MouseListener,ActionListener {
             }
         }
 
-        
-        
         if (e.getSource() == vista.btnCalcularTarifa) {
             try {
                 calcularTarifaPago();
@@ -198,7 +201,6 @@ public class RegistroEntradaController implements MouseListener,ActionListener {
         }
 
     }
-
 
     public void actualizar() throws DAOException {
         if ("".equals(vista.txtIdIngresoVehiculo.getText())) {
@@ -565,7 +567,7 @@ public class RegistroEntradaController implements MouseListener,ActionListener {
 
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
-    
+
     public void marcaAgua() {
         TextPrompt dni = new TextPrompt("N° DNI", vista.txtDni);
         TextPrompt conductor = new TextPrompt("Nombre del Conductor", vista.txtConductor);
@@ -577,7 +579,7 @@ public class RegistroEntradaController implements MouseListener,ActionListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        
+
     }
 
     @Override
@@ -594,7 +596,5 @@ public class RegistroEntradaController implements MouseListener,ActionListener {
     public void mouseExited(MouseEvent e) {
 
     }
-
-    
 
 }

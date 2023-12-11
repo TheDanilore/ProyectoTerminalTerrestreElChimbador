@@ -156,7 +156,9 @@ public class ConsultarVehiculoController implements MouseListener,ActionListener
         VehiculoDAO dao = manager.getVehiculoDAO();
         String placa = vista.txtPlaca.getText();
         Vehiculo lista = dao.getByPlacaVehiculo(placa);
-        Object[] ob = new Object[4];
+        
+        if (lista!=null) {
+            Object[] ob = new Object[4];
 
         for (int i = 0; i < 1; i++) {
             ob[0] = lista.getId_vehiculo();
@@ -191,6 +193,9 @@ public class ConsultarVehiculoController implements MouseListener,ActionListener
             clase.addRow(ob);
         }
         vista.tableVehiculo.setModel(clase);
+        }
+        
+        
     }
 
     private void obtenerIdTipoVehiculo() throws DAOException {

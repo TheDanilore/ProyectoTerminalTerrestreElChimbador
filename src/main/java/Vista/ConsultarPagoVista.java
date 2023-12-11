@@ -34,9 +34,6 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
         tableVehiculo = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        btnActualizar = new javax.swing.JButton();
-        btnNuevo = new javax.swing.JButton();
-        btnExcel1 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtConductor = new javax.swing.JTextField();
         txtPlaca = new javax.swing.JTextField();
@@ -51,13 +48,19 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
         txtMontoPago = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
         cbxMetodoPago = new javax.swing.JComboBox<>();
+        jPanel3 = new javax.swing.JPanel();
+        btnActualizar = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        btnNuevo = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        btnExcel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);
         setResizable(true);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(236, 233, 233));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("72", 1, 36)); // NOI18N
@@ -112,25 +115,6 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
         jLabel8.setForeground(new java.awt.Color(51, 153, 0));
         jLabel8.setText("REGISTRA UNA NUEVA SALIDA DE VEHÍCULO");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 350, 30));
-
-        btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
-        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
-        btnActualizar.setText("Actualizar");
-        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 450, -1, -1));
-
-        btnNuevo.setBackground(new java.awt.Color(51, 255, 51));
-        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
-        btnNuevo.setText("Nuevo");
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnNuevo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 450, -1, -1));
-
-        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
-        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcel1.setText("Excel");
-        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 50, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(51, 153, 0));
@@ -232,6 +216,73 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
         });
         jPanel1.add(cbxMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, 180, -1));
 
+        jPanel3.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActualizar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActualizar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnActualizar.setText("Actualizar");
+        btnActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 450, -1, -1));
+
+        jPanel4.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnNuevo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(255, 255, 255));
+        btnNuevo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnNuevo.setText("Nuevo");
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 450, -1, -1));
+
+        jPanel5.setBackground(new java.awt.Color(51, 255, 51));
+
+        btnExcel1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
+        btnExcel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        btnExcel1.setText("Excel");
+        btnExcel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnExcel1, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnExcel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -293,9 +344,9 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btnActualizar;
-    public javax.swing.JButton btnExcel1;
-    public javax.swing.JButton btnNuevo;
+    public javax.swing.JLabel btnActualizar;
+    public javax.swing.JLabel btnExcel1;
+    public javax.swing.JLabel btnNuevo;
     public javax.swing.JComboBox<String> cbxMetodoPago;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -309,6 +360,9 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable tableVehiculo;
     public javax.swing.JTextField txtConductor;

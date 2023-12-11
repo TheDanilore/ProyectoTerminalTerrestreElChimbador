@@ -73,7 +73,7 @@ public class RegistroSalidaVista extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Registro de Ingreso de Vehiculos");
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(236, 233, 233));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("72", 1, 36)); // NOI18N
