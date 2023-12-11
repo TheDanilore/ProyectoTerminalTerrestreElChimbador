@@ -1,7 +1,7 @@
-
 package Controlador;
 
 import Clases.Excel;
+import Clases.TextPrompt;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.TipoVehiculoPagoDAO;
@@ -12,6 +12,8 @@ import Modelo.Vehiculo;
 import Vista.VehiculosAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -24,29 +26,31 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public final class VehiculoController implements ActionListener {
+public final class VehiculoController implements MouseListener {
 
     private DAOManager manager;
-    
+
     Vehiculo modelo = new Vehiculo();
     VehiculosAdminVista vista = new VehiculosAdminVista();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public VehiculoController(VehiculosAdminVista v,DAOManager manager) throws DAOException {
+    public VehiculoController(VehiculosAdminVista v, DAOManager manager) throws DAOException {
         this.vista = v;
-        this.manager=manager;
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnActualizar.addActionListener(this);
-        this.vista.btnNuevo.addActionListener(this);
-        this.vista.btnActivar.addActionListener(this);
-        this.vista.btnDarBaja.addActionListener(this);
-        this.vista.btnExcel1.addActionListener(this);
+        this.manager = manager;
+        this.vista.btnGuardar.addMouseListener(this);
+        this.vista.btnActualizar.addMouseListener(this);
+        this.vista.btnNuevo.addMouseListener(this);
+        this.vista.btnActivar.addMouseListener(this);
+        this.vista.btnDarBaja.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
+        this.vista.tableVehiculo.addMouseListener(this);
         this.LimpiarTable();
         this.ListarVehiculos(vista.tableVehiculo);
+        marcaAgua();
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnGuardar) {
             try {
                 guardarVehiculo();
@@ -81,9 +85,16 @@ public final class VehiculoController implements ActionListener {
         if (e.getSource() == vista.btnExcel1) {
             reporteExcel();
         }
+        if (e.getSource() == vista.tableVehiculo) {
+            int fila = vista.tableVehiculo.rowAtPoint(e.getPoint());
+
+            vista.txtIdVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 0).toString());
+            vista.txtPlacaVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 1).toString());
+            vista.cbxTipoVehiculo.setSelectedItem(vista.tableVehiculo.getValueAt(fila, 2).toString());
+        }
     }
-    
-    public void reporteExcel(){
+
+    public void reporteExcel() {
         Excel.reporteVehiculo();
     }
 
@@ -111,12 +122,12 @@ public final class VehiculoController implements ActionListener {
             //Conexion, consulta con la base de datos
             VehiculoDAO dao = manager.getVehiculoDAO();
             dao.add(modelo);
-            
-                JOptionPane.showMessageDialog(null, "Vehiculo Registrado");
-                LimpiarTable();
-                ListarVehiculos(vista.tableVehiculo);
-                LimpiarVehiculo();
-            
+
+            JOptionPane.showMessageDialog(null, "Vehiculo Registrado");
+            LimpiarTable();
+            ListarVehiculos(vista.tableVehiculo);
+            LimpiarVehiculo();
+
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
         }
@@ -151,12 +162,12 @@ public final class VehiculoController implements ActionListener {
                 //Conexion, consulta con la base de datos
                 VehiculoDAO dao = manager.getVehiculoDAO();
                 dao.update(modelo);
-                
-                    JOptionPane.showMessageDialog(null, "Vehiculo Modificado");
-                    LimpiarTable();
-                    ListarVehiculos(vista.tableVehiculo);
-                    LimpiarVehiculo();
-                
+
+                JOptionPane.showMessageDialog(null, "Vehiculo Modificado");
+                LimpiarTable();
+                ListarVehiculos(vista.tableVehiculo);
+                LimpiarVehiculo();
+
             } else {
                 JOptionPane.showMessageDialog(null, "Rellene todos los campos");
             }
@@ -171,13 +182,12 @@ public final class VehiculoController implements ActionListener {
                 modelo.setEstado(0);
                 VehiculoDAO dao = manager.getVehiculoDAO();
                 dao.disable(modelo);
-                
 
-                    JOptionPane.showMessageDialog(null, "Se dio de baja el Vehiculo");
-                    LimpiarTable();
-                    ListarVehiculos(vista.tableVehiculo);
-                    LimpiarVehiculo();
-                
+                JOptionPane.showMessageDialog(null, "Se dio de baja el Vehiculo");
+                LimpiarTable();
+                ListarVehiculos(vista.tableVehiculo);
+                LimpiarVehiculo();
+
             } else {
                 LimpiarVehiculo();
             }
@@ -195,13 +205,12 @@ public final class VehiculoController implements ActionListener {
                 modelo.setEstado(1);
                 VehiculoDAO dao = manager.getVehiculoDAO();
                 dao.disable(modelo);
-                
 
-                    JOptionPane.showMessageDialog(null, "Se Activo el Vehiculo");
-                    LimpiarTable();
-                    ListarVehiculos(vista.tableVehiculo);
-                    LimpiarVehiculo();
-                
+                JOptionPane.showMessageDialog(null, "Se Activo el Vehiculo");
+                LimpiarTable();
+                ListarVehiculos(vista.tableVehiculo);
+                LimpiarVehiculo();
+
             } else {
                 LimpiarVehiculo();
             }
@@ -224,7 +233,7 @@ public final class VehiculoController implements ActionListener {
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_vehiculo();
             ob[1] = lista.get(i).getPlaca_vehiculo();
-            ob[2] = lista.get(i).getTipo_vehiculo();
+            //ob[2] = lista.get(i).getTipo_vehiculo();
 
             if (lista.get(i).getTipo_vehiculo() == 1) {
                 ob[2] = "Bus de Transporte";
@@ -242,7 +251,7 @@ public final class VehiculoController implements ActionListener {
                 ob[2] = "Otro Vehiculo";
             }
 
-            ob[3] = lista.get(i).getEstado();
+            //ob[3] = lista.get(i).getEstado();
             //estado
             if (lista.get(i).getEstado() == 1) {
                 ob[3] = "Activo";
@@ -275,22 +284,45 @@ public final class VehiculoController implements ActionListener {
         return !vista.txtPlacaVehiculo.getText().isEmpty()
                 && vista.cbxTipoVehiculo.getSelectedItem() != null;
     }
-    
-    private void llenarTipoVehiculo() throws DAOException{
+
+    private void llenarTipoVehiculo() throws DAOException {
         TipoVehiculoPagoDAO dao = manager.getTipoVehiculoPagoDAO();
-        
+
         ArrayList<TipoVehiculoPago> lista = (ArrayList<TipoVehiculoPago>) dao.listAll();
-        
-        
+
         //int idselect = 1;
         vista.cbxTipoVehiculo.removeAllItems();
-        
-        
+
         for (int i = 0; i < lista.size(); i++) {
             vista.cbxTipoVehiculo.addItem(lista.get(i).getDescripcion());
         }
-        
+
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
+    }
+
+    public void marcaAgua() {
+        TextPrompt placa = new TextPrompt("N° PLACA", vista.txtPlacaVehiculo);
+        
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
 }

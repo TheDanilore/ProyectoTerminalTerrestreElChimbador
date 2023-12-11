@@ -5,6 +5,7 @@
 package Controlador;
 
 import Clases.Excel;
+import Clases.TextPrompt;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.TipoVehiculoPagoDAO;
@@ -43,6 +44,7 @@ public class TipoVehiculoController implements MouseListener {
         this.vista.tableTipoVehiculo.addMouseListener(this);
         this.LimpiarTable();
         this.ListarTipoVehiculo(vista.tableTipoVehiculo);
+        marcaAgua();
     }
 
     @Override
@@ -190,8 +192,9 @@ public class TipoVehiculoController implements MouseListener {
         return !vista.txtDescripcion.getText().isEmpty();
     }
 
-    public void TableTxt() {
-
+    public void marcaAgua() {
+        TextPrompt descripcion = new TextPrompt("Tipo de Vehiculo", vista.txtDescripcion);
+        TextPrompt tarifa = new TextPrompt("Tarifa de Pago", vista.txtTarifa);
     }
 
     @Override

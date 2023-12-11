@@ -131,6 +131,7 @@ Modelo\Vehiculo.class
 Vista\PrincipalAdmin$6.class
 Vista\ConductorVista$4.class
 Vista\PrincipalUsuario$4.class
+Clases\ValidarPlaca.class
 Vista\PagoIngreso$4.class
 DAO\mysql\MySQLUsuarioDAO.class
 Vista\EmpresasAdminVista$2.class

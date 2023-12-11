@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.TextPrompt;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.UsuarioDAO;
@@ -41,6 +42,7 @@ public class UsuarioControlador implements MouseListener {
         this.vista = v;
         this.vista.lblLogin.addMouseListener(this);
         recuperarContraseña();
+        marcaAgua();
     }
 
     @Override
@@ -151,6 +153,11 @@ public class UsuarioControlador implements MouseListener {
             vista.txtPassword.setText(savedPassword);
             vista.jCheckBox1.setSelected(true); // Marcar el checkbox si se encuentra una contraseña guardada
         }
+    }
+    
+    public void marcaAgua() {
+        TextPrompt usuario = new TextPrompt("Username", vista.txtUser);
+        TextPrompt contra = new TextPrompt("Contraseña", vista.txtPassword);
     }
 
     @Override

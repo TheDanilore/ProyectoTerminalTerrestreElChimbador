@@ -27,16 +27,13 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
         this.conn = conn;
     }
 
-    public MySQLVehiculoDAO() {
-    }
-    
     
     PreparedStatement ps;
     ResultSet rs;
     
     @Override
     public void add(Vehiculo obj) throws DAOException{
-        String sql = "INSERT INTO vehiculo (placa_vehiculo,id_tipo_vehiculo,id_estado) VALUES (?,?,?)";
+        String sql = "INSERT INTO vehiculo (placa_vehiculo,id_tipo_vehiculo_pago,id_estado) VALUES (?,?,?)";
         
         try{
             ps=conn.prepareStatement(sql);
@@ -74,7 +71,7 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
                 Vehiculo vehiculoModelo = new Vehiculo();
                 vehiculoModelo.setId_vehiculo(rs.getInt("id_vehiculo"));
                 vehiculoModelo.setPlaca_vehiculo(rs.getString("placa_vehiculo"));
-                vehiculoModelo.setTipo_vehiculo(rs.getInt("id_tipo_vehiculo"));
+                vehiculoModelo.setTipo_vehiculo(rs.getInt("id_tipo_vehiculo_pago"));
                 vehiculoModelo.setEstado(rs.getInt("id_estado"));
                 lista.add(vehiculoModelo);
             }
@@ -105,7 +102,7 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
     
     @Override
     public void disable(Vehiculo obj) throws DAOException{
-        String sql = "UPDATE vehiculo SET id_estado = ? WHERE id_vehiculo = ?;";
+        String sql = "UPDATE vehiculo SET id_estado = ? WHERE id_tipo_vehiculo_pago = ?;";
         try {
             ps = conn.prepareStatement(sql);
             ps.setInt(1, obj.getEstado());
@@ -132,7 +129,7 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
     
     @Override
     public void update(Vehiculo obj) throws DAOException{
-        String sql="UPDATE vehiculo SET placa_vehiculo=?, id_tipo_vehiculo=? WHERE id_vehiculo=?";
+        String sql="UPDATE vehiculo SET placa_vehiculo=?, id_tipo_vehiculo=? WHERE id_tipo_vehiculo_pago=?";
         try{
             ps=conn.prepareStatement(sql);
             ps.setString(1, obj.getPlaca_vehiculo());
@@ -169,7 +166,7 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
             if(rs.next()){
                 obj.setId_vehiculo(rs.getInt("id_vehiculo"));
                 obj.setPlaca_vehiculo(rs.getString("placa_vehiculo"));
-                obj.setTipo_vehiculo(rs.getInt("tipo_vehiculo"));
+                obj.setTipo_vehiculo(rs.getInt("id_tipo_vehiculo_pago"));
                 obj.setEstado(rs.getInt("id_estado"));
             }
         }catch (SQLException e) {
@@ -208,7 +205,7 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
             if (rs.next()) {
                 vehiculo.setId_vehiculo(rs.getInt("id_vehiculo"));
                 vehiculo.setPlaca_vehiculo(rs.getString("placa_vehiculo"));
-                vehiculo.setTipo_vehiculo(rs.getInt("id_tipo_vehiculo"));
+                vehiculo.setTipo_vehiculo(rs.getInt("id_tipo_vehiculo_pago"));
                 vehiculo.setEstado(rs.getInt("id_estado"));
             }
         } catch (SQLException e) {

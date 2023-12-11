@@ -5,6 +5,8 @@
 package Vista;
 
 import Clases.Evento;
+import Clases.ValidarPlaca;
+import javax.swing.text.AbstractDocument;
 
 /**
  *
@@ -12,10 +14,11 @@ import Clases.Evento;
  */
 public class VehiculosAdminVista extends javax.swing.JInternalFrame {
 
-    Evento event = new Evento();
+    
 
     public VehiculosAdminVista() {
         initComponents();
+        
 
     }
 
@@ -186,15 +189,11 @@ public class VehiculosAdminVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPlacaVehiculoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaVehiculoKeyTyped
-
+        
     }//GEN-LAST:event_txtPlacaVehiculoKeyTyped
 
     private void tableVehiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableVehiculoMouseClicked
-        int fila = tableVehiculo.rowAtPoint(evt.getPoint());
-
-        txtIdVehiculo.setText(tableVehiculo.getValueAt(fila, 0).toString());
-        txtPlacaVehiculo.setText(tableVehiculo.getValueAt(fila, 1).toString());
-        cbxTipoVehiculo.setSelectedItem(tableVehiculo.getValueAt(fila, 2).toString());
+        
     }//GEN-LAST:event_tableVehiculoMouseClicked
 
     private void cbxTipoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoVehiculoActionPerformed

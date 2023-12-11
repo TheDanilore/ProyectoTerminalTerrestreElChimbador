@@ -242,13 +242,6 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtContraUsuarioKeyTyped
 
     private void tableUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableUsuarioMouseClicked
-        int fila = tableUsuario.rowAtPoint(evt.getPoint());
-
-        txtIdUsuario.setText(tableUsuario.getValueAt(fila, 0).toString());
-        txtNombreUsuario.setText(tableUsuario.getValueAt(fila, 1).toString());
-        txtUsernameUsuario.setText(tableUsuario.getValueAt(fila, 2).toString());
-        txtContraUsuario.setText(tableUsuario.getValueAt(fila, 3).toString());
-        cbxRolUser.setSelectedItem(tableUsuario.getValueAt(fila, 4).toString());// Falta Implementar. si es 1 es admin, 2 vigilante de garita
         
         
     }//GEN-LAST:event_tableUsuarioMouseClicked

@@ -8,6 +8,7 @@ import javax.swing.JTextField;
  * @author windows2020
  */
 public class Evento {
+
     public void textKeyPress(KeyEvent evt) {
 // declaramos una variable y le asignamos un evento
         char car = evt.getKeyChar();
@@ -16,7 +17,7 @@ public class Evento {
             evt.consume();
         }
     }
- 
+
     public void numberKeyPress(KeyEvent evt) {
 // declaramos una variable y le asignamos un evento
         char car = evt.getKeyChar();
@@ -24,7 +25,7 @@ public class Evento {
             evt.consume();
         }
     }
- 
+
     public void numberDecimalKeyPress(KeyEvent evt, JTextField textField) {
 // declaramos una variable y le asignamos un evento
         char car = evt.getKeyChar();
@@ -34,4 +35,6 @@ public class Evento {
             evt.consume();
         }
     }
+
+
 }

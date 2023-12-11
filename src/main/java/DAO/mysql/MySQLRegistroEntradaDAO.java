@@ -171,5 +171,52 @@ public class MySQLRegistroEntradaDAO implements RegistroEntradaDAO{
     public RegistroEntrada getById(Integer id) throws DAOException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    @Override
+    public List<RegistroEntrada> getByPlaca(String placa) throws DAOException {
+        List<RegistroEntrada> lista= new ArrayList();
+        String sql = "SELECT * FROM registro_entrada WHERE placa=?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, placa);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                RegistroEntrada registroEntrada = new RegistroEntrada();
+                registroEntrada.setId_registro_entrada(rs.getInt("id_registro_entrada"));
+                registroEntrada.setDni(rs.getLong("dni_conductor"));
+                registroEntrada.setConductor(rs.getString("conductor"));
+                registroEntrada.setVehiculo(rs.getString("placa"));
+                registroEntrada.setTipo_vehiculo(rs.getString("tipo_vehiculo"));
+                registroEntrada.setDestino(rs.getString("destino"));
+                registroEntrada.setFecha_hora_entrada(rs.getString("fecha_hora_entrada"));
+                registroEntrada.setUsuario(rs.getString("usuario"));
+                registroEntrada.setPago(rs.getDouble("pago"));
+                registroEntrada.setEstado(rs.getInt("id_estado_terminal"));
+                lista.add(registroEntrada);
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+        }
+        return lista;
+    }
     
 }

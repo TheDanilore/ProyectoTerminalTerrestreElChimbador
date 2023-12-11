@@ -218,6 +218,7 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
             ps.setInt(1, ID);
             rs = ps.executeQuery();
             if (rs.next()) {
+                usuarioModelo.setId_usuarios(rs.getInt("id_usuarios"));
                 usuarioModelo.setNombres(rs.getString("nombres_usuario"));
                 usuarioModelo.setUsuario(rs.getString("usuario"));
                 usuarioModelo.setContra_usuarios(rs.getString("contra_usuarios"));

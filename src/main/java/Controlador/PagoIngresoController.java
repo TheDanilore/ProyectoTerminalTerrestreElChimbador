@@ -81,6 +81,7 @@ public class PagoIngresoController implements MouseListener {
         llenarMetodoPago();
         llenarMetodoPagoConsultar();
         listar(consultarPago.tableVehiculo);
+        
     }
 
     @Override

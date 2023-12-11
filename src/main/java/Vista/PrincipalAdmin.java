@@ -6,6 +6,7 @@ package Vista;
 
 import Controlador.CargoController;
 import Controlador.ConductorController;
+import Controlador.ConsultarIngresoController;
 import Controlador.EmpresaController;
 import Controlador.MetodoPagoController;
 import Controlador.PagoIngresoController;
@@ -395,10 +396,15 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuCerrarActionPerformed
 
     private void menuConsultarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarIngresoActionPerformed
-        ConsultarEntrada consultar = new ConsultarEntrada();
 
-        escritorio.add(consultar);
-        consultar.show();
+        ConsultarEntrada vista = new ConsultarEntrada();
+        try {
+            ConsultarIngresoController controller = new ConsultarIngresoController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
     }//GEN-LAST:event_menuConsultarIngresoActionPerformed
 
     /**

@@ -5,6 +5,7 @@
 package Controlador;
 
 import Clases.Excel;
+import Clases.TextPrompt;
 import DAO.ConductorDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -77,6 +78,7 @@ public class RegistroEntradaController implements MouseListener {
         this.vista.tableVehiculo.addMouseListener(this);
         this.LimpiarTable();
         this.listar(vista.tableVehiculo);
+        marcaAgua();
     }
 
     @Override
@@ -563,6 +565,15 @@ public class RegistroEntradaController implements MouseListener {
         }
 
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
+    }
+    
+    public void marcaAgua() {
+        TextPrompt dni = new TextPrompt("N° DNI", vista.txtDni);
+        TextPrompt conductor = new TextPrompt("Nombre del Conductor", vista.txtConductor);
+        TextPrompt placa = new TextPrompt("N° Placa", vista.txtPlaca);
+        TextPrompt idTipoVehiculo = new TextPrompt("ID tipo", vista.txtIdTipoVehiculo);
+        TextPrompt tipoVehiculo = new TextPrompt("Tipo de Vehiculo", vista.txtTipoVehiculo);
+        TextPrompt tarifa = new TextPrompt("Tarifa a calcular", vista.txtTarifaPago);
     }
 
     @Override

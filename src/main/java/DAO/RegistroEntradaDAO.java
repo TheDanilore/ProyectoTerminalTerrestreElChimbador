@@ -5,11 +5,12 @@
 package DAO;
 
 import Modelo.RegistroEntrada;
+import java.util.List;
 
 /**
  *
  * @author Danilore
  */
 public interface RegistroEntradaDAO extends CrudDeleteDAO<RegistroEntrada,Integer>  {
-    
+    public List<RegistroEntrada> getByPlaca(String placa) throws DAOException;
 }

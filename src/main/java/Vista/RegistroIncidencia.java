@@ -1,6 +1,6 @@
-
 package Vista;
 
+import Clases.TextPrompt;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,37 +26,34 @@ public class RegistroIncidencia extends javax.swing.JInternalFrame {
     private Session mSession;
     private MimeMessage mCorreo;
 
-    
     public RegistroIncidencia() {
         initComponents();
         mProperties = new Properties();
     }
 
-     private void createEmail() {
+    private void createEmail() {
         emailTo = txtTo.getText().trim();
         subject = txtSubject.getText().trim();
         content = txtContent.getText().trim();
-        
-         // Simple mail transfer protocol
+
+        // Simple mail transfer protocol
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
         mProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
         mProperties.setProperty("mail.smtp.starttls.enable", "true");
         mProperties.setProperty("mail.smtp.port", "587");
-        mProperties.setProperty("mail.smtp.user",emailFrom);
+        mProperties.setProperty("mail.smtp.user", emailFrom);
         mProperties.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
         mProperties.setProperty("mail.smtp.auth", "true");
-        
+
         mSession = Session.getDefaultInstance(mProperties);
-        
-        
+
         try {
             mCorreo = new MimeMessage(mSession);
             mCorreo.setFrom(new InternetAddress(emailFrom));
             mCorreo.setRecipient(Message.RecipientType.TO, new InternetAddress(emailTo));
             mCorreo.setSubject(subject);
             mCorreo.setText(content, "ISO-8859-1", "html");
-                     
-            
+
         } catch (AddressException ex) {
             Logger.getLogger(RegistroIncidencia.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
@@ -70,7 +67,7 @@ public class RegistroIncidencia extends javax.swing.JInternalFrame {
             mTransport.connect(emailFrom, passwordFrom);
             mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
             mTransport.close();
-            
+
             JOptionPane.showMessageDialog(null, "Correo enviado");
         } catch (NoSuchProviderException ex) {
             Logger.getLogger(RegistroIncidencia.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,7 +75,7 @@ public class RegistroIncidencia extends javax.swing.JInternalFrame {
             Logger.getLogger(RegistroIncidencia.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -212,11 +209,7 @@ public class RegistroIncidencia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSubjectActionPerformed
 
-    
-    
-    
-    
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSendEmail;
     private javax.swing.JLabel jLabel1;
@@ -229,4 +222,10 @@ public class RegistroIncidencia extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtSubject;
     private javax.swing.JTextField txtTo;
     // End of variables declaration//GEN-END:variables
+
+    public void marcaAgua() {
+        TextPrompt para = new TextPrompt("ejemplo@gmail", txtTo);
+        TextPrompt asunto = new TextPrompt("Incidencia a Tratar", txtSubject);
+        TextPrompt contenido = new TextPrompt("Contenido de la incidencia a tratar", txtContent);
+    }
 }
