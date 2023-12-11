@@ -38,7 +38,7 @@ public class MySQLConductorDAO implements ConductorDAO {
     @Override
     public void add(Conductor obj) throws DAOException {
         String sql = "INSERT INTO conductor (primer_nombre, segundo_nombre, apellido_paterno, apellido_materno, "
-                + "id_tipo_documento_identidad, numero_documento, telefono, direccion, ruc_empresa) VALUES (?,?,?,?,?,?,?,?,?)";
+                + "id_tipo_documento_identidad, numero_documento, telefono, direccion, ruc_empresa,id_estado) VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         try {
             ps = conn.prepareStatement(sql);
@@ -51,6 +51,7 @@ public class MySQLConductorDAO implements ConductorDAO {
             ps.setInt(7, obj.getTelefono());
             ps.setString(8, obj.getDireccion());
             ps.setLong(9, obj.getEmpresa());
+            ps.setInt(10, 1);
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }

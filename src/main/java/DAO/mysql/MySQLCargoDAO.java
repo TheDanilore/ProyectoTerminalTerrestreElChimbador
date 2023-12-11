@@ -33,12 +33,12 @@ public class MySQLCargoDAO implements CargoDAO {
 
     @Override
     public void add(Cargo obj) throws DAOException {
-        String sql = "INSERT INTO cargo (descripcion) VALUES (?)";
+        String sql = "INSERT INTO cargo (descripcion,id_estado) VALUES (?,?)";
 
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, obj.getDescripcion());
-
+            ps.setInt(2, 1);
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }
@@ -87,11 +87,6 @@ public class MySQLCargoDAO implements CargoDAO {
     }
 
     @Override
-    public void delete(Integer id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public List<Cargo> listAll() throws DAOException {
         List<Cargo> lista = new ArrayList();
         String sql = "SELECT * FROM cargo";
@@ -102,7 +97,7 @@ public class MySQLCargoDAO implements CargoDAO {
                 Cargo cargo = new Cargo();
                 cargo.setId_cargo(rs.getInt("id_cargo"));
                 cargo.setDescripcion(rs.getString("descripcion"));
-
+                cargo.setId_estado(rs.getInt("id_estado"));
                 lista.add(cargo);
             }
         } catch (SQLException e) {
@@ -149,7 +144,68 @@ public class MySQLCargoDAO implements CargoDAO {
 
     @Override
     public Cargo getById(Integer id) throws DAOException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Cargo cargo = new Cargo();
+        String sql = "SELECT * FROM cargo WHERE id_cargo=?";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                cargo.setId_cargo(rs.getInt("id_cargo"));
+                cargo.setDescripcion(rs.getString("descripcion"));
+                cargo.setId_estado(rs.getInt("id_estado"));
+            }
+        } catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+
+        }
+        return cargo;
+    }
+
+    @Override
+    public void disable(Cargo obj) throws DAOException {
+        String sql = "UPDATE cargo SET id_estado = ? WHERE id_cargo = ?;";
+        try {
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, obj.getId_estado());
+            ps.setInt(2, obj.getId_cargo());
+            if (ps.executeUpdate() == 0) {
+                throw new DAOException("Puede que no se haya guardado");
+            }
+
+        } catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+
+        } finally {
+
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+
+        }
     }
 
 }

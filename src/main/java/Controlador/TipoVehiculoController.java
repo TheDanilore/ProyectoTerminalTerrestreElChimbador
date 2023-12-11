@@ -7,12 +7,13 @@ package Controlador;
 import Clases.Excel;
 import DAO.DAOException;
 import DAO.DAOManager;
-import DAO.TipoVehiculoDAO;
-import DAO.mysql.MySQLTipoVehiculoDAO;
-import Modelo.TipoVehiculo;
+import DAO.TipoVehiculoPagoDAO;
+import Modelo.TipoVehiculoPago;
 import Vista.TipoVehiculoVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,27 +25,28 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class TipoVehiculoController implements ActionListener {
+public class TipoVehiculoController implements MouseListener {
 
     private DAOManager manager;
-    
+
     TipoVehiculoVista vista = new TipoVehiculoVista();
-    TipoVehiculo modelo = new TipoVehiculo();
+    TipoVehiculoPago modelo = new TipoVehiculoPago();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public TipoVehiculoController(TipoVehiculoVista v,DAOManager manager) throws DAOException {
+    public TipoVehiculoController(TipoVehiculoVista v, DAOManager manager) throws DAOException {
         this.vista = v;
-        this.manager=manager;
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnActualizar.addActionListener(this);
-        this.vista.btnNuevo.addActionListener(this);
-        this.vista.btnExcel1.addActionListener(this);
+        this.manager = manager;
+        this.vista.btnGuardar.addMouseListener(this);
+        this.vista.btnActualizar.addMouseListener(this);
+        this.vista.btnNuevo.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
+        this.vista.tableTipoVehiculo.addMouseListener(this);
         this.LimpiarTable();
         this.ListarTipoVehiculo(vista.tableTipoVehiculo);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnGuardar) {
             try {
                 guardarTipoVehiculo();
@@ -72,9 +74,17 @@ public class TipoVehiculoController implements ActionListener {
         if (e.getSource() == vista.btnExcel1) {
             reporteExcel();
         }
+
+        if (e.getSource() == vista.tableTipoVehiculo) {
+            int fila = vista.tableTipoVehiculo.rowAtPoint(e.getPoint());
+
+            vista.txtIdTipoVehiculo.setText(vista.tableTipoVehiculo.getValueAt(fila, 0).toString());
+            vista.txtDescripcion.setText(vista.tableTipoVehiculo.getValueAt(fila, 1).toString());
+            vista.txtTarifa.setText(vista.tableTipoVehiculo.getValueAt(fila, 2).toString());
+        }
     }
-    
-    public void reporteExcel(){
+
+    public void reporteExcel() {
         Excel.reporteTipoVehiculo();
     }
 
@@ -84,7 +94,7 @@ public class TipoVehiculoController implements ActionListener {
             modelo.setDescripcion(vista.txtDescripcion.getText());
 
             //Conexion, consulta con la base de datos
-            TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
+            TipoVehiculoPagoDAO dao = manager.getTipoVehiculoPagoDAO();
             dao.add(modelo);
 
             JOptionPane.showMessageDialog(null, "Tipo de Vehículo Registrado");
@@ -102,11 +112,12 @@ public class TipoVehiculoController implements ActionListener {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
             if (camposValidos()) {
-                modelo.setId_tipo_vehiculo(Integer.parseInt(vista.txtIdTipoVehiculo.getText()));
+                modelo.setId_tipo_vehiculo_pago(Integer.parseInt(vista.txtIdTipoVehiculo.getText()));
                 modelo.setDescripcion(vista.txtDescripcion.getText());
+                modelo.setTarifa(Double.parseDouble(vista.txtTarifa.getText()));
 
                 //Conexion, consulta con la base de datos
-                TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
+                TipoVehiculoPagoDAO dao = manager.getTipoVehiculoPagoDAO();
                 dao.update(modelo);
 
                 JOptionPane.showMessageDialog(null, "Tipo de Vehículo Modificado");
@@ -128,15 +139,14 @@ public class TipoVehiculoController implements ActionListener {
             if (pregunta == 0) {
                 int ID = Integer.parseInt(vista.txtIdTipoVehiculo.getText());
 
-                TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
+                TipoVehiculoPagoDAO dao = manager.getTipoVehiculoPagoDAO();
                 dao.delete(ID);
-                
 
-                    JOptionPane.showMessageDialog(null, "Se borro el Tipo de Vehículo");
-                    LimpiarTable();
-                    ListarTipoVehiculo(vista.tableTipoVehiculo);
-                    LimpiarTipoVehiculo();
-                
+                JOptionPane.showMessageDialog(null, "Se borro el Tipo de Vehículo");
+                LimpiarTable();
+                ListarTipoVehiculo(vista.tableTipoVehiculo);
+                LimpiarTipoVehiculo();
+
             } else {
                 LimpiarTipoVehiculo();
             }
@@ -151,14 +161,14 @@ public class TipoVehiculoController implements ActionListener {
 
     public void ListarTipoVehiculo(JTable tabla) throws DAOException {
         clase = (DefaultTableModel) tabla.getModel();
-        TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
-        List<TipoVehiculo> lista = dao.listAll();
-        Object[] ob = new Object[2];
+        TipoVehiculoPagoDAO dao = manager.getTipoVehiculoPagoDAO();
+        List<TipoVehiculoPago> lista = dao.listAll();
+        Object[] ob = new Object[3];
 
         for (int i = 0; i < lista.size(); i++) {
-            ob[0] = lista.get(i).getId_tipo_vehiculo();
+            ob[0] = lista.get(i).getId_tipo_vehiculo_pago();
             ob[1] = lista.get(i).getDescripcion();
-
+            ob[2] = lista.get(i).getTarifa();
             clase.addRow(ob);
         }
         vista.tableTipoVehiculo.setModel(clase);
@@ -178,5 +188,29 @@ public class TipoVehiculoController implements ActionListener {
 
     public boolean camposValidos() {
         return !vista.txtDescripcion.getText().isEmpty();
+    }
+
+    public void TableTxt() {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }

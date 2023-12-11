@@ -930,7 +930,9 @@ public class Excel {
         } catch (IOException | SQLException ex) {
             Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
+    
     public static void reporteRegistroEntrada(){
         //Crear un nuevo libro de trabajo en formato XLSX (XSSFWorkbook) 2007 hasta la actualidad
         // (Se guarda en memoria)
@@ -1336,6 +1338,299 @@ public class Excel {
             Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public static void reportePago(){
+        //Crear un nuevo libro de trabajo en formato XLSX (XSSFWorkbook) 2007 hasta la actualidad
+        // (Se guarda en memoria)
+        Workbook libro = new XSSFWorkbook();
 
+        
+        //Crear un nuevo libro de trabajo en formato XLS (HSSFWorkbook) 2003 para atras
+        //Workbook libro = new HSSFWorkbook();
+        
+        
+        // Crear una hoja en el libro
+        Sheet hoja = libro.createSheet("Cargo");
+
+        // Crear una fila en la hoja
+        /*Row cabecera = hoja.createRow(2);
+
+        // Crear las columnnas, una celda en la fila
+        Cell departamento = cabecera.createCell(1);
+        Cell poblacion = cabecera.createCell(2);
+        Cell codigo = cabecera.createCell(3);
+        
+        departamento.setCellValue("Departamentos");
+        poblacion.setCellValue("Poblacion Estimada");
+        codigo.setCellValue("Codigo");
+
+        */
+
+        // Escribir el libro en un archivo (Exportar al equipo)
+        try (FileOutputStream archivo = new FileOutputStream("src\\main\\java\\Reportes\\reporte-pago.xlsx")) {
+            
+            //Agregando la imagen a Excel
+            InputStream is = new FileInputStream("src\\main\\java\\Imagenes\\utp.png");
+            byte[] bytes = IOUtils.toByteArray(is);
+            int imgIndex = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+            is.close();
+            
+            CreationHelper help = libro.getCreationHelper();
+            Drawing draw = hoja.createDrawingPatriarch();
+ 
+            ClientAnchor anchor = help.createClientAnchor();
+            anchor.setCol1(0);
+            anchor.setRow1(1);
+            Picture pict = draw.createPicture(anchor, imgIndex);
+            pict.resize(1, 3);
+            
+            CellStyle tituloEstilo = libro.createCellStyle();
+            tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
+            tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
+            Font fuenteTitulo = libro.createFont();
+            fuenteTitulo.setFontName("Arial");
+            fuenteTitulo.setBold(true);
+            fuenteTitulo.setFontHeightInPoints((short) 14);
+            tituloEstilo.setFont(fuenteTitulo);
+            
+            Row filaTitulo = hoja.createRow(1);
+            Cell celdaTitulo = filaTitulo.createCell(1);
+            celdaTitulo.setCellStyle(tituloEstilo);
+            celdaTitulo.setCellValue("Sistema de Registro de Ingreso Y Salidas del Terminal Terrestre El Chimbador");
+            
+            Row filaSubTitulo = hoja.createRow(3);
+            Cell celdaSubTitulo = filaSubTitulo.createCell(1);
+            celdaSubTitulo.setCellStyle(tituloEstilo);
+            celdaSubTitulo.setCellValue("Reporte de Pago");
+            
+            hoja.addMergedRegion(new CellRangeAddress(1, 2, 1, 10));
+ 
+            String[] cabecera = new String[]{"Código", "Dni","Conductor","Placa","Tipo Vehiculo","Destino","Fecha Pago","Monto","Tipo de Pago"};
+            
+            CellStyle headerStyle = libro.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            headerStyle.setBorderBottom(BorderStyle.THIN);
+            headerStyle.setBorderLeft(BorderStyle.THIN);
+            headerStyle.setBorderRight(BorderStyle.THIN);
+            headerStyle.setBorderBottom(BorderStyle.THIN);
+ 
+            Font font = libro.createFont();
+            font.setFontName("Arial");
+            font.setBold(true);
+            font.setColor(IndexedColors.WHITE.getIndex());
+            font.setFontHeightInPoints((short) 12);
+            headerStyle.setFont(font);
+            
+            Row filaEncabezados = hoja.createRow(6);
+ 
+            for (int i = 0; i < cabecera.length; i++) {
+                Cell celdaEnzabezado = filaEncabezados.createCell(i);
+                celdaEnzabezado.setCellStyle(headerStyle);
+                celdaEnzabezado.setCellValue(cabecera[i]);
+            }
+            
+            //Conexion con la base de datos
+            Conexion con = new Conexion();
+            PreparedStatement ps;
+            ResultSet rs;
+            Connection conn = con.getConnection();
+ 
+            int numFilaDatos = 7;
+            
+            CellStyle datosEstilo = libro.createCellStyle();
+            datosEstilo.setBorderBottom(BorderStyle.THIN);
+            datosEstilo.setBorderLeft(BorderStyle.THIN);
+            datosEstilo.setBorderRight(BorderStyle.THIN);
+            datosEstilo.setBorderBottom(BorderStyle.THIN);
+ 
+            ps = conn.prepareStatement("SELECT id_pago, dni_conductor,conductor,placa,tipo_vehiculo,destino,fecha_pago,monto,id_metodo_pago FROM pago");
+            rs = ps.executeQuery();
+ 
+            int numCol = rs.getMetaData().getColumnCount();
+ 
+            while (rs.next()) {
+                Row filaDatos = hoja.createRow(numFilaDatos);
+ 
+                for (int a = 0; a < numCol; a++) {
+ 
+                    Cell CeldaDatos = filaDatos.createCell(a);
+                    CeldaDatos.setCellStyle(datosEstilo);
+                    CeldaDatos.setCellValue(rs.getString(a + 1));
+                }
+ 
+ 
+                numFilaDatos++;
+            }
+            hoja.autoSizeColumn(0);
+            hoja.autoSizeColumn(1);
+            hoja.autoSizeColumn(2);
+            hoja.autoSizeColumn(3);
+            hoja.autoSizeColumn(4);
+            
+            hoja.setZoom(110);
+            String fileName = "Cargo";
+            String home = System.getProperty("user.home");
+            File file = new File("src\\main\\java\\Reportes\\" + fileName + ".xlsx");
+            FileOutputStream fileOut = new FileOutputStream(file);
+            libro.write(fileOut);
+            fileOut.close();
+            Desktop.getDesktop().open(file);
+            JOptionPane.showMessageDialog(null, "Reporte Generado");
+            
+            //libro.write(archivo);
+        }  catch (FileNotFoundException ex) {
+            Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+public static void reporteMetodoPago(){
+        //Crear un nuevo libro de trabajo en formato XLSX (XSSFWorkbook) 2007 hasta la actualidad
+        // (Se guarda en memoria)
+        Workbook libro = new XSSFWorkbook();
+
+        
+        //Crear un nuevo libro de trabajo en formato XLS (HSSFWorkbook) 2003 para atras
+        //Workbook libro = new HSSFWorkbook();
+        
+        
+        // Crear una hoja en el libro
+        Sheet hoja = libro.createSheet("Metodo de Pago");
+
+        // Crear una fila en la hoja
+        /*Row cabecera = hoja.createRow(2);
+
+        // Crear las columnnas, una celda en la fila
+        Cell departamento = cabecera.createCell(1);
+        Cell poblacion = cabecera.createCell(2);
+        Cell codigo = cabecera.createCell(3);
+        
+        departamento.setCellValue("Departamentos");
+        poblacion.setCellValue("Poblacion Estimada");
+        codigo.setCellValue("Codigo");
+
+        */
+
+        // Escribir el libro en un archivo (Exportar al equipo)
+        try (FileOutputStream archivo = new FileOutputStream("src\\main\\java\\Reportes\\reporte-metodo-de-pago.xlsx")) {
+            
+            //Agregando la imagen a Excel
+            InputStream is = new FileInputStream("src\\main\\java\\Imagenes\\utp.png");
+            byte[] bytes = IOUtils.toByteArray(is);
+            int imgIndex = libro.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+            is.close();
+            
+            CreationHelper help = libro.getCreationHelper();
+            Drawing draw = hoja.createDrawingPatriarch();
+ 
+            ClientAnchor anchor = help.createClientAnchor();
+            anchor.setCol1(0);
+            anchor.setRow1(1);
+            Picture pict = draw.createPicture(anchor, imgIndex);
+            pict.resize(1, 3);
+            
+            CellStyle tituloEstilo = libro.createCellStyle();
+            tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
+            tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
+            Font fuenteTitulo = libro.createFont();
+            fuenteTitulo.setFontName("Arial");
+            fuenteTitulo.setBold(true);
+            fuenteTitulo.setFontHeightInPoints((short) 14);
+            tituloEstilo.setFont(fuenteTitulo);
+            
+            Row filaTitulo = hoja.createRow(1);
+            Cell celdaTitulo = filaTitulo.createCell(1);
+            celdaTitulo.setCellStyle(tituloEstilo);
+            celdaTitulo.setCellValue("Sistema de Registro de Ingreso Y Salidas del Terminal Terrestre El Chimbador");
+            
+            Row filaSubTitulo = hoja.createRow(3);
+            Cell celdaSubTitulo = filaSubTitulo.createCell(1);
+            celdaSubTitulo.setCellStyle(tituloEstilo);
+            celdaSubTitulo.setCellValue("Reporte de Metodo de Pago");
+            
+            hoja.addMergedRegion(new CellRangeAddress(1, 2, 1, 10));
+ 
+            String[] cabecera = new String[]{"Código", "descripcion"};
+            
+            CellStyle headerStyle = libro.createCellStyle();
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            headerStyle.setBorderBottom(BorderStyle.THIN);
+            headerStyle.setBorderLeft(BorderStyle.THIN);
+            headerStyle.setBorderRight(BorderStyle.THIN);
+            headerStyle.setBorderBottom(BorderStyle.THIN);
+ 
+            Font font = libro.createFont();
+            font.setFontName("Arial");
+            font.setBold(true);
+            font.setColor(IndexedColors.WHITE.getIndex());
+            font.setFontHeightInPoints((short) 12);
+            headerStyle.setFont(font);
+            
+            Row filaEncabezados = hoja.createRow(6);
+ 
+            for (int i = 0; i < cabecera.length; i++) {
+                Cell celdaEnzabezado = filaEncabezados.createCell(i);
+                celdaEnzabezado.setCellStyle(headerStyle);
+                celdaEnzabezado.setCellValue(cabecera[i]);
+            }
+            
+            //Conexion con la base de datos
+            Conexion con = new Conexion();
+            PreparedStatement ps;
+            ResultSet rs;
+            Connection conn = con.getConnection();
+ 
+            int numFilaDatos = 7;
+            
+            CellStyle datosEstilo = libro.createCellStyle();
+            datosEstilo.setBorderBottom(BorderStyle.THIN);
+            datosEstilo.setBorderLeft(BorderStyle.THIN);
+            datosEstilo.setBorderRight(BorderStyle.THIN);
+            datosEstilo.setBorderBottom(BorderStyle.THIN);
+ 
+            ps = conn.prepareStatement("SELECT id_metodo_pago, descripcion FROM metodo_pago");
+            rs = ps.executeQuery();
+ 
+            int numCol = rs.getMetaData().getColumnCount();
+ 
+            while (rs.next()) {
+                Row filaDatos = hoja.createRow(numFilaDatos);
+ 
+                for (int a = 0; a < numCol; a++) {
+ 
+                    Cell CeldaDatos = filaDatos.createCell(a);
+                    CeldaDatos.setCellStyle(datosEstilo);
+                    CeldaDatos.setCellValue(rs.getString(a + 1));
+                }
+ 
+ 
+                numFilaDatos++;
+            }
+            hoja.autoSizeColumn(0);
+            hoja.autoSizeColumn(1);
+            hoja.autoSizeColumn(2);
+            hoja.autoSizeColumn(3);
+            hoja.autoSizeColumn(4);
+            
+            hoja.setZoom(110);
+            String fileName = "Cargo";
+            String home = System.getProperty("user.home");
+            File file = new File("src\\main\\java\\Reportes\\" + fileName + ".xlsx");
+            FileOutputStream fileOut = new FileOutputStream(file);
+            libro.write(fileOut);
+            fileOut.close();
+            Desktop.getDesktop().open(file);
+            JOptionPane.showMessageDialog(null, "Reporte Generado");
+            
+            //libro.write(archivo);
+        }  catch (FileNotFoundException ex) {
+            Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException | SQLException ex) {
+            Logger.getLogger(Excel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
 }

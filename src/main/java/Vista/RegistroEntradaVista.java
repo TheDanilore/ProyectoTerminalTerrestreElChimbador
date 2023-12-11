@@ -340,14 +340,7 @@ public class RegistroEntradaVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tableVehiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableVehiculoMouseClicked
-        int fila = tableVehiculo.rowAtPoint(evt.getPoint());
-
-        txtIdIngresoVehiculo.setText(tableVehiculo.getValueAt(fila, 0).toString());
-        txtDni.setText(tableVehiculo.getValueAt(fila, 1).toString());
-        txtConductor.setText(tableVehiculo.getValueAt(fila, 2).toString());
-        txtPlaca.setText(tableVehiculo.getValueAt(fila, 3).toString());
-        txtTipoVehiculo.setText(tableVehiculo.getValueAt(fila, 4).toString());
-        txtTarifaPago.setText(tableVehiculo.getValueAt(fila, 8).toString());
+        
         
     }//GEN-LAST:event_tableVehiculoMouseClicked
 

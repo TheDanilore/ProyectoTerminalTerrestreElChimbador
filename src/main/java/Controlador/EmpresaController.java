@@ -4,15 +4,21 @@
  */
 package Controlador;
 
+import Clases.Evento;
 import Clases.Excel;
+import Clases.TextPrompt;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.EmpresasDAO;
 import DAO.mysql.MySQLEmpresasDAO;
 import Modelo.Empresas;
 import Vista.EmpresasAdminVista;
+import java.awt.KeyEventDispatcher;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,7 +31,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class EmpresaController implements ActionListener {
+public class EmpresaController implements MouseListener {
+
+    Evento event = new Evento();
 
     private DAOManager manager;
     Empresas modelo = new Empresas();
@@ -34,21 +42,22 @@ public class EmpresaController implements ActionListener {
 
     public EmpresaController(EmpresasAdminVista v, DAOManager manager) throws DAOException {
         this.vista = v;
-        this.manager=manager;
-        this.vista.btnListar.addActionListener(this);
-        this.vista.btnGuardarEmpre.addActionListener(this);
-        this.vista.btnActualizarEmpre.addActionListener(this);
-        this.vista.btnDarBajaEmpre.addActionListener(this);
-        this.vista.btnActivarEmpre.addActionListener(this);
-        this.vista.btnNuevoEmpre.addActionListener(this);
-        this.vista.btnExcel1.addActionListener(this);
-        
+        this.manager = manager;
+        this.vista.btnListar.addMouseListener(this);
+        this.vista.btnGuardarEmpre.addMouseListener(this);
+        this.vista.btnActualizarEmpre.addMouseListener(this);
+        this.vista.btnDarBajaEmpre.addMouseListener(this);
+        this.vista.btnActivarEmpre.addMouseListener(this);
+        this.vista.btnNuevoEmpre.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
+        this.vista.tableEmpresa.addMouseListener(this);
         LimpiarTable();
         listarEmpresas(vista.tableEmpresa);
+        marcaAgua();
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnListar) {
 
             LimpiarTable();
@@ -92,9 +101,17 @@ public class EmpresaController implements ActionListener {
         if (e.getSource() == vista.btnExcel1) {
             reporteExcel();
         }
+        if (e.getSource() == vista.tableEmpresa) {
+            int fila = vista.tableEmpresa.rowAtPoint(e.getPoint());
+
+            vista.txtIdEmpresa.setText(vista.tableEmpresa.getValueAt(fila, 0).toString());
+            vista.txtRucEmpresa.setText(vista.tableEmpresa.getValueAt(fila, 1).toString());
+            vista.txtRazonEmpresa.setText(vista.tableEmpresa.getValueAt(fila, 2).toString());
+            vista.txtNombreComercialEmpresa.setText(vista.tableEmpresa.getValueAt(fila, 3).toString());
+        }
     }
-    
-    public void reporteExcel(){
+
+    public void reporteExcel() {
         Excel.reporteEmpresa();
     }
 
@@ -242,4 +259,31 @@ public class EmpresaController implements ActionListener {
             i = i - 1;
         }
     }
+
+    public void marcaAgua() {
+        TextPrompt ruc = new TextPrompt("Numero de RUC", vista.txtRucEmpresa);
+        TextPrompt razon = new TextPrompt("Razon Social", vista.txtRazonEmpresa);
+        TextPrompt nombreComercial = new TextPrompt("Nombre Comercial", vista.txtNombreComercialEmpresa);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
 }

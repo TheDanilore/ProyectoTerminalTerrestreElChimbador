@@ -7,11 +7,20 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
         <exec.mainClass>com.mycompany.proyectoterminalterrestreelchimbador.ProyectoTerminalTerrestreElChimbador</exec.mainClass>
     </properties>
     <dependencies>
+        <!-- https://mvnrepository.com/artifact/org.webjars.bowergithub.polymerelements/font-roboto -->
+        <dependency>
+            <groupId>org.webjars.bowergithub.polymerelements</groupId>
+            <artifactId>font-roboto</artifactId>
+            <version>3.0.2</version>
+        </dependency>
+
+        
+        
         
         <!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
         <dependency>
@@ -19,6 +28,15 @@
             <artifactId>javax.mail-api</artifactId>
             <version>1.6.0</version>
         </dependency>
+        
+        
+
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/com.itextpdf/itextpdf -->
         <dependency>

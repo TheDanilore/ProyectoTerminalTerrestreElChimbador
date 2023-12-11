@@ -17,7 +17,6 @@ import Controlador.VehiculoController;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.mysql.MySQLDaoManager;
-
 import DAO.mysql.MySQLUsuarioDAO;
 import Modelo.Usuario;
 import java.sql.SQLException;
@@ -39,7 +38,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     Usuario usuarioModelo = new Usuario();
 
     public PrincipalAdmin() throws SQLException, DAOException {
-        new LoginUser();
+        new login();
         initComponents();
         this.manager = new MySQLDaoManager();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -72,6 +71,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menuEntrada = new javax.swing.JMenuItem();
         menuSalida = new javax.swing.JMenuItem();
         menuRegistrarIncidente = new javax.swing.JMenuItem();
+        menuConsultarIngreso = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuMetodoPago = new javax.swing.JMenuItem();
@@ -85,6 +85,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jMenu4 = new javax.swing.JMenu();
         menuUsuario = new javax.swing.JMenuItem();
         menuCargo = new javax.swing.JMenuItem();
+        menu2 = new javax.swing.JMenu();
+        menuCerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +146,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             }
         });
         menu_EntradaSalida.add(menuRegistrarIncidente);
+
+        menuConsultarIngreso.setText("Consultar Ingreso de Vehículo");
+        menuConsultarIngreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarIngresoActionPerformed(evt);
+            }
+        });
+        menu_EntradaSalida.add(menuConsultarIngreso);
 
         jMenuBar1.add(menu_EntradaSalida);
 
@@ -243,6 +253,23 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        menu2.setText("Cerrar Sesión");
+        menu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu2ActionPerformed(evt);
+            }
+        });
+
+        menuCerrar.setText("Cerrar Sesión");
+        menuCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCerrarActionPerformed(evt);
+            }
+        });
+        menu2.add(menuCerrar);
+
+        jMenuBar1.add(menu2);
+
         setJMenuBar(jMenuBar1);
 
         pack();
@@ -259,12 +286,6 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         vista.show();
     }//GEN-LAST:event_menuEntradaActionPerformed
 
-    private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed
-        RegistroIncidencia RegistroIncidencia = new RegistroIncidencia();
-
-        
-        RegistroIncidencia.show();    }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
-
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         UsuariosAdminVista vistaUsuario = new UsuariosAdminVista();
         try {
@@ -275,7 +296,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
         escritorio.add(vistaUsuario);
         vistaUsuario.show();
-        
+
     }//GEN-LAST:event_menuUsuarioActionPerformed
 
     private void menuEmpresasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEmpresasActionPerformed
@@ -350,13 +371,35 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         ConsultarPago vista = new ConsultarPago();
         PagoIngreso pagoIngreso = new PagoIngreso();
         try {
-            PagoIngresoController controller = new PagoIngresoController(pagoIngreso,vista, manager);
+            PagoIngresoController controller = new PagoIngresoController(pagoIngreso, vista, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }
         escritorio.add(vista);
         vista.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed
+        RegistroIncidencia RegistroIncidencia = new RegistroIncidencia();
+
+        escritorio.add(RegistroIncidencia);
+        RegistroIncidencia.show();
+    }//GEN-LAST:event_menuRegistrarIncidenteActionPerformed
+
+    private void menu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu2ActionPerformed
+
+    }//GEN-LAST:event_menu2ActionPerformed
+
+    private void menuCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCerrarActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_menuCerrarActionPerformed
+
+    private void menuConsultarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarIngresoActionPerformed
+        ConsultarEntrada consultar = new ConsultarEntrada();
+
+        escritorio.add(consultar);
+        consultar.show();
+    }//GEN-LAST:event_menuConsultarIngresoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -416,8 +459,11 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblRol;
+    private javax.swing.JMenu menu2;
     private javax.swing.JMenuItem menuCargo;
+    private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuConductor;
+    private javax.swing.JMenuItem menuConsultarIngreso;
     private javax.swing.JMenuItem menuEmpresas;
     private javax.swing.JMenuItem menuEntrada;
     private javax.swing.JMenuItem menuMetodoPago;

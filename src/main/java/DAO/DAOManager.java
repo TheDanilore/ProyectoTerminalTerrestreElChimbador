@@ -21,7 +21,6 @@ public interface DAOManager {
     PagoEscalaDAO getPagoEscalaDAO();
     PagoNormalDAO getPagoNormalDAO();
     TipoDocumentoIdentidadDAO getTipoDocumentoIdentidadDAO();
-    TipoVehiculoDAO getTipoVehiculoDAO();
     TipoVehiculoPagoDAO getTipoVehiculoPagoDAO();
     UsuarioDAO getUsuarioDAO();
     VehiculoDAO getVehiculoDAO();

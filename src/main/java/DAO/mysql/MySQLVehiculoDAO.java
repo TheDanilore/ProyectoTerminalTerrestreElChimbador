@@ -36,12 +36,13 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
     
     @Override
     public void add(Vehiculo obj) throws DAOException{
-        String sql = "INSERT INTO vehiculo (placa_vehiculo,id_tipo_vehiculo) VALUES (?,?)";
+        String sql = "INSERT INTO vehiculo (placa_vehiculo,id_tipo_vehiculo,id_estado) VALUES (?,?,?)";
         
         try{
             ps=conn.prepareStatement(sql);
             ps.setString(1, obj.getPlaca_vehiculo());
             ps.setInt(2, obj.getTipo_vehiculo());
+            ps.setInt(3, 1);
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }

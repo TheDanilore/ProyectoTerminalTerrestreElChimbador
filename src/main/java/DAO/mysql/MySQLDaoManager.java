@@ -22,7 +22,6 @@ import DAO.PagoNormalDAO;
 import DAO.ProvinciaDAO;
 import DAO.RegistroEntradaDAO;
 import DAO.TipoDocumentoIdentidadDAO;
-import DAO.TipoVehiculoDAO;
 import DAO.TipoVehiculoPagoDAO;
 import DAO.UsuarioDAO;
 import DAO.VehiculoDAO;
@@ -49,7 +48,6 @@ public class MySQLDaoManager implements DAOManager {
     private PagoEscalaDAO pagoEscala = null;
     private PagoNormalDAO pagoNormal = null;
     private TipoDocumentoIdentidadDAO tipoDocumentoIdentidad = null;
-    private TipoVehiculoDAO tipoVehiculo = null;
     private TipoVehiculoPagoDAO tipoVehiculoPago = null;
     private UsuarioDAO usuario = null;
     private VehiculoDAO vehiculo = null;
@@ -61,14 +59,15 @@ public class MySQLDaoManager implements DAOManager {
     
     private PagoDAO pago = null;
     public MySQLDaoManager() throws SQLException {
-
+        
         try {
+            Class.forName("com.mysql.jdbc.Driver");
             String myBD = "jdbc:mysql://localhost:3307/terminalterrestrechimbote?serverTimezone=UTC";
-            conn = DriverManager.getConnection(myBD, "Danilore", "Danilorexd123@");
-        } catch (SQLException e) {
-            // Manejo de la excepción 
-            e.printStackTrace();
-            throw e;
+            String user = "Danilore";
+            String password = "Danilorexd123@";
+            conn = DriverManager.getConnection(myBD, user, password);
+        } catch (Exception e) {
+            System.err.println("Error: "+e);
         }
     }
 
@@ -168,13 +167,6 @@ public class MySQLDaoManager implements DAOManager {
         return tipoDocumentoIdentidad;
     }
 
-    @Override
-    public TipoVehiculoDAO getTipoVehiculoDAO() {
-        if (tipoVehiculo == null) {
-            tipoVehiculo = new MySQLTipoVehiculoDAO(conn);
-        }
-        return tipoVehiculo;
-    }
 
     @Override
     public TipoVehiculoPagoDAO getTipoVehiculoPagoDAO() {

@@ -1,17 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Controlador;
 
 import Clases.Excel;
 import DAO.DAOException;
 import DAO.DAOManager;
-import DAO.TipoVehiculoDAO;
+import DAO.TipoVehiculoPagoDAO;
 import DAO.VehiculoDAO;
-import DAO.mysql.MySQLTipoVehiculoDAO;
 import DAO.mysql.MySQLVehiculoDAO;
-import Modelo.TipoVehiculo;
+import Modelo.TipoVehiculoPago;
 import Modelo.Vehiculo;
 import Vista.VehiculosAdminVista;
 import java.awt.event.ActionEvent;
@@ -281,9 +277,9 @@ public final class VehiculoController implements ActionListener {
     }
     
     private void llenarTipoVehiculo() throws DAOException{
-        TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
+        TipoVehiculoPagoDAO dao = manager.getTipoVehiculoPagoDAO();
         
-        ArrayList<TipoVehiculo> lista = (ArrayList<TipoVehiculo>) dao.listAll();
+        ArrayList<TipoVehiculoPago> lista = (ArrayList<TipoVehiculoPago>) dao.listAll();
         
         
         //int idselect = 1;

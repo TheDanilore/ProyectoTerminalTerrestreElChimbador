@@ -29,9 +29,7 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
     PreparedStatement ps;
     ResultSet rs;
 
-    public MySQLUsuarioDAO() {
-        
-    }
+
     
     @Override
     public Usuario log(String username, String password) throws DAOException{
@@ -82,13 +80,14 @@ public class MySQLUsuarioDAO implements UsuarioDAO{
     
     @Override
     public void add(Usuario reg) throws DAOException{
-        String sql = "INSERT INTO usuarios (nombres,usuario, contra_usuarios, id_cargo) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO usuarios (nombres,usuario, contra_usuarios, id_cargo,id_estado) VALUES (?,?,?,?,?)";
         try {
             ps = conn.prepareStatement(sql);
             ps.setString(1, reg.getNombres());
             ps.setString(2, reg.getUsuario());
             ps.setString(3, reg.getContra_usuarios());
             ps.setInt(4, reg.getCargo());
+            ps.setInt(5, 1);
             
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");

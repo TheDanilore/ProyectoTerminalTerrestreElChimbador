@@ -11,13 +11,15 @@ package Modelo;
 public class Cargo {
     private int id_cargo;
     private String descripcion;
+    private int id_estado;
 
     public Cargo() {
     }
 
-    public Cargo(int id_cargo, String descripcion) {
+    public Cargo(int id_cargo, String descripcion, int id_estado) {
         this.id_cargo = id_cargo;
         this.descripcion = descripcion;
+        this.id_estado = id_estado;
     }
 
     public int getId_cargo() {
@@ -35,6 +37,16 @@ public class Cargo {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public int getId_estado() {
+        return id_estado;
+    }
+
+    public void setId_estado(int id_estado) {
+        this.id_estado = id_estado;
+    }
+
+    
     
     
             

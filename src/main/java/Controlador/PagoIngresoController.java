@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Excel;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.MetodoPagoDAO;
@@ -41,6 +42,8 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import java.awt.Desktop;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -56,7 +59,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class PagoIngresoController implements ActionListener {
+public class PagoIngresoController implements MouseListener {
 
     private DAOManager manager;
     PagoIngreso vista = new PagoIngreso();
@@ -71,16 +74,17 @@ public class PagoIngresoController implements ActionListener {
         this.vista = v;
         this.consultarPago = pv;
         this.manager = manager;
-        this.vista.btnPago.addActionListener(this);
-        this.vista.btnCancelar.addActionListener(this);
-        
+        this.vista.btnPago.addMouseListener(this);
+        this.vista.btnCancelar.addMouseListener(this);
+        this.consultarPago.btnExcel1.addMouseListener(this);
+        this.consultarPago.tableVehiculo.addMouseListener(this);
         llenarMetodoPago();
         llenarMetodoPagoConsultar();
         listar(consultarPago.tableVehiculo);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnPago) {
             try {
                 guardar();
@@ -98,6 +102,20 @@ public class PagoIngresoController implements ActionListener {
                 Logger.getLogger(PagoIngresoController.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        }
+        if (e.getSource() == consultarPago.btnExcel1) {
+            reporteExcel();
+        }
+        if (e.getSource() == consultarPago.tableVehiculo) {
+            int fila = consultarPago.tableVehiculo.rowAtPoint(e.getPoint());
+
+            consultarPago.txtIdPago.setText(consultarPago.tableVehiculo.getValueAt(fila, 0).toString());
+            consultarPago.txtDni.setText(consultarPago.tableVehiculo.getValueAt(fila, 1).toString());
+            consultarPago.txtConductor.setText(consultarPago.tableVehiculo.getValueAt(fila, 2).toString());
+            consultarPago.txtPlaca.setText(consultarPago.tableVehiculo.getValueAt(fila, 3).toString());
+            consultarPago.txtTipoVehiculo.setText(consultarPago.tableVehiculo.getValueAt(fila, 4).toString());
+            consultarPago.txtDestino.setText(consultarPago.tableVehiculo.getValueAt(fila, 5).toString());
+            consultarPago.txtMontoPago.setText(consultarPago.tableVehiculo.getValueAt(fila, 7).toString());
         }
     }
 
@@ -220,10 +238,14 @@ public class PagoIngresoController implements ActionListener {
         vista.setVisible(false);
 
     }
-    
-    public void nuevo(){
+
+    public void nuevo() {
         Limpiar();
-        
+
+    }
+
+    public void reporteExcel() {
+        Excel.reportePago();
     }
 
     public boolean camposValidos() {
@@ -233,7 +255,7 @@ public class PagoIngresoController implements ActionListener {
                 && !vista.txtMontoPago.getText().isEmpty()
                 && !vista.txtConductor.getText().isEmpty();
     }
-    
+
     public boolean camposValidosConsultar() {
         return !consultarPago.txtIdPago.getText().isEmpty()
                 && !consultarPago.txtDni.getText().isEmpty()
@@ -242,9 +264,9 @@ public class PagoIngresoController implements ActionListener {
                 && !consultarPago.txtTipoVehiculo.getText().isEmpty()
                 && !consultarPago.txtDestino.getText().isEmpty()
                 && !consultarPago.txtMontoPago.getText().isEmpty()
-                && consultarPago.cbxMetodoPago.getSelectedItem()!=null;
+                && consultarPago.cbxMetodoPago.getSelectedItem() != null;
     }
-    
+
     public void Limpiar() {
         consultarPago.txtIdPago.setText("");
         consultarPago.txtDni.setText("");
@@ -254,7 +276,7 @@ public class PagoIngresoController implements ActionListener {
         consultarPago.txtDestino.setText("");
         consultarPago.txtMontoPago.setText("");
         consultarPago.cbxMetodoPago.setSelectedItem(null);
-        
+
     }
 
     public void LimpiarTable() {
@@ -263,7 +285,6 @@ public class PagoIngresoController implements ActionListener {
             i = i - 1;
         }
     }
-
 
     private void llenarMetodoPago() throws DAOException {
 
@@ -279,6 +300,7 @@ public class PagoIngresoController implements ActionListener {
         }
 
     }
+
     private void llenarMetodoPagoConsultar() throws DAOException {
 
         MetodoPagoDAO dao = manager.getMetodoPagoDAO();
@@ -426,6 +448,26 @@ public class PagoIngresoController implements ActionListener {
             System.out.println(e.toString());
 
         }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
 }

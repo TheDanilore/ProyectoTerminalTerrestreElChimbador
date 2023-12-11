@@ -31,10 +31,7 @@ public class MySQLMetodoPagoDAO implements MetodoPagoDAO{
     PreparedStatement ps;
     ResultSet rs;
 
-    public MySQLMetodoPagoDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
+
     
     @Override
     public void add(MetodoPago obj) throws DAOException{

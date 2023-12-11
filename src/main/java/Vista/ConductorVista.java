@@ -257,18 +257,7 @@ public class ConductorVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtPrimerNombreConductorKeyTyped
 
     private void tableConductorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConductorMouseClicked
-        int fila = tableConductor.rowAtPoint(evt.getPoint());
-
-        txtIdConductor.setText(tableConductor.getValueAt(fila, 0).toString());
-        txtPrimerNombreConductor.setText(tableConductor.getValueAt(fila, 1).toString());
-        txtSegundoNombreConductor.setText(tableConductor.getValueAt(fila, 2).toString());
-        txtApellidoPaternoConductor.setText(tableConductor.getValueAt(fila, 3).toString());
-        txtApellidoMaternoConductor.setText(tableConductor.getValueAt(fila, 4).toString());
-        cbxTipoDocumentoIdentidad.setSelectedItem(tableConductor.getValueAt(fila, 5).toString());
-        txtNumeroDocumento.setText(tableConductor.getValueAt(fila, 6).toString());
-        txtTelefonoConductor.setText(tableConductor.getValueAt(fila, 7).toString());
-        txtDireccionConductor.setText(tableConductor.getValueAt(fila, 8).toString());
-        txtRucEmpresa.setText(tableConductor.getValueAt(fila, 9).toString());
+        
     }//GEN-LAST:event_tableConductorMouseClicked
 
     private void cbxTipoDocumentoIdentidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTipoDocumentoIdentidadActionPerformed

@@ -12,14 +12,14 @@ import DAO.DepartamentoDAO;
 import DAO.DistritoDAO;
 import DAO.ProvinciaDAO;
 import DAO.RegistroEntradaDAO;
-import DAO.TipoVehiculoDAO;
+import DAO.TipoVehiculoPagoDAO;
 import DAO.VehiculoDAO;
 import Modelo.Conductor;
 import Modelo.Departamento;
 import Modelo.Distrito;
 import Modelo.Provincia;
 import Modelo.RegistroEntrada;
-import Modelo.TipoVehiculo;
+import Modelo.TipoVehiculoPago;
 import Modelo.Vehiculo;
 import Vista.ConductorVista;
 import Vista.ConsultarPago;
@@ -27,6 +27,8 @@ import Vista.PagoIngreso;
 import Vista.RegistroEntradaVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -40,7 +42,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class RegistroEntradaController implements ActionListener {
+public class RegistroEntradaController implements MouseListener {
 
     private String departamentoActual;
     private String provinciaActual;
@@ -51,39 +53,40 @@ public class RegistroEntradaController implements ActionListener {
     RegistroEntrada modelo = new RegistroEntrada();
     Conductor conductor = new Conductor();
     Vehiculo vehiculo = new Vehiculo();
-    TipoVehiculo tipoVehiculo = new TipoVehiculo();
+    TipoVehiculoPago tipoVehiculo = new TipoVehiculoPago();
     Departamento departamento = new Departamento();
     Provincia provincia = new Provincia();
-    
+
     DefaultTableModel clase = new DefaultTableModel();
 
     public RegistroEntradaController(RegistroEntradaVista v, DAOManager manager) throws DAOException {
         this.vista = v;
         this.manager = manager;
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnActualizar.addActionListener(this);
-        this.vista.btnNuevo.addActionListener(this);
-        this.vista.btnEliminar.addActionListener(this);
+        this.vista.btnGuardar.addMouseListener(this);
+        this.vista.btnActualizar.addMouseListener(this);
+        this.vista.btnNuevo.addMouseListener(this);
+        this.vista.btnEliminar.addMouseListener(this);
 
-        this.vista.txtDni.addActionListener(this);
-        this.vista.btnExcel1.addActionListener(this);
-        this.vista.txtPlaca.addActionListener(this);
-        this.vista.txtIdTipoVehiculo.addActionListener(this);
-        this.vista.cbxDepartamento.addActionListener(this);
-        this.vista.cbxProvincia.addActionListener(this);
-        this.vista.btnCalcularTarifa.addActionListener(this);
+        this.vista.txtDni.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
+        this.vista.txtPlaca.addMouseListener(this);
+        this.vista.txtIdTipoVehiculo.addMouseListener(this);
+        this.vista.cbxDepartamento.addMouseListener(this);
+        this.vista.cbxProvincia.addMouseListener(this);
+        this.vista.btnCalcularTarifa.addMouseListener(this);
+        this.vista.tableVehiculo.addMouseListener(this);
         this.LimpiarTable();
         this.listar(vista.tableVehiculo);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnGuardar) {
             PagoIngreso pagoVista = new PagoIngreso();
             ConsultarPago consultarPago = new ConsultarPago();
             PagoIngresoController pago = null;
             try {
-                pago = new PagoIngresoController(pagoVista,consultarPago, manager);
+                pago = new PagoIngresoController(pagoVista, consultarPago, manager);
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -95,19 +98,17 @@ public class RegistroEntradaController implements ActionListener {
             String tipovehiculoe = vista.txtTipoVehiculo.getText();
             String destinoe = vista.cbxDepartamento.getSelectedItem().toString() + " - " + vista.cbxProvincia.getSelectedItem().toString() + " - "
                     + vista.cbxDistrito.getSelectedItem().toString();
-            
-            String pagoe =vista.txtTarifaPago.getText();
-            
-            
+
+            String pagoe = vista.txtTarifaPago.getText();
+
             try {
-                pago.setTextosEnTextFieldB(dnie, conductore, placae,tipovehiculoe,destinoe,pagoe);
+                pago.setTextosEnTextFieldB(dnie, conductore, placae, tipovehiculoe, destinoe, pagoe);
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             pagoVista.setVisible(true);
 
-            
         }
         if (e.getSource() == vista.btnActualizar) {
             try {
@@ -117,14 +118,14 @@ public class RegistroEntradaController implements ActionListener {
             }
         }
         if (e.getSource() == vista.btnNuevo) {
-            
-                nuevo();
+
+            nuevo();
             try {
                 listar(vista.tableVehiculo);
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
 
         if (e.getSource() == vista.btnEliminar) {
@@ -134,17 +135,13 @@ public class RegistroEntradaController implements ActionListener {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
-        
+
         if (e.getSource() == vista.txtDni) {
             try {
                 obtenerConductorPorDni();
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        if (e.getSource() == vista.btnExcel1) {
-            //excel();
         }
 
         if (e.getSource() == vista.txtPlaca) {
@@ -185,13 +182,22 @@ public class RegistroEntradaController implements ActionListener {
         if (e.getSource() == vista.btnExcel1) {
             reporteExcel();
         }
+        if (e.getSource() == vista.tableVehiculo) {
+            int fila = vista.tableVehiculo.rowAtPoint(e.getPoint());
+
+            vista.txtIdIngresoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 0).toString());
+            vista.txtDni.setText(vista.tableVehiculo.getValueAt(fila, 1).toString());
+            vista.txtConductor.setText(vista.tableVehiculo.getValueAt(fila, 2).toString());
+            vista.txtPlaca.setText(vista.tableVehiculo.getValueAt(fila, 3).toString());
+            vista.txtTipoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 4).toString());
+            vista.txtTarifaPago.setText(vista.tableVehiculo.getValueAt(fila, 8).toString());
+        }
 
     }
 
-        public void reporteExcel(){
+    public void reporteExcel() {
         Excel.reporteRegistroEntrada();
     }
-    
 
     public void actualizar() throws DAOException {
         if ("".equals(vista.txtIdIngresoVehiculo.getText())) {
@@ -301,10 +307,10 @@ public class RegistroEntradaController implements ActionListener {
 
             int id_tipoVehiculo = Integer.parseInt(vista.txtIdTipoVehiculo.getText());
 
-            TipoVehiculoDAO dao = manager.getTipoVehiculoDAO();
+            TipoVehiculoPagoDAO dao = manager.getTipoVehiculoPagoDAO();
 
             // Obtener el conductor por su número de documento
-            TipoVehiculo tipoEncontrado = dao.getById(id_tipoVehiculo);
+            TipoVehiculoPago tipoEncontrado = dao.getById(id_tipoVehiculo);
 
             // Verificar si se encontró un conductor
             if (tipoEncontrado != null) {
@@ -377,9 +383,9 @@ public class RegistroEntradaController implements ActionListener {
         }
     }
 
-    public void nuevo(){
+    public void nuevo() {
         Limpiar();
-        
+
     }
 
     public void listar(JTable tabla) throws DAOException {
@@ -427,7 +433,7 @@ public class RegistroEntradaController implements ActionListener {
         vista.txtIdProvincia.setText("");
         vista.cbxDistrito.setSelectedItem(null);
         vista.txtTarifaPago.setText("");
-        
+
     }
 
     public void LimpiarTable() {
@@ -557,6 +563,26 @@ public class RegistroEntradaController implements ActionListener {
         }
 
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 
 }

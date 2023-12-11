@@ -30,9 +30,6 @@ public class MySQLTipoDocumentoIdentidadDAO implements TipoDocumentoIdentidadDAO
     PreparedStatement ps;
     ResultSet rs;
 
-    public MySQLTipoDocumentoIdentidadDAO() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     
     @Override

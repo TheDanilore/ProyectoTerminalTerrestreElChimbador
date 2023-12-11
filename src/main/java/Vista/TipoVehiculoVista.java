@@ -42,6 +42,8 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
         btnEliminar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         btnExcel1 = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        txtTarifa = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -60,8 +62,8 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 360, 40));
 
         jLabel12.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
-        jLabel12.setText("DESCRIPCION:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 20));
+        jLabel12.setText("TARIFA:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 100, 20));
 
         txtDescripcion.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         txtDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -85,11 +87,11 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DESCRIPCION"
+                "ID", "DESCRIPCION", "TARIFA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -153,6 +155,20 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
         btnExcel1.setText("Excel");
         jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 50, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
+        jLabel13.setText("DESCRIPCION:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 100, 20));
+
+        txtTarifa.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
+        txtTarifa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTarifa.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtTarifa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTarifaKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtTarifa, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 110, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -176,11 +192,12 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void tableTipoVehiculoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableTipoVehiculoMouseClicked
-        int fila = tableTipoVehiculo.rowAtPoint(evt.getPoint());
-
-        txtIdTipoVehiculo.setText(tableTipoVehiculo.getValueAt(fila, 0).toString());
-        txtDescripcion.setText(tableTipoVehiculo.getValueAt(fila, 1).toString());
+        
     }//GEN-LAST:event_tableTipoVehiculoMouseClicked
+
+    private void txtTarifaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTarifaKeyTyped
+        
+    }//GEN-LAST:event_txtTarifaKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -191,6 +208,7 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
     public javax.swing.JButton btnNuevo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -199,5 +217,6 @@ public class TipoVehiculoVista extends javax.swing.JInternalFrame {
     public javax.swing.JTable tableTipoVehiculo;
     public javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtIdTipoVehiculo;
+    public javax.swing.JTextField txtTarifa;
     // End of variables declaration//GEN-END:variables
 }

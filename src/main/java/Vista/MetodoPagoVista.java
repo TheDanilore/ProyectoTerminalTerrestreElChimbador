@@ -175,10 +175,7 @@ public class MetodoPagoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void tableMetodoPagoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMetodoPagoMouseClicked
-        int fila = tableMetodoPago.rowAtPoint(evt.getPoint());
-
-        txtIdMetodoPago.setText(tableMetodoPago.getValueAt(fila, 0).toString());
-        txtDescripcion.setText(tableMetodoPago.getValueAt(fila, 1).toString());
+        
     }//GEN-LAST:event_tableMetodoPagoMouseClicked
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed

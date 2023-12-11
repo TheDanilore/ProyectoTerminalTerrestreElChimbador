@@ -10,6 +10,6 @@ import Modelo.Cargo;
  *
  * @author Danilore
  */
-public interface CargoDAO extends CrudDeleteDAO<Cargo,Integer>{
+public interface CargoDAO extends CrudDAO<Cargo,Integer>{
     public Cargo obtenerCargoPorDescripcion(String descripcion);
 }

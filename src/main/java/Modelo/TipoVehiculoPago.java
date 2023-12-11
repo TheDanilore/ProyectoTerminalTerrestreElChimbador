@@ -11,13 +11,15 @@ package Modelo;
 public class TipoVehiculoPago {
     private int id_tipo_vehiculo_pago;
     private String descripcion;
+    private double tarifa;
 
     public TipoVehiculoPago() {
     }
 
-    public TipoVehiculoPago(int id_tipo_vehiculo_pago, String descripcion) {
+    public TipoVehiculoPago(int id_tipo_vehiculo_pago, String descripcion, double tarifa) {
         this.id_tipo_vehiculo_pago = id_tipo_vehiculo_pago;
         this.descripcion = descripcion;
+        this.tarifa = tarifa;
     }
 
     public int getId_tipo_vehiculo_pago() {
@@ -35,8 +37,15 @@ public class TipoVehiculoPago {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    
+
+    public double getTarifa() {
+        return tarifa;
+    }
+
+    public void setTarifa(double tarifa) {
+        this.tarifa = tarifa;
+    }
+
     
     
 }

@@ -5,6 +5,7 @@
 package Controlador;
 
 import Clases.Excel;
+import Clases.TextPrompt;
 import DAO.ConductorDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -19,6 +20,8 @@ import Modelo.TipoDocumentoIdentidad;
 import Vista.ConductorVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,32 +34,34 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class ConductorController implements ActionListener {
+public final class ConductorController implements MouseListener {
 
     private DAOManager manager;
     ConductorVista vista = new ConductorVista();
     Conductor modelo = new Conductor();
     Empresas empresas = new Empresas();
-    
+
     DefaultTableModel clase = new DefaultTableModel();
 
-    public ConductorController(ConductorVista v,DAOManager manager) throws DAOException {
+    public ConductorController(ConductorVista v, DAOManager manager) throws DAOException {
         this.vista = v;
-        this.manager=manager;
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnActualizar.addActionListener(this);
-        this.vista.btnNuevo.addActionListener(this);
-        this.vista.btnActivar.addActionListener(this);
-        this.vista.btnDarBaja.addActionListener(this);
-        this.vista.btnObtener.addActionListener(this);
-        this.vista.btnExcel1.addActionListener(this);
+        this.manager = manager;
+        this.vista.btnGuardar.addMouseListener(this);
+        this.vista.btnActualizar.addMouseListener(this);
+        this.vista.btnNuevo.addMouseListener(this);
+        this.vista.btnActivar.addMouseListener(this);
+        this.vista.btnDarBaja.addMouseListener(this);
+        this.vista.btnObtener.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
+        this.vista.tableConductor.addMouseListener(this);
         this.LimpiarTable();
         this.ListarConductor(vista.tableConductor);
         tabular();
+        marcaAgua();
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnGuardar) {
             try {
                 guardarConductor();
@@ -98,11 +103,26 @@ public class ConductorController implements ActionListener {
         if (e.getSource() == vista.btnExcel1) {
             reporteExcel();
         }
+        if (e.getSource() == vista.tableConductor) {
+            int fila = vista.tableConductor.rowAtPoint(e.getPoint());
+
+            vista.txtIdConductor.setText(vista.tableConductor.getValueAt(fila, 0).toString());
+            vista.txtPrimerNombreConductor.setText(vista.tableConductor.getValueAt(fila, 1).toString());
+            vista.txtSegundoNombreConductor.setText(vista.tableConductor.getValueAt(fila, 2).toString());
+            vista.txtApellidoPaternoConductor.setText(vista.tableConductor.getValueAt(fila, 3).toString());
+            vista.txtApellidoMaternoConductor.setText(vista.tableConductor.getValueAt(fila, 4).toString());
+            vista.cbxTipoDocumentoIdentidad.setSelectedItem(vista.tableConductor.getValueAt(fila, 5).toString());
+            vista.txtNumeroDocumento.setText(vista.tableConductor.getValueAt(fila, 6).toString());
+            vista.txtTelefonoConductor.setText(vista.tableConductor.getValueAt(fila, 7).toString());
+            vista.txtDireccionConductor.setText(vista.tableConductor.getValueAt(fila, 8).toString());
+            vista.txtRucEmpresa.setText(vista.tableConductor.getValueAt(fila, 9).toString());
+        }
     }
 
-    public void reporteExcel(){
+    public void reporteExcel() {
         Excel.reporteConductor();
     }
+
     public void guardarConductor() throws DAOException {
         if (camposValidos()) {
 
@@ -134,12 +154,11 @@ public class ConductorController implements ActionListener {
             modelo.setTelefono(Integer.parseInt(vista.txtTelefonoConductor.getText()));
             modelo.setDireccion(vista.txtDireccionConductor.getText());
             modelo.setEmpresa(Long.parseLong(vista.txtRucEmpresa.getText()));
-            
+
             //Conexion, consulta con la base de datos
             ConductorDAO dao = manager.getConductorDAO();
             dao.add(modelo);
-            
-            
+
             JOptionPane.showMessageDialog(null, "Conductor Registrado");
             LimpiarTable();
             ListarConductor(vista.tableConductor);
@@ -184,7 +203,6 @@ public class ConductorController implements ActionListener {
                 modelo.setTelefono(Integer.parseInt(vista.txtTelefonoConductor.getText()));
                 modelo.setDireccion(vista.txtDireccionConductor.getText());
                 modelo.setEmpresa(Long.parseLong(vista.txtRucEmpresa.getText()));
-                
 
                 ConductorDAO dao = manager.getConductorDAO();
                 dao.update(modelo);
@@ -231,7 +249,7 @@ public class ConductorController implements ActionListener {
             if (pregunta == 0) {
                 modelo.setId_conductor(Integer.parseInt(vista.txtIdConductor.getText()));
                 modelo.setEstado(1);
-                
+
                 ConductorDAO dao = manager.getConductorDAO();
                 dao.disable(modelo);
 
@@ -292,7 +310,6 @@ public class ConductorController implements ActionListener {
 
             ob[9] = lista.get(i).getEmpresa();
 
-
             //ob[10] = lista.get(i).getEstado();
             //estado
             if (lista.get(i).getEstado() == 1) {
@@ -307,8 +324,8 @@ public class ConductorController implements ActionListener {
         vista.tableConductor.setModel(clase);
         llenarTipoDocumentoIdentidad();
     }
-    
-        public void obtenerEmpresaPorRuc() throws DAOException {
+
+    public void obtenerEmpresaPorRuc() throws DAOException {
         if (!"".equals(vista.txtRucEmpresa.getText())) {
 
             long ruc = Long.parseLong(vista.txtRucEmpresa.getText());
@@ -327,7 +344,7 @@ public class ConductorController implements ActionListener {
                 vista.txtRucEmpresa.setText("");
                 JOptionPane.showMessageDialog(null, "La Empresa no existe");
             }
-            
+
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese el ruc de la Empresa");
         }
@@ -363,7 +380,7 @@ public class ConductorController implements ActionListener {
                 && !vista.txtNumeroDocumento.getText().isEmpty()
                 && !vista.txtTelefonoConductor.getText().isEmpty()
                 && !vista.txtEmpresa.getText().isEmpty()
-                && vista.cbxTipoDocumentoIdentidad.getSelectedItem() != null                ;
+                && vista.cbxTipoDocumentoIdentidad.getSelectedItem() != null;
     }
 
     private void tabular() {
@@ -373,9 +390,8 @@ public class ConductorController implements ActionListener {
     }
 
     private void llenarTipoDocumentoIdentidad() throws DAOException {
-        
+
         TipoDocumentoIdentidadDAO dao = manager.getTipoDocumentoIdentidadDAO();
-        
 
         List<TipoDocumentoIdentidad> lista = (ArrayList<TipoDocumentoIdentidad>) dao.listAll();
 
@@ -389,5 +405,35 @@ public class ConductorController implements ActionListener {
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
 
+    public void marcaAgua() {
+        TextPrompt p_nombre = new TextPrompt("Nombre 1", vista.txtPrimerNombreConductor);
+        TextPrompt s_nombre = new TextPrompt("Nombre 2", vista.txtSegundoNombreConductor);
+        TextPrompt p_apellido = new TextPrompt("Apellido 1", vista.txtApellidoPaternoConductor);
+        TextPrompt m_apellido = new TextPrompt("Apellido 2", vista.txtApellidoMaternoConductor);
+        TextPrompt documento = new TextPrompt("Nº documento", vista.txtNumeroDocumento);
+        TextPrompt telefono = new TextPrompt("Nº telefono", vista.txtTelefonoConductor);
+        TextPrompt direccion = new TextPrompt("Direccion", vista.txtDireccionConductor);
+        TextPrompt ruc = new TextPrompt("RUC", vista.txtRucEmpresa);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 
 }

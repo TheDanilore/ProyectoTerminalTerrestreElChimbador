@@ -36,13 +36,14 @@ public class MySQLEmpresasDAO implements EmpresasDAO {
 
     @Override
     public void add(Empresas empresas) throws DAOException {
-        String sql = "INSERT INTO empresa (ruc, razon_social, nombre_comercial) VALUES (?,?,?)";
+        String sql = "INSERT INTO empresa (ruc, razon_social, nombre_comercial,id_estado) VALUES (?,?,?,?)";
 
         try {
             ps = conn.prepareStatement(sql);
             ps.setLong(1, empresas.getRuc());
             ps.setString(2, empresas.getRazon_social());
             ps.setString(3, empresas.getNombre_comercial());
+            ps.setInt(4, 1);
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }

@@ -5,6 +5,7 @@
 package Controlador;
 
 import Clases.Excel;
+import Clases.TextPrompt;
 import DAO.CargoDAO;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -13,6 +14,8 @@ import Modelo.Cargo;
 import Vista.CargoVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class CargoController implements ActionListener {
+public class CargoController implements MouseListener {
 
     private final DAOManager manager;
     CargoVista vista = new CargoVista();
@@ -34,27 +37,31 @@ public class CargoController implements ActionListener {
     public CargoController(CargoVista v, DAOManager manager) throws DAOException {
         this.manager = manager;
         this.vista = v;
-        this.vista.btnGuardar.addActionListener(this);
-        this.vista.btnActualizar.addActionListener(this);
-        this.vista.btnNuevo.addActionListener(this);
-        this.vista.btnExcel1.addActionListener(this);
-
+        this.vista.btnGuardar.addMouseListener(this);
+        this.vista.btnActualizar.addMouseListener(this);
+        this.vista.btnNuevo.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
+        this.vista.btnDarBaja.addMouseListener(this);
+        this.vista.btnActivar.addMouseListener(this);
+        this.vista.tableCargo.addMouseListener(this);
         this.LimpiarTable();
-        this.ListarCargo(vista.tableRolesUsuario);
+        this.ListarCargo(vista.tableCargo);
+        
+        marcaAgua();
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnGuardar) {
             try {
-                guardarCargo();
+                guardar();
             } catch (DAOException ex) {
                 Logger.getLogger(CargoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         if (e.getSource() == vista.btnActualizar) {
             try {
-                actualizarCargo();
+                actualizar();
             } catch (DAOException ex) {
                 Logger.getLogger(CargoController.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -65,23 +72,27 @@ public class CargoController implements ActionListener {
         if (e.getSource() == vista.btnExcel1) {
             reporteExcel();
         }
+        if (e.getSource() == vista.tableCargo) {
+            int fila = vista.tableCargo.rowAtPoint(e.getPoint());
+
+            vista.txtIdRolesUsuario.setText(vista.tableCargo.getValueAt(fila, 0).toString());
+            vista.txtDescripcion.setText(vista.tableCargo.getValueAt(fila, 1).toString());
+        }
     }
 
-    public void guardarCargo() throws DAOException {
+    public void guardar() throws DAOException {
         if (camposValidos()) {
 
-            
-                CargoDAO dao = manager.getCargoDAO();
-                modelo.setDescripcion(vista.txtDescripcion.getText());
+            CargoDAO dao = manager.getCargoDAO();
+            modelo.setDescripcion(vista.txtDescripcion.getText());
 
-                dao.add(modelo);
-                //Conexion, consulta con la base de datos
+            dao.add(modelo);
+            //Conexion, consulta con la base de datos
 
-                JOptionPane.showMessageDialog(null, "Cargo Registrado");
-                LimpiarTable();
-                ListarCargo(vista.tableRolesUsuario);
-                LimpiarCargo();
-            
+            JOptionPane.showMessageDialog(null, "Cargo Registrado");
+            LimpiarTable();
+            ListarCargo(vista.tableCargo);
+            LimpiarCargo();
 
         } else {
             JOptionPane.showMessageDialog(null, "Llene todos los campos");
@@ -89,7 +100,7 @@ public class CargoController implements ActionListener {
 
     }
 
-    public void actualizarCargo() throws DAOException {
+    public void actualizar() throws DAOException {
         if ("".equals(vista.txtIdRolesUsuario.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
@@ -97,7 +108,6 @@ public class CargoController implements ActionListener {
                 modelo.setId_cargo(Integer.parseInt(vista.txtIdRolesUsuario.getText()));
                 modelo.setDescripcion(vista.txtDescripcion.getText());
 
-                
                 CargoDAO dao = manager.getCargoDAO();
 
                 dao.update(modelo);
@@ -105,7 +115,7 @@ public class CargoController implements ActionListener {
 
                 JOptionPane.showMessageDialog(null, "Cargo Modificado");
                 LimpiarTable();
-                ListarCargo(vista.tableRolesUsuario);
+                ListarCargo(vista.tableCargo);
                 LimpiarCargo();
 
                 JOptionPane.showMessageDialog(null, "Error al Modificar Cargo");
@@ -115,7 +125,56 @@ public class CargoController implements ActionListener {
             }
         }
     }
-    public void reporteExcel(){
+
+    public void activar() throws DAOException {
+        if (!"".equals(vista.txtIdRolesUsuario.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Activar el Cargo");
+            if (pregunta == 0) {
+                modelo.setId_cargo(Integer.parseInt(vista.txtIdRolesUsuario.getText()));
+                modelo.setId_estado(1);
+
+                CargoDAO dao = manager.getCargoDAO();
+                dao.disable(modelo);
+
+                JOptionPane.showMessageDialog(null, "Se Activo al Usuario");
+                LimpiarTable();
+                ListarCargo(vista.tableCargo);
+                LimpiarCargo();
+
+            } else {
+                LimpiarCargo();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+    }
+
+    public void baja() throws DAOException {
+        if (!"".equals(vista.txtIdRolesUsuario.getText())) {
+            int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de Dar de Baja el Cargo");
+            if (pregunta == 0) {
+                modelo.setId_cargo(Integer.parseInt(vista.txtIdRolesUsuario.getText()));
+                modelo.setId_estado(0);
+
+                CargoDAO dao = manager.getCargoDAO();
+                dao.disable(modelo);
+
+                JOptionPane.showMessageDialog(null, "Se Activo al Usuario");
+                LimpiarTable();
+                ListarCargo(vista.tableCargo);
+                LimpiarCargo();
+
+            } else {
+                LimpiarCargo();
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila");
+        }
+    }
+
+    public void reporteExcel() {
         Excel.reporteCargo();
     }
 
@@ -127,15 +186,23 @@ public class CargoController implements ActionListener {
         clase = (DefaultTableModel) tabla.getModel();
         CargoDAO dao = manager.getCargoDAO();
         List<Cargo> lista = dao.listAll();
-        Object[] ob = new Object[2];
+        Object[] ob = new Object[3];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_cargo();
             ob[1] = lista.get(i).getDescripcion();
+            
+            //ob[2] = lista.get(i).getId_estado();
+            if (lista.get(i).getId_estado() == 1) {
+                ob[2] = "Activo";
+            }
+            if (lista.get(i).getId_estado() == 0) {
+                ob[2] = "Deshabilitado";
+            }
 
             clase.addRow(ob);
         }
-        vista.tableRolesUsuario.setModel(clase);
+        vista.tableCargo.setModel(clase);
     }
 
     public void LimpiarCargo() {
@@ -152,6 +219,30 @@ public class CargoController implements ActionListener {
 
     public boolean camposValidos() {
         return !vista.txtDescripcion.getText().isEmpty();
+    }
+
+    public void marcaAgua() {
+        TextPrompt descripcion = new TextPrompt("Nombre del cargo", vista.txtDescripcion);
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        
     }
 
 }

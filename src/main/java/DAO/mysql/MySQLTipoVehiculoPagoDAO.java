@@ -32,11 +32,12 @@ public class MySQLTipoVehiculoPagoDAO implements TipoVehiculoPagoDAO{
     
     @Override
     public void add(TipoVehiculoPago obj) throws DAOException{
-        String sql = "INSERT INTO tipo_vehiculo_pago (descripcion) VALUES (?)";
+        String sql = "INSERT INTO tipo_vehiculo_pago (descripcion,tarifa) VALUES (?,?)";
         
         try{
             ps=conn.prepareStatement(sql);
             ps.setString(1, obj.getDescripcion());
+            ps.setDouble(2, obj.getTarifa());
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }
@@ -68,6 +69,7 @@ public class MySQLTipoVehiculoPagoDAO implements TipoVehiculoPagoDAO{
                 TipoVehiculoPago tipoVehiculoPago = new TipoVehiculoPago();
                 tipoVehiculoPago.setId_tipo_vehiculo_pago(rs.getInt("id_tipo_vehiculo_pago"));
                 tipoVehiculoPago.setDescripcion(rs.getString("descripcion"));
+                tipoVehiculoPago.setTarifa(rs.getDouble("tarifa"));
                 
                 lista.add(tipoVehiculoPago);
             }
@@ -98,10 +100,12 @@ public class MySQLTipoVehiculoPagoDAO implements TipoVehiculoPagoDAO{
     
     @Override
     public void update(TipoVehiculoPago obj) throws DAOException{
-        String sql="UPDATE tipo_vehiculo_pago SET descripcion=? WHERE id_tipo_vehiculo_pago=?";
+        String sql="UPDATE tipo_vehiculo_pago SET descripcion=? , tarifa=? WHERE id_tipo_vehiculo_pago=?";
         try{
             ps=conn.prepareStatement(sql);
             ps.setString(1, obj.getDescripcion());
+            ps.setDouble(2, obj.getTarifa());
+            ps.setInt(3, obj.getId_tipo_vehiculo_pago());
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }
@@ -132,6 +136,8 @@ public class MySQLTipoVehiculoPagoDAO implements TipoVehiculoPagoDAO{
             rs=ps.executeQuery();
             if(rs.next()){
                 tipoVehiculoPago.setId_tipo_vehiculo_pago(rs.getInt("id_tipo_vehiculo_pago"));
+                tipoVehiculoPago.setDescripcion(rs.getString("descripcion"));
+                tipoVehiculoPago.setTarifa(rs.getDouble("tarifa"));
             }
         }catch (SQLException e) {
             throw new DAOException("Error en Sql", e);

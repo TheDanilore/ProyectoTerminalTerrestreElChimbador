@@ -36,7 +36,7 @@ public class CargoVista extends javax.swing.JInternalFrame {
         txtDescripcion = new javax.swing.JTextField();
         txtIdRolesUsuario = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tableRolesUsuario = new javax.swing.JTable();
+        tableCargo = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
@@ -44,6 +44,8 @@ public class CargoVista extends javax.swing.JInternalFrame {
         btnNuevo = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         btnExcel1 = new javax.swing.JButton();
+        btnActivar = new javax.swing.JButton();
+        btnDarBaja = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -82,29 +84,29 @@ public class CargoVista extends javax.swing.JInternalFrame {
         txtIdRolesUsuario.setEnabled(false);
         jPanel1.add(txtIdRolesUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 20, 20));
 
-        tableRolesUsuario.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
-        tableRolesUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        tableCargo.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
+        tableCargo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "DESCRIPCION"
+                "ID", "DESCRIPCION", "ESTADO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        tableRolesUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        tableCargo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableRolesUsuarioMouseClicked(evt);
+                tableCargoMouseClicked(evt);
             }
         });
-        jScrollPane2.setViewportView(tableRolesUsuario);
+        jScrollPane2.setViewportView(tableCargo);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 540, 280));
 
@@ -123,7 +125,7 @@ public class CargoVista extends javax.swing.JInternalFrame {
         btnGuardar.setForeground(new java.awt.Color(255, 255, 255));
         btnGuardar.setText("Guardar");
         btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 260, -1, -1));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, -1, -1));
 
         btnActualizar.setBackground(new java.awt.Color(51, 255, 51));
         btnActualizar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -149,6 +151,20 @@ public class CargoVista extends javax.swing.JInternalFrame {
         btnExcel1.setText("Excel");
         jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 50, -1, -1));
 
+        btnActivar.setBackground(new java.awt.Color(0, 153, 255));
+        btnActivar.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnActivar.setForeground(new java.awt.Color(255, 255, 255));
+        btnActivar.setText("Activar");
+        btnActivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 350, -1, -1));
+
+        btnDarBaja.setBackground(new java.awt.Color(255, 51, 51));
+        btnDarBaja.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDarBaja.setForeground(new java.awt.Color(255, 255, 255));
+        btnDarBaja.setText("Dar de Baja");
+        btnDarBaja.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jPanel1.add(btnDarBaja, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 350, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,9 +173,7 @@ public class CargoVista extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -170,16 +184,15 @@ public class CargoVista extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
-    private void tableRolesUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableRolesUsuarioMouseClicked
-        int fila = tableRolesUsuario.rowAtPoint(evt.getPoint());
-
-        txtIdRolesUsuario.setText(tableRolesUsuario.getValueAt(fila, 0).toString());
-        txtDescripcion.setText(tableRolesUsuario.getValueAt(fila, 1).toString());
-    }//GEN-LAST:event_tableRolesUsuarioMouseClicked
+    private void tableCargoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCargoMouseClicked
+        
+    }//GEN-LAST:event_tableCargoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnActivar;
     public javax.swing.JButton btnActualizar;
+    public javax.swing.JButton btnDarBaja;
     public javax.swing.JButton btnExcel1;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnNuevo;
@@ -190,7 +203,7 @@ public class CargoVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    public javax.swing.JTable tableRolesUsuario;
+    public javax.swing.JTable tableCargo;
     public javax.swing.JTextField txtDescripcion;
     public javax.swing.JTextField txtIdRolesUsuario;
     // End of variables declaration//GEN-END:variables

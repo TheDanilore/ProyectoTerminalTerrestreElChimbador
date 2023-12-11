@@ -14,7 +14,6 @@ import DAO.mysql.MySQLDaoManager;
 import DAO.mysql.MySQLUsuarioDAO;
 import Modelo.Cargo;
 import Modelo.Usuario;
-import Vista.LoginUser;
 import Vista.UsuariosAdminVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -107,49 +106,7 @@ public class UsuarioController implements ActionListener {
         Excel.reporteUsuario();
     }
 
-    /*public void login() {
-        if (loginVista.txtContra.getText().equals("") || loginVista.txtUser.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Ingrese su usuario y/o contraseña");
-        } else {
-            String username = loginVista.txtUser.getText();
-            char[] passwordChars = loginVista.txtContra.getPassword();
-            String password = new String(passwordChars);
-
-            if(!"".equals(username) ||!"".equals(password) ){
-            UsuarioModelo loginmodelo =new UsuarioModelo();
-            UsuarioDAO dao = new UsuarioDAO();
-            
-            loginmodelo=dao.log(username, password);
-            if(loginmodelo.getUsername()!=null && loginmodelo.getPassword()!=null){
-                int rol = modelo.getId_rol();
-
-                if (rol == 1) {
-                    PrincipalAdmin principalAdmin = new PrincipalAdmin();
-                    principalAdmin.show();
-                    String nombrerol = "Administrador";
-                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso como " + modelo.getNombres_usuario()
-                            + ", y tu rol es: " + nombrerol);
-                    
-                } else if (rol == 2) {
-
-                    PrincipalUsuario principalUsuario = new PrincipalUsuario();
-                    principalUsuario.show();
-                    String nombrerol = "Usuario";
-                    JOptionPane.showMessageDialog(null, "Inicio de sesión exitoso como " + modelo.getNombres_usuario()
-                            + ", y tu rol es: " + nombrerol);
-                }
-                loginVista.dispose();
-            }else{
-                JOptionPane.showMessageDialog(null, "El usuario y/o la contraseña es incorrecta");
-            }
-        }
-            Arrays.fill(passwordChars, ' ');
-        }
-    }
-
-    public UsuarioModelo getUsuario() {
-        return modelo;
-    }*/
+    
     
     public void guardarUsuario() throws DAOException {
         if (camposValidos()) {
