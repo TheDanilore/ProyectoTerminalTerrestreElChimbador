@@ -43,7 +43,6 @@ public class EmpresaController implements MouseListener {
     public EmpresaController(EmpresasAdminVista v, DAOManager manager) throws DAOException {
         this.vista = v;
         this.manager = manager;
-        this.vista.btnListar.addMouseListener(this);
         this.vista.btnGuardar.addMouseListener(this);
         this.vista.btnActualizar.addMouseListener(this);
         this.vista.btnDarBaja.addMouseListener(this);
@@ -58,15 +57,7 @@ public class EmpresaController implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == vista.btnListar) {
-
-            LimpiarTable();
-            try {
-                listarEmpresas(vista.tableEmpresa);
-            } catch (DAOException ex) {
-                Logger.getLogger(EmpresaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        
         if (e.getSource() == vista.btnGuardar) {
             try {
                 guardarEmpresa();
