@@ -204,7 +204,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_menuEntradaActionPerformed
 
     private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed
-        RegistroIncidencia RegistroIncidencia = new RegistroIncidencia();
+        RegistroIncidenciaVista RegistroIncidencia = new RegistroIncidenciaVista();
 
         
         RegistroIncidencia.show();
@@ -222,7 +222,7 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        VehiculosAdminVista vistaVehiculos = new VehiculosAdminVista();
+        VehiculosVista vistaVehiculos = new VehiculosVista();
         try {
             VehiculoController controller = new VehiculoController(vistaVehiculos, manager);
         } catch (DAOException ex) {
@@ -233,8 +233,8 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ConsultarPago vista = new ConsultarPago();
-        PagoIngreso pagoIngreso = new PagoIngreso();
+        ConsultarPagoVista vista = new ConsultarPagoVista();
+        PagoIngresoVista pagoIngreso = new PagoIngresoVista();
         try {
             PagoIngresoController controller = new PagoIngresoController(pagoIngreso,vista, manager);
         } catch (DAOException ex) {

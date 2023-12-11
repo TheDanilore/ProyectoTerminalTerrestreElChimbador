@@ -52,7 +52,6 @@ public final class ConductorController implements MouseListener {
         this.vista.btnActivar.addMouseListener(this);
         this.vista.btnDarBaja.addMouseListener(this);
         this.vista.btnObtener.addMouseListener(this);
-        this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableConductor.addMouseListener(this);
         this.LimpiarTable();
         this.ListarConductor(vista.tableConductor);
@@ -99,9 +98,6 @@ public final class ConductorController implements MouseListener {
             } catch (DAOException ex) {
                 Logger.getLogger(ConductorController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        if (e.getSource() == vista.btnExcel1) {
-            reporteExcel();
         }
         if (e.getSource() == vista.tableConductor) {
             int fila = vista.tableConductor.rowAtPoint(e.getPoint());
@@ -151,7 +147,7 @@ public final class ConductorController implements MouseListener {
             }
 
             modelo.setNumero_documento(Long.parseLong(vista.txtNumeroDocumento.getText()));
-            modelo.setTelefono(Integer.parseInt(vista.txtTelefonoConductor.getText()));
+            modelo.setTelefono(vista.txtTelefonoConductor.getText());
             modelo.setDireccion(vista.txtDireccionConductor.getText());
             modelo.setEmpresa(Long.parseLong(vista.txtRucEmpresa.getText()));
 
@@ -200,7 +196,7 @@ public final class ConductorController implements MouseListener {
                 }
 
                 modelo.setNumero_documento(Long.parseLong(vista.txtNumeroDocumento.getText()));
-                modelo.setTelefono(Integer.parseInt(vista.txtTelefonoConductor.getText()));
+                modelo.setTelefono(vista.txtTelefonoConductor.getText());
                 modelo.setDireccion(vista.txtDireccionConductor.getText());
                 modelo.setEmpresa(Long.parseLong(vista.txtRucEmpresa.getText()));
 
@@ -324,6 +320,8 @@ public final class ConductorController implements MouseListener {
         vista.tableConductor.setModel(clase);
         llenarTipoDocumentoIdentidad();
     }
+    
+    
 
     public void obtenerEmpresaPorRuc() throws DAOException {
         if (!"".equals(vista.txtRucEmpresa.getText())) {

@@ -6,7 +6,9 @@ package Vista;
 
 import Controlador.CargoController;
 import Controlador.ConductorController;
+import Controlador.ConsultarConductorController;
 import Controlador.ConsultarIngresoController;
+import Controlador.ConsultarVehiculoController;
 import Controlador.EmpresaController;
 import Controlador.MetodoPagoController;
 import Controlador.PagoIngresoController;
@@ -78,9 +80,11 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menuMetodoPago = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         menuConductor = new javax.swing.JMenuItem();
+        menuConsultarConductor = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         menuVehiculo = new javax.swing.JMenuItem();
         menuTipoVehiculo = new javax.swing.JMenuItem();
+        menuConsultarVehiculos = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         menuEmpresas = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -192,6 +196,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         });
         jMenu1.add(menuConductor);
 
+        menuConsultarConductor.setText("Consultar Conductor");
+        menuConsultarConductor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarConductorActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuConsultarConductor);
+
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Vehículos");
@@ -214,6 +226,14 @@ public class PrincipalAdmin extends javax.swing.JFrame {
             }
         });
         jMenu3.add(menuTipoVehiculo);
+
+        menuConsultarVehiculos.setText("Consultar Vehiculos");
+        menuConsultarVehiculos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarVehiculosActionPerformed(evt);
+            }
+        });
+        jMenu3.add(menuConsultarVehiculos);
 
         jMenuBar1.add(jMenu3);
 
@@ -313,7 +333,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuEmpresasActionPerformed
 
     private void menuVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuVehiculoActionPerformed
-        VehiculosAdminVista vistaVehiculos = new VehiculosAdminVista();
+        VehiculosVista vistaVehiculos = new VehiculosVista();
         try {
             VehiculoController controller = new VehiculoController(vistaVehiculos, manager);
         } catch (DAOException ex) {
@@ -369,8 +389,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_menuTipoVehiculoActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        ConsultarPago vista = new ConsultarPago();
-        PagoIngreso pagoIngreso = new PagoIngreso();
+        ConsultarPagoVista vista = new ConsultarPagoVista();
+        PagoIngresoVista pagoIngreso = new PagoIngresoVista();
         try {
             PagoIngresoController controller = new PagoIngresoController(pagoIngreso, vista, manager);
         } catch (DAOException ex) {
@@ -381,7 +401,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void menuRegistrarIncidenteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuRegistrarIncidenteActionPerformed
-        RegistroIncidencia RegistroIncidencia = new RegistroIncidencia();
+        RegistroIncidenciaVista RegistroIncidencia = new RegistroIncidenciaVista();
 
         escritorio.add(RegistroIncidencia);
         RegistroIncidencia.show();
@@ -397,7 +417,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
     private void menuConsultarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarIngresoActionPerformed
 
-        ConsultarEntrada vista = new ConsultarEntrada();
+        ConsultarEntradaVista vista = new ConsultarEntradaVista();
         try {
             ConsultarIngresoController controller = new ConsultarIngresoController(vista, manager);
         } catch (DAOException ex) {
@@ -406,6 +426,28 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         escritorio.add(vista);
         vista.show();
     }//GEN-LAST:event_menuConsultarIngresoActionPerformed
+
+    private void menuConsultarConductorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarConductorActionPerformed
+        ConsultarConductorVista vista = new ConsultarConductorVista();
+        try {
+            ConsultarConductorController controller = new ConsultarConductorController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuConsultarConductorActionPerformed
+
+    private void menuConsultarVehiculosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarVehiculosActionPerformed
+        ConsultarVehiculoVista vista = new ConsultarVehiculoVista();
+        try {
+            ConsultarVehiculoController controller = new ConsultarVehiculoController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuConsultarVehiculosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -469,7 +511,9 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuCargo;
     private javax.swing.JMenuItem menuCerrar;
     private javax.swing.JMenuItem menuConductor;
+    private javax.swing.JMenuItem menuConsultarConductor;
     private javax.swing.JMenuItem menuConsultarIngreso;
+    private javax.swing.JMenuItem menuConsultarVehiculos;
     private javax.swing.JMenuItem menuEmpresas;
     private javax.swing.JMenuItem menuEntrada;
     private javax.swing.JMenuItem menuMetodoPago;

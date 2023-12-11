@@ -5,6 +5,7 @@
 package DAO;
 
 import Modelo.Vehiculo;
+import java.util.List;
 
 /**
  *
@@ -12,4 +13,5 @@ import Modelo.Vehiculo;
  */
 public interface VehiculoDAO extends CrudDAO<Vehiculo,Integer>{
     public Vehiculo getByPlacaVehiculo(String placa) throws DAOException;
+    public List<Vehiculo> getByTipoVehiculo(int id) throws DAOException;
 }

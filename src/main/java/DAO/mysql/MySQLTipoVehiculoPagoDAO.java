@@ -190,6 +190,44 @@ public class MySQLTipoVehiculoPagoDAO implements TipoVehiculoPagoDAO{
 
         }
     }
+
+    @Override
+    public TipoVehiculoPago getByNombreId(String nombre) throws DAOException{
+        TipoVehiculoPago tipoVehiculoPago = new TipoVehiculoPago();
+        String sql ="SELECT * FROM tipo_vehiculo_pago WHERE descripcion=?";
+        try{
+            ps=conn.prepareStatement(sql);
+            ps.setString(1, nombre);
+            rs=ps.executeQuery();
+            if(rs.next()){
+                tipoVehiculoPago.setId_tipo_vehiculo_pago(rs.getInt("id_tipo_vehiculo_pago"));
+                tipoVehiculoPago.setDescripcion(rs.getString("descripcion"));
+                tipoVehiculoPago.setTarifa(rs.getDouble("tarifa"));
+            }
+        }catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+        }
+        return tipoVehiculoPago;
+    }
     
     
     

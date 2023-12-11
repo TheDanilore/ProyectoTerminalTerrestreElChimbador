@@ -11,5 +11,7 @@ import Modelo.TipoVehiculoPago;
  * @author Danilore
  */
 public interface TipoVehiculoPagoDAO extends CrudDeleteDAO<TipoVehiculoPago,Integer>{
+
+    public TipoVehiculoPago getByNombreId(String nombre) throws DAOException;
     
 }

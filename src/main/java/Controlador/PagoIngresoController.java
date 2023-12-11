@@ -13,8 +13,8 @@ import DAO.RegistroEntradaDAO;
 import Modelo.MetodoPago;
 import Modelo.Pago;
 import Modelo.RegistroEntrada;
-import Vista.ConsultarPago;
-import Vista.PagoIngreso;
+import Vista.ConsultarPagoVista;
+import Vista.PagoIngresoVista;
 import Vista.RegistroEntradaVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,15 +62,15 @@ import javax.swing.table.DefaultTableModel;
 public class PagoIngresoController implements MouseListener {
 
     private DAOManager manager;
-    PagoIngreso vista = new PagoIngreso();
-    ConsultarPago consultarPago = new ConsultarPago();
+    PagoIngresoVista vista = new PagoIngresoVista();
+    ConsultarPagoVista consultarPago = new ConsultarPagoVista();
     Pago modelo = new Pago();
     RegistroEntrada modeloEntrada = new RegistroEntrada();
     DefaultTableModel clase = new DefaultTableModel();
 
     double totalpagar = 0.00;
 
-    public PagoIngresoController(PagoIngreso v, ConsultarPago pv, DAOManager manager) throws DAOException {
+    public PagoIngresoController(PagoIngresoVista v, ConsultarPagoVista pv, DAOManager manager) throws DAOException {
         this.vista = v;
         this.consultarPago = pv;
         this.manager = manager;
@@ -330,10 +330,10 @@ public class PagoIngresoController implements MouseListener {
             Document doc = new Document();
             PdfWriter.getInstance(doc, archivo);
             doc.open();
-            Image img = Image.getInstance("src\\main\\java\\Imagenes\\utp.png");
+            Image img = Image.getInstance("src\\main\\resources\\images\\Escudo_de_Chimbote (2).png");
 
             Paragraph fecha = new Paragraph();
-            Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.GREEN);
+            Font negrita = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD, BaseColor.BLACK);
             fecha.add(Chunk.NEWLINE);
             Date date = new Date();
             fecha.add("Boleta: " + id + "\n" + "Fecha: " + new SimpleDateFormat("dd-MM-yyyy").format(date) + "\n\n");
@@ -387,7 +387,7 @@ public class PagoIngresoController implements MouseListener {
             tablacliente.addCell(vista.txtDni.getText());
             tablacliente.addCell(vista.txtConductor.getText());
             tablacliente.addCell(vista.txtPlaca.getText());
-            tablacliente.addCell(vista.txtDestino.getText());
+            tablacliente.addCell(vista.txtTipoVehiculo.getText());
 
             doc.add(tablacliente);
 
@@ -399,14 +399,14 @@ public class PagoIngresoController implements MouseListener {
             tablaproductos.setWidths(columnaproductos);
             tablaproductos.setHorizontalAlignment(Element.ALIGN_LEFT);
             PdfPCell productos1 = new PdfPCell(new Phrase("CANTIDAD", negrita));
-            PdfPCell productos2 = new PdfPCell(new Phrase("DESCRIPCION", negrita));
+            PdfPCell productos2 = new PdfPCell(new Phrase("DESTINO", negrita));
             PdfPCell productos3 = new PdfPCell(new Phrase("MONTO", negrita));
             productos1.setBorder(0);
             productos2.setBorder(0);
             productos3.setBorder(0);
-            productos1.setBackgroundColor(BaseColor.DARK_GRAY);
-            productos2.setBackgroundColor(BaseColor.DARK_GRAY);
-            productos3.setBackgroundColor(BaseColor.DARK_GRAY);
+            productos1.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            productos2.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            productos3.setBackgroundColor(BaseColor.LIGHT_GRAY);
             tablaproductos.addCell(productos1);
             tablaproductos.addCell(productos2);
             tablaproductos.addCell(productos3);

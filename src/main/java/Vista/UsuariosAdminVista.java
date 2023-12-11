@@ -227,12 +227,10 @@ public final class UsuariosAdminVista extends javax.swing.JInternalFrame {
 
 
     private void txtNombreUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreUsuarioKeyTyped
-        // TODO add your handling code here:
         event.textKeyPress(evt);
     }//GEN-LAST:event_txtNombreUsuarioKeyTyped
 
     private void txtUsernameUsuarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsernameUsuarioKeyTyped
-        // TODO add your handling code here:
 
     }//GEN-LAST:event_txtUsernameUsuarioKeyTyped
 

@@ -48,7 +48,7 @@ public class MySQLConductorDAO implements ConductorDAO {
             ps.setString(4, obj.getApellido_materno());
             ps.setString(5, obj.getTipo_documento_identidad());
             ps.setLong(6, obj.getNumero_documento());
-            ps.setInt(7, obj.getTelefono());
+            ps.setString(7, obj.getTelefono());
             ps.setString(8, obj.getDireccion());
             ps.setLong(9, obj.getEmpresa());
             ps.setInt(10, 1);
@@ -88,7 +88,7 @@ public class MySQLConductorDAO implements ConductorDAO {
                 conductor.setApellido_materno(rs.getString("apellido_materno"));
                 conductor.setTipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
                 conductor.setNumero_documento(rs.getLong("numero_documento"));
-                conductor.setTelefono(rs.getInt("telefono"));
+                conductor.setTelefono(rs.getString("telefono"));
                 conductor.setDireccion(rs.getString("direccion"));
                 conductor.setEmpresa(rs.getLong("ruc_empresa"));
                 conductor.setEstado(rs.getInt("id_estado"));
@@ -159,7 +159,7 @@ public class MySQLConductorDAO implements ConductorDAO {
             ps.setString(4, obj.getApellido_materno());
             ps.setString(5, obj.getTipo_documento_identidad());
             ps.setLong(6, obj.getNumero_documento());
-            ps.setInt(7, obj.getTelefono());
+            ps.setString(7, obj.getTelefono());
             ps.setString(8, obj.getDireccion());
             ps.setLong(9, obj.getEmpresa());
             ps.setInt(10, obj.getId_conductor());
@@ -201,7 +201,7 @@ public class MySQLConductorDAO implements ConductorDAO {
                 conductor.setApellido_materno(rs.getString("apellido_materno"));
                 conductor.setTipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
                 conductor.setNumero_documento(rs.getLong("numero_documento"));
-                conductor.setTelefono(rs.getInt("telefono"));
+                conductor.setTelefono(rs.getString("telefono"));
                 conductor.setDireccion(rs.getString("direccion"));
                 conductor.setEmpresa(rs.getLong("ruc_empresa"));
                 conductor.setEstado(rs.getInt("id_estado"));
@@ -247,7 +247,7 @@ public class MySQLConductorDAO implements ConductorDAO {
                 conductor.setApellido_materno(rs.getString("apellido_materno"));
                 conductor.setTipo_documento_identidad(rs.getString("id_tipo_documento_identidad"));
                 conductor.setNumero_documento(rs.getLong("numero_documento"));
-                conductor.setTelefono(rs.getInt("telefono"));
+                conductor.setTelefono(rs.getString("telefono"));
                 conductor.setDireccion(rs.getString("direccion"));
                 conductor.setEmpresa(rs.getLong("ruc_empresa"));
                 conductor.setEstado(rs.getInt("id_estado"));

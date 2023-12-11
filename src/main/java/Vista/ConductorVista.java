@@ -4,6 +4,8 @@
  */
 package Vista;
 
+import Clases.Evento;
+
 
 /**
  *
@@ -11,7 +13,7 @@ package Vista;
  */
 public class ConductorVista extends javax.swing.JInternalFrame {
 
-    
+    Evento event = new Evento();
     public ConductorVista() {
         initComponents();
         
@@ -58,8 +60,6 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         txtDireccionConductor = new javax.swing.JTextArea();
         jLabel20 = new javax.swing.JLabel();
         cbxTipoDocumentoIdentidad = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
-        btnExcel1 = new javax.swing.JButton();
         txtEmpresa = new javax.swing.JTextField();
         txtRucEmpresa = new javax.swing.JTextField();
         btnObtener = new javax.swing.JButton();
@@ -164,6 +164,12 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         btnActivar.setForeground(new java.awt.Color(255, 255, 255));
         btnActivar.setText("Activar Conductor");
         jPanel1.add(btnActivar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 650, -1, -1));
+
+        txtApellidoPaternoConductor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoPaternoConductorKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtApellidoPaternoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 200, -1));
 
         jLabel13.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
@@ -177,6 +183,12 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         jLabel15.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel15.setText("Apellido Paterno:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 100, 20));
+
+        txtSegundoNombreConductor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtSegundoNombreConductorKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtSegundoNombreConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 200, -1));
 
         jLabel16.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
@@ -186,16 +198,34 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         jLabel17.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel17.setText("Apellido Materno:");
         jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 100, 20));
+
+        txtApellidoMaternoConductor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoMaternoConductorKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtApellidoMaternoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 200, -1));
 
         jLabel18.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel18.setText("Numero de Documento:");
         jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 130, 20));
+
+        txtNumeroDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNumeroDocumentoKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtNumeroDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 180, -1));
 
         jLabel19.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel19.setText("Telefono:");
         jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 60, 20));
+
+        txtTelefonoConductor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoConductorKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtTelefonoConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 390, 140, -1));
 
         txtDireccionConductor.setColumns(20);
@@ -215,17 +245,13 @@ public class ConductorVista extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(cbxTipoDocumentoIdentidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 320, -1));
-
-        jLabel10.setFont(new java.awt.Font("72", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(51, 153, 0));
-        jLabel10.setText("Reportes");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 10, 80, 30));
-
-        btnExcel1.setBackground(new java.awt.Color(51, 255, 51));
-        btnExcel1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExcel1.setText("Excel");
-        jPanel1.add(btnExcel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 50, -1, -1));
         jPanel1.add(txtEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 330, -1));
+
+        txtRucEmpresa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRucEmpresaKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtRucEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 520, 130, -1));
 
         btnObtener.setBackground(new java.awt.Color(51, 255, 51));
@@ -253,7 +279,7 @@ public class ConductorVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtPrimerNombreConductorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrimerNombreConductorKeyTyped
-
+        event.textKeyPress(evt);
     }//GEN-LAST:event_txtPrimerNombreConductorKeyTyped
 
     private void tableConductorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableConductorMouseClicked
@@ -264,17 +290,39 @@ public class ConductorVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTipoDocumentoIdentidadActionPerformed
 
+    private void txtSegundoNombreConductorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSegundoNombreConductorKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtSegundoNombreConductorKeyTyped
+
+    private void txtApellidoPaternoConductorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPaternoConductorKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtApellidoPaternoConductorKeyTyped
+
+    private void txtApellidoMaternoConductorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoMaternoConductorKeyTyped
+        event.textKeyPress(evt);
+    }//GEN-LAST:event_txtApellidoMaternoConductorKeyTyped
+
+    private void txtNumeroDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumeroDocumentoKeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_txtNumeroDocumentoKeyTyped
+
+    private void txtTelefonoConductorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoConductorKeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_txtTelefonoConductorKeyTyped
+
+    private void txtRucEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucEmpresaKeyTyped
+        event.numberKeyPress(evt);
+    }//GEN-LAST:event_txtRucEmpresaKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnActivar;
     public javax.swing.JButton btnActualizar;
     public javax.swing.JButton btnDarBaja;
-    public javax.swing.JButton btnExcel1;
     public javax.swing.JButton btnGuardar;
     public javax.swing.JButton btnNuevo;
     public javax.swing.JButton btnObtener;
     public javax.swing.JComboBox<String> cbxTipoDocumentoIdentidad;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

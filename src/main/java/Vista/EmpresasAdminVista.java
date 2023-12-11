@@ -222,7 +222,6 @@ public class EmpresasAdminVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtRucEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRucEmpresaKeyTyped
-        // TODO add your handling code here:
         event.numberKeyPress(evt);
     }//GEN-LAST:event_txtRucEmpresaKeyTyped
 

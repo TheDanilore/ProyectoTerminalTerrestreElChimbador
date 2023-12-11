@@ -4,6 +4,7 @@
  */
 package Vista;
 
+import Clases.Evento;
 import DAO.DAOManager;
 import Modelo.Cargo;
 
@@ -13,6 +14,7 @@ import Modelo.Cargo;
  */
 public class CargoVista extends javax.swing.JInternalFrame {
 
+    Evento event = new Evento();
     public CargoVista() {
         initComponents();
     }
@@ -180,8 +182,7 @@ public class CargoVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtDescripcionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDescripcionKeyTyped
-        // TODO add your handling code here:
-        
+        event.textKeyPress(evt);
     }//GEN-LAST:event_txtDescripcionKeyTyped
 
     private void tableCargoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableCargoMouseClicked

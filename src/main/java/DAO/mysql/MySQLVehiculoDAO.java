@@ -232,4 +232,47 @@ public class MySQLVehiculoDAO implements VehiculoDAO{
         }
         return vehiculo;
     }
+
+    @Override
+    public List<Vehiculo> getByTipoVehiculo(int id) throws DAOException {
+        List<Vehiculo> lista= new ArrayList();
+        String sql="SELECT * FROM vehiculo WHERE id_tipo_vehiculo_pago=?";
+        try{
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                Vehiculo vehiculoModelo = new Vehiculo();
+                vehiculoModelo.setId_vehiculo(rs.getInt("id_vehiculo"));
+                vehiculoModelo.setPlaca_vehiculo(rs.getString("placa_vehiculo"));
+                vehiculoModelo.setTipo_vehiculo(rs.getInt("id_tipo_vehiculo_pago"));
+                vehiculoModelo.setEstado(rs.getInt("id_estado"));
+                lista.add(vehiculoModelo);
+            }
+        }catch (SQLException e) {
+            throw new DAOException("Error en Sql", e);
+
+        } finally {
+
+            if (rs != null) {
+                try {
+                    rs.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+            if (ps != null) {
+                try {
+                    ps.close();
+
+                } catch (SQLException e) {
+                    throw new DAOException("Error en SQL", e);
+                }
+            }
+        }
+        return lista;
+    }
+
+
 }

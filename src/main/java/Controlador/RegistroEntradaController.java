@@ -23,8 +23,8 @@ import Modelo.RegistroEntrada;
 import Modelo.TipoVehiculoPago;
 import Modelo.Vehiculo;
 import Vista.ConductorVista;
-import Vista.ConsultarPago;
-import Vista.PagoIngreso;
+import Vista.ConsultarPagoVista;
+import Vista.PagoIngresoVista;
 import Vista.RegistroEntradaVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,7 +43,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Danilore
  */
-public class RegistroEntradaController implements MouseListener {
+public class RegistroEntradaController implements MouseListener,ActionListener {
 
     private String departamentoActual;
     private String provinciaActual;
@@ -68,12 +68,11 @@ public class RegistroEntradaController implements MouseListener {
         this.vista.btnNuevo.addMouseListener(this);
         this.vista.btnEliminar.addMouseListener(this);
 
-        this.vista.txtDni.addMouseListener(this);
-        this.vista.btnExcel1.addMouseListener(this);
-        this.vista.txtPlaca.addMouseListener(this);
-        this.vista.txtIdTipoVehiculo.addMouseListener(this);
-        this.vista.cbxDepartamento.addMouseListener(this);
-        this.vista.cbxProvincia.addMouseListener(this);
+        this.vista.txtDni.addActionListener(this);
+        this.vista.txtPlaca.addActionListener(this);
+        this.vista.txtIdTipoVehiculo.addActionListener(this);
+        this.vista.cbxDepartamento.addActionListener(this);
+        this.vista.cbxProvincia.addActionListener(this);
         this.vista.btnCalcularTarifa.addMouseListener(this);
         this.vista.tableVehiculo.addMouseListener(this);
         this.LimpiarTable();
@@ -82,10 +81,50 @@ public class RegistroEntradaController implements MouseListener {
     }
 
     @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == vista.txtDni) {
+            try {
+                obtenerConductorPorDni();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        if (e.getSource() == vista.txtPlaca) {
+            try {
+                obtenerVehiculoPorPlaca();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getSource() == vista.txtIdTipoVehiculo) {
+            try {
+                obtenerTipoVehiculo();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getSource() == vista.cbxDepartamento) {
+            try {
+                obtenerIdDepartamento();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if (e.getSource() == vista.cbxProvincia) {
+            try {
+                obtenerIdProvincia();
+            } catch (DAOException ex) {
+                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnGuardar) {
-            PagoIngreso pagoVista = new PagoIngreso();
-            ConsultarPago consultarPago = new ConsultarPago();
+            PagoIngresoVista pagoVista = new PagoIngresoVista();
+            ConsultarPagoVista consultarPago = new ConsultarPagoVista();
             PagoIngresoController pago = null;
             try {
                 pago = new PagoIngresoController(pagoVista, consultarPago, manager);
@@ -138,51 +177,14 @@ public class RegistroEntradaController implements MouseListener {
             }
         }
 
-        if (e.getSource() == vista.txtDni) {
-            try {
-                obtenerConductorPorDni();
-            } catch (DAOException ex) {
-                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-
-        if (e.getSource() == vista.txtPlaca) {
-            try {
-                obtenerVehiculoPorPlaca();
-            } catch (DAOException ex) {
-                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if (e.getSource() == vista.txtIdTipoVehiculo) {
-            try {
-                obtenerTipoVehiculo();
-            } catch (DAOException ex) {
-                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if (e.getSource() == vista.cbxDepartamento) {
-            try {
-                obtenerIdDepartamento();
-            } catch (DAOException ex) {
-                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        if (e.getSource() == vista.cbxProvincia) {
-            try {
-                obtenerIdProvincia();
-            } catch (DAOException ex) {
-                Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        
+        
         if (e.getSource() == vista.btnCalcularTarifa) {
             try {
                 calcularTarifaPago();
             } catch (DAOException ex) {
                 Logger.getLogger(RegistroEntradaController.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        if (e.getSource() == vista.btnExcel1) {
-            reporteExcel();
         }
         if (e.getSource() == vista.tableVehiculo) {
             int fila = vista.tableVehiculo.rowAtPoint(e.getPoint());
@@ -197,9 +199,6 @@ public class RegistroEntradaController implements MouseListener {
 
     }
 
-    public void reporteExcel() {
-        Excel.reporteRegistroEntrada();
-    }
 
     public void actualizar() throws DAOException {
         if ("".equals(vista.txtIdIngresoVehiculo.getText())) {
@@ -578,7 +577,7 @@ public class RegistroEntradaController implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
+        
     }
 
     @Override
@@ -595,5 +594,7 @@ public class RegistroEntradaController implements MouseListener {
     public void mouseExited(MouseEvent e) {
 
     }
+
+    
 
 }

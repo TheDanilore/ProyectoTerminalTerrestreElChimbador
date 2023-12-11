@@ -1,11 +1,12 @@
 package Controlador;
 
+import Clases.Excel;
 import Clases.TextPrompt;
 import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.RegistroEntradaDAO;
 import Modelo.RegistroEntrada;
-import Vista.ConsultarEntrada;
+import Vista.ConsultarEntradaVista;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -25,15 +26,16 @@ import javax.swing.table.DefaultTableModel;
 public final class ConsultarIngresoController implements MouseListener {
 
     private final DAOManager manager;
-    ConsultarEntrada vista = new ConsultarEntrada();
+    ConsultarEntradaVista vista = new ConsultarEntradaVista();
 
     DefaultTableModel clase = new DefaultTableModel();
 
-    public ConsultarIngresoController(ConsultarEntrada v, DAOManager manager) throws DAOException {
+    public ConsultarIngresoController(ConsultarEntradaVista v, DAOManager manager) throws DAOException {
         this.vista = v;
         this.manager = manager;
         this.vista.btnBuscar.addMouseListener(this);
         this.vista.btnListar.addMouseListener(this);
+        this.vista.btnExcel1.addMouseListener(this);
         this.LimpiarTable();
         this.listar(vista.tableVehiculo);
         marcaAgua();
@@ -57,8 +59,14 @@ public final class ConsultarIngresoController implements MouseListener {
                 Logger.getLogger(ConsultarIngresoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        if (e.getSource() == vista.btnExcel1) {
+            reporteExcel();
+        }
     }
 
+    public void reporteExcel() {
+        Excel.reporteRegistroEntrada();
+    }
     public void LimpiarTable() {
         for (int i = 0; i < clase.getRowCount(); i++) {
             clase.removeRow(i);

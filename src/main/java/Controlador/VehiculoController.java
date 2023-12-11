@@ -9,7 +9,7 @@ import DAO.VehiculoDAO;
 import DAO.mysql.MySQLVehiculoDAO;
 import Modelo.TipoVehiculoPago;
 import Modelo.Vehiculo;
-import Vista.VehiculosAdminVista;
+import Vista.VehiculosVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -31,10 +31,10 @@ public final class VehiculoController implements MouseListener {
     private DAOManager manager;
 
     Vehiculo modelo = new Vehiculo();
-    VehiculosAdminVista vista = new VehiculosAdminVista();
+    VehiculosVista vista = new VehiculosVista();
     DefaultTableModel clase = new DefaultTableModel();
 
-    public VehiculoController(VehiculosAdminVista v, DAOManager manager) throws DAOException {
+    public VehiculoController(VehiculosVista v, DAOManager manager) throws DAOException {
         this.vista = v;
         this.manager = manager;
         this.vista.btnGuardar.addMouseListener(this);
@@ -42,7 +42,6 @@ public final class VehiculoController implements MouseListener {
         this.vista.btnNuevo.addMouseListener(this);
         this.vista.btnActivar.addMouseListener(this);
         this.vista.btnDarBaja.addMouseListener(this);
-        this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableVehiculo.addMouseListener(this);
         this.LimpiarTable();
         this.ListarVehiculos(vista.tableVehiculo);
@@ -82,9 +81,6 @@ public final class VehiculoController implements MouseListener {
                 Logger.getLogger(VehiculoController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        if (e.getSource() == vista.btnExcel1) {
-            reporteExcel();
-        }
         if (e.getSource() == vista.tableVehiculo) {
             int fila = vista.tableVehiculo.rowAtPoint(e.getPoint());
 
@@ -94,9 +90,7 @@ public final class VehiculoController implements MouseListener {
         }
     }
 
-    public void reporteExcel() {
-        Excel.reporteVehiculo();
-    }
+    
 
     public void guardarVehiculo() throws DAOException {
         if (camposValidos()) {

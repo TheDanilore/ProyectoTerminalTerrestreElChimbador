@@ -35,6 +35,37 @@ public class Evento {
             evt.consume();
         }
     }
+    
+    public void placaKeyPress(KeyEvent evt, JTextField textField) {
+        char car = evt.getKeyChar();
+        String text = textField.getText();
+
+        // Limitar a 7 caracteres (6 letras y un guion)
+        if (text.length() >= 7 && car != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        }
+
+        // Permitir letras, números, guion y la tecla de borrar
+        if (!isValidCharacter(car) && car != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        }
+
+        // Permitir un guion en la cuarta posición
+        if (text.length() == 3 && car != '-' && car != KeyEvent.VK_BACK_SPACE) {
+            evt.consume();
+        }
+
+        // Convertir a mayúscula si se ingresa una letra
+        if (Character.isLowerCase(car)) {
+            car = Character.toUpperCase(car);
+            evt.setKeyChar(car);
+        }
+    }
+
+    private boolean isValidCharacter(char car) {
+        return Character.isLetterOrDigit(car) || car == '-';
+    }
+
 
 
 }
