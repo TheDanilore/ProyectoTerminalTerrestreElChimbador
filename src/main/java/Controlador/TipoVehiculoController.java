@@ -42,6 +42,7 @@ public class TipoVehiculoController implements MouseListener {
         this.vista.btnNuevo.addMouseListener(this);
         this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableTipoVehiculo.addMouseListener(this);
+        this.vista.txtIdTipoVehiculo.setVisible(false);
         this.LimpiarTable();
         this.ListarTipoVehiculo(vista.tableTipoVehiculo);
         marcaAgua();

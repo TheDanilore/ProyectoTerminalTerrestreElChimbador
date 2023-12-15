@@ -15,26 +15,19 @@ public class RegistroEntrada {
     private String fecha_hora_entrada;
     private String vehiculo;
     private String tipo_vehiculo;
-    
-    private String destino;
     private String usuario;
-    private double pago;
-    private int estado;
 
     public RegistroEntrada() {
     }
 
-    public RegistroEntrada(int id_registro_entrada, long dni, String conductor, String fecha_hora_entrada, String vehiculo, String tipo_vehiculo, String destino, String usuario, double pago, int estado) {
+    public RegistroEntrada(int id_registro_entrada, long dni, String conductor, String fecha_hora_entrada, String vehiculo, String tipo_vehiculo, String usuario) {
         this.id_registro_entrada = id_registro_entrada;
         this.dni = dni;
         this.conductor = conductor;
         this.fecha_hora_entrada = fecha_hora_entrada;
         this.vehiculo = vehiculo;
         this.tipo_vehiculo = tipo_vehiculo;
-        this.destino = destino;
         this.usuario = usuario;
-        this.pago = pago;
-        this.estado = estado;
     }
 
     public int getId_registro_entrada() {
@@ -85,14 +78,6 @@ public class RegistroEntrada {
         this.tipo_vehiculo = tipo_vehiculo;
     }
 
-    public String getDestino() {
-        return destino;
-    }
-
-    public void setDestino(String destino) {
-        this.destino = destino;
-    }
-
     public String getUsuario() {
         return usuario;
     }
@@ -101,23 +86,5 @@ public class RegistroEntrada {
         this.usuario = usuario;
     }
 
-    public double getPago() {
-        return pago;
-    }
-
-    public void setPago(double pago) {
-        this.pago = pago;
-    }
-
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
-
-
-    
     
 }

@@ -12,15 +12,23 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="menuEntrada">
+            <MenuItem class="javax.swing.JMenuItem" name="menuIngreso">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Registrar Entrada de Veh&#xed;culos"/>
+                <Property name="text" type="java.lang.String" value="Registrar Ingreso"/>
                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                   <Color id="Hand Cursor"/>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEntradaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuIngresoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuIngresoConPaga">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Registrar Ingreso Con Pago"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuIngresoConPagaActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuSalida">
@@ -41,10 +49,26 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuConsultarIngreso">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar Ingreso de Veh&#xed;culo"/>
+                <Property name="text" type="java.lang.String" value="Consultar Ingreso"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarIngresoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuConsultarIngresoConPaga">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar Ingreso Con Pago"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuConsultarIngresoConPagaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="menuEstadoVehiculo">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Consultar Estado del Vehiculo"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuEstadoVehiculoActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

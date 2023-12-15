@@ -70,63 +70,67 @@ public class UsuarioControlador implements MouseListener {
 
     public void log() throws DAOException, SQLException {
 
-        if (camposValidos()) {
-            String username = vista.txtUser.getText();
-            char[] passwordChars = vista.txtPassword.getPassword();
-            String password = new String(passwordChars);
-            UsuarioDAO dao = manager.getUsuarioDAO();
-            Usuario usuario = dao.log(username, password);
+        if (validarUser()) {
+            if (validarPassword()) {
+                String username = vista.txtUser.getText();
+                char[] passwordChars = vista.txtPassword.getPassword();
+                String password = new String(passwordChars);
+                UsuarioDAO dao = manager.getUsuarioDAO();
+                Usuario usuario = dao.log(username, password);
 
-            if (usuario != null) {
-                this.modelo = usuario;
-                vista.dispose();
-                int rol = this.getUsuario().getCargo();
+                if (usuario != null) {
+                    this.modelo = usuario;
+                    vista.dispose();
+                    int rol = this.getUsuario().getCargo();
 
-                if (rol == 1) {
-                    PrincipalAdmin principalAdmin = null;
+                    if (rol == 1) {
+                        PrincipalAdmin principalAdmin = null;
 
-                    principalAdmin = new PrincipalAdmin();
+                        principalAdmin = new PrincipalAdmin();
 
-                    principalAdmin.show();
-                    String nombrerol = "Administrador";
-                    JOptionPane.showMessageDialog(vista, "Inicio de sesión exitoso como " + this.getUsuario().getNombres()
-                            + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
-                } else if (rol == 2) {
+                        principalAdmin.show();
+                        String nombrerol = "Administrador";
+                        JOptionPane.showMessageDialog(vista, "Inicio de sesión exitoso como " + this.getUsuario().getNombres()
+                                + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (rol == 2) {
 
-                    PrincipalUsuario principalUsuario = new PrincipalUsuario();
-                    principalUsuario.show();
-                    String nombrerol = "Usuario";
-                    JOptionPane.showMessageDialog(vista, "Inicio de sesión exitoso como " + this.getUsuario().getNombres()
-                            + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
+                        PrincipalUsuario principalUsuario = new PrincipalUsuario();
+                        principalUsuario.show();
+                        String nombrerol = "Usuario";
+                        JOptionPane.showMessageDialog(vista, "Inicio de sesión exitoso como " + this.getUsuario().getNombres()
+                                + ", y tu rol es: " + nombrerol, "Inicio de sesión exitoso", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario y/o contraseña es invalido");
                 }
+
+                Arrays.fill(passwordChars, ' ');
             } else {
-                System.err.println("Error: El usuario es nulo");
+                JOptionPane.showMessageDialog(null, "Su contraseña tiene que ser mayor a 5 caracteres ");
             }
 
-            Arrays.fill(passwordChars, ' ');
         } else {
-            JOptionPane.showMessageDialog(null, "Ingrese su usuario y contraseña");
+            JOptionPane.showMessageDialog(null, "Ingrese su usuario ");
 
         }
 
     }
 
-    public boolean camposValidos() {
+    public boolean validarUser() {
         String username = vista.txtUser.getText();
-        char[] passwordChars = vista.txtPassword.getPassword();
-        String password = new String(passwordChars);
 
         boolean userValido = validarUsuario(username);
-        boolean passValida = validarPassword(password);
 
-        return userValido && passValida;
+        return userValido;
     }
 
     private boolean validarUsuario(String username) {
         return !username.isEmpty(); // lógica de validación para el usuario
     }
 
-    private boolean validarPassword(String password) {
+    private boolean validarPassword() {
+        char[] passwordChars = vista.txtPassword.getPassword();
+        String password = new String(passwordChars);
 
         return password.length() >= 6; //Se requiere al menos 6 caracteres para la contraseña
     }
@@ -144,8 +148,7 @@ public class UsuarioControlador implements MouseListener {
         }
 
     }
-    
-    
+
     private void recuperarContraseña() {
         Preferences prefs = Preferences.userRoot().node("com.myapp.preferences");
         String savedPassword = prefs.get("password", "");
@@ -154,7 +157,7 @@ public class UsuarioControlador implements MouseListener {
             vista.jCheckBox1.setSelected(true); // Marcar el checkbox si se encuentra una contraseña guardada
         }
     }
-    
+
     public void marcaAgua() {
         TextPrompt usuario = new TextPrompt("Username", vista.txtUser);
         TextPrompt contra = new TextPrompt("Contraseña", vista.txtPassword);

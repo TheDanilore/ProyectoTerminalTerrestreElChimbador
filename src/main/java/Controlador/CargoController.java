@@ -44,6 +44,7 @@ public class CargoController implements MouseListener {
         this.vista.btnDarBaja.addMouseListener(this);
         this.vista.btnActivar.addMouseListener(this);
         this.vista.tableCargo.addMouseListener(this);
+        this.vista.txtIdRolesUsuario.setVisible(false);
         this.LimpiarTable();
         this.ListarCargo(vista.tableCargo);
         

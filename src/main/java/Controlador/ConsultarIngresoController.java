@@ -4,9 +4,6 @@ import Clases.Excel;
 import Clases.TextPrompt;
 import DAO.DAOException;
 import DAO.DAOManager;
-import DAO.RegistroEntradaDAO;
-import Modelo.RegistroEntrada;
-import Vista.ConsultarEntradaVista;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
@@ -15,23 +12,19 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import DAO.RegistroEntradaConPagaDAO;
+import DAO.RegistroEntradaDAO;
+import Modelo.RegistroEntrada;
+import Vista.ConsultarIngresoVista;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author Danilore
- */
 public final class ConsultarIngresoController implements MouseListener {
 
     private final DAOManager manager;
-    ConsultarEntradaVista vista = new ConsultarEntradaVista();
+    ConsultarIngresoVista vista = new ConsultarIngresoVista();
 
     DefaultTableModel clase = new DefaultTableModel();
 
-    public ConsultarIngresoController(ConsultarEntradaVista v, DAOManager manager) throws DAOException {
+    public ConsultarIngresoController(ConsultarIngresoVista v, DAOManager manager) throws DAOException {
         this.vista = v;
         this.manager = manager;
         this.vista.btnBuscar.addMouseListener(this);
@@ -80,7 +73,7 @@ public final class ConsultarIngresoController implements MouseListener {
         clase = (DefaultTableModel) tabla.getModel();
         RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
         List<RegistroEntrada> lista = dao.listAll();
-        Object[] ob = new Object[10];
+        Object[] ob = new Object[7];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_registro_entrada();
@@ -88,20 +81,8 @@ public final class ConsultarIngresoController implements MouseListener {
             ob[2] = lista.get(i).getConductor();
             ob[3] = lista.get(i).getVehiculo();
             ob[4] = lista.get(i).getTipo_vehiculo();
-            ob[5] = lista.get(i).getDestino();
-            ob[6] = lista.get(i).getFecha_hora_entrada();
-            ob[7] = lista.get(i).getUsuario();
-            ob[8] = lista.get(i).getPago();
-
-            ob[9] = lista.get(i).getEstado();
-            //estado
-            if (lista.get(i).getEstado() == 1) {
-                ob[9] = "En el Terminal";
-            }
-            if (lista.get(i).getEstado() == 2) {
-                ob[9] = "Salio del Terminal";
-            }
-
+            ob[5] = lista.get(i).getFecha_hora_entrada();
+            ob[6] = lista.get(i).getUsuario();
             clase.addRow(ob);
         }
         vista.tableVehiculo.setModel(clase);
@@ -114,7 +95,7 @@ public final class ConsultarIngresoController implements MouseListener {
         List<RegistroEntrada> lista = dao.getByPlaca(placa);
 
         if (lista != null) {
-            Object[] ob = new Object[10];
+            Object[] ob = new Object[7];
 
             for (int i = 0; i < lista.size(); i++) {
                 ob[0] = lista.get(i).getId_registro_entrada();
@@ -122,19 +103,8 @@ public final class ConsultarIngresoController implements MouseListener {
                 ob[2] = lista.get(i).getConductor();
                 ob[3] = lista.get(i).getVehiculo();
                 ob[4] = lista.get(i).getTipo_vehiculo();
-                ob[5] = lista.get(i).getDestino();
-                ob[6] = lista.get(i).getFecha_hora_entrada();
-                ob[7] = lista.get(i).getUsuario();
-                ob[8] = lista.get(i).getPago();
-
-                ob[9] = lista.get(i).getEstado();
-                //estado
-                if (lista.get(i).getEstado() == 1) {
-                    ob[9] = "En el Terminal";
-                }
-                if (lista.get(i).getEstado() == 2) {
-                    ob[9] = "Salio del Terminal";
-                }
+                ob[5] = lista.get(i).getFecha_hora_entrada();
+                ob[6] = lista.get(i).getUsuario();
 
                 clase.addRow(ob);
             }

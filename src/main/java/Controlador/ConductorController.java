@@ -53,6 +53,7 @@ public final class ConductorController implements MouseListener {
         this.vista.btnDarBaja.addMouseListener(this);
         this.vista.btnObtener.addMouseListener(this);
         this.vista.tableConductor.addMouseListener(this);
+        this.vista.txtIdConductor.setVisible(false);
         this.LimpiarTable();
         this.ListarConductor(vista.tableConductor);
         tabular();

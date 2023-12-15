@@ -1,107 +1,119 @@
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarConductorVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\TipoVehiculoController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EmpresasDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoConductorDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConductorVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\VehiculosVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Provincia.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoEmpresaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\login.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLDepartamentoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoVehiculo.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoEmpresa.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Clases\TextPrompt.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\UsuarioControlador.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarConductorController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Usuario.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLConductorDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\com\danilore\proyectoterminalterrestreelchimbador\ProyectoTerminalTerrestreElChimbador.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Departamento.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\EmpresaController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Empresas.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DAOException.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoConductor.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLDistritoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\RegistroEntradaController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoEscala.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoNormal.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoVehiculoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoCocheraDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\UsuarioDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\PrincipalAdmin.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEmpresasDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoEscalaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoCochera.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Pago.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarEntradaVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarEmpresaVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DistritoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoNormalDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\VehiculoController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\MetodoPagoController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoVehiculoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\CargoVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarVehiculoController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarUsuarioController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLTipoDocumentoIdentidadDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\PagoIngresoController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Clases\Evento.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\ConductorDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\TipoVehiculoPagoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarPagoVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\CargoController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\EmpresasAdminVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoNormalDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Conductor.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoUsuarioDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\RegistroIncidenciaVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\CargoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\Conexion.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoConductorDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoCocheraDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLProvinciaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\MetodoPago.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\UsuariosAdminVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\TipoVehiculoVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\RegistroEntrada.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarUsuarioVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLMetodoPagoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoEmpresaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\CrudDeleteDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DAOManager.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLVehiculoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\PagoIngresoVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\RegistroSalida.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarEmpresaController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLRegistroEntradaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoUsuario.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\TipoDocumentoIdentidad.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarVehiculoVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLTipoVehiculoPagoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\TipoVehiculoPago.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DepartamentoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Distrito.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\CrudDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Clases\Excel.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\ProvinciaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\RegistroEntradaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\MetodoPagoVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConductorController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\RegistroEntradaVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoEscalaDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLUsuarioDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoPorHora.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarIngresoController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLCargoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\VehiculoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\RegistroSalidaVista.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoUsuarioDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\PrincipalUsuario.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLDaoManager.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\TipoDocumentoIdentidadDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\MetodoPagoDAO.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\UsuarioController.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Vehiculo.java
-C:\Users\ASUS\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Cargo.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DAOException.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoPorHora.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EmpresasDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\EmpresaController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\UsuarioDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Empresas.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\ProvinciaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoUsuarioDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoNormal.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Usuario.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarEstadoVehiculoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\RegistroEntradaConPaga.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\CargoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\UsuarioControlador.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\Conexion.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLDaoManager.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\login.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLRegistroEntradaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoEmpresaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\RegistroSalida.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\VehiculoEnTerminal.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\VehiculoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DAOManager.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Clases\TextPrompt.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Pago.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarEmpresaVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarVehiculoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\RegistroEntradaController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoNormalDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoVehiculo.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoVehiculoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\ConductorDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\RegistroEntradaConPagaController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Vehiculo.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\CrudDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\VehiculosVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLTipoDocumentoIdentidadDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoEscalaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\RegistroIngresoConPagaVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\RegistroSalidaVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLVehicoEnTerminalDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\MetodoPagoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarUsuarioVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\VehiculoEnTerminalDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarUsuarioController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Distrito.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLUsuarioDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLDepartamentoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLVehiculoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\UsuariosAdminVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarIngresoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoConductor.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarIngresoConPagaController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\EmpresasAdminVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLProvinciaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Cargo.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarPagoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DepartamentoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\RegistroEntradaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\TipoVehiculoPagoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConductorController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoEscala.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\VehiculoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\TipoDocumentoIdentidad.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\DistritoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoEscalaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Clases\Evento.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarVehiculoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\PrincipalAdmin.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\PagoIngresoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLTipoVehiculoPagoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\RegistroEntradaConPagaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEmpresasDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Clases\Excel.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarConductorController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\TipoVehiculoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarEmpresaController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLRegistroEntradaConPagaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoVehiculoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\MetodoPagoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLCargoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\MetodoPago.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\RegistroIncidenciaVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoEmpresaDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\RegistroEntrada.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\MetodoPagoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarIngresoConPagaVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoUsuario.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\CrudDeleteDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\com\danilore\proyectoterminalterrestreelchimbador\ProyectoTerminalTerrestreElChimbador.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Provincia.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoCocheraDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Conductor.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLConductorDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoUsuarioDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\EstadoConductorDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\UsuarioController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLMetodoPagoDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\PagoCochera.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\TipoDocumentoIdentidadDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\TipoVehiculoPago.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\TipoVehiculoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\Departamento.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\CargoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\RegistroIngresoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Modelo\EstadoEmpresa.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\PagoIngresoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLPagoNormalDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarEstadoVehiculoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\PagoCocheraDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConductorVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\ConsultarConductorVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\PrincipalUsuario.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Controlador\ConsultarIngresoController.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLEstadoConductorDAO.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\Vista\CargoVista.java
+C:\Users\ASUS\OneDrive - Universidad Tecnologica del Peru\Documents\NetBeansProjects\ProyectoTerminalTerrestreElChimbador\src\main\java\DAO\mysql\MySQLDistritoDAO.java

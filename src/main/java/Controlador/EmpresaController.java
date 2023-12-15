@@ -50,6 +50,7 @@ public class EmpresaController implements MouseListener {
         this.vista.btnNuevo.addMouseListener(this);
         this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableEmpresa.addMouseListener(this);
+        this.vista.txtIdEmpresa.setVisible(false);
         LimpiarTable();
         listarEmpresas(vista.tableEmpresa);
         marcaAgua();

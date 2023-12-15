@@ -8,12 +8,14 @@ import Controlador.CargoController;
 import Controlador.ConductorController;
 import Controlador.ConsultarConductorController;
 import Controlador.ConsultarEmpresaController;
+import Controlador.ConsultarIngresoConPagaController;
 import Controlador.ConsultarIngresoController;
 import Controlador.ConsultarUsuarioController;
 import Controlador.ConsultarVehiculoController;
 import Controlador.EmpresaController;
 import Controlador.MetodoPagoController;
 import Controlador.PagoIngresoController;
+import Controlador.RegistroEntradaConPagaController;
 import Controlador.RegistroEntradaController;
 import Controlador.TipoVehiculoController;
 import Controlador.UsuarioControlador;
@@ -73,10 +75,13 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         menu_EntradaSalida = new javax.swing.JMenu();
-        menuEntrada = new javax.swing.JMenuItem();
+        menuIngreso = new javax.swing.JMenuItem();
+        menuIngresoConPaga = new javax.swing.JMenuItem();
         menuSalida = new javax.swing.JMenuItem();
         menuRegistrarIncidente = new javax.swing.JMenuItem();
         menuConsultarIngreso = new javax.swing.JMenuItem();
+        menuConsultarIngresoConPaga = new javax.swing.JMenuItem();
+        menuEstadoVehiculo = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuMetodoPago = new javax.swing.JMenuItem();
@@ -136,14 +141,22 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         menu_EntradaSalida.setText("Registro de Entradas y Salidas");
         menu_EntradaSalida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        menuEntrada.setText("Registrar Entrada de Vehículos");
-        menuEntrada.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        menuEntrada.addActionListener(new java.awt.event.ActionListener() {
+        menuIngreso.setText("Registrar Ingreso");
+        menuIngreso.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menuIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menuEntradaActionPerformed(evt);
+                menuIngresoActionPerformed(evt);
             }
         });
-        menu_EntradaSalida.add(menuEntrada);
+        menu_EntradaSalida.add(menuIngreso);
+
+        menuIngresoConPaga.setText("Registrar Ingreso Con Pago");
+        menuIngresoConPaga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuIngresoConPagaActionPerformed(evt);
+            }
+        });
+        menu_EntradaSalida.add(menuIngresoConPaga);
 
         menuSalida.setText("Registrar Salida de Vehículos");
         menu_EntradaSalida.add(menuSalida);
@@ -156,13 +169,29 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         });
         menu_EntradaSalida.add(menuRegistrarIncidente);
 
-        menuConsultarIngreso.setText("Consultar Ingreso de Vehículo");
+        menuConsultarIngreso.setText("Consultar Ingreso");
         menuConsultarIngreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuConsultarIngresoActionPerformed(evt);
             }
         });
         menu_EntradaSalida.add(menuConsultarIngreso);
+
+        menuConsultarIngresoConPaga.setText("Consultar Ingreso Con Pago");
+        menuConsultarIngresoConPaga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuConsultarIngresoConPagaActionPerformed(evt);
+            }
+        });
+        menu_EntradaSalida.add(menuConsultarIngresoConPaga);
+
+        menuEstadoVehiculo.setText("Consultar Estado del Vehiculo");
+        menuEstadoVehiculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEstadoVehiculoActionPerformed(evt);
+            }
+        });
+        menu_EntradaSalida.add(menuEstadoVehiculo);
 
         jMenuBar1.add(menu_EntradaSalida);
 
@@ -316,8 +345,8 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menuEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaActionPerformed
-        RegistroEntradaVista vista = new RegistroEntradaVista();
+    private void menuIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIngresoActionPerformed
+        RegistroIngresoVista vista = new RegistroIngresoVista();
         try {
             RegistroEntradaController controller = new RegistroEntradaController(vista, manager);
         } catch (DAOException ex) {
@@ -325,7 +354,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         }
         escritorio.add(vista);
         vista.show();
-    }//GEN-LAST:event_menuEntradaActionPerformed
+    }//GEN-LAST:event_menuIngresoActionPerformed
 
     private void menuUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuUsuarioActionPerformed
         UsuariosAdminVista vistaUsuario = new UsuariosAdminVista();
@@ -437,7 +466,7 @@ public class PrincipalAdmin extends javax.swing.JFrame {
 
     private void menuConsultarIngresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarIngresoActionPerformed
 
-        ConsultarEntradaVista vista = new ConsultarEntradaVista();
+        ConsultarIngresoVista vista = new ConsultarIngresoVista();
         try {
             ConsultarIngresoController controller = new ConsultarIngresoController(vista, manager);
         } catch (DAOException ex) {
@@ -490,6 +519,39 @@ public class PrincipalAdmin extends javax.swing.JFrame {
         escritorio.add(vista);
         vista.show();
     }//GEN-LAST:event_menuConsultarEmpresaActionPerformed
+
+    private void menuEstadoVehiculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEstadoVehiculoActionPerformed
+        /*ConsultarEstadoVehiculoVista vista = new ConsultarEstadoVehiculoVista();
+        try {
+            ConsultarEmpresaController controller = new ConsultarEmpresaController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();*/
+    }//GEN-LAST:event_menuEstadoVehiculoActionPerformed
+
+    private void menuIngresoConPagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuIngresoConPagaActionPerformed
+        RegistroIngresoConPagaVista vista = new RegistroIngresoConPagaVista();
+        try {
+            RegistroEntradaConPagaController controller = new RegistroEntradaConPagaController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuIngresoConPagaActionPerformed
+
+    private void menuConsultarIngresoConPagaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuConsultarIngresoConPagaActionPerformed
+        ConsultarIngresoConPagaVista vista = new ConsultarIngresoConPagaVista();
+        try {
+            ConsultarIngresoConPagaController controller = new ConsultarIngresoConPagaController(vista, manager);
+        } catch (DAOException ex) {
+            Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        escritorio.add(vista);
+        vista.show();
+    }//GEN-LAST:event_menuConsultarIngresoConPagaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -556,10 +618,13 @@ public class PrincipalAdmin extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuConsultarConductor;
     private javax.swing.JMenuItem menuConsultarEmpresa;
     private javax.swing.JMenuItem menuConsultarIngreso;
+    private javax.swing.JMenuItem menuConsultarIngresoConPaga;
     private javax.swing.JMenuItem menuConsultarUsuario;
     private javax.swing.JMenuItem menuConsultarVehiculos;
     private javax.swing.JMenuItem menuEmpresas;
-    private javax.swing.JMenuItem menuEntrada;
+    private javax.swing.JMenuItem menuEstadoVehiculo;
+    private javax.swing.JMenuItem menuIngreso;
+    private javax.swing.JMenuItem menuIngresoConPaga;
     private javax.swing.JMenuItem menuMetodoPago;
     private javax.swing.JMenuItem menuRegistrarIncidente;
     private javax.swing.JMenuItem menuSalida;

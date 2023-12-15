@@ -44,6 +44,7 @@ public class MetodoPagoController implements MouseListener {
         this.vista.btnEliminar.addMouseListener(this);
         this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableMetodoPago.addMouseListener(this);
+        this.vista.txtIdMetodoPago.setVisible(false);
         this.LimpiarTable();
         this.ListarMetodoPago(vista.tableMetodoPago);
         marcaAgua();

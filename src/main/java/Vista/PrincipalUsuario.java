@@ -8,7 +8,7 @@ package Vista;
 import Controlador.ConductorController;
 import Controlador.ConsultarEmpresaController;
 import Controlador.PagoIngresoController;
-import Controlador.RegistroEntradaController;
+import Controlador.RegistroEntradaConPagaController;
 import Controlador.VehiculoController;
 import DAO.DAOException;
 import DAO.DAOManager;
@@ -208,9 +208,9 @@ public class PrincipalUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void menuEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaActionPerformed
-        RegistroEntradaVista vista = new RegistroEntradaVista();
+        RegistroIngresoConPagaVista vista = new RegistroIngresoConPagaVista();
         try {
-            RegistroEntradaController controller = new RegistroEntradaController(vista, manager);
+            RegistroEntradaConPagaController controller = new RegistroEntradaConPagaController(vista, manager);
         } catch (DAOException ex) {
             Logger.getLogger(PrincipalAdmin.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -20,7 +20,6 @@ import DAO.PagoDAO;
 import DAO.PagoEscalaDAO;
 import DAO.PagoNormalDAO;
 import DAO.ProvinciaDAO;
-import DAO.RegistroEntradaDAO;
 import DAO.TipoDocumentoIdentidadDAO;
 import DAO.TipoVehiculoPagoDAO;
 import DAO.UsuarioDAO;
@@ -28,6 +27,8 @@ import DAO.VehiculoDAO;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import DAO.RegistroEntradaConPagaDAO;
+import DAO.RegistroEntradaDAO;
 
 /**
  *
@@ -51,15 +52,18 @@ public class MySQLDaoManager implements DAOManager {
     private TipoVehiculoPagoDAO tipoVehiculoPago = null;
     private UsuarioDAO usuario = null;
     private VehiculoDAO vehiculo = null;
-    private RegistroEntradaDAO registroEntrada = null;
+
     private DepartamentoDAO departamento = null;
     private ProvinciaDAO provincia = null;
     private DistritoDAO distrito = null;
 
-    
+    private RegistroEntradaConPagaDAO registroEntradaConPaga = null;
+    private RegistroEntradaDAO registroEntrada = null;
+
     private PagoDAO pago = null;
+
     public MySQLDaoManager() throws SQLException {
-        
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String myBD = "jdbc:mysql://localhost:3307/terminalterrestrechimbote?serverTimezone=UTC";
@@ -67,7 +71,7 @@ public class MySQLDaoManager implements DAOManager {
             String password = "Danilorexd123@";
             conn = DriverManager.getConnection(myBD, user, password);
         } catch (Exception e) {
-            System.err.println("Error: "+e);
+            System.err.println("Error: " + e);
         }
     }
 
@@ -167,7 +171,6 @@ public class MySQLDaoManager implements DAOManager {
         return tipoDocumentoIdentidad;
     }
 
-
     @Override
     public TipoVehiculoPagoDAO getTipoVehiculoPagoDAO() {
         if (tipoVehiculoPago == null) {
@@ -190,14 +193,6 @@ public class MySQLDaoManager implements DAOManager {
             vehiculo = new MySQLVehiculoDAO(conn);
         }
         return vehiculo;
-    }
-
-    @Override
-    public RegistroEntradaDAO getRegistroEntradaDAO() {
-        if (registroEntrada == null) {
-            registroEntrada = new MySQLRegistroEntradaDAO(conn);
-        }
-        return registroEntrada;
     }
 
     @Override
@@ -230,6 +225,22 @@ public class MySQLDaoManager implements DAOManager {
             pago = new MySQLPagoDAO(conn);
         }
         return pago;
+    }
+
+    @Override
+    public RegistroEntradaDAO getRegistroEntradaDAO() {
+        if (registroEntrada == null) {
+            registroEntrada = new MySQLRegistroEntradaDAO(conn);
+        }
+        return registroEntrada;
+    }
+
+    @Override
+    public RegistroEntradaConPagaDAO getRegistroEntradaConPagaDAO() {
+        if (registroEntradaConPaga == null) {
+            registroEntradaConPaga = new MySQLRegistroEntradaConPagaDAO(conn);
+        }
+        return registroEntradaConPaga;
     }
 
 }

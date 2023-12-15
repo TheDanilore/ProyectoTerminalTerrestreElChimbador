@@ -9,13 +9,12 @@ import DAO.DAOException;
 import DAO.DAOManager;
 import DAO.MetodoPagoDAO;
 import DAO.PagoDAO;
-import DAO.RegistroEntradaDAO;
 import Modelo.MetodoPago;
 import Modelo.Pago;
-import Modelo.RegistroEntrada;
+import Modelo.RegistroEntradaConPaga;
 import Vista.ConsultarPagoVista;
 import Vista.PagoIngresoVista;
-import Vista.RegistroEntradaVista;
+import Vista.RegistroIngresoConPagaVista;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -54,6 +53,7 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import DAO.RegistroEntradaConPagaDAO;
 
 /**
  *
@@ -65,7 +65,7 @@ public class PagoIngresoController implements MouseListener {
     PagoIngresoVista vista = new PagoIngresoVista();
     ConsultarPagoVista consultarPago = new ConsultarPagoVista();
     Pago modelo = new Pago();
-    RegistroEntrada modeloEntrada = new RegistroEntrada();
+    RegistroEntradaConPaga modeloEntrada = new RegistroEntradaConPaga();
     DefaultTableModel clase = new DefaultTableModel();
 
     double totalpagar = 0.00;
@@ -152,7 +152,7 @@ public class PagoIngresoController implements MouseListener {
             modeloEntrada.setPago(Double.parseDouble(vista.txtMontoPago.getText()));
 
             //Conexion, consulta con la base de datos
-            RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
+            RegistroEntradaConPagaDAO dao = manager.getRegistroEntradaConPagaDAO();
             dao.add(modeloEntrada);
 
             JOptionPane.showMessageDialog(null, "Ingreso Registrado con Exito");

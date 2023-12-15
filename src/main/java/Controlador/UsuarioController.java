@@ -51,6 +51,7 @@ public class UsuarioController implements MouseListener {
         this.vista.btnActivar.addMouseListener(this);
         this.vista.btnExcel1.addMouseListener(this);
         this.vista.tableUsuario.addMouseListener(this);
+        this.vista.txtIdUsuario.setVisible(false);
         LimpiarTable();
         ListarUsuarios(vista.tableUsuario);
         marcaAgua();
@@ -110,26 +111,37 @@ public class UsuarioController implements MouseListener {
         Excel.reporteUsuario();
     }
 
+    private boolean validarPassword() {
+        String passwordChars = vista.txtContraUsuario.getText();
+        String password = new String(passwordChars);
+
+        return password.length() >= 6; //Se requiere al menos 6 caracteres para la contraseña
+    }
+
     public void guardarUsuario() throws DAOException {
         if (camposValidos()) {
             modelo.setNombres(String.valueOf(vista.txtNombreUsuario.getText()));
             modelo.setUsuario(vista.txtUsernameUsuario.getText());
             modelo.setContra_usuarios(vista.txtContraUsuario.getText());
 
-            if ("Administrador".equals(vista.cbxRolUser.getSelectedItem().toString())) {
-                modelo.setCargo(1);
+            if (validarPassword()) {
+                if ("Administrador".equals(vista.cbxRolUser.getSelectedItem().toString())) {
+                    modelo.setCargo(1);
+                } else {
+                    modelo.setCargo(2);
+                }
+
+                //Conexion, consulta con la base de datos
+                UsuarioDAO dao = manager.getUsuarioDAO();
+                dao.add(modelo);
+
+                JOptionPane.showMessageDialog(null, "Usuario Registrado");
+                LimpiarTable();
+                ListarUsuarios(vista.tableUsuario);
+                LimpiarUsuario();
             } else {
-                modelo.setCargo(2);
+                JOptionPane.showMessageDialog(null, "Su contraseña tiene que ser mayor a 5 caracteres ");
             }
-
-            //Conexion, consulta con la base de datos
-            UsuarioDAO dao = manager.getUsuarioDAO();
-            dao.add(modelo);
-
-            JOptionPane.showMessageDialog(null, "Usuario Registrado");
-            LimpiarTable();
-            ListarUsuarios(vista.tableUsuario);
-            LimpiarUsuario();
 
         } else {
             JOptionPane.showMessageDialog(null, "Rellene todos los campos");
@@ -291,7 +303,7 @@ public class UsuarioController implements MouseListener {
 
         //cbxTipoDocumentoIdentidad.setSelectedItem(new TipoDocumentoIdentidad(idselect));
     }
-    
+
     public void marcaAgua() {
         TextPrompt nombreUser = new TextPrompt("Nombres del Usuario", vista.txtNombreUsuario);
         TextPrompt user = new TextPrompt("Username", vista.txtUsernameUsuario);
