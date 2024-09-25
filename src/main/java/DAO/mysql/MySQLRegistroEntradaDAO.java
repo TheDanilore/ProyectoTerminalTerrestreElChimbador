@@ -32,14 +32,15 @@ public class MySQLRegistroEntradaDAO implements RegistroEntradaDAO{
     
     @Override
     public void add(RegistroEntrada obj) throws DAOException {
-        String sql = "INSERT INTO registro_entrada (dni_conductor,conductor,placa,tipo_vehiculo) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO registro_entrada (tipo_documento,numero_documento,conductor,placa,tipo_vehiculo) VALUES (?,?,?,?,?)";
         
         try{
             ps=conn.prepareStatement(sql);
-            ps.setLong(1, obj.getDni());
-            ps.setString(2, obj.getConductor());
-            ps.setString(3, obj.getVehiculo());
-            ps.setString(4, obj.getTipo_vehiculo());
+            ps.setString(1, obj.getTipo_documento());
+            ps.setLong(2, obj.getNumero_documento());
+            ps.setString(3, obj.getConductor());
+            ps.setString(4, obj.getVehiculo());
+            ps.setString(5, obj.getTipo_vehiculo());
             
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
@@ -64,13 +65,14 @@ public class MySQLRegistroEntradaDAO implements RegistroEntradaDAO{
 
     @Override
     public void update(RegistroEntrada obj) throws DAOException {
-        String sql = "UPDATE registro_entrada SET dni_conductor=? conductor=?, placa=?, tipo_vehiculo=? WHERE id_registro_entrada=?";
+        String sql = "UPDATE registro_entrada SET tipo_documento=?  numero_documento=? conductor=?, placa=?, tipo_vehiculo=? WHERE id_registro_entrada=?";
         try {
             ps = conn.prepareStatement(sql);
-            ps.setLong(1, obj.getDni());
-            ps.setString(2, obj.getConductor());
-            ps.setString(3, obj.getVehiculo());
-            ps.setString(4, obj.getTipo_vehiculo());
+            ps.setString(1, obj.getTipo_documento());
+            ps.setLong(2, obj.getNumero_documento());
+            ps.setString(3, obj.getConductor());
+            ps.setString(4, obj.getVehiculo());
+            ps.setString(5, obj.getTipo_vehiculo());
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
             }
@@ -128,7 +130,8 @@ public class MySQLRegistroEntradaDAO implements RegistroEntradaDAO{
             while(rs.next()){
                 RegistroEntrada registroEntrada = new RegistroEntrada();
                 registroEntrada.setId_registro_entrada(rs.getInt("id_registro_entrada"));
-                registroEntrada.setDni(rs.getLong("dni_conductor"));
+                registroEntrada.setTipo_documento(rs.getString("tipo_documento"));
+                registroEntrada.setNumero_documento(rs.getLong("numero_documento"));
                 registroEntrada.setConductor(rs.getString("conductor"));
                 registroEntrada.setVehiculo(rs.getString("placa"));
                 registroEntrada.setTipo_vehiculo(rs.getString("tipo_vehiculo"));
@@ -177,7 +180,8 @@ public class MySQLRegistroEntradaDAO implements RegistroEntradaDAO{
             while(rs.next()){
                 RegistroEntrada registroEntrada = new RegistroEntrada();
                 registroEntrada.setId_registro_entrada(rs.getInt("id_registro_entrada"));
-                registroEntrada.setDni(rs.getLong("dni_conductor"));
+                registroEntrada.setTipo_documento(rs.getString("tipo_documento"));
+                registroEntrada.setNumero_documento(rs.getLong("numero_documento"));
                 registroEntrada.setConductor(rs.getString("conductor"));
                 registroEntrada.setVehiculo(rs.getString("placa"));
                 registroEntrada.setTipo_vehiculo(rs.getString("tipo_vehiculo"));

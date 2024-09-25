@@ -54,6 +54,7 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
         btnNuevo = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnExcel1 = new javax.swing.JLabel();
+        txtTipoDocumento = new javax.swing.JTextField();
 
         setClosable(true);
         setIconifiable(true);
@@ -71,8 +72,8 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 10, 470, 40));
 
         jLabel12.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
-        jLabel12.setText("DNI:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 60, 20));
+        jLabel12.setText("N° de Documento:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 140, 20));
 
         txtIdPago.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         txtIdPago.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -86,11 +87,11 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "Conductor", "Placa", "Tipo  de Vehiculo", "Destino", "Fecha", "Monto", "Metodo Pago"
+                "ID", "Tipo de Documento", "N° de Documento", "Conductor", "Placa", "Tipo  de Vehiculo", "Destino", "Fecha", "Monto", "Metodo Pago"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -160,7 +161,7 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
                 txtDniKeyTyped(evt);
             }
         });
-        jPanel1.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 120, 20));
+        jPanel1.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, 170, 20));
 
         txtTipoVehiculo.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         txtTipoVehiculo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -283,6 +284,17 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
 
         jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 40, -1, -1));
 
+        txtTipoDocumento.setEditable(false);
+        txtTipoDocumento.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
+        txtTipoDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTipoDocumento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtTipoDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoDocumentoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 20, 20));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -342,6 +354,10 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxMetodoPagoActionPerformed
 
+    private void txtTipoDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoDocumentoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoDocumentoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btnActualizar;
@@ -371,6 +387,7 @@ public class ConsultarPagoVista extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtIdPago;
     public javax.swing.JTextField txtMontoPago;
     public javax.swing.JTextField txtPlaca;
+    public javax.swing.JTextField txtTipoDocumento;
     public javax.swing.JTextField txtTipoVehiculo;
     // End of variables declaration//GEN-END:variables
 }

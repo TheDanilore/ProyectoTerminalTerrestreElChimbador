@@ -72,18 +72,19 @@ public final class ConsultarIngresoConPagaController implements MouseListener {
         clase = (DefaultTableModel) tabla.getModel();
         RegistroEntradaConPagaDAO dao = manager.getRegistroEntradaConPagaDAO();
         List<RegistroEntradaConPaga> lista = dao.listAll();
-        Object[] ob = new Object[9];
+        Object[] ob = new Object[10];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_registro_entrada();
-            ob[1] = lista.get(i).getDni();
-            ob[2] = lista.get(i).getConductor();
-            ob[3] = lista.get(i).getVehiculo();
-            ob[4] = lista.get(i).getTipo_vehiculo();
-            ob[5] = lista.get(i).getDestino();
-            ob[6] = lista.get(i).getFecha_hora_entrada();
-            ob[7] = lista.get(i).getUsuario();
-            ob[8] = lista.get(i).getPago();
+            ob[1] = lista.get(i).getTipo_documento();
+            ob[2] = lista.get(i).getNumero_documento();
+            ob[3] = lista.get(i).getConductor();
+            ob[4] = lista.get(i).getVehiculo();
+            ob[5] = lista.get(i).getTipo_vehiculo();
+            ob[6] = lista.get(i).getDestino();
+            ob[7] = lista.get(i).getFecha_hora_entrada();
+            ob[8] = lista.get(i).getUsuario();
+            ob[9] = lista.get(i).getPago();
             clase.addRow(ob);
         }
         vista.tableVehiculo.setModel(clase);
@@ -96,18 +97,19 @@ public final class ConsultarIngresoConPagaController implements MouseListener {
         List<RegistroEntradaConPaga> lista = dao.getByPlaca(placa);
 
         if (lista != null) {
-            Object[] ob = new Object[9];
+            Object[] ob = new Object[10];
 
             for (int i = 0; i < lista.size(); i++) {
                 ob[0] = lista.get(i).getId_registro_entrada();
-                ob[1] = lista.get(i).getDni();
-                ob[2] = lista.get(i).getConductor();
-                ob[3] = lista.get(i).getVehiculo();
-                ob[4] = lista.get(i).getTipo_vehiculo();
-                ob[5] = lista.get(i).getDestino();
-                ob[6] = lista.get(i).getFecha_hora_entrada();
-                ob[7] = lista.get(i).getUsuario();
-                ob[8] = lista.get(i).getPago();
+            ob[1] = lista.get(i).getTipo_documento();
+            ob[2] = lista.get(i).getNumero_documento();
+            ob[3] = lista.get(i).getConductor();
+            ob[4] = lista.get(i).getVehiculo();
+            ob[5] = lista.get(i).getTipo_vehiculo();
+            ob[6] = lista.get(i).getDestino();
+            ob[7] = lista.get(i).getFecha_hora_entrada();
+            ob[8] = lista.get(i).getUsuario();
+            ob[9] = lista.get(i).getPago();
 
                 clase.addRow(ob);
             }

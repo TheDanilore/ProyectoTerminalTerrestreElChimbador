@@ -54,6 +54,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import DAO.RegistroEntradaConPagaDAO;
+import DAO.TipoDocumentoIdentidadDAO;
+import Modelo.TipoDocumentoIdentidad;
 
 /**
  *
@@ -67,6 +69,8 @@ public class PagoIngresoController implements MouseListener {
     Pago modelo = new Pago();
     RegistroEntradaConPaga modeloEntrada = new RegistroEntradaConPaga();
     DefaultTableModel clase = new DefaultTableModel();
+    
+    TipoDocumentoIdentidad tipoDocumentoIde = new TipoDocumentoIdentidad();
 
     double totalpagar = 0.00;
 
@@ -80,10 +84,12 @@ public class PagoIngresoController implements MouseListener {
         this.consultarPago.tableVehiculo.addMouseListener(this);
         this.consultarPago.btnActualizar.addMouseListener(this);
         this.consultarPago.btnNuevo.addMouseListener(this);
+        this.vista.txtIdMetodoPago.setVisible(false);
+        this.consultarPago.txtTipoDocumento.setVisible(false);
         llenarMetodoPago();
         llenarMetodoPagoConsultar();
         listar(consultarPago.tableVehiculo);
-        
+
     }
 
     @Override
@@ -113,7 +119,8 @@ public class PagoIngresoController implements MouseListener {
             int fila = consultarPago.tableVehiculo.rowAtPoint(e.getPoint());
 
             consultarPago.txtIdPago.setText(consultarPago.tableVehiculo.getValueAt(fila, 0).toString());
-            consultarPago.txtDni.setText(consultarPago.tableVehiculo.getValueAt(fila, 1).toString());
+            consultarPago.txtTipoDocumento.setText(consultarPago.tableVehiculo.getValueAt(fila, 1).toString());
+            consultarPago.txtDni.setText(consultarPago.tableVehiculo.getValueAt(fila, 2).toString());
             consultarPago.txtConductor.setText(consultarPago.tableVehiculo.getValueAt(fila, 2).toString());
             consultarPago.txtPlaca.setText(consultarPago.tableVehiculo.getValueAt(fila, 3).toString());
             consultarPago.txtTipoVehiculo.setText(consultarPago.tableVehiculo.getValueAt(fila, 4).toString());
@@ -132,19 +139,44 @@ public class PagoIngresoController implements MouseListener {
         }
     }
 
-    public void setTextosEnTextFieldB(String texto1, String texto2, String texto3, String texto4, String texto5, String texto6) throws DAOException {
-        vista.txtDni.setText(texto1);
-        vista.txtConductor.setText(texto2);
-        vista.txtPlaca.setText(texto3);
-        vista.txtTipoVehiculo.setText(texto4);
-        vista.txtDestino.setText(texto5);
-        vista.txtMontoPago.setText(texto6);
+    public void setTextosEnTextFieldB(String texto1, String texto2, String texto3, String texto4, String texto5, String texto6, String texto7) throws DAOException {
+        vista.txtTipoDocumento.setText(texto1);
+        vista.txtNumDocumento.setText(texto2);
+        vista.txtConductor.setText(texto3);
+        vista.txtPlaca.setText(texto4);
+        vista.txtTipoVehiculo.setText(texto5);
+        vista.txtDestino.setText(texto6);
+        vista.txtMontoPago.setText(texto7);
+    }
+    
+    public void obtenerTipoDocumento(String id) throws DAOException {
+        if (!"".equals(vista.txtNumDocumento.getText())) {
+
+            TipoDocumentoIdentidadDAO dao = manager.getTipoDocumentoIdentidadDAO();
+
+            // Obtener el tipoDocumento POR SU id
+            TipoDocumentoIdentidad tipo = dao.getById(id);
+
+            // Verificar si se encontró un TIPODOCUMENTO
+            if (tipo.getDescripcion() != null) {
+                // Asignar los valores al objeto TIPODOCUMENTO
+                tipoDocumentoIde = tipo;
+                vista.txtTipoDocumento.setText("" + tipoDocumentoIde.getDescripcion());
+
+            } else {
+                vista.txtNumDocumento.setText("");
+                JOptionPane.showMessageDialog(null, "El Tipo de Vehiculo no existe");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el número de documento");
+        }
     }
 
     public void guardarRegistroEntrada() throws DAOException {
         if (camposValidos()) {
-
-            modeloEntrada.setDni(Long.parseLong(vista.txtDni.getText()));
+            modeloEntrada.setTipo_documento(vista.txtTipoDocumento.getText());
+            modeloEntrada.setNumero_documento(Long.parseLong(vista.txtNumDocumento.getText()));
             modeloEntrada.setConductor(vista.txtConductor.getText());
             modeloEntrada.setVehiculo(vista.txtPlaca.getText());
             modeloEntrada.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
@@ -165,7 +197,8 @@ public class PagoIngresoController implements MouseListener {
     public void guardar() throws DAOException {
         if (camposValidos()) {
 
-            modelo.setDni_conductor(Long.parseLong(vista.txtDni.getText()));
+            modelo.setTipo_documento(vista.txtTipoDocumento.getText());
+            modelo.setNumero_documento(Long.parseLong(vista.txtNumDocumento.getText()));
             modelo.setConductor(vista.txtConductor.getText());
             modelo.setPlaca(vista.txtPlaca.getText());
             modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
@@ -193,7 +226,8 @@ public class PagoIngresoController implements MouseListener {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
             if (camposValidosConsultar()) {
-                modelo.setDni_conductor(Long.parseLong(vista.txtDni.getText()));
+                modelo.setTipo_documento(vista.txtTipoDocumento.getText());
+                modelo.setNumero_documento(Long.parseLong(vista.txtNumDocumento.getText()));
                 modelo.setConductor(vista.txtConductor.getText());
                 modelo.setPlaca(vista.txtPlaca.getText());
                 modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
@@ -224,18 +258,19 @@ public class PagoIngresoController implements MouseListener {
         clase = (DefaultTableModel) tabla.getModel();
         PagoDAO dao = manager.getPagoDAO();
         List<Pago> lista = dao.listAll();
-        Object[] ob = new Object[9];
+        Object[] ob = new Object[10];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_pago();
-            ob[1] = lista.get(i).getDni_conductor();
-            ob[2] = lista.get(i).getConductor();
-            ob[3] = lista.get(i).getPlaca();
-            ob[4] = lista.get(i).getTipo_vehiculo();
-            ob[5] = lista.get(i).getDestino();
-            ob[6] = lista.get(i).getFecha_pago();
-            ob[7] = lista.get(i).getMonto();
-            ob[8] = lista.get(i).getId_metodo_pago();
+            ob[1] = lista.get(i).getTipo_documento();
+            ob[2] = lista.get(i).getNumero_documento();
+            ob[3] = lista.get(i).getConductor();
+            ob[4] = lista.get(i).getPlaca();
+            ob[5] = lista.get(i).getTipo_vehiculo();
+            ob[6] = lista.get(i).getDestino();
+            ob[7] = lista.get(i).getFecha_pago();
+            ob[8] = lista.get(i).getMonto();
+            ob[9] = lista.get(i).getId_metodo_pago();
 
             if (lista.get(i).getId_metodo_pago() == 1) {
                 ob[8] = "Pago Efectivo";
@@ -263,7 +298,7 @@ public class PagoIngresoController implements MouseListener {
 
     public boolean camposValidos() {
         return !vista.txtConductor.getText().isEmpty()
-                && !vista.txtDni.getText().isEmpty()
+                && !vista.txtNumDocumento.getText().isEmpty()
                 && !vista.txtPlaca.getText().isEmpty()
                 && !vista.txtMontoPago.getText().isEmpty()
                 && !vista.txtConductor.getText().isEmpty();
@@ -396,7 +431,7 @@ public class PagoIngresoController implements MouseListener {
             tablacliente.addCell(clientes2);
             tablacliente.addCell(clientes3);
             tablacliente.addCell(clientes4);
-            tablacliente.addCell(vista.txtDni.getText());
+            tablacliente.addCell(vista.txtNumDocumento.getText());
             tablacliente.addCell(vista.txtConductor.getText());
             tablacliente.addCell(vista.txtPlaca.getText());
             tablacliente.addCell(vista.txtTipoVehiculo.getText());

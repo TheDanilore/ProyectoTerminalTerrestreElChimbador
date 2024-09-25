@@ -48,6 +48,7 @@ public class ConsultarConductorController implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnBuscar) {
             try {
+                camposValidos();
                 LimpiarTable();
                 ListarByDni(vista.tableConductor);
             } catch (DAOException ex) {
@@ -189,6 +190,9 @@ public class ConsultarConductorController implements MouseListener {
             vista.txtNumeroDocumento.setText("");
         }
 
+    }
+    public boolean camposValidos(){
+        return !vista.txtNumeroDocumento.getText().isEmpty();
     }
 
     public void marcaAgua() {

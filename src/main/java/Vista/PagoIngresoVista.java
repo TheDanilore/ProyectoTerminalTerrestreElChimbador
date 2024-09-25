@@ -41,7 +41,7 @@ public class PagoIngresoVista extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtDni = new javax.swing.JTextField();
+        txtNumDocumento = new javax.swing.JTextField();
         txtDestino = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         cbxMetodoPago = new javax.swing.JComboBox<>();
@@ -49,6 +49,9 @@ public class PagoIngresoVista extends javax.swing.JFrame {
         btnPago = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnCancelar = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtTipoDocumento = new javax.swing.JTextField();
+        txtIdMetodoPago = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,7 +79,7 @@ public class PagoIngresoVista extends javax.swing.JFrame {
                 txtConductorKeyTyped(evt);
             }
         });
-        jPanel1.add(txtConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 140, 260, 20));
+        jPanel1.add(txtConductor, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 260, 20));
 
         txtPlaca.setEditable(false);
         txtPlaca.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
@@ -87,15 +90,15 @@ public class PagoIngresoVista extends javax.swing.JFrame {
                 txtPlacaKeyTyped(evt);
             }
         });
-        jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, 20));
+        jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 140, 20));
 
         jLabel16.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel16.setText("Placa:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, 20));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 70, 20));
 
         jLabel17.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel17.setText("Metodo de Pago:");
-        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 110, 20));
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 110, 20));
 
         txtMontoPago.setEditable(false);
         txtMontoPago.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
@@ -106,11 +109,11 @@ public class PagoIngresoVista extends javax.swing.JFrame {
                 txtMontoPagoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtMontoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, 130, 20));
+        jPanel1.add(txtMontoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, 130, 20));
 
         jLabel13.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel13.setText("Conductor:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 60, 20));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 60, 20));
 
         txtTipoVehiculo.setEditable(false);
         txtTipoVehiculo.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
@@ -121,33 +124,33 @@ public class PagoIngresoVista extends javax.swing.JFrame {
                 txtTipoVehiculoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 140, 20));
+        jPanel1.add(txtTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, 140, 20));
 
         jLabel19.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel19.setText("Tipo Vehiculo:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 80, 20));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 80, 20));
 
         jLabel22.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel22.setText("Lugar de Destino:");
-        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 120, 20));
+        jPanel1.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 120, 20));
 
         jLabel12.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
-        jLabel12.setText("DNI:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 60, 20));
+        jLabel12.setText("Tipo de Documento:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 110, 20));
 
-        txtDni.setEditable(false);
-        txtDni.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
-        txtDni.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtDni.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNumDocumento.setEditable(false);
+        txtNumDocumento.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
+        txtNumDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNumDocumento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNumDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDniKeyPressed(evt);
+                txtNumDocumentoKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDniKeyTyped(evt);
+                txtNumDocumentoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 120, 20));
+        jPanel1.add(txtNumDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 140, 20));
 
         txtDestino.setEditable(false);
         txtDestino.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
@@ -158,11 +161,11 @@ public class PagoIngresoVista extends javax.swing.JFrame {
                 txtDestinoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 250, 340, 20));
+        jPanel1.add(txtDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, 340, 20));
 
         jLabel18.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel18.setText("Monto Total:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 80, 20));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 310, 80, 20));
 
         cbxMetodoPago.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         cbxMetodoPago.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +173,7 @@ public class PagoIngresoVista extends javax.swing.JFrame {
                 cbxMetodoPagoActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, 180, -1));
+        jPanel1.add(cbxMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 350, 180, -1));
 
         jPanel2.setBackground(new java.awt.Color(51, 255, 51));
 
@@ -193,7 +196,7 @@ public class PagoIngresoVista extends javax.swing.JFrame {
             .addComponent(btnPago, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 100, 30));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 100, 30));
 
         jPanel5.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -216,7 +219,28 @@ public class PagoIngresoVista extends javax.swing.JFrame {
             .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 390, -1, -1));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 410, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
+        jLabel14.setText("N° de Documento:");
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 110, 20));
+
+        txtTipoDocumento.setEditable(false);
+        txtTipoDocumento.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
+        txtTipoDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTipoDocumento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtTipoDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtTipoDocumentoKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoDocumentoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, 190, 20));
+
+        txtIdMetodoPago.setEditable(false);
+        jPanel1.add(txtIdMetodoPago, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 20, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -252,13 +276,13 @@ public class PagoIngresoVista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoVehiculoKeyTyped
 
-    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+    private void txtNumDocumentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumDocumentoKeyPressed
 
-    }//GEN-LAST:event_txtDniKeyPressed
+    }//GEN-LAST:event_txtNumDocumentoKeyPressed
 
-    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+    private void txtNumDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumDocumentoKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDniKeyTyped
+    }//GEN-LAST:event_txtNumDocumentoKeyTyped
 
     private void txtDestinoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDestinoKeyTyped
         // TODO add your handling code here:
@@ -267,6 +291,14 @@ public class PagoIngresoVista extends javax.swing.JFrame {
     private void cbxMetodoPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMetodoPagoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxMetodoPagoActionPerformed
+
+    private void txtTipoDocumentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoDocumentoKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoDocumentoKeyPressed
+
+    private void txtTipoDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoDocumentoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoDocumentoKeyTyped
 
     /**
      * @param args the command line arguments
@@ -310,6 +342,7 @@ public class PagoIngresoVista extends javax.swing.JFrame {
     public javax.swing.JComboBox<String> cbxMetodoPago;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
@@ -322,9 +355,11 @@ public class PagoIngresoVista extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     public javax.swing.JTextField txtConductor;
     public javax.swing.JTextField txtDestino;
-    public javax.swing.JTextField txtDni;
+    public javax.swing.JTextField txtIdMetodoPago;
     public javax.swing.JTextField txtMontoPago;
+    public javax.swing.JTextField txtNumDocumento;
     public javax.swing.JTextField txtPlaca;
+    public javax.swing.JTextField txtTipoDocumento;
     public javax.swing.JTextField txtTipoVehiculo;
     // End of variables declaration//GEN-END:variables
 }

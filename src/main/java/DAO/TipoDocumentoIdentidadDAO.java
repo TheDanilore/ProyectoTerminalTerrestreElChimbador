@@ -10,6 +10,6 @@ import Modelo.TipoDocumentoIdentidad;
  *
  * @author Danilore
  */
-public interface TipoDocumentoIdentidadDAO extends CrudDeleteDAO<TipoDocumentoIdentidad,Integer>{
+public interface TipoDocumentoIdentidadDAO extends CrudDeleteDAO<TipoDocumentoIdentidad,String>{
     
 }

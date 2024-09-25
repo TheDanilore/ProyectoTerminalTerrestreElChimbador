@@ -38,6 +38,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import DAO.RegistroEntradaConPagaDAO;
+import DAO.TipoDocumentoIdentidadDAO;
+import Modelo.TipoDocumentoIdentidad;
 
 /**
  *
@@ -58,6 +60,8 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
     Departamento departamento = new Departamento();
     Provincia provincia = new Provincia();
 
+    TipoDocumentoIdentidad tipoDocumentoIde = new TipoDocumentoIdentidad();
+
     DefaultTableModel clase = new DefaultTableModel();
 
     public RegistroEntradaConPagaController(RegistroIngresoConPagaVista v, DAOManager manager) throws DAOException {
@@ -67,7 +71,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
         this.vista.btnActualizar.addMouseListener(this);
         this.vista.btnNuevo.addMouseListener(this);
         this.vista.btnEliminar.addMouseListener(this);
-        this.vista.txtDni.addActionListener(this);
+        this.vista.txtNumDocumento.addActionListener(this);
         this.vista.txtPlaca.addActionListener(this);
         this.vista.cbxDepartamento.addActionListener(this);
         this.vista.cbxProvincia.addActionListener(this);
@@ -77,6 +81,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
         this.vista.txtIdTipoVehiculo.setVisible(false);
         this.vista.txtIdDepartamento.setVisible(false);
         this.vista.txtIdProvincia.setVisible(false);
+        this.vista.txtTipoDocumento.setVisible(false);
         this.LimpiarTable();
         this.listar(vista.tableVehiculo);
         marcaAgua();
@@ -84,7 +89,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.txtDni) {
+        if (e.getSource() == vista.txtNumDocumento) {
             try {
                 obtenerConductorPorDni();
             } catch (DAOException ex) {
@@ -130,8 +135,9 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
                 }
 
                 // Obtén el texto
-                String dnie = vista.txtDni.getText();
+                String numeroDocumen = vista.txtNumDocumento.getText();
                 String conductore = vista.txtConductor.getText();
+                String tipoDocumento = vista.txtTipoDocumento.getText();
                 String placae = vista.txtPlaca.getText();
                 String tipovehiculoe = vista.txtTipoVehiculo.getText();
                 String destinoe = vista.cbxDepartamento.getSelectedItem().toString() + " - " + vista.cbxProvincia.getSelectedItem().toString() + " - "
@@ -140,7 +146,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
                 String pagoe = vista.txtTarifaPago.getText();
 
                 try {
-                    pago.setTextosEnTextFieldB(dnie, conductore, placae, tipovehiculoe, destinoe, pagoe);
+                    pago.setTextosEnTextFieldB(tipoDocumento, numeroDocumen, conductore, placae, tipovehiculoe, destinoe, pagoe);
                 } catch (DAOException ex) {
                     Logger.getLogger(RegistroEntradaConPagaController.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -184,16 +190,15 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
             int fila = vista.tableVehiculo.rowAtPoint(e.getPoint());
 
             vista.txtIdIngresoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 0).toString());
-            vista.txtDni.setText(vista.tableVehiculo.getValueAt(fila, 1).toString());
-            vista.txtConductor.setText(vista.tableVehiculo.getValueAt(fila, 2).toString());
-            vista.txtPlaca.setText(vista.tableVehiculo.getValueAt(fila, 3).toString());
-            vista.txtTipoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 4).toString());
-            vista.txtTarifaPago.setText(vista.tableVehiculo.getValueAt(fila, 8).toString());
-
-            vista.cbxDepartamento.setSelectedItem(vista.tableVehiculo.getValueAt(fila, 5).toString());
+            vista.txtTipoDocumento.setText(vista.tableVehiculo.getValueAt(fila, 1).toString());
+            vista.txtNumDocumento.setText(vista.tableVehiculo.getValueAt(fila, 2).toString());
+            vista.txtConductor.setText(vista.tableVehiculo.getValueAt(fila, 3).toString());
+            vista.txtPlaca.setText(vista.tableVehiculo.getValueAt(fila, 4).toString());
+            vista.txtTipoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 5).toString());
+            vista.txtTarifaPago.setText(vista.tableVehiculo.getValueAt(fila, 9).toString());
 
             // Obtener la cadena completa de la columna 5
-            String cadenaCompleta = vista.tableVehiculo.getValueAt(fila, 5).toString();
+            String cadenaCompleta = vista.tableVehiculo.getValueAt(fila, 6).toString();
 
             // Dividir la cadena utilizando el carácter '-' como separador
             String[] partes = cadenaCompleta.split(" - ");
@@ -205,13 +210,13 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
 
                 // Asignar a los JComboBox los valores recuperados
                 vista.cbxDepartamento.setSelectedItem(departamentoParte);
-                
+
                 // Obtener la segunda parte, que es la palabra antes del primer '-'
                 String provinciaParte = partes[1];
 
                 // Asignar a los JComboBox los valores recuperados
                 vista.cbxProvincia.setSelectedItem(provinciaParte);
-                
+
                 // Obtener la segunda parte, que es la palabra antes del primer '-'
                 String distritoParte = partes[2];
 
@@ -223,12 +228,38 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
 
     }
 
+    public void obtenerTipoDocumento(String id) throws DAOException {
+        if (!"".equals(vista.txtNumDocumento.getText())) {
+
+            TipoDocumentoIdentidadDAO dao = manager.getTipoDocumentoIdentidadDAO();
+
+            // Obtener el tipoDocumento POR SU id
+            TipoDocumentoIdentidad tipo = dao.getById(id);
+
+            // Verificar si se encontró un TIPODOCUMENTO
+            if (tipo.getDescripcion() != null) {
+                // Asignar los valores al objeto TIPODOCUMENTO
+                tipoDocumentoIde = tipo;
+                vista.txtTipoDocumento.setText("" + tipoDocumentoIde.getDescripcion());
+
+            } else {
+                vista.txtNumDocumento.setText("");
+                JOptionPane.showMessageDialog(null, "El Tipo de Vehiculo no existe");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el número de documento");
+        }
+    }
+
     public void actualizar() throws DAOException {
         if ("".equals(vista.txtIdIngresoVehiculo.getText())) {
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
             if (camposValidos()) {
-                modelo.setDni(Long.parseLong(vista.txtDni.getText()));
+                modelo.setTipo_documento(vista.txtTipoDocumento.getText());
+                modelo.setTipo_documento(vista.txtNumDocumento.getText());
+                modelo.setNumero_documento(Long.parseLong(vista.txtNumDocumento.getText()));
                 modelo.setConductor(vista.txtConductor.getText());
                 modelo.setVehiculo(vista.txtPlaca.getText());
                 modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
@@ -275,9 +306,9 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
     }
 
     public void obtenerConductorPorDni() throws DAOException {
-        if (!"".equals(vista.txtDni.getText())) {
+        if (!"".equals(vista.txtNumDocumento.getText())) {
 
-            long dni = Long.parseLong(vista.txtDni.getText());
+            long dni = Long.parseLong(vista.txtNumDocumento.getText());
 
             ConductorDAO dao = manager.getConductorDAO();
 
@@ -290,7 +321,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
                 conductor = conductorEncontrado;
                 vista.txtConductor.setText("" + conductor.getPrimer_nombre() + " " + conductor.getSegundo_nombre() + " " + conductor.getApellido_paterno() + " " + conductor.getApellido_materno());
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "El Conductor no existe");
             }
 
@@ -320,7 +351,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
 
                 //enviar tipo de vehiculo a metodo clacular tarifa
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "El Vehiculo no existe");
             }
 
@@ -349,7 +380,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
 
                 //
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "El Vehiculo no existe");
             }
 
@@ -411,18 +442,19 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
         clase = (DefaultTableModel) tabla.getModel();
         RegistroEntradaConPagaDAO dao = manager.getRegistroEntradaConPagaDAO();
         List<RegistroEntradaConPaga> lista = dao.listAll();
-        Object[] ob = new Object[9];
+        Object[] ob = new Object[10];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_registro_entrada();
-            ob[1] = lista.get(i).getDni();
-            ob[2] = lista.get(i).getConductor();
-            ob[3] = lista.get(i).getVehiculo();
-            ob[4] = lista.get(i).getTipo_vehiculo();
-            ob[5] = lista.get(i).getDestino();
-            ob[6] = lista.get(i).getFecha_hora_entrada();
-            ob[7] = lista.get(i).getUsuario();
-            ob[8] = lista.get(i).getPago();
+            ob[1] = lista.get(i).getTipo_documento();
+            ob[2] = lista.get(i).getNumero_documento();
+            ob[3] = lista.get(i).getConductor();
+            ob[4] = lista.get(i).getVehiculo();
+            ob[5] = lista.get(i).getTipo_vehiculo();
+            ob[6] = lista.get(i).getDestino();
+            ob[7] = lista.get(i).getFecha_hora_entrada();
+            ob[8] = lista.get(i).getUsuario();
+            ob[9] = lista.get(i).getPago();
 
             clase.addRow(ob);
         }
@@ -432,7 +464,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
 
     public void Limpiar() {
         vista.txtIdIngresoVehiculo.setText("");
-        vista.txtDni.setText("");
+        vista.txtNumDocumento.setText("");
         vista.txtConductor.setText("");
         vista.txtPlaca.setText("");
         vista.txtIdTipoVehiculo.setText("");
@@ -454,7 +486,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
     }
 
     public boolean camposValidos() {
-        return !vista.txtDni.getText().isEmpty()
+        return !vista.txtNumDocumento.getText().isEmpty()
                 && !vista.txtConductor.getText().isEmpty()
                 && !vista.txtPlaca.getText().isEmpty()
                 && !vista.txtTarifaPago.getText().isEmpty()
@@ -497,7 +529,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
                 System.out.println("Departamento actual seleccionado: " + departamentoActual); // Verifica si el departamento seleccionado es el esperado
                 llenarProvincia(departamentoActual);
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "El Departamento no existe");
             }
 
@@ -545,7 +577,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
                 System.out.println("Provincia actual seleccionada: " + provinciaActual); // Verifica si el departamento seleccionado es el esperado
                 llenarDistritos(provinciaActual);
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "La Provincia no existe");
             }
 
@@ -577,7 +609,7 @@ public final class RegistroEntradaConPagaController implements MouseListener, Ac
     }
 
     public void marcaAgua() {
-        TextPrompt dni = new TextPrompt("N° DNI", vista.txtDni);
+        TextPrompt dni = new TextPrompt("N° DNI", vista.txtNumDocumento);
         TextPrompt conductor = new TextPrompt("Nombre del Conductor", vista.txtConductor);
         TextPrompt placa = new TextPrompt("N° Placa", vista.txtPlaca);
         TextPrompt idTipoVehiculo = new TextPrompt("ID tipo", vista.txtIdTipoVehiculo);

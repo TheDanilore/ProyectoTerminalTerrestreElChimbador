@@ -35,7 +35,7 @@ public class Evento {
             evt.consume();
         }
     }
-    
+
     public void placaKeyPress(KeyEvent evt, JTextField textField) {
         char car = evt.getKeyChar();
         String text = textField.getText();
@@ -50,22 +50,20 @@ public class Evento {
             evt.consume();
         }
 
-        // Permitir un guion en la cuarta posición
-        if (text.length() == 3 && car != '-' && car != KeyEvent.VK_BACK_SPACE) {
-            evt.consume();
-        }
-
         // Convertir a mayúscula si se ingresa una letra
         if (Character.isLowerCase(car)) {
             car = Character.toUpperCase(car);
             evt.setKeyChar(car);
+        }
+
+        // Agregar guion automáticamente después de escribir 3 letras
+        if (text.length() == 3 && car != KeyEvent.VK_BACK_SPACE) {
+            textField.setText(text + "-");
         }
     }
 
     private boolean isValidCharacter(char car) {
         return Character.isLetterOrDigit(car) || car == '-';
     }
-
-
 
 }

@@ -12,7 +12,8 @@ import java.util.Date;
  */
 public class Pago {
     private int id_pago;
-    private long dni_conductor;
+    private String tipo_documento;
+    private long numero_documento;
     private String conductor;
     private String placa;
     private String tipo_vehiculo;
@@ -24,9 +25,10 @@ public class Pago {
     public Pago() {
     }
 
-    public Pago(int id_pago, long dni_conductor, String conductor, String placa, String tipo_vehiculo, String destino, String fecha_pago, double monto, int id_metodo_pago) {
+    public Pago(int id_pago, String tipo_documento, long numero_documento, String conductor, String placa, String tipo_vehiculo, String destino, String fecha_pago, double monto, int id_metodo_pago) {
         this.id_pago = id_pago;
-        this.dni_conductor = dni_conductor;
+        this.tipo_documento = tipo_documento;
+        this.numero_documento = numero_documento;
         this.conductor = conductor;
         this.placa = placa;
         this.tipo_vehiculo = tipo_vehiculo;
@@ -44,12 +46,20 @@ public class Pago {
         this.id_pago = id_pago;
     }
 
-    public long getDni_conductor() {
-        return dni_conductor;
+    public String getTipo_documento() {
+        return tipo_documento;
     }
 
-    public void setDni_conductor(long dni_conductor) {
-        this.dni_conductor = dni_conductor;
+    public void setTipo_documento(String tipo_documento) {
+        this.tipo_documento = tipo_documento;
+    }
+
+    public long getNumero_documento() {
+        return numero_documento;
+    }
+
+    public void setNumero_documento(long numero_documento) {
+        this.numero_documento = numero_documento;
     }
 
     public String getConductor() {
@@ -108,7 +118,5 @@ public class Pago {
         this.id_metodo_pago = id_metodo_pago;
     }
 
-    
-    
     
 }

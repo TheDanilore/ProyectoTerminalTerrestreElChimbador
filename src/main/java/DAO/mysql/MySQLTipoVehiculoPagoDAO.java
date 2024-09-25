@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 
 public class MySQLTipoVehiculoPagoDAO implements TipoVehiculoPagoDAO{
     
-    private Connection conn;
+    private final Connection conn;
 
     public MySQLTipoVehiculoPagoDAO(Connection conn) {
         this.conn = conn;

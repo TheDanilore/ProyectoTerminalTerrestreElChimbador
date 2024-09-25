@@ -59,11 +59,11 @@ public class ConsultarIngresoConPagaVista extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "Conductor", "Placa", "Tipo  de Vehiculo", "Destino", "Fecha", "Usuario", "Tarifa"
+                "ID", "Tipo de Documento", "N° de Documento", "Conductor", "Placa", "Tipo  de Vehiculo", "Destino", "Fecha", "Usuario", "Tarifa"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

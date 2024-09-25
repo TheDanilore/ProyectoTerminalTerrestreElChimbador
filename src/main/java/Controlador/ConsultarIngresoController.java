@@ -27,7 +27,7 @@ public final class ConsultarIngresoController implements MouseListener {
     public ConsultarIngresoController(ConsultarIngresoVista v, DAOManager manager) throws DAOException {
         this.vista = v;
         this.manager = manager;
-        this.vista.btnBuscar.addMouseListener(this);
+        this.vista.btnBuscarByPlaca.addMouseListener(this);
         this.vista.btnListar.addMouseListener(this);
         this.vista.btnExcel1.addMouseListener(this);
         this.LimpiarTable();
@@ -37,7 +37,7 @@ public final class ConsultarIngresoController implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        if (e.getSource() == vista.btnBuscar) {
+        if (e.getSource() == vista.btnBuscarByPlaca) {
             try {
                 LimpiarTable();
                 listarByPlaca(vista.tableVehiculo);
@@ -73,16 +73,17 @@ public final class ConsultarIngresoController implements MouseListener {
         clase = (DefaultTableModel) tabla.getModel();
         RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
         List<RegistroEntrada> lista = dao.listAll();
-        Object[] ob = new Object[7];
+        Object[] ob = new Object[8];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_registro_entrada();
-            ob[1] = lista.get(i).getDni();
-            ob[2] = lista.get(i).getConductor();
-            ob[3] = lista.get(i).getVehiculo();
-            ob[4] = lista.get(i).getTipo_vehiculo();
-            ob[5] = lista.get(i).getFecha_hora_entrada();
-            ob[6] = lista.get(i).getUsuario();
+            ob[1] = lista.get(i).getTipo_documento();
+            ob[2] = lista.get(i).getNumero_documento();
+            ob[3] = lista.get(i).getConductor();
+            ob[4] = lista.get(i).getVehiculo();
+            ob[5] = lista.get(i).getTipo_vehiculo();
+            ob[6] = lista.get(i).getFecha_hora_entrada();
+            ob[7] = lista.get(i).getUsuario();
             clase.addRow(ob);
         }
         vista.tableVehiculo.setModel(clase);
@@ -95,16 +96,17 @@ public final class ConsultarIngresoController implements MouseListener {
         List<RegistroEntrada> lista = dao.getByPlaca(placa);
 
         if (lista != null) {
-            Object[] ob = new Object[7];
+            Object[] ob = new Object[8];
 
             for (int i = 0; i < lista.size(); i++) {
                 ob[0] = lista.get(i).getId_registro_entrada();
-                ob[1] = lista.get(i).getDni();
-                ob[2] = lista.get(i).getConductor();
-                ob[3] = lista.get(i).getVehiculo();
-                ob[4] = lista.get(i).getTipo_vehiculo();
-                ob[5] = lista.get(i).getFecha_hora_entrada();
-                ob[6] = lista.get(i).getUsuario();
+                ob[1] = lista.get(i).getNumero_documento();
+                ob[2] = lista.get(i).getNumero_documento();
+                ob[3] = lista.get(i).getConductor();
+                ob[4] = lista.get(i).getVehiculo();
+                ob[5] = lista.get(i).getTipo_vehiculo();
+                ob[6] = lista.get(i).getFecha_hora_entrada();
+                ob[7] = lista.get(i).getUsuario();
 
                 clase.addRow(ob);
             }

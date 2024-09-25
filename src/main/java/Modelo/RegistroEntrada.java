@@ -10,7 +10,8 @@ package Modelo;
  */
 public class RegistroEntrada {
     private int id_registro_entrada;
-    private long dni;
+    private String tipo_documento;
+    private long numero_documento;
     private String conductor;
     private String fecha_hora_entrada;
     private String vehiculo;
@@ -20,9 +21,10 @@ public class RegistroEntrada {
     public RegistroEntrada() {
     }
 
-    public RegistroEntrada(int id_registro_entrada, long dni, String conductor, String fecha_hora_entrada, String vehiculo, String tipo_vehiculo, String usuario) {
+    public RegistroEntrada(int id_registro_entrada, String tipo_documento, long numero_documento, String conductor, String fecha_hora_entrada, String vehiculo, String tipo_vehiculo, String usuario) {
         this.id_registro_entrada = id_registro_entrada;
-        this.dni = dni;
+        this.tipo_documento = tipo_documento;
+        this.numero_documento = numero_documento;
         this.conductor = conductor;
         this.fecha_hora_entrada = fecha_hora_entrada;
         this.vehiculo = vehiculo;
@@ -38,12 +40,20 @@ public class RegistroEntrada {
         this.id_registro_entrada = id_registro_entrada;
     }
 
-    public long getDni() {
-        return dni;
+    public String getTipo_documento() {
+        return tipo_documento;
     }
 
-    public void setDni(long dni) {
-        this.dni = dni;
+    public void setTipo_documento(String tipo_documento) {
+        this.tipo_documento = tipo_documento;
+    }
+
+    public long getNumero_documento() {
+        return numero_documento;
+    }
+
+    public void setNumero_documento(long numero_documento) {
+        this.numero_documento = numero_documento;
     }
 
     public String getConductor() {
@@ -85,6 +95,8 @@ public class RegistroEntrada {
     public void setUsuario(String usuario) {
         this.usuario = usuario;
     }
+
+    
 
     
 }

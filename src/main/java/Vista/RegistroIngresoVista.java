@@ -1,18 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Vista;
 
 import Clases.Evento;
-import DAO.ConductorDAO;
-import DAO.DAOException;
-import DAO.DAOManager;
-import Modelo.Conductor;
-import java.awt.event.KeyEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,9 +28,8 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         txtConductor = new javax.swing.JTextField();
         txtPlaca = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        txtDni = new javax.swing.JTextField();
+        txtNumDocumento = new javax.swing.JTextField();
         txtTipoVehiculo = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         txtIdTipoVehiculo = new javax.swing.JTextField();
@@ -53,6 +41,8 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
         btnNuevo = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         btnEliminar = new javax.swing.JLabel();
+        txtTipoDocumento = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(236, 233, 233));
         setClosable(true);
@@ -72,8 +62,8 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 680, 40));
 
         jLabel12.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
-        jLabel12.setText("DNI:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 60, 20));
+        jLabel12.setText("N° de Documento:");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 110, 20));
 
         txtIdIngresoVehiculo.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         txtIdIngresoVehiculo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -87,11 +77,11 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "Conductor", "Placa", "Tipo  de Vehiculo", "Fecha", "Usuario"
+                "ID", "Tipo de Documento", "N° de Documento", "Conductor", "Placa", "Tipo  de Vehiculo", "Fecha", "Usuario"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -136,28 +126,24 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
                 txtPlacaKeyTyped(evt);
             }
         });
-        jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, 20));
-
-        jLabel16.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
-        jLabel16.setText("Placa:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 70, 20));
+        jPanel1.add(txtPlaca, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 140, 20));
 
         jLabel13.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel13.setText("Conductor:");
         jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 60, 20));
 
-        txtDni.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
-        txtDni.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        txtDni.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        txtDni.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNumDocumento.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
+        txtNumDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtNumDocumento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtNumDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtDniKeyPressed(evt);
+                txtNumDocumentoKeyPressed(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtDniKeyTyped(evt);
+                txtNumDocumentoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtDni, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 120, 20));
+        jPanel1.add(txtNumDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 150, 20));
 
         txtTipoVehiculo.setEditable(false);
         txtTipoVehiculo.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
@@ -168,12 +154,13 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
                 txtTipoVehiculoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 210, 140, 20));
+        jPanel1.add(txtTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, 140, 20));
 
         jLabel19.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
         jLabel19.setText("Tipo Vehiculo:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 80, 20));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 80, 20));
 
+        txtIdTipoVehiculo.setEditable(false);
         txtIdTipoVehiculo.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
         txtIdTipoVehiculo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtIdTipoVehiculo.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -182,7 +169,7 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
                 txtIdTipoVehiculoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtIdTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 180, 30, 20));
+        jPanel1.add(txtIdTipoVehiculo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 30, 20));
 
         jPanel2.setBackground(new java.awt.Color(51, 255, 51));
 
@@ -205,7 +192,7 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
             .addComponent(btnGuardar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 100, 30));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 270, 100, 30));
 
         jPanel3.setBackground(new java.awt.Color(51, 255, 51));
 
@@ -228,7 +215,7 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
             .addComponent(btnActualizar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, -1, -1));
 
         jPanel4.setBackground(new java.awt.Color(51, 255, 51));
 
@@ -251,7 +238,7 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
             .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, -1, -1));
 
         jPanel5.setBackground(new java.awt.Color(255, 51, 51));
 
@@ -274,7 +261,22 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
             .addComponent(btnEliminar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 320, -1, -1));
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 330, -1, -1));
+
+        txtTipoDocumento.setEditable(false);
+        txtTipoDocumento.setFont(new java.awt.Font("72", 0, 13)); // NOI18N
+        txtTipoDocumento.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        txtTipoDocumento.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtTipoDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTipoDocumentoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtTipoDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 110, 30, 20));
+
+        jLabel17.setFont(new java.awt.Font("72", 0, 12)); // NOI18N
+        jLabel17.setText("Placa:");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 70, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,13 +300,13 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoVehiculoKeyTyped
 
-    private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
+    private void txtNumDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumDocumentoKeyTyped
         event.numberKeyPress(evt);
-    }//GEN-LAST:event_txtDniKeyTyped
+    }//GEN-LAST:event_txtNumDocumentoKeyTyped
 
-    private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
+    private void txtNumDocumentoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumDocumentoKeyPressed
 
-    }//GEN-LAST:event_txtDniKeyPressed
+    }//GEN-LAST:event_txtNumDocumentoKeyPressed
 
     private void txtPlacaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPlacaKeyTyped
         event.placaKeyPress(evt, txtPlaca);
@@ -318,6 +320,10 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_tableVehiculoMouseClicked
 
+    private void txtTipoDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTipoDocumentoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTipoDocumentoKeyTyped
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JLabel btnActualizar;
@@ -326,7 +332,7 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
     public javax.swing.JLabel btnNuevo;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -339,10 +345,11 @@ public class RegistroIngresoVista extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable tableVehiculo;
     public javax.swing.JTextField txtConductor;
-    public javax.swing.JTextField txtDni;
     public javax.swing.JTextField txtIdIngresoVehiculo;
     public javax.swing.JTextField txtIdTipoVehiculo;
+    public javax.swing.JTextField txtNumDocumento;
     public javax.swing.JTextField txtPlaca;
+    public javax.swing.JTextField txtTipoDocumento;
     public javax.swing.JTextField txtTipoVehiculo;
     // End of variables declaration//GEN-END:variables
 }

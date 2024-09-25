@@ -46,17 +46,18 @@ public class MySQLPagoDAO implements PagoDAO{
     
     @Override
     public void add(Pago obj) throws DAOException {
-        String sql = "INSERT INTO pago (dni_conductor,conductor,placa,tipo_vehiculo,destino,monto,id_metodo_pago) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO pago (tipo_documento,numero_documento,conductor,placa,tipo_vehiculo,destino,monto,id_metodo_pago) VALUES (?,?,?,?,?,?,?,?)";
         
         try{
             ps=conn.prepareStatement(sql);
-            ps.setLong(1, obj.getDni_conductor());
-            ps.setString(2, obj.getConductor());
-            ps.setString(3, obj.getPlaca());
-            ps.setString(4, obj.getTipo_vehiculo());
-            ps.setString(5, obj.getDestino());
-            ps.setDouble(6, obj.getMonto());
-            ps.setDouble(7, obj.getId_metodo_pago());
+            ps.setString(1, obj.getTipo_documento());
+            ps.setLong(2, obj.getNumero_documento());
+            ps.setString(3, obj.getConductor());
+            ps.setString(4, obj.getPlaca());
+            ps.setString(5, obj.getTipo_vehiculo());
+            ps.setString(6, obj.getDestino());
+            ps.setDouble(7, obj.getMonto());
+            ps.setDouble(8, obj.getId_metodo_pago());
             
             if (ps.executeUpdate() == 0) {
                 throw new DAOException("Puede que no se haya guardado");
@@ -100,7 +101,8 @@ public class MySQLPagoDAO implements PagoDAO{
             while(rs.next()){
                 Pago pago = new Pago();
                 pago.setId_pago(rs.getInt("id_pago"));
-                pago.setDni_conductor(rs.getLong("dni_conductor"));
+                pago.setTipo_documento(rs.getString("tipo_documento"));
+                pago.setNumero_documento(rs.getLong("numero_documento"));
                 pago.setConductor(rs.getString("conductor"));
                 pago.setPlaca(rs.getString("placa"));
                 pago.setTipo_vehiculo(rs.getString("tipo_vehiculo"));

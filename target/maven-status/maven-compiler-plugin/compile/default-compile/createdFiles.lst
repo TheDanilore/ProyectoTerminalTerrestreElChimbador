@@ -93,6 +93,7 @@ Vista\VehiculosVista$1.class
 DAO\mysql\MySQLEmpresasDAO.class
 Vista\ConsultarVehiculoVista$4.class
 Vista\PrincipalAdmin$18.class
+Vista\RegistroIngresoConPagaVista$15.class
 DAO\DistritoDAO.class
 Vista\RegistroSalidaVista$12.class
 Vista\PrincipalAdmin$15.class
@@ -158,6 +159,7 @@ Vista\ConsultarIngresoVista.class
 Vista\PrincipalAdmin$6.class
 Vista\ConductorVista$4.class
 Vista\PrincipalUsuario$4.class
+Vista\ConsultarPagoVista$10.class
 Vista\ConsultarEstadoVehiculoVista.class
 DAO\mysql\MySQLUsuarioDAO.class
 Vista\EmpresasAdminVista$2.class
@@ -168,6 +170,7 @@ DAO\UsuarioDAO.class
 Vista\PrincipalAdmin$14.class
 Vista\VehiculosVista$2.class
 Vista\CargoVista$3.class
+Vista\PagoIngresoVista$9.class
 DAO\mysql\MySQLVehicoEnTerminalDAO.class
 Vista\ConsultarEmpresaVista$2.class
 Vista\PrincipalAdmin$20.class
@@ -178,6 +181,8 @@ DAO\DepartamentoDAO.class
 DAO\TipoDocumentoIdentidadDAO.class
 Vista\ConsultarIngresoConPagaVista$1.class
 Vista\PrincipalUsuario$3.class
+Vista\ConsultarIngresoVista$4.class
+Vista\RegistroIngresoVista$8.class
 Vista\CargoVista$2.class
 Vista\VehiculosVista$3.class
 Vista\ConsultarUsuarioVista$2.class

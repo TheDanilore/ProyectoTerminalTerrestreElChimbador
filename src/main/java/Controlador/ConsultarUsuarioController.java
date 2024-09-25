@@ -26,9 +26,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConsultarUsuarioController implements MouseListener {
 
-    private DAOManager manager;
+    private final DAOManager manager;
     ConsultarUsuarioVista vista = new ConsultarUsuarioVista();
-    Usuario modelo = new Usuario();
 
     DefaultTableModel clase = new DefaultTableModel();
 
@@ -47,12 +46,15 @@ public class ConsultarUsuarioController implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (e.getSource() == vista.btnBuscar) {
-
-            try {
+            if (camposValidos()) {
                 LimpiarTable();
-                listarById(vista.tableUsuario);
-            } catch (DAOException ex) {
-                Logger.getLogger(ConsultarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                try {
+                    listarById(vista.tableUsuario);
+                } catch (DAOException ex) {
+                    Logger.getLogger(ConsultarUsuarioController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Ingreso un codigo valido");
             }
 
         }
@@ -112,14 +114,12 @@ public class ConsultarUsuarioController implements MouseListener {
     }
 
     public void listarById(JTable tabla) throws DAOException {
+
         clase = (DefaultTableModel) tabla.getModel();
         UsuarioDAO dao = manager.getUsuarioDAO();
+        Usuario lista = dao.getById(Integer.parseInt(vista.txtId.getText()));
 
-        int id = Integer.parseInt(vista.txtId.getText());
-
-        Usuario lista = dao.getById(id);
-
-        if (lista != null) {
+        if (lista.getNombres() != null) {
             Object[] ob = new Object[6];
 
             for (int i = 0; i < 1; i++) {
@@ -158,6 +158,10 @@ public class ConsultarUsuarioController implements MouseListener {
             clase.removeRow(i);
             i = i - 1;
         }
+    }
+
+    public boolean camposValidos() {
+        return !vista.txtId.getText().isEmpty();
     }
 
     public void marcaAgua() {

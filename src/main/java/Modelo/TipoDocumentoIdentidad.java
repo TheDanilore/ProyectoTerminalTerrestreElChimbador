@@ -11,16 +11,15 @@ package Modelo;
 public class TipoDocumentoIdentidad {
     private String id_tipo_documento_identidad;
     private String descripcion;
+    private String abreviatura;
 
     public TipoDocumentoIdentidad() {
     }
 
-
-    
-
-    public TipoDocumentoIdentidad(String id_tipo_documento_identidad, String descripcion) {
+    public TipoDocumentoIdentidad(String id_tipo_documento_identidad, String descripcion, String abreviatura) {
         this.id_tipo_documento_identidad = id_tipo_documento_identidad;
         this.descripcion = descripcion;
+        this.abreviatura = abreviatura;
     }
 
     public String getId_tipo_documento_identidad() {
@@ -38,13 +37,15 @@ public class TipoDocumentoIdentidad {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-    public String ToString(){
-        return descripcion;
+
+    public String getAbreviatura() {
+        return abreviatura;
     }
-    
-    public boolean equals(Object obj){
-        return this.id_tipo_documento_identidad == ((TipoDocumentoIdentidad) obj).id_tipo_documento_identidad;
+
+    public void setAbreviatura(String abreviatura) {
+        this.abreviatura = abreviatura;
     }
+
+    
     
 }

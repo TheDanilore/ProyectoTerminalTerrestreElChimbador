@@ -4,6 +4,7 @@
  */
 package Controlador;
 
+import Clases.Evento;
 import Clases.TextPrompt;
 import DAO.ConductorDAO;
 import DAO.DAOException;
@@ -26,13 +27,18 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import DAO.RegistroEntradaDAO;
+import DAO.TipoDocumentoIdentidadDAO;
+import Modelo.TipoDocumentoIdentidad;
+import java.awt.KeyEventDispatcher;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author Danilore
  */
-public final class RegistroEntradaController implements MouseListener, ActionListener {
-
+public final class RegistroEntradaController implements MouseListener, ActionListener{
+    Evento event = new Evento();
+    
     private String tipoVehiculoDescripcion;
 
     private final DAOManager manager;
@@ -41,6 +47,7 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
     Conductor conductor = new Conductor();
     Vehiculo vehiculo = new Vehiculo();
     TipoVehiculoPago tipoVehiculo = new TipoVehiculoPago();
+    TipoDocumentoIdentidad tipoDocumentoIde = new TipoDocumentoIdentidad();
 
     DefaultTableModel clase = new DefaultTableModel();
 
@@ -51,11 +58,12 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
         this.vista.btnActualizar.addMouseListener(this);
         this.vista.btnNuevo.addMouseListener(this);
         this.vista.btnEliminar.addMouseListener(this);
-        this.vista.txtDni.addActionListener(this);
+        this.vista.txtNumDocumento.addActionListener(this);
         this.vista.txtPlaca.addActionListener(this);
         this.vista.tableVehiculo.addMouseListener(this);
         this.vista.txtIdIngresoVehiculo.setVisible(false);
         this.vista.txtIdTipoVehiculo.setVisible(false);
+        this.vista.txtTipoDocumento.setVisible(false);
         this.LimpiarTable();
         this.listar(vista.tableVehiculo);
         marcaAgua();
@@ -63,7 +71,7 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == vista.txtDni) {
+        if (e.getSource() == vista.txtNumDocumento) {
             try {
                 obtenerConductorPorDni();
             } catch (DAOException ex) {
@@ -115,18 +123,21 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
             int fila = vista.tableVehiculo.rowAtPoint(e.getPoint());
 
             vista.txtIdIngresoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 0).toString());
-            vista.txtDni.setText(vista.tableVehiculo.getValueAt(fila, 1).toString());
-            vista.txtConductor.setText(vista.tableVehiculo.getValueAt(fila, 2).toString());
-            vista.txtPlaca.setText(vista.tableVehiculo.getValueAt(fila, 3).toString());
-            vista.txtTipoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 4).toString());
+            vista.txtTipoDocumento.setText(vista.tableVehiculo.getValueAt(fila, 1).toString());
+            vista.txtNumDocumento.setText(vista.tableVehiculo.getValueAt(fila, 2).toString());
+            vista.txtConductor.setText(vista.tableVehiculo.getValueAt(fila, 3).toString());
+            vista.txtPlaca.setText(vista.tableVehiculo.getValueAt(fila, 4).toString());
+            vista.txtTipoVehiculo.setText(vista.tableVehiculo.getValueAt(fila, 5).toString());
+            
+            
         }
 
     }
 
     public void guardar() throws DAOException {
         if (camposValidos()) {
-
-            modelo.setDni(Long.parseLong(vista.txtDni.getText()));
+            modelo.setTipo_documento(vista.txtTipoDocumento.getText());
+            modelo.setNumero_documento(Long.parseLong(vista.txtNumDocumento.getText()));
             modelo.setConductor(vista.txtConductor.getText());
             modelo.setVehiculo(vista.txtPlaca.getText());
             modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
@@ -151,7 +162,8 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
             JOptionPane.showMessageDialog(null, "Seleccione una fila");
         } else {
             if (camposValidos()) {
-                modelo.setDni(Long.parseLong(vista.txtDni.getText()));
+                modelo.setTipo_documento(vista.txtTipoDocumento.getText());
+                modelo.setNumero_documento(Long.parseLong(vista.txtNumDocumento.getText()));
                 modelo.setConductor(vista.txtConductor.getText());
                 modelo.setVehiculo(vista.txtPlaca.getText());
                 modelo.setTipo_vehiculo(vista.txtTipoVehiculo.getText());
@@ -195,9 +207,9 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
     }
 
     public void obtenerConductorPorDni() throws DAOException {
-        if (!"".equals(vista.txtDni.getText())) {
+        if (!"".equals(vista.txtNumDocumento.getText())) {
 
-            long dni = Long.parseLong(vista.txtDni.getText());
+            long dni = Long.parseLong(vista.txtNumDocumento.getText());
 
             ConductorDAO dao = manager.getConductorDAO();
 
@@ -206,16 +218,50 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
 
             // Verificar si se encontró un conductor
             if (conductorEncontrado.getPrimer_nombre() != null) {
-                // Asignar los valores al objeto conductor
-                conductor = conductorEncontrado;
-                vista.txtConductor.setText("" + conductor.getPrimer_nombre() + " " + conductor.getSegundo_nombre() + " " + conductor.getApellido_paterno() + " " + conductor.getApellido_materno());
+                if (conductorEncontrado.getTipo_documento_identidad() != null) {
+                    // Asignar los valores al objeto conductor
+                    conductor = conductorEncontrado;
+                    vista.txtConductor.setText("" + conductor.getPrimer_nombre() + " " + conductor.getSegundo_nombre() + " " + conductor.getApellido_paterno() + " " + conductor.getApellido_materno());
+                    
+                    String id=conductor.getTipo_documento_identidad();
+                    obtenerTipoDocumento(id);
+                } else {
+                    vista.txtNumDocumento.setText("");
+                    JOptionPane.showMessageDialog(null, "El Conductor no existe");
+                }
+
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "El Conductor no existe");
             }
 
         } else {
             JOptionPane.showMessageDialog(null, "Ingrese el numero de documento");
+        }
+    }
+    
+    public void obtenerTipoDocumento(String id) throws DAOException {
+        if (!"".equals(vista.txtNumDocumento.getText())) {
+
+
+            TipoDocumentoIdentidadDAO dao = manager.getTipoDocumentoIdentidadDAO();
+
+            // Obtener el tipoDocumento POR SU id
+            TipoDocumentoIdentidad tipo = dao.getById(id);
+
+            // Verificar si se encontró un TIPODOCUMENTO
+            if (tipo.getAbreviatura()!=null) {
+                // Asignar los valores al objeto TIPODOCUMENTO
+                tipoDocumentoIde = tipo;
+                vista.txtTipoDocumento.setText("" + tipoDocumentoIde.getAbreviatura());
+
+            } else {
+                vista.txtNumDocumento.setText("");
+                JOptionPane.showMessageDialog(null, "El Tipo de Documento no existe");
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el número de documento");
         }
     }
 
@@ -240,7 +286,7 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
 
                 //enviar tipo de vehiculo a metodo clacular tarifa
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "El Vehiculo no existe");
             }
 
@@ -269,7 +315,7 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
 
                 //
             } else {
-                vista.txtDni.setText("");
+                vista.txtNumDocumento.setText("");
                 JOptionPane.showMessageDialog(null, "El Vehiculo no existe");
             }
 
@@ -287,16 +333,17 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
         clase = (DefaultTableModel) tabla.getModel();
         RegistroEntradaDAO dao = manager.getRegistroEntradaDAO();
         List<RegistroEntrada> lista = dao.listAll();
-        Object[] ob = new Object[7];
+        Object[] ob = new Object[8];
 
         for (int i = 0; i < lista.size(); i++) {
             ob[0] = lista.get(i).getId_registro_entrada();
-            ob[1] = lista.get(i).getDni();
-            ob[2] = lista.get(i).getConductor();
-            ob[3] = lista.get(i).getVehiculo();
-            ob[4] = lista.get(i).getTipo_vehiculo();
-            ob[5] = lista.get(i).getFecha_hora_entrada();
-            ob[6] = lista.get(i).getUsuario();
+            ob[1] = lista.get(i).getTipo_documento();
+            ob[2] = lista.get(i).getNumero_documento();
+            ob[3] = lista.get(i).getConductor();
+            ob[4] = lista.get(i).getVehiculo();
+            ob[5] = lista.get(i).getTipo_vehiculo();
+            ob[6] = lista.get(i).getFecha_hora_entrada();
+            ob[7] = lista.get(i).getUsuario();
 
             clase.addRow(ob);
         }
@@ -305,7 +352,7 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
 
     public void Limpiar() {
         vista.txtIdIngresoVehiculo.setText("");
-        vista.txtDni.setText("");
+        vista.txtNumDocumento.setText("");
         vista.txtConductor.setText("");
         vista.txtPlaca.setText("");
         vista.txtIdTipoVehiculo.setText("");
@@ -321,14 +368,15 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
     }
 
     public boolean camposValidos() {
-        return !vista.txtDni.getText().isEmpty()
+        return !vista.txtNumDocumento.getText().isEmpty()
                 && !vista.txtConductor.getText().isEmpty()
                 && !vista.txtPlaca.getText().isEmpty()
                 && !vista.txtTipoVehiculo.getText().isEmpty();
     }
 
     public void marcaAgua() {
-        TextPrompt dni = new TextPrompt("N° DNI", vista.txtDni);
+        TextPrompt tipo_documento = new TextPrompt("Tipo de Documento", vista.txtTipoDocumento);
+        TextPrompt numero_documento = new TextPrompt("N° de Documento", vista.txtNumDocumento);
         TextPrompt conductor = new TextPrompt("Nombre del Conductor", vista.txtConductor);
         TextPrompt placa = new TextPrompt("N° Placa", vista.txtPlaca);
         TextPrompt idTipoVehiculo = new TextPrompt("ID tipo", vista.txtIdTipoVehiculo);
@@ -354,5 +402,7 @@ public final class RegistroEntradaController implements MouseListener, ActionLis
     public void mouseExited(MouseEvent e) {
 
     }
+
+  
 
 }
